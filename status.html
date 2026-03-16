@@ -623,17 +623,36 @@ footer {
   .stat-block { padding: 24px 32px 24px 0; margin-right: 32px; }
   .changelog-layout { grid-template-columns: 1fr; gap: 40px; }
   .changelog-sticky { position: static; }
-  footer { padding: 40px 24px; }
+  footer { padding: 40px 24px; flex-wrap: wrap; }
   .footer-right { text-align: left; }
   .header-sub { display: none; }
+  .header-sep { display: none; }
   .hero::after { display: none; }
+  .footer-brand { font-size: clamp(18px, 5vw, 28px); }
+}
+@media (max-width: 600px) {
+  .status-grid { grid-template-columns: 1fr; }
+  .cap-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
+  header { padding: 0 16px; height: 52px; }
+  .wordmark { font-size: 12px; letter-spacing: 2px; }
+  .wm-at { font-size: 13.5px; }
+  .header-clock { display: none; }
+  .status-pill-label { display: none; }
+  .status-pill { padding: 6px 10px; }
+  section { padding: 52px 20px; }
+  .hero { padding: 80px 20px 56px; }
   .hero-stats { flex-direction: column; }
   .stat-block { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 0; margin-right: 0; }
   .stat-block:last-child { border-bottom: none; }
-  .status-grid { grid-template-columns: 1fr; }
-  .cap-grid { grid-template-columns: 1fr; }
+  .stat-number { font-size: clamp(32px, 12vw, 56px); }
+  .status-card { padding: 20px; gap: 14px; }
+  .status-card::before { width: 3px; }
+  .status-badge { font-size: 8px; padding: 2px 6px; }
+  .cap-card { padding: 24px 20px; }
+  footer { padding: 32px 20px; }
+  .footer-brand { font-size: 20px; }
 }
 
 </style>
@@ -696,6 +715,7 @@ footer {
 <section class="section-status">
   <div class="section-label reveal">Estado del sistema</div>
   <h2 class="status-headline reveal d1">5 daemons.<br>Todos operativos.</h2>
+  <p class="status-last-checked reveal d1" id="last-checked" style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(107,107,107,0.5);margin-top:-36px;margin-bottom:40px;">Última comprobación: --:--</p>
 
   <div class="status-grid">
 
@@ -905,6 +925,18 @@ function updateClock() {
 }
 updateClock();
 setInterval(updateClock, 1000);
+
+// Last checked timestamp (updates every minute)
+function updateLastChecked() {
+  const el = document.getElementById('last-checked');
+  if (!el) return;
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  el.textContent = `Última comprobación: ${h}:${m}`;
+}
+updateLastChecked();
+setInterval(updateLastChecked, 60000);
 
 // Scroll reveal
 const observer = new IntersectionObserver(entries => {
