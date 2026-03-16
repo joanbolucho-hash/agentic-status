@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGENTIC Status — Actual Talent AI Workspace</title>
+<meta name="description" content="Estado en tiempo real del sistema AGENTIC. 5 daemons activos. 1973+ documentos indexados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:        #C0191E;
+  --beige:      #E8E5DC;
+  --cream:      #F0EEEB;
+  --black:      #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
+  --green:      #22C55E;
+  --amber:      #F59E0B;
+  --danger:     #EF4444;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── REVEAL ────────────────────────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.06s; } .d2 { transition-delay: 0.12s; } .d3 { transition-delay: 0.18s; }
+.d4 { transition-delay: 0.24s; } .d5 { transition-delay: 0.30s; } .d6 { transition-delay: 0.36s; }
+
+/* ─── HEADER ────────────────────────────────────────────────────────────────── */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.at-mono { flex-shrink: 0; color: white; }
+.header-wordmark { font-size: 13px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: white; }
+.header-right { display: flex; align-items: center; gap: 20px; }
+nav { display: flex; align-items: center; gap: 4px; }
+.nav-link { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 7px 14px; border-radius: 4px; transition: color 0.2s; }
+.nav-link:hover { color: rgba(255,255,255,0.9); }
+.nav-pill { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: white; text-decoration: none; padding: 8px 18px; background: var(--red); border-radius: 100px; transition: opacity 0.2s; margin-left: 8px; }
+.nav-pill:hover { opacity: 0.85; }
+
+/* Clock + Status pill */
+.header-clock { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+.status-pill {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.75); padding: 6px 14px;
+  background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 100px;
+}
+.pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(34,197,94,0.4);
+  animation: pulse 2.5s ease-out infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  70%  { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+/* ─── HERO ──────────────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 100px 48px 80px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 50% 10%, rgba(192,25,30,0.09) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-logo {
+  color: white; margin-bottom: 48px; opacity: 0.9;
+  position: relative; z-index: 1;
+}
+.hero-headline {
+  font-size: clamp(40px, 6.5vw, 88px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.0;
+  color: white; margin-bottom: 24px; position: relative; z-index: 1;
+}
+.hero-sub {
+  font-size: clamp(14px, 1.6vw, 17px); font-weight: 300; line-height: 1.8;
+  color: rgba(255,255,255,0.45); max-width: 580px;
+  margin-bottom: 64px; position: relative; z-index: 1;
+}
+.hero-stats {
+  display: flex; gap: 0; position: relative; z-index: 1;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; overflow: hidden;
+}
+.hero-stat {
+  padding: 28px 48px; border-right: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 900; letter-spacing: -0.04em;
+  color: white; line-height: 1; margin-bottom: 6px;
+}
+.hero-stat-num sup { font-size: 0.45em; vertical-align: super; opacity: 0.4; }
+.hero-stat-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.25);
+}
+.last-checked {
+  margin-top: 32px; position: relative; z-index: 1;
+  font-size: 10px; font-weight: 500; letter-spacing: 1px;
+  color: rgba(255,255,255,0.2); text-transform: uppercase;
+}
+
+/* ─── STATUS SECTION ────────────────────────────────────────────────────────── */
+.status-section {
+  background: var(--cream);
+  padding: 100px 48px;
+}
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 48px;
+  display: flex; align-items: center; gap: 16px;
+}
+.section-label::after { content: ''; width: 32px; height: 1px; background: currentColor; opacity: 0.3; }
+.daemon-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1px; background: rgba(26,26,26,0.07);
+  border-radius: 8px; overflow: hidden;
+}
+.daemon-card {
+  background: white;
+  padding: 28px 28px 28px 0;
+  display: flex; align-items: flex-start; gap: 0;
+  border-left: 3px solid transparent;
+  transition: background 0.15s;
+}
+.daemon-card:hover { background: #fafaf9; }
+.daemon-card.green  { border-left-color: var(--green); }
+.daemon-card.amber  { border-left-color: var(--amber); }
+.daemon-card.danger { border-left-color: var(--danger); }
+.daemon-left {
+  width: 3px; flex-shrink: 0; /* border already handled above */
+}
+.daemon-body { padding: 0 24px; flex: 1; }
+.daemon-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.daemon-name {
+  font-size: 14px; font-weight: 700; color: var(--black);
+  letter-spacing: -0.01em;
+}
+.status-badge {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+}
+.status-badge.green { background: rgba(34,197,94,0.1); color: #16a34a; }
+.status-badge.amber { background: rgba(245,158,11,0.1); color: #b45309; }
+.status-badge.danger{ background: rgba(239,68,68,0.1);  color: #b91c1c; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.status-badge.green .status-dot  { background: var(--green); }
+.status-badge.amber .status-dot  { background: var(--amber); }
+.status-badge.danger .status-dot { background: var(--danger); }
+.daemon-meta {
+  font-size: 11px; font-weight: 500; color: var(--gray);
+  margin-bottom: 8px;
+}
+.daemon-desc {
+  font-size: 12px; font-weight: 400; color: rgba(107,107,107,0.8);
+  line-height: 1.6;
+}
+
+/* ─── CAPABILITIES ──────────────────────────────────────────────────────────── */
+.capabilities {
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 100px 48px;
+}
+.capabilities .section-label { color: rgba(255,255,255,0.25); }
+.capabilities .section-label::after { background: rgba(255,255,255,0.15); opacity: 1; }
+.cap-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px; background: rgba(255,255,255,0.05);
+  border-radius: 6px; overflow: hidden;
+}
+.cap-card {
+  background: rgba(255,255,255,0.02);
+  padding: 32px 28px;
+  border-left: 2px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+.cap-card:hover { background: rgba(255,255,255,0.05); border-left-color: var(--red); }
+.cap-card-title {
+  font-size: 14px; font-weight: 700; color: white;
+  margin-bottom: 10px; letter-spacing: -0.01em;
+}
+.cap-card-desc {
+  font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.35);
+  line-height: 1.7;
+}
+
+/* ─── CHANGELOG ─────────────────────────────────────────────────────────────── */
+.changelog {
+  background: white;
+  padding: 100px 48px;
+}
+.changelog-layout {
+  display: grid; grid-template-columns: 240px 1fr;
+  gap: 80px;
+}
+.changelog-sticky {
+  position: sticky; top: 80px; align-self: start;
+}
+.changelog-intro-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--red); margin-bottom: 20px;
+}
+.changelog-intro-title {
+  font-size: 28px; font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.1; margin-bottom: 16px;
+}
+.changelog-intro-desc {
+  font-size: 13px; font-weight: 400; line-height: 1.8; color: var(--gray);
+}
+.releases { display: flex; flex-direction: column; gap: 0; }
+.release {
+  display: grid; grid-template-columns: 1px 1fr;
+  gap: 0;
+}
+.release-line-col {
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 6px;
+}
+.release-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0;
+  border: 2px solid white; box-shadow: 0 0 0 2px var(--red);
+  margin-left: -4.5px;
+}
+.release-track {
+  width: 1px; flex: 1; background: rgba(26,26,26,0.1);
+  margin-top: 8px;
+}
+.release:last-child .release-track { background: transparent; }
+.release-body {
+  padding: 0 0 52px 32px;
+}
+.release-version {
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 900; letter-spacing: -0.04em;
+  color: var(--red); line-height: 1; margin-bottom: 4px;
+}
+.release-date {
+  font-size: 11px; font-weight: 500; letter-spacing: 1px;
+  color: var(--gray); margin-bottom: 20px;
+}
+.release-items { list-style: none; }
+.release-item {
+  font-size: 13px; font-weight: 500; color: var(--black);
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(26,26,26,0.06);
+  display: flex; align-items: baseline; gap: 10px;
+  line-height: 1.5;
+}
+.release-item:last-child { border-bottom: none; }
+.release-item::before {
+  content: '';
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0; margin-top: 6px;
+}
+
+/* ─── FOOTER ────────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--red);
+  padding: 52px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 24px;
+}
+.footer-brand { display: flex; align-items: center; gap: 18px; }
+.footer-name { font-size: 15px; font-weight: 800; color: white; }
+.footer-sub  { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.55); }
+.footer-right { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.footer-link { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+.footer-link:hover { color: white; }
+.footer-meta { font-size: 10px; color: rgba(255,255,255,0.4); }
+
+/* ─── AT MONO SVG ───────────────────────────────────────────────────────────── */
+/* inline, used as component below */
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  .nav-link { display: none; }
+  .header-clock { display: none; }
+  .hero { padding: 88px 20px 64px; }
+  .hero-stats { flex-direction: column; border: none; gap: 2px; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 28px; text-align: left; }
+  .hero-stat:last-child { border-bottom: none; }
+  .status-section, .capabilities, .changelog { padding: 64px 20px; }
+  .daemon-grid { grid-template-columns: 1fr; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .changelog-layout { grid-template-columns: 1fr; gap: 48px; }
+  .changelog-sticky { position: static; }
+  footer { padding: 40px 20px; flex-direction: column; align-items: flex-start; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ▸ HEADER -->
+<header>
+  <a href="index.html" class="header-brand">
+    <svg class="at-mono" width="22" height="24" viewBox="0 0 28 30" fill="none" aria-label="AT">
+      <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3"  y1="28" x2="14" y2="3"/>
+        <line x1="25" y1="28" x2="14" y2="3"/>
+        <line x1="5"  y1="3"  x2="23" y2="3"/>
+        <line x1="14" y1="3"  x2="14" y2="18"/>
+        <line x1="7"  y1="18" x2="21" y2="18"/>
+      </g>
+    </svg>
+    <span class="header-wordmark">AGENTIC</span>
+  </a>
+  <div class="header-right">
+    <nav>
+      <a href="index.html"  class="nav-link">Home</a>
+      <a href="#daemons"    class="nav-link">Sistema</a>
+      <a href="#changelog"  class="nav-link">Changelog</a>
+    </nav>
+    <span class="header-clock" id="clock">--:--:--</span>
+    <div class="status-pill">
+      <span class="pulse-dot"></span>
+      Operacional
+    </div>
+  </div>
+</header>
+
+<!-- ▸ HERO -->
+<section class="hero">
+  <!-- Large AT Monogram -->
+  <div class="hero-logo reveal">
+    <svg width="100" height="110" viewBox="0 0 28 30" fill="none" aria-label="AT">
+      <g stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3"  y1="28" x2="14" y2="3"/>
+        <line x1="25" y1="28" x2="14" y2="3"/>
+        <line x1="5"  y1="3"  x2="23" y2="3"/>
+        <line x1="14" y1="3"  x2="14" y2="18"/>
+        <line x1="7"  y1="18" x2="21" y2="18"/>
+      </g>
+    </svg>
+  </div>
+
+  <h1 class="hero-headline reveal d1">Everything is running.</h1>
+  <p class="hero-sub reveal d2">
+    Sistema de inteligencia autónomo. 5 daemons activos.<br>
+    1973+ documentos indexados. Siempre activo.
+  </p>
+
+  <div class="hero-stats reveal d3">
+    <div class="hero-stat">
+      <div class="hero-stat-num">1973<sup>+</sup></div>
+      <div class="hero-stat-label">Docs indexados</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">19</div>
+      <div class="hero-stat-label">Perfiles cliente</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">109</div>
+      <div class="hero-stat-label">Transcripciones</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">26</div>
+      <div class="hero-stat-label">En registro</div>
+    </div>
+  </div>
+
+  <div class="last-checked reveal d4" id="last-checked">Comprobado: —</div>
+</section>
+
+<!-- ▸ DAEMON STATUS -->
+<section class="status-section" id="daemons">
+  <div class="section-label reveal">Estado del sistema</div>
+  <div class="daemon-grid">
+
+    <div class="daemon-card green reveal d1">
+      <div class="daemon-body">
+        <div class="daemon-header">
+          <span class="daemon-name">workspace_watcher</span>
+          <span class="status-badge green"><span class="status-dot"></span>Operacional</span>
+        </div>
+        <div class="daemon-meta">Última actividad: 2026-03-16 · 22:23</div>
+        <div class="daemon-desc">Detecta y registra documentos nuevos automáticamente. Sube al vector store sin intervención manual.</div>
+      </div>
+    </div>
+
+    <div class="daemon-card green reveal d2">
+      <div class="daemon-body">
+        <div class="daemon-header">
+          <span class="daemon-name">granola_watcher</span>
+          <span class="status-badge green"><span class="status-dot"></span>Operacional</span>
+        </div>
+        <div class="daemon-meta">Última actividad: 2026-03-16 · 11:07</div>
+        <div class="daemon-desc">Sincroniza transcripciones de reuniones Granola. Se activa cuando hay cambios en el caché.</div>
+      </div>
+    </div>
+
+    <div class="daemon-card green reveal d3">
+      <div class="daemon-body">
+        <div class="daemon-header">
+          <span class="daemon-name">healthcheck</span>
+          <span class="status-badge green"><span class="status-dot"></span>Operacional</span>
+        </div>
+        <div class="daemon-meta">Cada hora</div>
+        <div class="daemon-desc">Monitoriza que los daemons estén activos. Alerta vía Gmail draft si detecta inactividad prolongada.</div>
+      </div>
+    </div>
+
+    <div class="daemon-card green reveal d4">
+      <div class="daemon-body">
+        <div class="daemon-header">
+          <span class="daemon-name">git_sync</span>
+          <span class="status-badge green"><span class="status-dot"></span>Operacional</span>
+        </div>
+        <div class="daemon-meta">Sincroniza a las 23:00 diariamente</div>
+        <div class="daemon-desc">Backup automático a GitHub. Commit + push de todos los cambios del día sin intervención.</div>
+      </div>
+    </div>
+
+    <div class="daemon-card amber reveal d5">
+      <div class="daemon-body">
+        <div class="daemon-header">
+          <span class="daemon-name">zoho_sync</span>
+          <span class="status-badge amber"><span class="status-dot"></span>Pendiente</span>
+        </div>
+        <div class="daemon-meta">OAuth setup pendiente</div>
+        <div class="daemon-desc">Integración bidireccional con Zoho CRM. Estructura lista. Requiere configuración OAuth para activarse.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ▸ CAPABILITIES -->
+<section class="capabilities">
+  <div class="section-label reveal">Capacidades activas</div>
+  <div class="cap-grid">
+    <div class="cap-card reveal d1">
+      <div class="cap-card-title">Briefing diario</div>
+      <div class="cap-card-desc">Prepara cada reunión con contexto RAG antes de las 8am. HTML + Gmail draft automático.</div>
+    </div>
+    <div class="cap-card reveal d2">
+      <div class="cap-card-title">Perfiles de cliente</div>
+      <div class="cap-card-desc">19 fichas consolidadas, actualizadas automáticamente con cada nueva transcripción o propuesta.</div>
+    </div>
+    <div class="cap-card reveal d3">
+      <div class="cap-card-title">Propuestas comerciales</div>
+      <div class="cap-card-desc">HTML → PDF con brand AT y precios contextualizados por cliente. Sin plantilla genérica.</div>
+    </div>
+    <div class="cap-card reveal d4">
+      <div class="cap-card-title">Post-reunión automático</div>
+      <div class="cap-card-desc">Detecta nuevas transcripciones, extrae next steps y redacta el follow-up en Gmail.</div>
+    </div>
+    <div class="cap-card reveal d5">
+      <div class="cap-card-title">Document registry</div>
+      <div class="cap-card-desc">Catálogo de 26 documentos con upload automático al vector store en cada registro.</div>
+    </div>
+    <div class="cap-card reveal d6">
+      <div class="cap-card-title">KB consolidation</div>
+      <div class="cap-card-desc">Promueve hechos estables de updates al knowledge base cada semana (domingo 22:00).</div>
+    </div>
+    <div class="cap-card reveal d7">
+      <div class="cap-card-title">Status en tiempo real</div>
+      <div class="cap-card-desc">Esta página. Desplegada en GitHub Pages. Actualizada automáticamente cada día a las 08:06.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ▸ CHANGELOG -->
+<section class="changelog" id="changelog">
+  <div class="changelog-layout">
+    <div class="changelog-sticky reveal">
+      <div class="changelog-intro-label">Historial</div>
+      <h2 class="changelog-intro-title">Release<br>notes.</h2>
+      <p class="changelog-intro-desc">Cada versión del sistema. Lo que mejoró, lo que se construyó, lo que se aprendió.</p>
+    </div>
+    <div class="releases reveal d1">
+
+      <div class="release">
+        <div class="release-line-col"><div class="release-dot"></div><div class="release-track"></div></div>
+        <div class="release-body">
+          <div class="release-version">v1.5</div>
+          <div class="release-date">17 marzo 2026</div>
+          <ul class="release-items">
+            <li class="release-item">19 client intelligence cards generados (Vueling, Sesé, Moventia, Damm, Megasa, Younited…)</li>
+            <li class="release-item">workspace_watcher regenera perfiles automáticamente al detectar nueva propuesta o transcripción</li>
+            <li class="release-item">cl-zoho completo: auth, API client, sync, push — listo para OAuth setup</li>
+            <li class="release-item">Healthcheck daemon instalado: alerta por email si watcher lleva 3h sin actividad</li>
+            <li class="release-item">consolidate_kb: promueve hechos estables de kb-updates → knowledge-base semanalmente</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-line-col"><div class="release-dot"></div><div class="release-track"></div></div>
+        <div class="release-body">
+          <div class="release-version">v1.4</div>
+          <div class="release-date">16 marzo 2026</div>
+          <ul class="release-items">
+            <li class="release-item">RAG multimodal: 269 imágenes procesadas con Vision API → subidas al vector store</li>
+            <li class="release-item">agentic-model.html: página editorial explicando el modelo AGENTIC con brand AT</li>
+            <li class="release-item">workspace_watcher: nuevo daemon que detecta cualquier archivo nuevo y lo registra automáticamente</li>
+            <li class="release-item">Briefing diario rediseñado en HTML con brand AT e adjunto de meeting prep</li>
+            <li class="release-item">CHANGELOG + notificación en sesión + sección en briefing activados</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-line-col"><div class="release-dot"></div><div class="release-track"></div></div>
+        <div class="release-body">
+          <div class="release-version">v1.3</div>
+          <div class="release-date">16 marzo 2026</div>
+          <ul class="release-items">
+            <li class="release-item">register-document.sh ahora sube automáticamente al vector store en cada registro</li>
+            <li class="release-item">document-registry.json creado con 25 documentos históricos</li>
+            <li class="release-item">find-document.sh: búsqueda en registry por cliente, tipo, contacto, tags, estado</li>
+            <li class="release-item">post-commit hook detecta PDFs/HTML no registrados y avisa</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-line-col"><div class="release-dot"></div><div class="release-track"></div></div>
+        <div class="release-body">
+          <div class="release-version">v1.2</div>
+          <div class="release-date">16 marzo 2026</div>
+          <ul class="release-items">
+            <li class="release-item">Bug crítico corregido: path del MCP server apuntaba a Desktop/ en vez de Desktop/agentic/</li>
+            <li class="release-item">actual talent/ centralizado dentro de agentic/ para unificar el workspace</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-line-col"><div class="release-dot"></div><div class="release-track"></div></div>
+        <div class="release-body">
+          <div class="release-version">v1.1</div>
+          <div class="release-date">15 marzo 2026</div>
+          <ul class="release-items">
+            <li class="release-item">Vector store creado con 1973+ documentos históricos</li>
+            <li class="release-item">granola_watcher daemon instalado como LaunchAgent. Sincronización automática</li>
+            <li class="release-item">MCP RAG v1.6 en producción. search_knowledge con filtros de categoría, cliente y fecha</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-line-col"><div class="release-dot"></div><div class="release-track"></div></div>
+        <div class="release-body">
+          <div class="release-version">v1.0</div>
+          <div class="release-date">14 marzo 2026</div>
+          <ul class="release-items">
+            <li class="release-item">Workspace inicial estructurado con WAT framework (Workflows + Agents + Tools)</li>
+            <li class="release-item">Subproyectos: cl-meeting-prep, cl-proposal-generator, cl-rag, cl-daily-briefing</li>
+            <li class="release-item">Integraciones base: Gmail MCP, Google Calendar MCP, Granola MCP, Chrome MCP</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ▸ FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <svg width="22" height="24" viewBox="0 0 28 30" fill="none" aria-label="AT">
+      <g stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3"  y1="28" x2="14" y2="3"/>
+        <line x1="25" y1="28" x2="14" y2="3"/>
+        <line x1="5"  y1="3"  x2="23" y2="3"/>
+        <line x1="14" y1="3"  x2="14" y2="18"/>
+        <line x1="7"  y1="18" x2="21" y2="18"/>
+      </g>
+    </svg>
+    <div>
+      <div class="footer-name">AGENTIC v1.5</div>
+      <div class="footer-sub">Actual Talent · Built with Claude · 2026</div>
+    </div>
+  </div>
+  <div class="footer-right">
+    <a href="index.html" class="footer-link">← Home</a>
+    <span class="footer-meta">Generado automáticamente · 17 marzo 2026</span>
+  </div>
+</footer>
+
+<script>
+// Live clock
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// Last checked (updates every minute)
+function updateChecked() {
+  const now = new Date();
+  document.getElementById('last-checked').textContent =
+    'Comprobado: ' + now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+}
+updateChecked();
+setInterval(updateChecked, 60000);
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Hero reveals immediately
+requestAnimationFrame(() => {
+  document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+});
+</script>
+</body>
+</html>

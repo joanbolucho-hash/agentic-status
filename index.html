@@ -3,30 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AGENTIC Status — Actual Talent AI Workspace</title>
-<meta name="description" content="Sistema de inteligencia autónomo de Actual Talent. Estado en tiempo real de todos los daemons, capacidades y últimas actualizaciones.">
+<title>AGENTIC — Actual Talent AI Workspace</title>
+<meta name="description" content="Sistema autónomo de inteligencia para Actual Talent. 5 daemons. 1973+ documentos. 19 perfiles de cliente.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 
-/* ─── RESET & BASE ─────────────────────────────────────────────────────────── */
+/* ─── RESET ─────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --red:     #C0191E;
-  --beige:   #E8E5DC;
-  --cream:   #F0EEEB;
-  --black:   #1A1A1A;
+  --red:        #C0191E;
+  --beige:      #E8E5DC;
+  --cream:      #F0EEEB;
+  --black:      #1A1A1A;
   --near-black: #0A0A0A;
-  --gray:    #6B6B6B;
-  --white:   #ffffff;
-  --green:   #22C55E;
-  --amber:   #F59E0B;
-  --danger:  #EF4444;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
 }
 
 html { scroll-behavior: smooth; }
-
 body {
   font-family: 'Montserrat', sans-serif;
   background: var(--white);
@@ -35,877 +31,453 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── SCROLL REVEAL ────────────────────────────────────────────────────────── */
+/* ─── REVEAL ────────────────────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.in { opacity: 1; transform: none; }
-.d1 { transition-delay: 0.05s; }
-.d2 { transition-delay: 0.12s; }
-.d3 { transition-delay: 0.19s; }
-.d4 { transition-delay: 0.26s; }
-.d5 { transition-delay: 0.33s; }
-.d6 { transition-delay: 0.40s; }
-.d7 { transition-delay: 0.47s; }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+.d7 { transition-delay: 0.56s; }
 
-/* ─── HEADER ───────────────────────────────────────────────────────────────── */
+/* ─── HEADER ────────────────────────────────────────────────────────────────── */
 header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(10,10,10,0.88);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
   padding: 0 48px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
+.header-brand {
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none;
+}
+.at-mono { flex-shrink: 0; color: white; }
+.header-wordmark {
+  font-size: 13px; font-weight: 800;
+  letter-spacing: 3.5px; text-transform: uppercase;
+  color: white; line-height: 1;
+}
+nav { display: flex; align-items: center; gap: 4px; }
+.nav-link {
+  font-size: 11px; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+  text-decoration: none; padding: 7px 14px; border-radius: 4px;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: rgba(255,255,255,0.9); }
+.nav-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: white;
+  text-decoration: none; padding: 8px 18px;
+  background: var(--red); border-radius: 100px;
+  transition: opacity 0.2s; margin-left: 8px;
+}
+.nav-pill:hover { opacity: 0.85; }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.wordmark {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--white);
-}
-
-.header-sep {
-  width: 1px;
-  height: 16px;
-  background: rgba(255,255,255,0.18);
-}
-
-.header-sub {
-  font-size: 11px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.5px;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-clock {
-  font-size: 11px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.35);
-  letter-spacing: 1px;
-  font-variant-numeric: tabular-nums;
-  min-width: 68px;
-  text-align: right;
-}
-
-.status-pill {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(34,197,94,0.1);
-  border: 1px solid rgba(34,197,94,0.25);
-  border-radius: 20px;
-  padding: 5px 12px;
-}
-
-.status-pill-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  position: relative;
-}
-.status-pill-dot::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: var(--green);
-  opacity: 0;
-  animation: pulse-ring 2.4s ease-out infinite;
-}
-@keyframes pulse-ring {
-  0%   { opacity: 0.4; transform: scale(1); }
-  100% { opacity: 0;   transform: scale(2.4); }
-}
-
-.status-pill-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--green);
-}
-
-/* ─── HERO ─────────────────────────────────────────────────────────────────── */
+/* ─── HERO ──────────────────────────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
   background: var(--near-black);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 48px 80px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* dot grid texture */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
   background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size: 28px 28px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 90% 65% at 50% -5%, rgba(192,25,30,0.1) 0%, transparent 65%);
   pointer-events: none;
 }
-
-/* vertical accent line */
 .hero::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(192,25,30,0.15) 40%, rgba(192,25,30,0.15) 60%, transparent);
-  pointer-events: none;
+  content: 'AT';
+  position: absolute; right: -2vw; bottom: -8vh;
+  font-size: 35vw; font-weight: 900; letter-spacing: -0.06em;
+  color: rgba(255,255,255,0.015);
+  line-height: 1; pointer-events: none; user-select: none;
 }
-
+.hero-inner { max-width: 1100px; position: relative; z-index: 1; }
 .hero-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 32px;
+  font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 36px;
 }
-.hero-eyebrow::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: var(--red);
-}
-
 .hero-headline {
-  font-size: clamp(52px, 9vw, 112px);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--white);
-  margin-bottom: 28px;
-  max-width: 900px;
+  font-size: clamp(44px, 7.5vw, 100px);
+  font-weight: 900; line-height: 1.0; letter-spacing: -0.035em;
+  color: white; margin-bottom: 36px; max-width: 940px;
 }
-
-.hero-headline em {
-  font-style: normal;
-  color: var(--green);
-}
-
 .hero-sub {
-  font-size: clamp(14px, 1.8vw, 18px);
-  font-weight: 300;
+  font-size: clamp(15px, 1.8vw, 19px);
+  font-weight: 300; line-height: 1.8;
   color: rgba(255,255,255,0.45);
-  line-height: 1.7;
-  max-width: 520px;
-  margin-bottom: 80px;
+  max-width: 520px; margin-bottom: 56px;
 }
-
-.hero-stats {
-  display: flex;
-  gap: 0;
-  flex-wrap: wrap;
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--near-black);
+  background: white; text-decoration: none;
+  padding: 15px 28px; border-radius: 3px;
+  transition: opacity 0.2s;
 }
-
-.stat-block {
-  padding: 32px 48px 32px 0;
-  margin-right: 48px;
-  border-right: 1px solid rgba(255,255,255,0.08);
+.cta-primary:hover { opacity: 0.88; }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+  text-decoration: none; padding: 14px 28px; border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: border-color 0.2s, color 0.2s;
 }
-.stat-block:last-child {
-  border-right: none;
-  margin-right: 0;
+.cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 48px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.2);
 }
+.scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,0.15); }
 
-.stat-number {
-  font-size: clamp(40px, 6vw, 72px);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.stat-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-}
-
-.hero-bottom-bar {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, transparent);
-}
-
-/* ─── SECTION SHARED ───────────────────────────────────────────────────────── */
-section { padding: 100px 48px; }
-
+/* ─── SHARED SECTION LABEL ──────────────────────────────────────────────────── */
 .section-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 56px;
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 64px;
+  display: flex; align-items: center; gap: 16px;
 }
 .section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.3;
-  max-width: 60px;
+  content: ''; width: 32px; height: 1px;
+  background: currentColor; opacity: 0.3;
 }
 
-/* ─── STATUS SECTION ───────────────────────────────────────────────────────── */
-.section-status {
+/* ─── SISTEMA ───────────────────────────────────────────────────────────────── */
+.sistema {
   background: var(--cream);
+  padding: 120px 48px;
 }
-
-.status-headline {
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--black);
-  margin-bottom: 56px;
-  line-height: 1.1;
+.wat-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
 }
-
-.status-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2px;
+.wat-col {
+  padding: 44px 48px 44px 0;
+  border-right: 1px solid rgba(26,26,26,0.09);
 }
-
-.status-card {
-  background: var(--white);
-  padding: 28px 32px;
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  transition: background 0.2s;
-  position: relative;
-  overflow: hidden;
+.wat-col:last-child { border-right: none; padding-right: 0; }
+.wat-col:not(:first-child) { padding-left: 48px; }
+.wat-num {
+  font-size: 72px; font-weight: 900; letter-spacing: -0.05em;
+  color: var(--red); opacity: 0.12; line-height: 1;
+  margin-bottom: 28px; display: block;
 }
-.status-card:hover { background: var(--beige); }
-.status-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 2px;
-  height: 100%;
-  background: var(--green);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+.wat-title {
+  font-size: 24px; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--black); margin-bottom: 16px;
 }
-.status-card.pending::before { background: var(--amber); }
-.status-card:hover::before { transform: scaleY(1); }
-
-.status-indicator {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 6px;
-  position: relative;
-}
-.status-indicator.green  { background: var(--green); }
-.status-indicator.amber  { background: var(--amber); }
-.status-indicator.red    { background: var(--danger); }
-
-.status-indicator.green::after {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  background: var(--green);
-  opacity: 0;
-  animation: pulse-ring 3s ease-out infinite;
-}
-
-.status-card-body { flex: 1; min-width: 0; }
-
-.status-daemon {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--black);
-  letter-spacing: 0.3px;
-  margin-bottom: 4px;
-  font-family: 'Montserrat', monospace;
-}
-
-.status-desc {
-  font-size: 12px;
-  font-weight: 400;
+.wat-desc {
+  font-size: 14px; font-weight: 400; line-height: 1.85;
   color: var(--gray);
-  line-height: 1.5;
-  margin-bottom: 10px;
 }
 
-.status-meta {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(107,107,107,0.6);
+/* ─── CAPACIDADES ───────────────────────────────────────────────────────────── */
+.capacidades {
+  background: white;
+  padding: 120px 48px;
 }
-
-.status-badge {
-  align-self: flex-start;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 2px;
-  flex-shrink: 0;
+.cap-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
 }
-.status-badge.green  { background: rgba(34,197,94,0.1);  color: #15803d; }
-.status-badge.amber  { background: rgba(245,158,11,0.1); color: #92400e; }
-.status-badge.red    { background: rgba(239,68,68,0.1);  color: #991b1b; }
-
-/* ─── CAPABILITIES SECTION ─────────────────────────────────────────────────── */
-.section-capabilities {
-  background: var(--near-black);
-  position: relative;
-  overflow: hidden;
-}
-.section-capabilities::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
-}
-.section-capabilities .section-label { color: rgba(255,255,255,0.35); }
-.section-capabilities .section-label::after { background: rgba(255,255,255,0.35); }
-
 .cap-headline {
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--white);
-  margin-bottom: 56px;
-  line-height: 1.1;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 900; letter-spacing: -0.04em;
+  line-height: 0.96; color: var(--black);
+  margin-bottom: 28px;
 }
-
-.cap-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px;
-  background: rgba(255,255,255,0.05);
-}
-
-.cap-card {
-  background: var(--near-black);
-  padding: 36px 32px;
-  border-left: 2px solid transparent;
-  transition: border-color 0.2s, background 0.2s;
-  position: relative;
-}
-.cap-card:hover {
-  border-left-color: var(--red);
-  background: rgba(255,255,255,0.02);
-}
-
-.cap-num {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--red);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  display: block;
-}
-
-.cap-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 10px;
-  line-height: 1.3;
-}
-
+.cap-headline em { font-style: normal; color: var(--red); }
 .cap-desc {
-  font-size: 12px;
-  font-weight: 300;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.7;
+  font-size: 14px; font-weight: 400; line-height: 1.85;
+  color: var(--gray); max-width: 300px;
+}
+.cap-list { list-style: none; counter-reset: cap; padding-top: 4px; }
+.cap-item {
+  counter-increment: cap;
+  display: flex; align-items: baseline; gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(26,26,26,0.07);
+  cursor: default;
+}
+.cap-item:first-child { border-top: 1px solid rgba(26,26,26,0.07); }
+.cap-item:hover .cap-text { color: var(--red); }
+.cap-n {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  color: rgba(192,25,30,0.4); flex-shrink: 0;
+}
+.cap-n::before { content: counter(cap, decimal-leading-zero); }
+.cap-text {
+  font-size: 15px; font-weight: 600; color: var(--black);
+  transition: color 0.2s; line-height: 1.4;
 }
 
-/* ─── CHANGELOG SECTION ────────────────────────────────────────────────────── */
-.section-changelog {
-  background: var(--white);
+/* ─── STACK ─────────────────────────────────────────────────────────────────── */
+.stack {
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 120px 48px;
+}
+.stack .section-label { color: rgba(255,255,255,0.25); }
+.stack .section-label::after { background: rgba(255,255,255,0.15); opacity: 1; }
+.stack-pills {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 80px;
+}
+.pill {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.3px;
+  color: rgba(255,255,255,0.65);
+  padding: 9px 20px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  transition: border-color 0.2s, color 0.2s;
+}
+.pill:hover { border-color: rgba(255,255,255,0.28); color: white; }
+.pill.dim { opacity: 0.38; }
+.stats-row {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: rgba(255,255,255,0.07);
+  border-radius: 6px; overflow: hidden;
+}
+.stat-block {
+  background: var(--near-black);
+  padding: 44px 36px;
+  transition: background 0.2s;
+}
+.stat-block:hover { background: rgba(255,255,255,0.03); }
+.stat-num {
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 900; letter-spacing: -0.05em;
+  color: white; line-height: 1; margin-bottom: 10px;
+}
+.stat-num sup { font-size: 0.4em; vertical-align: super; opacity: 0.4; }
+.stat-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.25);
 }
 
-.changelog-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.changelog-sticky {
-  position: sticky;
-  top: 80px;
-}
-
-.changelog-big {
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--black);
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
-.changelog-note {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--gray);
-  line-height: 1.7;
-}
-
-.timeline {
-  position: relative;
-  padding-left: 28px;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 8px;
-  bottom: 8px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--red) 0%, rgba(192,25,30,0.08) 100%);
-}
-
-.timeline-entry {
-  position: relative;
-  padding-bottom: 52px;
-}
-.timeline-entry:last-child { padding-bottom: 0; }
-
-.timeline-entry::before {
-  content: '';
-  position: absolute;
-  left: -32px;
-  top: 7px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--red);
-  border: 2px solid var(--white);
-  box-shadow: 0 0 0 1px var(--red);
-}
-
-.entry-version {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 6px;
-}
-
-.entry-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--black);
-  margin-bottom: 12px;
-  line-height: 1.3;
-}
-
-.entry-items {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.entry-item {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--gray);
-  line-height: 1.5;
-  display: flex;
-  gap: 10px;
-}
-.entry-item::before {
-  content: '—';
-  color: rgba(192,25,30,0.4);
-  flex-shrink: 0;
-  font-weight: 600;
-}
-
-/* ─── FOOTER ───────────────────────────────────────────────────────────────── */
+/* ─── FOOTER ────────────────────────────────────────────────────────────────── */
 footer {
   background: var(--red);
   padding: 52px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 24px;
+}
+.footer-brand { display: flex; align-items: center; gap: 18px; }
+.footer-text { line-height: 1.5; }
+.footer-name {
+  font-size: 15px; font-weight: 800; color: white; letter-spacing: 0.5px;
+}
+.footer-sub {
+  font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.55);
+}
+.footer-right { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.footer-link {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(255,255,255,0.7);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-link:hover { color: white; }
+.footer-meta {
+  font-size: 10px; font-weight: 400; letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.4);
 }
 
-.footer-brand {
-  font-size: clamp(20px, 3vw, 32px);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  color: var(--white);
-  line-height: 1.2;
-}
-.footer-brand span { font-weight: 300; opacity: 0.65; }
-
-.footer-right { text-align: right; }
-.footer-right p {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-  line-height: 2.2;
-}
-
-/* ─── RESPONSIVE ───────────────────────────────────────────────────────────── */
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  header { padding: 0 24px; }
-  section { padding: 72px 24px; }
-  .hero { padding: 100px 24px 64px; }
-  .hero-stats { gap: 0; }
-  .stat-block { padding: 24px 32px 24px 0; margin-right: 32px; }
-  .changelog-layout { grid-template-columns: 1fr; gap: 40px; }
-  .changelog-sticky { position: static; }
-  footer { padding: 40px 24px; }
-  .footer-right { text-align: left; }
-  .header-sub { display: none; }
+  header { padding: 0 20px; }
+  .nav-link { display: none; }
+  .hero { padding: 96px 20px 64px; }
+  .hero-scroll { left: 20px; bottom: 28px; }
   .hero::after { display: none; }
-}
-@media (max-width: 480px) {
-  .hero-stats { flex-direction: column; }
-  .stat-block { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 0; margin-right: 0; }
-  .stat-block:last-child { border-bottom: none; }
-  .status-grid { grid-template-columns: 1fr; }
-  .cap-grid { grid-template-columns: 1fr; }
+  .sistema, .capacidades, .stack { padding: 72px 20px; }
+  .wat-grid { grid-template-columns: 1fr; }
+  .wat-col { border-right: none; border-bottom: 1px solid rgba(26,26,26,0.09); padding: 36px 0; }
+  .wat-col:last-child { border-bottom: none; }
+  .cap-layout { grid-template-columns: 1fr; gap: 48px; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  footer { padding: 40px 20px; flex-direction: column; align-items: flex-start; }
 }
 
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ▸ HEADER -->
 <header>
-  <div class="header-left">
-    <span class="wordmark">AGENTIC</span>
-    <div class="header-sep"></div>
-    <span class="header-sub">Actual Talent AI Workspace</span>
-  </div>
-  <div class="header-right">
-    <span class="header-clock" id="clock">--:--:--</span>
-    <div class="status-pill">
-      <div class="status-pill-dot"></div>
-      <span class="status-pill-label">Operacional</span>
-    </div>
-  </div>
+  <a href="index.html" class="header-brand">
+    <svg class="at-mono" width="22" height="24" viewBox="0 0 28 30" fill="none" aria-label="AT">
+      <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3"  y1="28" x2="14" y2="3"/>
+        <line x1="25" y1="28" x2="14" y2="3"/>
+        <line x1="5"  y1="3"  x2="23" y2="3"/>
+        <line x1="14" y1="3"  x2="14" y2="18"/>
+        <line x1="7"  y1="18" x2="21" y2="18"/>
+      </g>
+    </svg>
+    <span class="header-wordmark">AGENTIC</span>
+  </a>
+  <nav>
+    <a href="#sistema"     class="nav-link">Sistema</a>
+    <a href="#capacidades" class="nav-link">Capacidades</a>
+    <a href="#stack"       class="nav-link">Stack</a>
+    <a href="status.html"  class="nav-pill">Status →</a>
+  </nav>
 </header>
 
-<!-- HERO -->
+<!-- ▸ HERO -->
 <section class="hero">
-  <div class="hero-eyebrow reveal">Sistema en producción</div>
-
-  <h1 class="hero-headline reveal d1">
-    Everything<br>is <em>running.</em>
-  </h1>
-
-  <p class="hero-sub reveal d2">
-    Sistema de inteligencia autónomo. 5 daemons activos. 1973+ documentos indexados.
-  </p>
-
-  <div class="hero-stats">
-    <div class="stat-block reveal d2">
-      <div class="stat-number">1973+</div>
-      <div class="stat-label">Documentos indexados</div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow reveal">Actual Talent AI Workspace</p>
+    <h1 class="hero-headline reveal d1">La inteligencia<br>que trabaja<br>mientras duermes.</h1>
+    <p class="hero-sub reveal d2">
+      Un sistema autónomo de 5 daemons, 1973+ documentos indexados<br>
+      y 19 perfiles de cliente. Siempre activo.
+    </p>
+    <div class="hero-ctas reveal d3">
+      <a href="#sistema"    class="cta-primary">Ver el sistema →</a>
+      <a href="status.html" class="cta-secondary">Status en vivo</a>
     </div>
-    <div class="stat-block reveal d3">
-      <div class="stat-number">19</div>
-      <div class="stat-label">Perfiles de cliente</div>
+  </div>
+  <div class="hero-scroll reveal d5">
+    <span class="scroll-line"></span>
+    Scroll
+  </div>
+</section>
+
+<!-- ▸ SISTEMA -->
+<section class="sistema" id="sistema">
+  <div class="section-label reveal">Cómo funciona</div>
+  <div class="wat-grid">
+    <div class="wat-col reveal d1">
+      <span class="wat-num">01</span>
+      <h3 class="wat-title">Workflows</h3>
+      <p class="wat-desc">Los SOPs que definen cada proceso comercial. Cada reunión, propuesta y seguimiento tiene un flujo estructurado que guía la ejecución sin ambigüedad.</p>
     </div>
-    <div class="stat-block reveal d4">
-      <div class="stat-number">109</div>
+    <div class="wat-col reveal d2">
+      <span class="wat-num">02</span>
+      <h3 class="wat-title">Agents</h3>
+      <p class="wat-desc">Claude coordina, razona y toma decisiones. Lee el contexto, elige el workflow correcto y produce el output exacto en el lugar exacto.</p>
+    </div>
+    <div class="wat-col reveal d3">
+      <span class="wat-num">03</span>
+      <h3 class="wat-title">Tools</h3>
+      <p class="wat-desc">Scripts y APIs que ejecutan con precisión. Daemons autónomos, integraciones con Granola, Gmail, Zoho y un vector store con 1973+ documentos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ▸ CAPACIDADES -->
+<section class="capacidades" id="capacidades">
+  <div class="section-label reveal">Qué hace</div>
+  <div class="cap-layout">
+    <div class="reveal d1">
+      <h2 class="cap-headline">7 capacidades<br><em>activas.</em></h2>
+      <p class="cap-desc">Automatizaciones que operan en segundo plano, generando inteligencia comercial antes de que empiece el día.</p>
+    </div>
+    <ul class="cap-list reveal d2">
+      <li class="cap-item"><span class="cap-n"></span><span class="cap-text">Briefing diario antes de las 8am</span></li>
+      <li class="cap-item"><span class="cap-n"></span><span class="cap-text">Perfiles de cliente consolidados (19 activos)</span></li>
+      <li class="cap-item"><span class="cap-n"></span><span class="cap-text">Propuestas comerciales HTML → PDF</span></li>
+      <li class="cap-item"><span class="cap-n"></span><span class="cap-text">Post-reunión automático con follow-up</span></li>
+      <li class="cap-item"><span class="cap-n"></span><span class="cap-text">Document registry con upload al vector store</span></li>
+      <li class="cap-item"><span class="cap-n"></span><span class="cap-text">KB consolidation semanal automatizada</span></li>
+      <li class="cap-item"><span class="cap-n"></span><span class="cap-text">Status público en tiempo real</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ▸ STACK -->
+<section class="stack" id="stack">
+  <div class="section-label reveal">Tecnología</div>
+  <div class="stack-pills reveal d1">
+    <span class="pill">Claude</span>
+    <span class="pill">OpenAI RAG</span>
+    <span class="pill">Granola MCP</span>
+    <span class="pill">Gmail MCP</span>
+    <span class="pill">Google Calendar</span>
+    <span class="pill">GitHub Pages</span>
+    <span class="pill">WeasyPrint</span>
+    <span class="pill">LaunchAgents</span>
+    <span class="pill">Python</span>
+    <span class="pill dim">Zoho CRM (próximo)</span>
+  </div>
+  <div class="stats-row reveal d2">
+    <div class="stat-block">
+      <div class="stat-num">1973<sup>+</sup></div>
+      <div class="stat-label">Docs indexados</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">109</div>
       <div class="stat-label">Transcripciones</div>
     </div>
-    <div class="stat-block reveal d5">
-      <div class="stat-number">26</div>
-      <div class="stat-label">Documentos registrados</div>
+    <div class="stat-block">
+      <div class="stat-num">19</div>
+      <div class="stat-label">Perfiles cliente</div>
     </div>
-  </div>
-
-  <div class="hero-bottom-bar"></div>
-</section>
-
-<!-- STATUS SECTION -->
-<section class="section-status">
-  <div class="section-label reveal">Estado del sistema</div>
-  <h2 class="status-headline reveal d1">5 daemons.<br>Todos operativos.</h2>
-
-  <div class="status-grid">
-
-    <div class="status-card reveal d1">
-      <div class="status-indicator green"></div>
-      <div class="status-card-body">
-        <div class="status-daemon">workspace_watcher</div>
-        <div class="status-desc">Detecta y sube documentos nuevos automáticamente al vector store.</div>
-        <div class="status-meta">Última actividad: 2026-03-16 22:23</div>
-      </div>
-      <div class="status-badge green">Operativo</div>
-    </div>
-
-    <div class="status-card reveal d2">
-      <div class="status-indicator green"></div>
-      <div class="status-card-body">
-        <div class="status-daemon">granola_watcher</div>
-        <div class="status-desc">Sincroniza transcripciones de reuniones de Granola al vector store.</div>
-        <div class="status-meta">Última actividad: 2026-03-16 11:07</div>
-      </div>
-      <div class="status-badge green">Operativo</div>
-    </div>
-
-    <div class="status-card reveal d3">
-      <div class="status-indicator green"></div>
-      <div class="status-card-body">
-        <div class="status-daemon">healthcheck</div>
-        <div class="status-desc">Monitoriza que todos los daemons estén activos. Alerta por email si detecta inactividad.</div>
-        <div class="status-meta">Frecuencia: cada hora</div>
-      </div>
-      <div class="status-badge green">Operativo</div>
-    </div>
-
-    <div class="status-card reveal d4">
-      <div class="status-indicator green"></div>
-      <div class="status-card-body">
-        <div class="status-daemon">git_sync</div>
-        <div class="status-desc">Backup automático de todos los cambios del workspace a GitHub.</div>
-        <div class="status-meta">Frecuencia: 23:00 diario</div>
-      </div>
-      <div class="status-badge green">Operativo</div>
-    </div>
-
-    <div class="status-card pending reveal d5">
-      <div class="status-indicator amber"></div>
-      <div class="status-card-body">
-        <div class="status-daemon">zoho_sync</div>
-        <div class="status-desc">Integración bidireccional con Zoho CRM. Sincroniza contactos, deals y transcripciones.</div>
-        <div class="status-meta">Estado: OAuth setup pendiente</div>
-      </div>
-      <div class="status-badge amber">Pendiente</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CAPABILITIES SECTION -->
-<section class="section-capabilities">
-  <div class="section-label reveal">Capacidades</div>
-  <h2 class="cap-headline reveal d1">Lo que hace<br>el sistema.</h2>
-
-  <div class="cap-grid">
-
-    <div class="cap-card reveal d1">
-      <span class="cap-num">01</span>
-      <div class="cap-title">Briefing diario</div>
-      <p class="cap-desc">Prepara cada reunión del día con contexto RAG antes de las 8am. Histórico de cliente, propuestas previas y prompt listo para LinkedIn/LTI. Llega a tu correo mientras duermes.</p>
-    </div>
-
-    <div class="cap-card reveal d2">
-      <span class="cap-num">02</span>
-      <div class="cap-title">Perfiles de cliente</div>
-      <p class="cap-desc">19 fichas de inteligencia consolidadas: contactos, pipeline, propuestas enviadas, historial de reuniones y hechos clave. Se actualizan automáticamente con cada nuevo transcript o propuesta.</p>
-    </div>
-
-    <div class="cap-card reveal d3">
-      <span class="cap-num">03</span>
-      <div class="cap-title">Propuestas comerciales</div>
-      <p class="cap-desc">Genera propuestas HTML → PDF con brand AT y precios contextualizados por cliente, volumen y complejidad. Con fotos del equipo y logo. Registradas automáticamente en el catálogo.</p>
-    </div>
-
-    <div class="cap-card reveal d4">
-      <span class="cap-num">04</span>
-      <div class="cap-title">Post-reunión automático</div>
-      <p class="cap-desc">Detecta nuevas transcripciones de Granola cada hora. Extrae compromisos y next steps. Redacta el email de seguimiento y lo deja como borrador listo para enviar.</p>
-    </div>
-
-    <div class="cap-card reveal d5">
-      <span class="cap-num">05</span>
-      <div class="cap-title">Document registry</div>
-      <p class="cap-desc">Catálogo central de 26 documentos con upload automático al vector store. Cada propuesta, briefing o informe generado se indexa y queda buscable en RAG de inmediato.</p>
-    </div>
-
-    <div class="cap-card reveal d6">
-      <span class="cap-num">06</span>
-      <div class="cap-title">KB consolidation</div>
-      <p class="cap-desc">Cada domingo promueve automáticamente los hechos estables de las notas de sesión al knowledge base permanente. La base de conocimiento mejora sin intervención manual.</p>
-    </div>
-
-    <div class="cap-card reveal d7">
-      <span class="cap-num">07</span>
-      <div class="cap-title">Notificaciones de versión</div>
-      <p class="cap-desc">Cuando el sistema mejora, lo sabes. Una frase natural en el chat al inicio de sesión, una línea humana en el briefing diario, y el CHANGELOG como registro permanente en git.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- CHANGELOG SECTION -->
-<section class="section-changelog">
-  <div class="section-label reveal">Últimas actualizaciones</div>
-
-  <div class="changelog-layout">
-    <div class="changelog-sticky reveal">
-      <div class="changelog-big">Un sistema<br>que mejora<br>solo.</div>
-      <p class="changelog-note">Cada sesión deja el workspace mejor que antes. El CHANGELOG es el registro permanente de esa evolución.</p>
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-entry reveal">
-        <div class="entry-version">v1.5 — 17 marzo 2026</div>
-        <div class="entry-title">Client profiles, Zoho integration & sistema de salud</div>
-        <div class="entry-items">
-          <div class="entry-item">19 fichas de cliente generadas y actualizadas automáticamente</div>
-          <div class="entry-item">cl-zoho subproyecto completo: auth, sync bidireccional, push additive-only</div>
-          <div class="entry-item">Healthcheck daemon: alerta por email si los watchers caen</div>
-          <div class="entry-item">consolidate_kb.py: promoción semanal automática al knowledge base</div>
-        </div>
-      </div>
-
-      <div class="timeline-entry reveal d1">
-        <div class="entry-version">v1.4 — 16 marzo 2026</div>
-        <div class="entry-title">Workspace watcher, RAG multimodal & briefing HTML</div>
-        <div class="entry-items">
-          <div class="entry-item">workspace_watcher daemon: detecta y sube cualquier archivo nuevo</div>
-          <div class="entry-item">269 imágenes indexadas con Vision API — RAG ahora entiende imágenes</div>
-          <div class="entry-item">Briefing diario rediseñado en HTML con brand AT</div>
-          <div class="entry-item">CHANGELOG + notificaciones sutiles en sesión y email</div>
-        </div>
-      </div>
-
-      <div class="timeline-entry reveal d2">
-        <div class="entry-version">v1.3 — 16 marzo 2026</div>
-        <div class="entry-title">Document registry & auto-upload</div>
-        <div class="entry-items">
-          <div class="entry-item">document-registry.json con 26 documentos históricos catalogados</div>
-          <div class="entry-item">register-document.sh: registro + git commit + upload automático al vector store</div>
-          <div class="entry-item">GitHub sync configurado con PAT y workflow scope</div>
-        </div>
-      </div>
-
-      <div class="timeline-entry reveal d3">
-        <div class="entry-version">v1.2 — 16 marzo 2026</div>
-        <div class="entry-title">MCP path fix & centralización</div>
-        <div class="entry-items">
-          <div class="entry-item">Bug crítico corregido: MCP RAG ahora funciona en Claude Desktop</div>
-          <div class="entry-item">Carpeta actual talent/ centralizada dentro de agentic/</div>
-        </div>
-      </div>
-
-      <div class="timeline-entry reveal d4">
-        <div class="entry-version">v1.1 — 15 marzo 2026</div>
-        <div class="entry-title">Vector store & Granola sync</div>
-        <div class="entry-items">
-          <div class="entry-item">Vector store creado con 1973+ documentos indexados</div>
-          <div class="entry-item">granola_watcher LaunchAgent: sync automático de transcripciones</div>
-          <div class="entry-item">MCP RAG v1.6 en producción con search_knowledge()</div>
-        </div>
-      </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v1.0 — 14 marzo 2026</div>
-        <div class="entry-title">Workspace inicial</div>
-        <div class="entry-items">
-          <div class="entry-item">Estructura WAT: Workflows + Agents + Tools</div>
-          <div class="entry-item">Subproyectos: cl-meeting-prep, cl-proposal-generator, cl-rag, cl-daily-briefing</div>
-          <div class="entry-item">Integraciones base: Gmail, Google Calendar, Granola, Chrome MCPs</div>
-        </div>
-      </div>
-
+    <div class="stat-block">
+      <div class="stat-num">26</div>
+      <div class="stat-label">En registro</div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ▸ FOOTER -->
 <footer>
-  <div class="footer-brand reveal">
-    AGENTIC v1.5<br>
-    <span>Actual Talent AI Workspace</span>
+  <div class="footer-brand">
+    <svg width="22" height="24" viewBox="0 0 28 30" fill="none" aria-label="AT">
+      <g stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3"  y1="28" x2="14" y2="3"/>
+        <line x1="25" y1="28" x2="14" y2="3"/>
+        <line x1="5"  y1="3"  x2="23" y2="3"/>
+        <line x1="14" y1="3"  x2="14" y2="18"/>
+        <line x1="7"  y1="18" x2="21" y2="18"/>
+      </g>
+    </svg>
+    <div class="footer-text">
+      <div class="footer-name">AGENTIC v1.5</div>
+      <div class="footer-sub">Actual Talent · Built with Claude · 2026</div>
+    </div>
   </div>
-  <div class="footer-right reveal d1">
-    <p>Built with Claude · 2026</p>
-    <p>Última actualización: 17 marzo 2026</p>
+  <div class="footer-right">
+    <a href="status.html" class="footer-link">Status →</a>
+    <span class="footer-meta">Generado automáticamente · 17 marzo 2026</span>
   </div>
 </footer>
 
 <script>
-// Live clock
-function updateClock() {
-  const now = new Date();
-  const h = String(now.getHours()).padStart(2,'0');
-  const m = String(now.getMinutes()).padStart(2,'0');
-  const s = String(now.getSeconds()).padStart(2,'0');
-  const el = document.getElementById('clock');
-  if (el) el.textContent = `${h}:${m}:${s}`;
-}
-updateClock();
-setInterval(updateClock, 1000);
-
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
+// Scroll reveal via IntersectionObserver
+const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      observer.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Mark hero reveals visible immediately
-document.querySelectorAll('.hero .reveal').forEach(el => {
-  setTimeout(() => el.classList.add('in'), 100);
+// Trigger hero immediately
+requestAnimationFrame(() => {
+  document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
 });
 </script>
-
 </body>
 </html>
