@@ -262,6 +262,87 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 .t-cmd    { color: rgba(255,255,255,0.75); }
 .t-dim    { color: rgba(255,255,255,0.3); font-size: 11px; }
 
+/* ─── EMAIL BRIEFING MOCKUP ───────────────────────────────────────────────────── */
+.email-mockup {
+  margin-top: 16px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.07);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: em-enter 0.5s cubic-bezier(0.16,1,0.3,1) forwards 8.0s,
+             em-exit  0.4s ease forwards 12.0s;
+}
+@keyframes em-enter { to { opacity: 1; transform: none; } }
+@keyframes em-exit  { to { opacity: 0; transform: translateY(-6px); } }
+
+.em-header {
+  background: var(--red);
+  padding: 16px 20px 14px;
+}
+.em-header-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 4px;
+}
+.em-logo {
+  font-size: 11px; font-weight: 900; letter-spacing: 3px;
+  text-transform: uppercase; color: white;
+}
+.em-logo span { opacity: 0.6; font-weight: 400; }
+.em-date { font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; }
+.em-subject { font-size: 13px; font-weight: 700; color: white; }
+
+.em-body { padding: 14px 20px 16px; }
+
+/* Each meeting row */
+.em-row {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  opacity: 0;
+  transform: translateX(-8px);
+  animation: em-row-in 0.35s cubic-bezier(0.16,1,0.3,1) forwards,
+             em-exit 0.4s ease forwards 12.0s;
+}
+.em-row:last-child { border-bottom: none; }
+@keyframes em-row-in { to { opacity: 1; transform: none; } }
+
+.em-row.r1 { animation-delay: 8.6s,  12.0s; }
+.em-row.r2 { animation-delay: 9.3s,  12.0s; }
+.em-row.r3 { animation-delay: 10.0s, 12.0s; }
+.em-row.r4 { animation-delay: 10.7s, 12.0s; }
+
+.em-row-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 4px;
+}
+.em-client { font-size: 11px; font-weight: 800; color: var(--black); letter-spacing: 0.5px; text-transform: uppercase; }
+.em-time   { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: 1px; }
+.em-snippet { font-size: 11px; color: var(--gray); line-height: 1.5; }
+
+/* Skeleton shimmer lines inside snippet */
+.em-skel {
+  height: 7px; border-radius: 4px;
+  background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+  margin-top: 5px;
+}
+.em-skel.s2 { width: 68%; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.em-badge {
+  margin-top: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(192,25,30,0.07); border-radius: 100px;
+  padding: 5px 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: var(--red);
+  opacity: 0;
+  animation: em-row-in 0.35s cubic-bezier(0.16,1,0.3,1) forwards 11.2s,
+             em-exit 0.4s ease forwards 12.0s;
+}
+.em-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #28C840; }
+
 /* blinking cursor */
 .t-cursor {
   display: inline-block; width: 7px; height: 13px;
@@ -548,6 +629,49 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
         <div class="t-cursor"></div>
       </div>
     </div>
+
+    <!-- Email briefing mockup — appears after terminal finishes -->
+    <div class="email-mockup" id="email-mockup">
+      <div class="em-header">
+        <div class="em-header-top">
+          <span class="em-logo">AGEN<span>TIC</span></span>
+          <span class="em-date">mié 19 mar · 08:00</span>
+        </div>
+        <div class="em-subject">Briefing del día — 3 reuniones comerciales</div>
+      </div>
+      <div class="em-body">
+        <div class="em-row r1">
+          <div class="em-row-top">
+            <span class="em-client">Vueling</span>
+            <span class="em-time">10:00</span>
+          </div>
+          <div class="em-snippet">Propuesta RPO enviada feb · última reunión hace 3 sem</div>
+          <div class="em-skel"></div>
+          <div class="em-skel s2"></div>
+        </div>
+        <div class="em-row r2">
+          <div class="em-row-top">
+            <span class="em-client">Sesé Group</span>
+            <span class="em-time">12:30</span>
+          </div>
+          <div class="em-snippet">Primer contacto · sector logística · 4.200 empleados</div>
+          <div class="em-skel"></div>
+          <div class="em-skel s2"></div>
+        </div>
+        <div class="em-row r3">
+          <div class="em-row-top">
+            <span class="em-client">Damm</span>
+            <span class="em-time">16:00</span>
+          </div>
+          <div class="em-snippet">Follow-up propuesta executive search · pendiente firma</div>
+          <div class="em-skel"></div>
+        </div>
+        <div class="em-row r4" style="border-bottom:none; padding-bottom:0;">
+          <div class="em-badge">3 reuniones preparadas · Entregado ✓</div>
+        </div>
+      </div>
+    </div>
+
     </div><!-- /terminal-wrap -->
   </div><!-- /timeline-body -->
 </section>
@@ -853,17 +977,18 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-/* ── TERMINAL LOOP ── */
-function restartTerminal() {
-  const els = document.querySelectorAll('#term-body .t-line, #term-body .t-cursor');
+/* ── TERMINAL + EMAIL LOOP ── */
+function restartAnimation() {
+  const els = document.querySelectorAll(
+    '#term-body .t-line, #term-body .t-cursor, .email-mockup, .em-row, .em-badge'
+  );
   els.forEach(el => {
     el.style.animation = 'none';
-    void el.offsetHeight; // force reflow to restart
+    void el.offsetHeight; // force reflow
     el.style.animation = '';
   });
 }
-// First run plays on load; restart every 13s (11.6s anim + 1.4s pause)
-setInterval(restartTerminal, 13000);
+setInterval(restartAnimation, 13000);
 
 /* ── HAMBURGER MENU ── */
 const burger   = document.getElementById('burger');
