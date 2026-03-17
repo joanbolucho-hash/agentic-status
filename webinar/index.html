@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>IA de Candidatos vs IA de Empleadores — Actual Talent × Teamtailor</title>
+<meta name="description" content="Webinar: ¿Quién gana la batalla del talento con inteligencia artificial? 28 de abril 2026 a las 12:00h. Mesa redonda con expertos en IA y RRHH.">
+<meta property="og:title" content="IA de Candidatos vs IA de Empleadores — Webinar">
+<meta property="og:description" content="Mesa redonda sobre inteligencia artificial en selección de talento. 28 abril 2026, 12:00h CEST.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red:        #C0191E;
+  --red-glow:   rgba(192, 25, 30, 0.12);
+  --beige:      #E8E5DC;
+  --cream:      #F0EEEB;
+  --black:      #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); will-change: transform, opacity; }
+.reveal.in { opacity: 1; transform: none; will-change: auto; }
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}.d7{transition-delay:.56s}
+
+/* ─── FOCUS ──────────────────────────────────────────────────────────────────── */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
+
+/* ─── PARTICLE CANVAS ────────────────────────────────────────────────────────── */
+.particle-canvas {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+}
+
+/* ─── MOUSE GLOW ─────────────────────────────────────────────────────────────── */
+.mouse-glow {
+  position: absolute; width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,25,30,0.07) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.4s;
+  opacity: 0;
+}
+.mouse-glow.visible { opacity: 1; }
+
+/* ─── HEADER ─────────────────────────────────────────────────────────────────── */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.header-wordmark {
+  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: white; line-height: 1;
+}
+.header-wordmark .wm-sep { color: rgba(255,255,255,0.25); margin: 0 6px; font-weight: 400; }
+.header-wordmark .wm-tt { color: rgba(255,255,255,0.6); font-weight: 600; }
+.header-nav { display: flex; align-items: center; gap: 4px; }
+.nav-link { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 7px 14px; border-radius: 4px; transition: color 0.2s; }
+.nav-link:hover { color: rgba(255,255,255,0.9); }
+.nav-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: white; text-decoration: none; padding: 8px 18px;
+  background: var(--red); border-radius: 100px; transition: opacity 0.2s; margin-left: 8px;
+}
+.nav-pill:hover { opacity: 0.85; }
+
+/* Hamburger */
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; background: none; border: none; }
+.burger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+.burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.nav-mobile {
+  display: none; position: fixed;
+  top: 60px; left: 0; right: 0;
+  background: rgba(10,10,10,0.98);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 20px 20px;
+  flex-direction: column; gap: 2px; z-index: 199;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; padding: 14px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+.nav-mobile a:hover { background: rgba(255,255,255,0.05); color: white; }
+.nav-mobile .nm-pill { background: var(--red); color: white; text-align: center; margin-top: 8px; border-radius: 8px; }
+
+/* ─── SECTION LABEL ──────────────────────────────────────────────────────────── */
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red);
+  margin-bottom: 56px; display: flex; align-items: center; gap: 16px;
+}
+.section-label::after { content: ''; width: 32px; height: 1px; background: currentColor; opacity: 0.3; }
+.section-label.light { color: rgba(255,255,255,0.3); }
+.section-label.light::after { opacity: 1; }
+
+/* ─── HERO ───────────────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(192,25,30,0.1) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+.hero::after {
+  content: 'VS';
+  position: absolute; right: -3vw; bottom: -6vh;
+  font-size: 38vw; font-weight: 900; letter-spacing: -0.06em;
+  color: rgba(255,255,255,0.015); line-height: 1;
+  pointer-events: none; user-select: none;
+}
+.hero-inner { max-width: 900px; position: relative; z-index: 2; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 36px; }
+
+.hero-date-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(192, 25, 30, 0.12); border: 1px solid rgba(192, 25, 30, 0.25);
+  border-radius: 100px; padding: 8px 20px; margin-bottom: 32px;
+}
+.hero-date-badge .badge-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--red);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+.hero-date-badge span {
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7);
+}
+
+.hero-headline {
+  font-size: clamp(36px, 6.5vw, 80px); font-weight: 900; line-height: 1.0;
+  letter-spacing: -0.035em; color: white; margin-bottom: 24px; max-width: 850px;
+}
+.hero-headline em { font-style: normal; color: var(--red); }
+.hero-sub {
+  font-size: clamp(15px, 1.7vw, 18px); font-weight: 300; line-height: 1.85;
+  color: rgba(255,255,255,0.5); max-width: 520px; margin-bottom: 48px;
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--near-black); background: white; text-decoration: none;
+  padding: 15px 28px; border-radius: 3px; transition: opacity 0.2s; white-space: nowrap;
+}
+.cta-primary:hover { opacity: 0.88; }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); text-decoration: none; padding: 14px 28px;
+  border-radius: 3px; border: 1px solid rgba(255,255,255,0.18);
+  transition: border-color 0.2s, color 0.2s; white-space: nowrap;
+}
+.cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 48px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); z-index: 2;
+}
+.scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,0.15); }
+
+/* ─── COUNTDOWN ──────────────────────────────────────────────────────────────── */
+.countdown {
+  display: flex; gap: 24px; margin-top: 32px;
+}
+.cd-block { text-align: center; }
+.cd-num {
+  font-size: 36px; font-weight: 900; color: white; line-height: 1;
+  letter-spacing: -0.03em;
+  min-width: 56px; display: block;
+}
+.cd-label {
+  font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); margin-top: 6px;
+}
+.cd-sep {
+  font-size: 28px; font-weight: 300; color: rgba(255,255,255,0.15);
+  align-self: flex-start; padding-top: 4px;
+}
+
+/* ─── CO-BRANDED STRIP ───────────────────────────────────────────────────────── */
+.cobranded {
+  background: var(--white);
+  padding: 40px 48px;
+  display: flex; align-items: center; justify-content: center; gap: 48px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.cobrand-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gray);
+}
+.cobrand-logos { display: flex; align-items: center; gap: 32px; }
+.cobrand-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px; border: 1px solid rgba(0,0,0,0.08); border-radius: 8px;
+  background: var(--cream);
+}
+.cobrand-logo img { height: 28px; width: auto; }
+.cobrand-logo .cobrand-text {
+  font-size: 14px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--black);
+}
+.cobrand-logo.tt .cobrand-text { display: none; }
+.cobrand-logo.tt img { height: 32px; }
+.cobrand-x { font-size: 14px; color: var(--gray); font-weight: 300; }
+
+/* ─── ABOUT ──────────────────────────────────────────────────────────────────── */
+.about {
+  background: var(--cream);
+  padding: 100px 48px;
+}
+.about-inner { max-width: 1100px; margin: 0 auto; }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+}
+.about-text h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.1; margin-bottom: 24px;
+}
+.about-text h2 em { font-style: normal; color: var(--red); }
+.about-text p {
+  font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); margin-bottom: 16px;
+}
+.takeaways { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.takeaway {
+  display: flex; gap: 24px; align-items: flex-start;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.takeaway:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
+.takeaway:hover { transform: translateX(6px); }
+.takeaway-num {
+  font-size: 32px; font-weight: 900; color: var(--red); opacity: 0.2; line-height: 1;
+  min-width: 48px; padding-top: 2px;
+  transition: opacity 0.3s;
+}
+.takeaway:hover .takeaway-num { opacity: 1; }
+.takeaway h3 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.takeaway p { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.65; }
+
+/* ─── SPEAKERS ───────────────────────────────────────────────────────────────── */
+.speakers {
+  background: var(--white);
+  padding: 100px 48px;
+}
+.speakers-inner { max-width: 1100px; margin: 0 auto; }
+.speakers-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px;
+}
+.speaker-card {
+  text-align: center; padding: 36px 20px;
+  border-radius: 12px;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.speaker-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+.speaker-photo {
+  width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; font-weight: 800; color: white;
+  position: relative; overflow: hidden;
+}
+.speaker-photo.jb { background: var(--red); }
+.speaker-photo.mg { background: var(--near-black); }
+.speaker-photo.tg { background: var(--gray); }
+.speaker-photo.tbd { background: var(--beige); color: var(--gray); border: 2px dashed rgba(0,0,0,0.12); }
+.speaker-photo img {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+}
+.speaker-role-badge {
+  display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--red); background: rgba(192,25,30,0.08);
+  padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
+}
+.speaker-card.tbd-card .speaker-role-badge { color: var(--gray); background: rgba(0,0,0,0.05); }
+.speaker-name { font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px; }
+.speaker-title { font-size: 13px; font-weight: 500; color: var(--gray); margin-bottom: 6px; }
+.speaker-company { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); }
+.tbd-card .speaker-name { color: var(--gray); }
+.tbd-card .speaker-company { color: var(--gray); opacity: 0.5; }
+
+/* ─── AGENDA ─────────────────────────────────────────────────────────────────── */
+.agenda {
+  background: var(--cream);
+  padding: 100px 48px;
+}
+.agenda-inner { max-width: 800px; margin: 0 auto; }
+.agenda-track { position: relative; padding-left: 48px; }
+.agenda-track::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 14px; width: 1px;
+  background: linear-gradient(to bottom, var(--red) 0%, rgba(192,25,30,0.1) 100%);
+}
+.agenda-item {
+  position: relative; padding: 0 0 48px 0;
+}
+.agenda-item:last-child { padding-bottom: 0; }
+.agenda-dot {
+  position: absolute; top: 4px; left: -42px;
+  width: 15px; height: 15px; border-radius: 50%;
+  background: var(--near-black); border: 2px solid var(--red);
+}
+.agenda-item:first-child .agenda-dot { background: var(--red); }
+.agenda-time {
+  font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--red);
+  margin-bottom: 8px; text-transform: uppercase;
+}
+.agenda-title { font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
+.agenda-desc { font-size: 14px; font-weight: 400; color: var(--gray); line-height: 1.7; }
+.agenda-duration {
+  display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  color: var(--gray); background: rgba(0,0,0,0.04); padding: 3px 10px;
+  border-radius: 100px; margin-top: 10px;
+}
+
+/* ─── CTA SECTION ────────────────────────────────────────────────────────────── */
+.cta-section {
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 120px 48px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(192,25,30,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; }
+.cta-section h2 {
+  font-size: clamp(32px, 5vw, 64px); font-weight: 900; color: white;
+  letter-spacing: -0.03em; margin-bottom: 20px;
+}
+.cta-section h2 em { font-style: normal; color: var(--red); }
+.cta-date-reminder {
+  font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4); margin-bottom: 44px;
+}
+.cta-date-reminder strong { color: rgba(255,255,255,0.7); font-weight: 700; }
+.cta-big {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: white; background: var(--red); text-decoration: none;
+  padding: 20px 44px; border-radius: 4px;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.cta-big::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.cta-big:hover::after { opacity: 1; }
+.cta-big:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(192,25,30,0.35);
+}
+.cta-big svg { width: 18px; height: 18px; position: relative; z-index: 1; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--red);
+  padding: 48px;
+  text-align: center;
+}
+footer p {
+  font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+}
+footer p strong { font-weight: 800; color: white; }
+footer .footer-links {
+  margin-top: 16px;
+  display: flex; justify-content: center; gap: 24px;
+}
+footer .footer-links a {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
+  text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+  transition: color 0.2s;
+}
+footer .footer-links a:hover { color: white; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  .header-nav .nav-link { display: none; }
+  .burger { display: flex; }
+  .hero { padding: 100px 24px 64px; }
+  .hero-scroll { display: none; }
+  .mouse-glow { display: none; }
+  .countdown { gap: 16px; }
+  .cd-num { font-size: 28px; }
+  .cobranded { flex-direction: column; gap: 16px; padding: 32px 24px; }
+  .about { padding: 80px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .speakers { padding: 80px 24px; }
+  .speakers-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .agenda { padding: 80px 24px; }
+  .cta-section { padding: 80px 24px; }
+  footer { padding: 36px 24px; }
+}
+@media (max-width: 480px) {
+  .hero-headline { font-size: clamp(28px, 8vw, 40px); }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas a { text-align: center; justify-content: center; }
+  .countdown { gap: 12px; }
+  .cd-num { font-size: 24px; min-width: 40px; }
+  .cd-sep { font-size: 20px; }
+  .speakers-grid { grid-template-columns: 1fr; gap: 16px; }
+  .speaker-card { padding: 28px 16px; }
+  .cobrand-logos { flex-direction: column; gap: 12px; }
+  footer .footer-links { flex-direction: column; gap: 12px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ──────────────────────────────────────────────────────────────── -->
+<header>
+  <a href="#" class="header-brand" aria-label="Inicio">
+    <span class="header-wordmark">
+      Actual Talent<span class="wm-sep">×</span><span class="wm-tt">Teamtailor</span>
+    </span>
+  </a>
+  <nav class="header-nav">
+    <a href="#sobre" class="nav-link">Sobre</a>
+    <a href="#ponentes" class="nav-link">Ponentes</a>
+    <a href="#agenda" class="nav-link">Agenda</a>
+    <a href="#registro" class="nav-pill">Registrarse →</a>
+    <button class="burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="#sobre">Sobre el webinar</a>
+    <a href="#ponentes">Ponentes</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#registro" class="nm-pill">Registrarse →</a>
+  </nav>
+</header>
+
+<!-- ─── HERO ────────────────────────────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <canvas class="particle-canvas" id="hero-particles"></canvas>
+  <div class="mouse-glow" id="mouse-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal">Webinar · Mesa Redonda</div>
+    <div class="hero-date-badge reveal d1">
+      <span class="badge-dot"></span>
+      <span>28 Abril 2026 · 12:00h CEST</span>
+    </div>
+    <h1 class="hero-headline reveal d2">
+      IA de <em>candidatos</em> vs IA de <em>empleadores</em>
+    </h1>
+    <p class="hero-sub reveal d3">
+      La IA está cambiando las reglas del juego en selección. Pero al final, las empresas siguen necesitando lo mismo: el talento adecuado, ahora. Cuatro expertos debaten cómo encontrarlo en esta nueva realidad.
+    </p>
+    <div class="hero-ctas reveal d4">
+      <a href="#registro" class="cta-primary">Reserva tu plaza <span>→</span></a>
+      <a href="#ponentes" class="cta-secondary">Ver ponentes ↓</a>
+    </div>
+    <div class="countdown reveal d5" id="countdown">
+      <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Días</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Horas</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Seg</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span> Scroll
+  </div>
+</section>
+
+<!-- ─── CO-BRANDED STRIP ───────────────────────────────────────────────────── -->
+<div class="cobranded reveal">
+  <span class="cobrand-label">Organizado por</span>
+  <div class="cobrand-logos">
+    <span class="cobrand-logo">
+      <img src="assets/logos/actual-talent.png" alt="Actual Talent">
+      <span class="cobrand-text">Actual Talent</span>
+    </span>
+    <span class="cobrand-x">×</span>
+    <span class="cobrand-logo tt">
+      <img src="assets/logos/teamtailor.png" alt="Teamtailor">
+    </span>
+  </div>
+</div>
+
+<!-- ─── ABOUT ──────────────────────────────────────────────────────────────── -->
+<section class="about" id="sobre">
+  <div class="about-inner">
+    <div class="section-label reveal">Sobre el webinar</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="reveal">La IA ya está en <em>ambos lados</em> de la mesa</h2>
+        <p class="reveal d1">Los candidatos usan IA para optimizar CVs, preparar entrevistas y postularse a cientos de ofertas en minutos. Los empleadores la utilizan para filtrar, evaluar y automatizar procesos de selección.</p>
+        <p class="reveal d2">Pero cuando ambas partes juegan con las mismas herramientas, el ruido crece. Y en ese ruido, encontrar el talento que realmente necesitas ahora — el talento actual, con las habilidades del momento — se convierte en el verdadero reto.</p>
+        <p class="reveal d3">Cuatro expertos en IA, recruiting y tecnología de RRHH se sientan a debatir cómo navegar esta nueva complejidad sin perder lo esencial: conectar empresas con las personas adecuadas.</p>
+      </div>
+      <ul class="takeaways">
+        <li class="takeaway reveal d1">
+          <span class="takeaway-num">01</span>
+          <div>
+            <h3>IA en el lado candidato</h3>
+            <p>Cómo los candidatos están utilizando herramientas de IA para optimizar su búsqueda de empleo, desde la generación de CVs hasta la preparación de entrevistas con IA generativa.</p>
+          </div>
+        </li>
+        <li class="takeaway reveal d2">
+          <span class="takeaway-num">02</span>
+          <div>
+            <h3>IA en el lado empresa</h3>
+            <p>Las herramientas que las empresas están adoptando para automatizar screening, evaluación y toma de decisiones en selección de talento.</p>
+          </div>
+        </li>
+        <li class="takeaway reveal d3">
+          <span class="takeaway-num">03</span>
+          <div>
+            <h3>Encontrar talento actual</h3>
+            <p>Cuando la IA genera ruido en ambos lados, ¿cómo identifican las empresas al talento que realmente necesitan ahora? El factor humano como ventaja competitiva.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPEAKERS ────────────────────────────────────────────────────────────── -->
+<section class="speakers" id="ponentes">
+  <div class="speakers-inner">
+    <div class="section-label reveal">Ponentes</div>
+    <div class="speakers-grid">
+
+      <div class="speaker-card reveal d1">
+        <div class="speaker-photo jb">
+          <img src="assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+        </div>
+        <span class="speaker-role-badge">Moderador</span>
+        <div class="speaker-name">Joan Boluda</div>
+        <div class="speaker-title">Managing Director</div>
+        <div class="speaker-company">Actual Talent</div>
+      </div>
+
+      <div class="speaker-card reveal d2">
+        <div class="speaker-photo mg">
+          <img src="assets/speakers/mark-galano.jpg" alt="Marc Galanó">
+        </div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Marc Galanó</div>
+        <div class="speaker-title">Sales Manager Spain</div>
+        <div class="speaker-company">Teamtailor</div>
+      </div>
+
+      <div class="speaker-card reveal d3">
+        <div class="speaker-photo tg">
+          <img src="assets/speakers/tony-gimeno.jpg" alt="Tony Gimeno">
+        </div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Tony Gimeno</div>
+        <div class="speaker-title">Employer Branding Strategist</div>
+        <div class="speaker-company">Employer Branding</div>
+      </div>
+
+      <div class="speaker-card tbd-card reveal d4">
+        <div class="speaker-photo tbd">?</div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Próximamente</div>
+        <div class="speaker-title">Confirmación pendiente</div>
+        <div class="speaker-company">— — —</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── AGENDA ──────────────────────────────────────────────────────────────── -->
+<section class="agenda" id="agenda">
+  <div class="agenda-inner">
+    <div class="section-label reveal">Agenda</div>
+    <div class="agenda-track">
+
+      <div class="agenda-item reveal">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">12:00h</div>
+        <div class="agenda-title">Introducción y contexto</div>
+        <div class="agenda-desc">Bienvenida, presentación de los ponentes y marco del debate: el estado actual de la IA en selección de talento desde ambas perspectivas.</div>
+        <span class="agenda-duration">5 min</span>
+      </div>
+
+      <div class="agenda-item reveal d1">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">12:05h</div>
+        <div class="agenda-title">Mesa redonda</div>
+        <div class="agenda-desc">Debate abierto entre los ponentes. IA generativa en CVs y cover letters. Screening automatizado y sus sesgos. El rol del recruiter humano. Herramientas que están cambiando las reglas. Casos reales y predicciones para los próximos 12 meses.</div>
+        <span class="agenda-duration">40 min</span>
+      </div>
+
+      <div class="agenda-item reveal d2">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">12:45h</div>
+        <div class="agenda-title">Preguntas y respuestas</div>
+        <div class="agenda-desc">Espacio abierto para preguntas de los asistentes. Los ponentes responden en directo a las cuestiones del público.</div>
+        <span class="agenda-duration">15 min</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA SECTION ────────────────────────────────────────────────────────── -->
+<section class="cta-section" id="registro">
+  <canvas class="particle-canvas" id="cta-particles"></canvas>
+  <div class="cta-inner">
+    <h2 class="reveal">¿Te lo vas a <em>perder</em>?</h2>
+    <p class="cta-date-reminder reveal d1">
+      <strong>28 de abril de 2026</strong> · 12:00h CEST · Online y gratuito
+    </p>
+    <a href="#registro" class="cta-big reveal d2">
+      <span style="position:relative;z-index:1">Registrarse ahora</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer>
+  <p><strong>Actual Talent × Teamtailor</strong> · Abril 2026</p>
+  <div class="footer-links">
+    <a href="https://actualtalent.com" target="_blank" rel="noopener">Actual Talent</a>
+    <a href="https://teamtailor.com" target="_blank" rel="noopener">Teamtailor</a>
+    <a href="#inicio">Volver arriba</a>
+  </div>
+</footer>
+
+<!-- ─── JS ──────────────────────────────────────────────────────────────────── -->
+<script>
+// ── Scroll reveal (same as agentic-status) ──
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+// Instant hero reveals
+requestAnimationFrame(() => {
+  document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+});
+
+// ── Hamburger menu (with Escape + outside click) ──
+const burger = document.querySelector('.burger');
+const mobileNav = document.querySelector('.nav-mobile');
+function closeMenu() {
+  burger.classList.remove('open');
+  mobileNav.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}
+burger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = burger.classList.toggle('open');
+  mobileNav.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', String(open));
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('click', (e) => {
+  if (!burger.contains(e.target) && !mobileNav.contains(e.target)) closeMenu();
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+// ── Countdown to 28 Apr 2026 12:00 CEST ──
+const eventDate = new Date('2026-04-28T12:00:00+02:00');
+function updateCountdown() {
+  const now = new Date();
+  const diff = eventDate - now;
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<span style="font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);">En directo ahora</span>';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+  document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+  document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── Mouse glow effect (hero only, desktop) ──
+const glow = document.getElementById('mouse-glow');
+const hero = document.querySelector('.hero');
+if (window.matchMedia('(pointer: fine)').matches) {
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    glow.style.left = (e.clientX - rect.left) + 'px';
+    glow.style.top = (e.clientY - rect.top) + 'px';
+    glow.classList.add('visible');
+  });
+  hero.addEventListener('mouseleave', () => {
+    glow.classList.remove('visible');
+  });
+}
+
+// ── Particle system (canvas, for dark sections) ──
+function initParticles(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  const COUNT = 40;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  function resize() {
+    const parent = canvas.parentElement;
+    w = canvas.width = parent.offsetWidth;
+    h = canvas.height = parent.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < COUNT; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.8 + 0.4,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.2 - 0.1,
+      alpha: Math.random() * 0.4 + 0.1,
+      isRed: Math.random() < 0.3
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10;
+      if (p.y > h + 10) p.y = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      if (p.isRed) {
+        ctx.fillStyle = `rgba(192, 25, 30, ${p.alpha})`;
+      } else {
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.6})`;
+      }
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+initParticles('hero-particles');
+initParticles('cta-particles');
+</script>
+
+</body>
+</html>
