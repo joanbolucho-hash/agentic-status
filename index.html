@@ -919,19 +919,19 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       <p class="stack-intro reveal d1">Infraestructura elegida por funcionar, no por ser moderna. Cada componente hace exactamente lo que tiene que hacer, sin redundancias.</p>
       <div class="stack-number-block">
         <div class="stack-stat reveal d2">
-          <span class="n" data-target="1973+">1973+</span>
+          <span class="n" data-target="<!-- STAT:docs_indexed -->1700+<!-- /STAT -->"><!-- STAT:docs_indexed -->1700+<!-- /STAT --></span>
           <span class="u">docs indexados</span>
         </div>
         <div class="stack-stat reveal d3">
-          <span class="n" data-target="109">109</span>
+          <span class="n" data-target="<!-- STAT:transcripts -->114<!-- /STAT -->"><!-- STAT:transcripts -->114<!-- /STAT --></span>
           <span class="u">reuniones analizadas</span>
         </div>
         <div class="stack-stat reveal d4">
-          <span class="n" data-target="19">19</span>
+          <span class="n" data-target="<!-- STAT:profiles -->19<!-- /STAT -->"><!-- STAT:profiles -->19<!-- /STAT --></span>
           <span class="u">perfiles de cliente</span>
         </div>
         <div class="stack-stat reveal d5">
-          <span class="n" data-target="5">5</span>
+          <span class="n" data-target="<!-- COUNTER:daemons -->4<!-- /COUNTER -->"><!-- COUNTER:daemons -->4<!-- /COUNTER --></span>
           <span class="u">daemons activos 24/7</span>
         </div>
       </div>
@@ -941,7 +941,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
         <div class="stack-dot"></div>
         <div>
           <div class="stack-name">OpenAI Vector Store</div>
-          <div class="stack-detail">Base de conocimiento vectorial con 1973+ documentos: propuestas, transcripciones, briefings e imágenes procesadas con Vision API. Búsqueda semántica con filtros por cliente, categoría y fecha.</div>
+          <div class="stack-detail">Base de conocimiento vectorial con <!-- COUNTER:docs_indexed -->1700+<!-- /COUNTER --> documentos: propuestas, transcripciones, briefings e imágenes procesadas con Vision API. Búsqueda semántica con filtros por cliente, categoría y fecha.</div>
         </div>
       </div>
       <div class="stack-item">
@@ -1034,7 +1034,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
   </div>
   <div class="footer-right">
     <a href="status.html" class="footer-link">Status →</a>
-    <span class="footer-meta"><!-- STAT:generated_date -->Generado automáticamente · 17 marzo 2026<!-- /STAT --></span>
+    <span class="footer-meta"><!-- STAT:generated_date -->17 marzo 2026<!-- /STAT --></span>
   </div>
 </footer>
 
@@ -1173,9 +1173,9 @@ heroEl.addEventListener('mousemove', e => {
 
 /* ── COUNTER ANIMATION FOR STATS ── */
 function animateCount(el) {
-  const raw    = el.dataset.target;
+  const raw    = el.textContent.trim();
   const isPlus = raw.endsWith('+');
-  const target = parseInt(raw, 10);
+  const target = parseInt(raw.replace(/[^0-9]/g, ''), 10);
   const dur    = 1600;
   const start  = performance.now();
   (function tick(now) {
