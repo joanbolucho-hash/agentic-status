@@ -641,8 +641,9 @@ footer {
   .hero { padding: 100px 24px 64px; }
   .hero-stats { gap: 0; }
   .stat-block { padding: 24px 32px 24px 0; margin-right: 32px; }
-  .changelog-layout { grid-template-columns: 1fr; gap: 40px; }
+  .changelog-layout { grid-template-columns: 1fr; gap: 32px; }
   .changelog-sticky { position: static; }
+  .changelog-big { font-size: clamp(26px, 6vw, 40px); }
   footer { padding: 40px 24px; flex-wrap: wrap; }
   .footer-right { text-align: left; }
   .header-sub { display: none; }
@@ -671,6 +672,17 @@ footer {
   .status-card::before { width: 3px; }
   .status-badge { font-size: 8px; padding: 2px 6px; }
   .cap-card { padding: 24px 20px; }
+  /* Changelog mobile */
+  .section-changelog { padding: 52px 20px; }
+  .changelog-layout { gap: 24px; }
+  .changelog-big { font-size: 28px; margin-bottom: 12px; }
+  .changelog-note { font-size: 13px; }
+  .timeline { padding-left: 20px; }
+  .timeline-entry { padding-bottom: 36px; }
+  .timeline-entry::before { left: -24px; width: 8px; height: 8px; }
+  .entry-version { font-size: 8px; letter-spacing: 2px; }
+  .entry-item { font-size: 11px; }
+  .entry-tag { font-size: 7px; }
   footer { padding: 32px 20px; }
   .footer-brand { font-size: 20px; }
 }
@@ -864,8 +876,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">cl-client-profiles</span> 19 client intelligence cards generados: Vueling, Sesé, Moventia, Damm, Megasa, Younited, y más. Un solo archivo por cliente en lugar de buscar en 4 sitios.</div>
           <div class="entry-item"><span class="entry-tag">workspace_watcher</span> Ahora regenera el perfil del cliente automáticamente cuando detecta una nueva propuesta o transcript.</div>
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> Subproyecto completo: auth, API client, sync (Zoho→workspace), push (workspace→Zoho). Listo para conectar cuando hagamos el OAuth setup juntos.</div>
-          <div class="entry-item"><span class="entry-tag">healthcheck</span> Daemon de salud instalado: alerta por email si workspace_watcher o granola_watcher llevan 3h sin actividad.</div>
-          <div class="entry-item"><span class="entry-tag">consolidate_kb</span> Script semanal que promueve hechos estables de kb-updates → knowledge-base automáticamente.</div>
         </div>
       </div>
 
@@ -875,8 +885,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">RAG multimodal</span> 269 imágenes procesadas con Vision API (160 logos, 54 diagramas, 22 screenshots, 20 fotos) → todas subidas al vector store. El RAG ahora entiende imágenes.</div>
           <div class="entry-item"><span class="entry-tag">agentic-model.html</span> Página editorial generada: explica el modelo AGENTIC completo con brand AT, animaciones y diseño de producto.</div>
           <div class="entry-item"><span class="entry-tag">CHANGELOG</span> Sistema de versiones + notificación en sesión + sección en briefing diario activados.</div>
-          <div class="entry-item"><span class="entry-tag">workspace_watcher</span> Nuevo daemon instalado: detecta automáticamente cualquier archivo nuevo en <code>actual talent/</code> y en los outputs de Claude, lo registra en el registry y lo sube al vector store. Sin acción manual.</div>
-          <div class="entry-item"><span class="entry-tag">index_images.py</span> Indexación multimodal activada: 269 imágenes procesadas con Vision API → descripciones de texto en el vector store. RAG ahora entiende imágenes, logos, slides y diagramas.</div>
         </div>
       </div>
 
@@ -886,8 +894,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">register-document.sh</span> Ahora sube automáticamente al vector store de OpenAI en cada registro. Antes era solo git + JSON.</div>
           <div class="entry-item"><span class="entry-tag">document-registry.json</span> Creado con 25 documentos históricos (propuestas, meeting preps, plantillas, docs internos).</div>
           <div class="entry-item"><span class="entry-tag">find-document.sh</span> Nueva herramienta: búsqueda en el registry por cliente, tipo, contacto, tags, estado.</div>
-          <div class="entry-item"><span class="entry-tag">post-commit hook</span> Detecta PDFs/HTML no registrados tras cada commit y avisa.</div>
-          <div class="entry-item"><span class="entry-tag">.github/workflows</span> GitHub Action añadida para index-documents en cada push.</div>
         </div>
       </div>
 
@@ -897,26 +903,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">mcp_server_standalone.py</span> Bug crítico corregido: path del servidor MCP apuntaba a <code>~/Desktop/</code> en vez de <code>~/Desktop/agentic/</code>. RAG ahora funciona en Claude Desktop.</div>
           <div class="entry-item"><span class="entry-tag">actual talent/</span> Carpeta centralizada dentro de <code>agentic/</code> para unificar el workspace.</div>
           <div class="entry-item"><span class="entry-tag">index_images.py</span> Path de fuente actualizado al nuevo lugar de <code>actual talent/</code>.</div>
-        </div>
-      </div>
-
-      <div class="timeline-entry reveal d4">
-        <div class="entry-version">v1.1 — 15 marzo 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">cl-rag</span> Vector store creado (<code>vs_69b694fbcff8819184a7da8fefc2479e</code>) con 1973 documentos históricos.</div>
-          <div class="entry-item"><span class="entry-tag">granola_watcher</span> Daemon instalado como LaunchAgent. Sincronización automática de transcripciones Granola.</div>
-          <div class="entry-item"><span class="entry-tag">sync_granola.py</span> Pipeline de sync: descubre → extrae → sube transcripciones al vector store.</div>
-          <div class="entry-item"><span class="entry-tag">mcp_server_standalone.py</span> MCP RAG v1.6 en producción. Herramienta <code>search_knowledge</code> con filtros de categoría, cliente y fecha.</div>
-        </div>
-      </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v1.0 — 14 marzo 2026</div>
-        <div class="entry-items">
-          <div class="entry-item">Workspace inicial estructurado con WAT framework (Workflows + Agents + Tools).</div>
-          <div class="entry-item">Subproyectos: <code>cl-meeting-prep</code>, <code>cl-proposal-generator</code>, <code>cl-rag</code>, <code>cl-daily-briefing</code>.</div>
-          <div class="entry-item">Integraciones: Gmail MCP, Google Calendar MCP, Granola MCP, Chrome MCP.</div>
-          <div class="entry-item"><code>CLAUDE.md</code> como constitución del workspace.</div>
         </div>
       </div>
       <!-- /CHANGELOG -->
