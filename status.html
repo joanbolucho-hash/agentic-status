@@ -604,6 +604,28 @@ section { padding: 100px 48px; }
   font-weight: 600;
 }
 
+/* ─── CHANGELOG EXPAND ─────────────────────────────────────────────────────── */
+.changelog-older {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.changelog-older.open { max-height: 1200px; }
+
+.btn-more-versions {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 32px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--red);
+  background: none; border: 1px solid rgba(192,25,30,0.25);
+  padding: 10px 20px; border-radius: 100px; cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  font-family: 'Montserrat', sans-serif;
+}
+.btn-more-versions:hover { background: rgba(192,25,30,0.06); border-color: var(--red); }
+.btn-more-versions svg { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+.btn-more-versions.open svg { transform: rotate(180deg); }
+
 /* ─── FOOTER ───────────────────────────────────────────────────────────────── */
 footer {
   background: var(--red);
@@ -869,15 +891,26 @@ footer {
     </div>
 
     <div class="timeline">
-      <!-- CHANGELOG -->
-      <div class="timeline-entry reveal ">
-        <div class="entry-version">v1.7 — 17 marzo 2026</div>
+      <!-- VISIBLE: 3 most recent versions -->
+      <div class="timeline-entry reveal">
+        <div class="entry-version">v1.8 — 17 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">Sitio público rediseñado: sección WAT con iniciales en tipografía outline, sección de stack con detalle de cada herramienta</div>
+          <div class="entry-item">Webinar "IA de Candidatos vs IA de Empleadores" — Actual Talent × Teamtailor, 28 abril 2026</div>
+          <div class="entry-item">Landing page con cuenta regresiva, registro en tiempo real y materials de promoción LinkedIn</div>
+          <div class="entry-item">Timeline de comunicación y checklist de materiales en producción</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d1">
+        <div class="entry-version">v1.7 — 17 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item">Sitio público rediseñado: sección WAT con iniciales en tipografía outline, sección de stack con detalle de cada herramienta</div>
+          <div class="entry-item">Briefing diario con reintentos automáticos, degradación elegante y alertas de fallo por email</div>
+          <div class="entry-item">RAG en paralelo: todas las reuniones comerciales se buscan simultáneamente</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v1.6 — 17 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item">El briefing diario ya no depende de que el ordenador esté encendido — corre automáticamente en la nube cada mañana a las 4am</div>
@@ -886,23 +919,68 @@ footer {
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
-        <div class="entry-version">v1.5 — 17 marzo 2026</div>
-        <div class="entry-items">
-          <div class="entry-item">Fichas de inteligencia por cliente: historial de reuniones, propuestas enviadas y contactos clave en un solo lugar</div>
-          <div class="entry-item">El sistema detecta nuevas reuniones y actualiza los perfiles de cliente automáticamente</div>
-          <div class="entry-item">Integración con Zoho CRM en desarrollo: sincronización bidireccional de contactos y oportunidades</div>
+      <!-- COLLAPSED: older versions -->
+      <div class="changelog-older" id="changelog-older">
+        <div class="timeline-entry">
+          <div class="entry-version">v1.5 — 17 marzo 2026</div>
+          <div class="entry-items">
+            <div class="entry-item">Fichas de inteligencia por cliente: historial de reuniones, propuestas enviadas y contactos clave en un solo lugar</div>
+            <div class="entry-item">El sistema detecta nuevas reuniones y actualiza los perfiles de cliente automáticamente</div>
+            <div class="entry-item">Integración con Zoho CRM en desarrollo: sincronización bidireccional de contactos y oportunidades</div>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="entry-version">v1.4 — 16 marzo 2026</div>
+          <div class="entry-items">
+            <div class="entry-item">Reconocimiento visual activado: el sistema entiende logos, diagramas y presentaciones, no solo texto</div>
+            <div class="entry-item">Briefing diario rediseñado con formato visual y propuestas adjuntas cuando la reunión lo requiere</div>
+            <div class="entry-item">Sistema de versiones en producción: cada mejora queda registrada y notificada automáticamente</div>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="entry-version">v1.3 — 16 marzo 2026</div>
+          <div class="entry-items">
+            <div class="entry-item">Catálogo central de documentos: todos los informes, propuestas y briefings generados, indexados y buscables</div>
+            <div class="entry-item">Cada documento generado queda disponible en el sistema RAG de inmediato</div>
+            <div class="entry-item">Sincronización automática con GitHub en cada cambio del workspace</div>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="entry-version">v1.2 — 16 marzo 2026</div>
+          <div class="entry-items">
+            <div class="entry-item">Sistema RAG completamente operativo: 1973+ documentos históricos disponibles al instante</div>
+            <div class="entry-item">Base de conocimiento centralizada: toda la información del equipo en un único lugar accesible</div>
+            <div class="entry-item">MCP de conocimiento en producción con búsqueda por cliente, fecha y categoría</div>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="entry-version">v1.1 — 15 marzo 2026</div>
+          <div class="entry-items">
+            <div class="entry-item">Vector store creado con 1973 documentos históricos indexados</div>
+            <div class="entry-item">Sincronización automática de transcripciones Granola — daemon instalado como LaunchAgent</div>
+          </div>
+        </div>
+
+        <div class="timeline-entry" style="padding-bottom:0">
+          <div class="entry-version">v1.0 — 14 marzo 2026</div>
+          <div class="entry-items">
+            <div class="entry-item">Workspace inicial estructurado con WAT framework (Workflows · Agents · Tools)</div>
+            <div class="entry-item">Subproyectos: meeting prep, proposal generator, RAG, daily briefing</div>
+            <div class="entry-item">Integraciones: Gmail MCP, Google Calendar MCP, Granola MCP, Chrome MCP</div>
+          </div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d3">
-        <div class="entry-version">v1.4 — 16 marzo 2026</div>
-        <div class="entry-items">
-          <div class="entry-item">Reconocimiento visual activado: el sistema entiende logos, diagramas y presentaciones, no solo texto</div>
-          <div class="entry-item">Briefing diario rediseñado con formato visual y propuestas adjuntas cuando la reunión lo requiere</div>
-          <div class="entry-item">Sistema de versiones en producción: cada mejora queda registrada y notificada automáticamente</div>
-        </div>
-      </div>
+      <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
+        <span id="btn-more-label">Ver versiones anteriores</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
       <!-- /CHANGELOG -->
     </div>
   </div>
@@ -913,7 +991,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC v1.5<br>
+    AGENTIC v1.8<br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
@@ -923,6 +1001,16 @@ footer {
 </footer>
 
 <script>
+// Toggle older versions
+function toggleVersions() {
+  const el = document.getElementById('changelog-older');
+  const btn = document.getElementById('btn-more-versions');
+  const label = document.getElementById('btn-more-label');
+  const isOpen = el.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  label.textContent = isOpen ? 'Ocultar versiones anteriores' : 'Ver versiones anteriores';
+}
+
 // Live clock
 function updateClock() {
   const now = new Date();
