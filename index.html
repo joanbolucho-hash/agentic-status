@@ -263,126 +263,121 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 .t-dim    { color: rgba(255,255,255,0.3); font-size: 11px; }
 
 /* ─── EMAIL BRIEFING MOCKUP ───────────────────────────────────────────────────── */
-@keyframes em-enter  { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
-@keyframes em-exit   { to   { opacity:0; transform:translateY(-6px); } }
-@keyframes em-text-in{ from { opacity:0; } to { opacity:1; } }
-@keyframes shimmer   { 0%   { background-position:200% 0; } 100% { background-position:-200% 0; } }
-@keyframes skel-out  { to   { opacity:0; max-height:0; margin-top:0; } }
-@keyframes typing    { 0%,100%{opacity:0} 50%{opacity:1} }
+@keyframes em-enter  { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+@keyframes em-exit   { to{opacity:0} }
+@keyframes em-in     { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+@keyframes shimmer   { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+@keyframes skel-out  { to{opacity:0;max-height:0;margin:0;padding:0} }
+@keyframes blink-dot { 0%,100%{opacity:.3} 50%{opacity:1} }
+@keyframes progress-fill { from{width:0} to{width:100%} }
 
-/* Card — appears immediately */
 .email-mockup {
-  margin-top: 16px;
-  background: white;
+  margin-top: 14px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.07);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.08);
   opacity: 0;
-  animation: em-enter 0.5s cubic-bezier(0.16,1,0.3,1) forwards 0.5s,
-             em-exit  0.4s ease forwards 12.4s;
+  font-size: 12px;
+  animation: em-enter .5s cubic-bezier(.16,1,.3,1) forwards .5s,
+             em-exit  .4s ease forwards 12.4s;
 }
 
-/* Header */
-.em-header { background: var(--red); padding: 16px 20px 14px; }
-.em-header-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
-.em-logo { font-size:11px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:white; }
-.em-logo span { opacity:0.6; font-weight:400; }
-.em-date { font-size:10px; color:rgba(255,255,255,0.6); letter-spacing:0.5px; }
-
-/* Subject: starts as skeleton, resolves to text */
-.em-subject-skel {
-  height: 10px; width: 75%; border-radius: 4px; margin-top: 2px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.25) 25%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.25) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 5.4s;
-  max-height: 12px;
+/* ── Email client chrome ── */
+.em-chrome {
+  background: #F6F6F6;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 10px 14px 9px;
 }
-.em-subject-text {
-  font-size:13px; font-weight:700; color:white; margin-top:2px;
-  opacity:0;
-  animation: em-text-in 0.4s ease forwards 5.4s, em-exit 0.4s ease forwards 12.4s;
+.em-chrome-bar {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
+}
+.em-chrome-dot { width:10px;height:10px;border-radius:50%; }
+.em-chrome-dot.r{background:#FF5F57} .em-chrome-dot.y{background:#FEBC2E} .em-chrome-dot.g{background:#28C840}
+.em-chrome-addr {
+  flex:1; background:white; border-radius:4px; padding:3px 10px;
+  font-size:10px; color:#999; border:1px solid #E8E8E8;
+}
+.em-meta { display:flex; flex-direction:column; gap:2px; }
+.em-meta-row { display:flex; gap:6px; font-size:10.5px; }
+.em-meta-label { color:#999; min-width:40px; }
+.em-meta-val   { color:#333; font-weight:500; }
+.em-meta-val strong { color:var(--red); font-weight:700; }
+
+/* ── AT branded header inside email ── */
+.em-at-header {
+  background: var(--red);
+  padding: 12px 16px 10px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.em-at-logo { font-size:11px;font-weight:900;letter-spacing:3px;color:white;text-transform:uppercase; }
+.em-at-logo span { opacity:.55;font-weight:300; }
+.em-at-date { font-size:10px;color:rgba(255,255,255,.6); }
+
+/* ── Progress bar (generating) ── */
+.em-progress-wrap {
+  background: rgba(0,0,0,.15); height:2px; margin-top:8px; border-radius:1px; overflow:hidden;
+}
+.em-progress-bar {
+  height:100%; background:rgba(255,255,255,.7); width:0;
+  animation: progress-fill 4.8s cubic-bezier(.4,0,.2,1) forwards .8s,
+             em-exit .3s ease forwards 5.6s;
 }
 
-/* Typing indicator (GPT-4o generating) */
-.em-typing {
-  display: inline-flex; align-items: center; gap: 3px; padding: 4px 0 2px;
+/* ── Email body ── */
+.em-body { background:white; padding:12px 16px 14px; }
+
+/* Meeting blocks */
+.em-block {
+  border-left: 3px solid var(--red);
+  padding: 8px 0 8px 12px;
+  margin-bottom: 10px;
   opacity: 0;
-  animation: em-text-in 0.3s ease forwards 1.8s, skel-out 0.3s ease forwards 5.2s;
+  animation: em-in .4s cubic-bezier(.16,1,.3,1) forwards, em-exit .4s ease forwards 12.4s;
 }
-.em-typing span {
-  width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.7);
-  animation: typing 1.2s ease-in-out infinite;
+.em-block:last-of-type { margin-bottom: 0; }
+.em-block.b1 { animation-delay: 3.2s, 12.4s; }
+.em-block.b2 { animation-delay: 4.2s, 12.4s; }
+.em-block.b3 { animation-delay: 5.4s, 12.4s; }
+
+.em-block-head {
+  display:flex; align-items:baseline; gap:8px; margin-bottom:5px;
 }
-.em-typing span:nth-child(2) { animation-delay:.2s; }
-.em-typing span:nth-child(3) { animation-delay:.4s; }
-
-.em-body { padding: 12px 20px 16px; }
-
-/* Rows — always visible as skeleton containers */
-.em-row { padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.06); overflow:hidden; }
-.em-row:last-child { border-bottom:none; }
-.em-row-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:5px; }
-
-/* Row skeleton placeholders (visible from t=0) */
-.em-skel {
-  height:7px; border-radius:4px; margin-top:5px;
-  background: linear-gradient(90deg,#eee 25%,#f5f5f5 50%,#eee 75%);
-  background-size:200% 100%;
-  max-height: 9px;
-  overflow: hidden;
+.em-block-client {
+  font-size:11px; font-weight:800; color:var(--black);
+  text-transform:uppercase; letter-spacing:.5px;
 }
-.em-skel.s2 { width:62%; }
-.em-skel.s3 { width:80%; }
-
-/* Shimmer plays while skeleton visible, stops when resolved */
-.em-row.r1 .em-skel { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 3.3s; }
-.em-row.r2 .em-skel { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 4.0s; }
-.em-row.r3 .em-skel { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 5.6s; }
-
-/* Name/time skeleton */
-.em-skel-title {
-  height:8px; width:45%; border-radius:4px;
-  background: linear-gradient(90deg,#e0e0e0 25%,#ececec 50%,#e0e0e0 75%);
-  background-size:200% 100%;
-  max-height:10px; overflow:hidden;
+.em-block-time {
+  font-size:10px; font-weight:700; color:var(--red); letter-spacing:.5px;
 }
-.em-skel-time {
-  height:8px; width:22%; border-radius:4px;
-  background: linear-gradient(90deg,rgba(192,25,30,0.15) 25%,rgba(192,25,30,0.25) 50%,rgba(192,25,30,0.15) 75%);
-  background-size:200% 100%;
-  max-height:10px; overflow:hidden;
-}
-.em-row.r1 .em-skel-title,
-.em-row.r1 .em-skel-time { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 3.3s; }
-.em-row.r2 .em-skel-title,
-.em-row.r2 .em-skel-time { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 4.0s; }
-.em-row.r3 .em-skel-title,
-.em-row.r3 .em-skel-time { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 5.6s; }
 
-/* Real text — hidden until resolved */
-.em-client  { font-size:11px; font-weight:800; color:var(--black); letter-spacing:.5px; text-transform:uppercase; }
-.em-time    { font-size:10px; font-weight:700; color:var(--red); letter-spacing:1px; }
-.em-snippet { font-size:11px; color:var(--gray); line-height:1.5; }
-.em-real {
-  opacity:0; max-height:0; overflow:hidden;
-  animation: em-text-in 0.4s ease forwards, em-exit 0.4s ease forwards 12.4s;
+.em-fact {
+  display:flex; gap:6px; margin-bottom:3px; color:#555; font-size:11px; line-height:1.5;
 }
-.em-row.r1 .em-real { animation-delay: 3.3s, 12.4s; }
-.em-row.r2 .em-real { animation-delay: 4.0s, 12.4s; }
-.em-row.r3 .em-real { animation-delay: 5.6s, 12.4s; }
-.em-real.shown { max-height: 40px; }
+.em-fact::before { content:'·'; color:var(--red); flex-shrink:0; font-weight:700; }
 
-/* Badge */
-.em-badge {
-  margin-top:12px;
-  display:inline-flex; align-items:center; gap:6px;
-  background:rgba(192,25,30,0.07); border-radius:100px;
-  padding:5px 12px;
-  font-size:10px; font-weight:700; letter-spacing:.5px; color:var(--red);
+.em-tip {
+  margin-top:6px; padding:5px 8px;
+  background:rgba(192,25,30,.06); border-radius:4px;
+  font-size:10.5px; color:var(--black); font-weight:600;
+}
+.em-tip span { color:var(--gray); font-weight:400; }
+
+/* Footer badge */
+.em-footer {
+  background:#FAFAFA; border-top:1px solid #F0F0F0;
+  padding:8px 16px;
+  display:flex; align-items:center; justify-content:space-between;
   opacity:0;
-  animation: em-text-in 0.4s ease forwards 7.2s, em-exit 0.4s ease forwards 12.4s;
+  animation: em-in .4s ease forwards 7.0s, em-exit .4s ease forwards 12.4s;
 }
-.em-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:#28C840; flex-shrink:0; }
+.em-footer-left { font-size:10px; color:#999; }
+.em-footer-badge {
+  display:inline-flex; align-items:center; gap:5px;
+  background:rgba(40,200,64,.12); border-radius:100px;
+  padding:3px 10px;
+  font-size:10px; font-weight:700; color:#1a7a2a;
+}
+.em-footer-badge::before { content:''; width:5px;height:5px;border-radius:50%;background:#28C840;flex-shrink:0; }
 
 /* blinking cursor */
 .t-cursor {
@@ -671,74 +666,71 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       </div>
     </div>
 
-    <!-- Email briefing mockup — skeleton from t=0, resolves in sync with terminal -->
+    <!-- Email briefing demo — real output of AGENTIC -->
     <div class="email-mockup" id="email-mockup">
-      <div class="em-header">
-        <div class="em-header-top">
-          <span class="em-logo">AGEN<span>TIC</span></span>
-          <span class="em-date">mié 19 mar · 08:00</span>
+
+      <!-- Gmail-style chrome -->
+      <div class="em-chrome">
+        <div class="em-chrome-bar">
+          <div class="em-chrome-dot r"></div>
+          <div class="em-chrome-dot y"></div>
+          <div class="em-chrome-dot g"></div>
+          <div class="em-chrome-addr">mail.google.com</div>
         </div>
-        <!-- Subject: skeleton → real text -->
-        <div class="em-subject-skel"></div>
-        <div class="em-subject-text">Briefing del día — 3 reuniones</div>
-        <!-- Typing dots while GPT-4o generates -->
-        <div class="em-typing">
-          <span></span><span></span><span></span>
+        <div class="em-meta">
+          <div class="em-meta-row"><span class="em-meta-label">De:</span><span class="em-meta-val">AGENTIC &lt;noreply@actualgroup.com&gt;</span></div>
+          <div class="em-meta-row"><span class="em-meta-label">Asunto:</span><span class="em-meta-val"><strong>🗓 Briefing del día</strong> — miércoles 19 mar · 3 reuniones</span></div>
         </div>
       </div>
+
+      <!-- AT branded email header -->
+      <div class="em-at-header">
+        <span class="em-at-logo">AGEN<span>TIC</span></span>
+        <span class="em-at-date">mié 19 mar 2026 · 08:00</span>
+      </div>
+      <!-- progress bar while generating -->
+      <div class="em-progress-wrap">
+        <div class="em-progress-bar"></div>
+      </div>
+
+      <!-- Body: 3 meeting blocks appear in sync with RAG searches -->
       <div class="em-body">
 
-        <!-- Row 1: Vueling -->
-        <div class="em-row r1">
-          <div class="em-row-top">
-            <div class="em-skel-title"></div>
-            <div class="em-skel-time"></div>
+        <div class="em-block b1">
+          <div class="em-block-head">
+            <span class="em-block-client">Vueling</span>
+            <span class="em-block-time">10:00 · Sala A</span>
           </div>
-          <div class="em-skel s3"></div>
-          <div class="em-skel s2"></div>
-          <div class="em-real">
-            <div class="em-row-top">
-              <span class="em-client">Vueling</span>
-              <span class="em-time">10:00</span>
-            </div>
-            <div class="em-snippet">Propuesta RPO feb · última reunión hace 3 semanas</div>
-          </div>
+          <div class="em-fact">Propuesta RPO activa · 9.500€/mes · 3 hiring managers</div>
+          <div class="em-fact">Última reunión 28 feb — negociación condiciones Q2</div>
+          <div class="em-tip">💡 <span>Preguntar por</span> decisión sobre volumen abril–junio</div>
         </div>
 
-        <!-- Row 2: Sesé -->
-        <div class="em-row r2">
-          <div class="em-row-top">
-            <div class="em-skel-title"></div>
-            <div class="em-skel-time"></div>
+        <div class="em-block b2">
+          <div class="em-block-head">
+            <span class="em-block-client">Sesé Group</span>
+            <span class="em-block-time">12:30 · Videollamada</span>
           </div>
-          <div class="em-skel s3"></div>
-          <div class="em-skel s2"></div>
-          <div class="em-real">
-            <div class="em-row-top">
-              <span class="em-client">Sesé Group</span>
-              <span class="em-time">12:30</span>
-            </div>
-            <div class="em-snippet">Primer contacto · logística · 4.200 empleados</div>
-          </div>
+          <div class="em-fact">Primer contacto · logística y transporte · 4.200 empleados</div>
+          <div class="em-fact">Interés en Executive Search para Dirección de Operaciones</div>
+          <div class="em-tip">💡 <span>Presentar</span> caso Moventia como referencia sectorial</div>
         </div>
 
-        <!-- Row 3: Damm -->
-        <div class="em-row r3">
-          <div class="em-row-top">
-            <div class="em-skel-title"></div>
-            <div class="em-skel-time"></div>
+        <div class="em-block b3">
+          <div class="em-block-head">
+            <span class="em-block-client">Damm</span>
+            <span class="em-block-time">16:00 · Oficinas AT</span>
           </div>
-          <div class="em-skel s3"></div>
-          <div class="em-real">
-            <div class="em-row-top">
-              <span class="em-client">Damm</span>
-              <span class="em-time">16:00</span>
-            </div>
-            <div class="em-snippet">Follow-up executive search · pendiente firma</div>
-          </div>
+          <div class="em-fact">Follow-up propuesta exec. search · firma pendiente</div>
+          <div class="em-fact">Contacto: Marta Ferrer (CHRO) · proceso activo desde enero</div>
+          <div class="em-tip">💡 <span>Traer</span> propuesta firmada + timeline de entrega</div>
         </div>
 
-        <div class="em-badge">3 reuniones preparadas · Entregado ✓</div>
+      </div>
+
+      <div class="em-footer">
+        <span class="em-footer-left">Generado por AGENTIC · GPT-4o · GitHub Actions</span>
+        <span class="em-footer-badge">Entregado ✓</span>
       </div>
     </div>
 
@@ -1049,12 +1041,7 @@ window.addEventListener('scroll', () => {
 
 /* ── TERMINAL + EMAIL LOOP ── */
 function restartAnimation() {
-  const sel = [
-    '#term-body .t-line', '#term-body .t-cursor',
-    '.email-mockup', '.em-subject-skel', '.em-subject-text',
-    '.em-typing', '.em-skel', '.em-skel-title', '.em-skel-time',
-    '.em-real', '.em-badge'
-  ].join(',');
+  const sel = '#term-body .t-line, #term-body .t-cursor, .email-mockup, .em-progress-bar, .em-block, .em-footer';
   document.querySelectorAll(sel).forEach(el => {
     el.style.animation = 'none';
     void el.offsetHeight;
