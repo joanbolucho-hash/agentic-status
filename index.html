@@ -199,6 +199,63 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 .tl-title { font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.3; }
 .tl-desc { font-size: 12px; font-weight: 400; color: var(--gray); line-height: 1.65; }
 
+/* ─── TERMINAL ANIMATION ──────────────────────────────────────────────────────── */
+.terminal-wrap { margin-top: 72px; display: flex; justify-content: center; }
+.terminal-window {
+  background: #0C0C0C;
+  border-radius: 12px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.12);
+  overflow: hidden;
+  width: 100%; max-width: 580px;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+}
+.term-header {
+  background: #1E1E1E;
+  padding: 13px 16px;
+  display: flex; align-items: center; gap: 7px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.term-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.term-dot.r { background: #FF5F57; } .term-dot.y { background: #FEBC2E; } .term-dot.g { background: #28C840; }
+.term-title { flex: 1; text-align: center; font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.3px; }
+.term-body { padding: 20px 24px 24px; font-size: 12.5px; line-height: 2; min-height: 230px; }
+
+/* Each line starts hidden, fades in at its delay, holds, then all fade out at end */
+.t-line {
+  display: flex; align-items: baseline; gap: 8px;
+  opacity: 0;
+  animation: t-line-in 0.25s cubic-bezier(0.16,1,0.3,1) forwards,
+             t-fade-out 0.4s ease forwards 11.2s;
+}
+@keyframes t-line-in  { from { opacity:0; transform: translateX(-6px); } to { opacity:1; transform:none; } }
+@keyframes t-fade-out { to   { opacity:0; } }
+
+.t-line.l1 { animation-delay: 0.3s,   11.2s; color: rgba(255,255,255,0.9); }
+.t-line.l2 { animation-delay: 1.1s,   11.2s; color: rgba(255,255,255,0.55); }
+.t-line.l3 { animation-delay: 1.8s,   11.2s; color: rgba(255,255,255,0.55); }
+.t-line.l4 { animation-delay: 2.5s,   11.2s; color: rgba(255,255,255,0.55); }
+.t-line.l5 { animation-delay: 3.2s,   11.2s; color: rgba(255,255,255,0.55); }
+.t-line.l6 { animation-delay: 3.9s,   11.2s; color: rgba(255,255,255,0.55); }
+.t-line.l7 { animation-delay: 4.6s,   11.2s; color: rgba(255,255,255,0.55); }
+.t-line.l8 { animation-delay: 6.0s,   11.2s; color: rgba(255,255,255,0.55); }
+.t-line.l9 { animation-delay: 6.8s,   11.2s; color: rgba(255,255,255,0.55); }
+
+.t-prompt { color: var(--red); font-weight: 600; flex-shrink: 0; }
+.t-ts     { color: rgba(255,255,255,0.22); flex-shrink: 0; }
+.t-ok     { color: #28C840; }
+.t-hl     { color: var(--red); font-weight: 700; }
+.t-cmd    { color: rgba(255,255,255,0.75); }
+.t-dim    { color: rgba(255,255,255,0.3); font-size: 11px; }
+
+/* blinking cursor */
+.t-cursor {
+  display: inline-block; width: 7px; height: 13px;
+  background: rgba(255,255,255,0.65); vertical-align: middle;
+  opacity: 0;
+  animation: t-line-in 0.1s forwards 7.2s, t-blink 1s step-end 7.3s infinite, t-fade-out 0.4s forwards 11.2s;
+}
+@keyframes t-blink { 0%,100% { opacity: 0.65; } 50% { opacity: 0; } }
+
 /* ─── SISTEMA ────────────────────────────────────────────────────────────────── */
 .sistema {
   background: var(--near-black);
@@ -445,6 +502,30 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       <div class="tl-time">Siempre</div>
       <div class="tl-title">Todo respaldado</div>
       <div class="tl-desc">Cada documento, perfil y transcripción se guarda y sincroniza automáticamente. Sin intervención manual.</div>
+    </div>
+  </div>
+
+  <!-- Terminal animation -->
+  <div class="terminal-wrap reveal d3">
+    <div class="terminal-window" id="terminal">
+      <div class="term-header">
+        <span class="term-dot r"></span>
+        <span class="term-dot y"></span>
+        <span class="term-dot g"></span>
+        <span class="term-title">run_briefing.py — GitHub Actions · ubuntu-latest</span>
+      </div>
+      <div class="term-body" id="term-body">
+        <div class="t-line l1"><span class="t-prompt">$</span><span class="t-cmd">python3 cl-daily-briefing/tools/run_briefing.py</span></div>
+        <div class="t-line l2"><span class="t-ts">[04:03:01]</span><span>Pre-flight check...</span><span class="t-ok">✓</span></div>
+        <div class="t-line l3"><span class="t-ts">[04:03:02]</span><span>Reading calendar (iCal)...</span><span class="t-ok">✓</span></div>
+        <div class="t-line l4"><span class="t-ts">[04:03:03]</span><span>Found <span class="t-hl">3 commercial meetings</span> today</span></div>
+        <div class="t-line l5"><span class="t-ts">[04:03:05]</span><span>RAG search: <span class="t-hl">Vueling</span>...</span><span class="t-ok">✓</span></div>
+        <div class="t-line l6"><span class="t-ts">[04:03:06]</span><span>RAG search: <span class="t-hl">Sesé</span>...</span><span class="t-ok">✓</span></div>
+        <div class="t-line l7"><span class="t-ts">[04:03:08]</span><span>Generating briefing with GPT-4o<span class="t-dim">...</span></span></div>
+        <div class="t-line l8"><span class="t-ts">[04:04:12]</span><span>Email sent → <span class="t-hl">joan.boluda@actualgroup.com</span></span><span class="t-ok">✓</span></div>
+        <div class="t-line l9"><span class="t-ts">[04:04:13]</span><span class="t-ok">Briefing delivered. Done.</span></div>
+        <div class="t-cursor"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -749,6 +830,18 @@ window.addEventListener('scroll', () => {
     el.style.transform = `translateY(${mid * 0.04 * (i % 2 === 0 ? 1 : -1)}px)`;
   });
 }, { passive: true });
+
+/* ── TERMINAL LOOP ── */
+function restartTerminal() {
+  const els = document.querySelectorAll('#term-body .t-line, #term-body .t-cursor');
+  els.forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight; // force reflow to restart
+    el.style.animation = '';
+  });
+}
+// First run plays on load; restart every 13s (11.6s anim + 1.4s pause)
+setInterval(restartTerminal, 13000);
 
 /* ── HAMBURGER MENU ── */
 const burger   = document.getElementById('burger');
