@@ -555,14 +555,6 @@ section { padding: 100px 48px; }
   margin-bottom: 6px;
 }
 
-.entry-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--black);
-  margin-bottom: 12px;
-  line-height: 1.3;
-}
-
 .entry-items {
   display: flex;
   flex-direction: column;
@@ -835,68 +827,69 @@ footer {
     </div>
 
     <div class="timeline">
-
-      <div class="timeline-entry reveal">
+      <!-- CHANGELOG -->
+      <div class="timeline-entry reveal ">
         <div class="entry-version">v1.5 — 17 marzo 2026</div>
-        <div class="entry-title">Client profiles, Zoho integration & sistema de salud</div>
         <div class="entry-items">
-          <div class="entry-item">19 fichas de cliente generadas y actualizadas automáticamente</div>
-          <div class="entry-item">cl-zoho subproyecto completo: auth, sync bidireccional, push additive-only</div>
-          <div class="entry-item">Healthcheck daemon: alerta por email si los watchers caen</div>
-          <div class="entry-item">consolidate_kb.py: promoción semanal automática al knowledge base</div>
+          <div class="entry-item">[cl-client-profiles] 19 client intelligence cards generados: Vueling, Sesé, Moventia, Damm, Megasa, Younited, y más. Un solo archivo por cliente en lugar de buscar en 4 sitios.</div>
+          <div class="entry-item">[workspace_watcher] Ahora regenera el perfil del cliente automáticamente cuando detecta una nueva propuesta o transcript.</div>
+          <div class="entry-item">[cl-zoho] Subproyecto completo: auth, API client, sync (Zoho→workspace), push (workspace→Zoho). Listo para conectar cuando hagamos el OAuth setup juntos.</div>
+          <div class="entry-item">[healthcheck] Daemon de salud instalado: alerta por email si workspace_watcher o granola_watcher llevan 3h sin actividad.</div>
+          <div class="entry-item">[consolidate_kb] Script semanal que promueve hechos estables de kb-updates → knowledge-base automáticamente.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d1">
         <div class="entry-version">v1.4 — 16 marzo 2026</div>
-        <div class="entry-title">Workspace watcher, RAG multimodal & briefing HTML</div>
         <div class="entry-items">
-          <div class="entry-item">workspace_watcher daemon: detecta y sube cualquier archivo nuevo</div>
-          <div class="entry-item">269 imágenes indexadas con Vision API — RAG ahora entiende imágenes</div>
-          <div class="entry-item">Briefing diario rediseñado en HTML con brand AT</div>
-          <div class="entry-item">CHANGELOG + notificaciones sutiles en sesión y email</div>
+          <div class="entry-item">[RAG multimodal] 269 imágenes procesadas con Vision API (160 logos, 54 diagramas, 22 screenshots, 20 fotos) → todas subidas al vector store. El RAG ahora entiende imágenes.</div>
+          <div class="entry-item">[agentic-model.html] Página editorial generada: explica el modelo AGENTIC completo con brand AT, animaciones y diseño de producto.</div>
+          <div class="entry-item">[CHANGELOG] Sistema de versiones + notificación en sesión + sección en briefing diario activados.</div>
+          <div class="entry-item">[workspace_watcher] Nuevo daemon instalado: detecta automáticamente cualquier archivo nuevo en `actual talent/` y en los outputs de Claude, lo registra en el registry y lo sube al vector store. Sin acción manual.</div>
+          <div class="entry-item">[index_images.py] Indexación multimodal activada: 269 imágenes procesadas con Vision API → descripciones de texto en el vector store. RAG ahora entiende imágenes, logos, slides y diagramas.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d2">
         <div class="entry-version">v1.3 — 16 marzo 2026</div>
-        <div class="entry-title">Document registry & auto-upload</div>
         <div class="entry-items">
-          <div class="entry-item">document-registry.json con 26 documentos históricos catalogados</div>
-          <div class="entry-item">register-document.sh: registro + git commit + upload automático al vector store</div>
-          <div class="entry-item">GitHub sync configurado con PAT y workflow scope</div>
+          <div class="entry-item">[register-document.sh] Ahora sube automáticamente al vector store de OpenAI en cada registro. Antes era solo git + JSON.</div>
+          <div class="entry-item">[document-registry.json] Creado con 25 documentos históricos (propuestas, meeting preps, plantillas, docs internos).</div>
+          <div class="entry-item">[find-document.sh] Nueva herramienta: búsqueda en el registry por cliente, tipo, contacto, tags, estado.</div>
+          <div class="entry-item">[post-commit hook] Detecta PDFs/HTML no registrados tras cada commit y avisa.</div>
+          <div class="entry-item">[.github/workflows] GitHub Action añadida para index-documents en cada push.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d3">
         <div class="entry-version">v1.2 — 16 marzo 2026</div>
-        <div class="entry-title">MCP path fix & centralización</div>
         <div class="entry-items">
-          <div class="entry-item">Bug crítico corregido: MCP RAG ahora funciona en Claude Desktop</div>
-          <div class="entry-item">Carpeta actual talent/ centralizada dentro de agentic/</div>
+          <div class="entry-item">[mcp_server_standalone.py] Bug crítico corregido: path del servidor MCP apuntaba a `~/Desktop/` en vez de `~/Desktop/agentic/`. RAG ahora funciona en Claude Desktop.</div>
+          <div class="entry-item">[actual talent/] Carpeta centralizada dentro de `agentic/` para unificar el workspace.</div>
+          <div class="entry-item">[index_images.py] Path de fuente actualizado al nuevo lugar de `actual talent/`.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d4">
         <div class="entry-version">v1.1 — 15 marzo 2026</div>
-        <div class="entry-title">Vector store & Granola sync</div>
         <div class="entry-items">
-          <div class="entry-item">Vector store creado con 1973+ documentos indexados</div>
-          <div class="entry-item">granola_watcher LaunchAgent: sync automático de transcripciones</div>
-          <div class="entry-item">MCP RAG v1.6 en producción con search_knowledge()</div>
+          <div class="entry-item">[cl-rag] Vector store creado (`vs_69b694fbcff8819184a7da8fefc2479e`) con 1973 documentos históricos.</div>
+          <div class="entry-item">[granola_watcher] Daemon instalado como LaunchAgent. Sincronización automática de transcripciones Granola.</div>
+          <div class="entry-item">[sync_granola.py] Pipeline de sync: descubre → extrae → sube transcripciones al vector store.</div>
+          <div class="entry-item">[mcp_server_standalone.py] MCP RAG v1.6 en producción. Herramienta `search_knowledge` con filtros de categoría, cliente y fecha.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d5">
         <div class="entry-version">v1.0 — 14 marzo 2026</div>
-        <div class="entry-title">Workspace inicial</div>
         <div class="entry-items">
-          <div class="entry-item">Estructura WAT: Workflows + Agents + Tools</div>
-          <div class="entry-item">Subproyectos: cl-meeting-prep, cl-proposal-generator, cl-rag, cl-daily-briefing</div>
-          <div class="entry-item">Integraciones base: Gmail, Google Calendar, Granola, Chrome MCPs</div>
+          <div class="entry-item">Workspace inicial estructurado con WAT framework (Workflows + Agents + Tools).</div>
+          <div class="entry-item">Subproyectos: `cl-meeting-prep`, `cl-proposal-generator`, `cl-rag`, `cl-daily-briefing`.</div>
+          <div class="entry-item">Integraciones: Gmail MCP, Google Calendar MCP, Granola MCP, Chrome MCP.</div>
+          <div class="entry-item">`CLAUDE.md` como constitución del workspace.</div>
         </div>
       </div>
-
+      <!-- /CHANGELOG -->
     </div>
   </div>
 </section>
