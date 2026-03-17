@@ -636,6 +636,8 @@ footer .footer-links a:hover { color: white; }
   </div>
 </div>
 
+<iframe name="hidden-iframe" id="hidden-iframe" style="display:none"></iframe>
+
 <!-- ─── FOOTER ──────────────────────────────────────────────────────────────── -->
 <footer>
   <p><strong>Actual Talent × Teamtailor</strong> · Abril 2026</p>
@@ -763,7 +765,7 @@ modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }
 // REPLACE this URL with your deployed Google Apps Script web app URL
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzSlhTyq4WU1XvcpYdllQzYcfolHSV6-yo5kKzP6hDMLVvo4X1y-e6Y82Zj7_tT6zY/exec';
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   const btn = document.getElementById('reg-submit');
   btn.disabled = true; btn.textContent = 'Registrando...';
@@ -781,14 +783,23 @@ form.addEventListener('submit', async (e) => {
   regs.push(data);
   localStorage.setItem('webinar-regs', JSON.stringify(regs));
 
-  // Try Google Sheets if URL configured
+  // Submit to Google Sheets via hidden iframe + form (most reliable method)
   if (SHEET_URL) {
     try {
-      await fetch(SHEET_URL, {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+      const iframe = document.getElementById('hidden-iframe');
+      const tempForm = document.createElement('form');
+      tempForm.method = 'POST';
+      tempForm.action = SHEET_URL;
+      tempForm.target = 'hidden-iframe';
+      tempForm.style.display = 'none';
+      Object.entries(data).forEach(([k, v]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden'; input.name = k; input.value = v;
+        tempForm.appendChild(input);
       });
+      document.body.appendChild(tempForm);
+      tempForm.submit();
+      document.body.removeChild(tempForm);
     } catch(err) { /* localStorage backup is saved */ }
   }
 
