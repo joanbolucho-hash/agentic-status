@@ -218,17 +218,22 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 /* Right col of timeline — email only, sticky */
 .terminal-wrap { display: flex; flex-direction: column; gap: 0; position: sticky; top: 80px; }
 
-/* Terminal inside sistema section (dark bg) */
-.wat-terminal-wrap {
-  margin-top: 56px;
-  max-width: 640px;
-  margin-left: auto; margin-right: auto;
+/* Sistema top: intro left + terminal right */
+.sistema-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 56px;
 }
 .wat-terminal-wrap .terminal-window {
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 32px 80px rgba(0,0,0,0.6);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 20px 48px rgba(0,0,0,0.55);
 }
-.wat-terminal-wrap .term-header { background: #222; }
-.wat-terminal-wrap .term-title  { color: rgba(255,255,255,0.2); }
+.wat-terminal-wrap .term-header { background: #1c1c1c; }
+.wat-terminal-wrap .term-title  { color: rgba(255,255,255,0.18); font-size: 10px; }
+.wat-terminal-wrap .term-body   { padding: 14px 18px 16px; font-size: 11px; line-height: 1.75; min-height: unset; }
+.wat-terminal-wrap .t-ts        { font-size: 10px; }
+.wat-terminal-wrap .t-dim       { font-size: 10px; }
 .terminal-window {
   background: #0C0C0C;
   border-radius: 12px;
@@ -516,7 +521,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
   .timeline-sec { padding: 80px 24px; }
   .timeline-body { grid-template-columns: 1fr; gap: 48px; }
   .terminal-wrap { position: static; }
-  .wat-terminal-wrap { margin-top: 40px; }
+  .sistema-top { grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px; }
 
   .sistema { padding: 80px 24px; }
   .wat-grid { grid-template-columns: 1fr; gap: 1px; }
@@ -731,8 +736,34 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 
 <!-- ▸ SISTEMA (WAT) -->
 <section class="sistema" id="sistema">
-  <div class="section-label reveal">Cómo está construido</div>
-  <p class="wat-intro reveal d1">Tres capas que se coordinan sin rozamiento: las instrucciones definen el proceso, el agente razona y decide, las herramientas ejecutan con precisión.</p>
+  <div class="sistema-top">
+    <div>
+      <div class="section-label reveal">Cómo está construido</div>
+      <p class="wat-intro reveal d1">Tres capas que se coordinan sin rozamiento: las instrucciones definen el proceso, el agente razona y decide, las herramientas ejecutan con precisión.</p>
+    </div>
+    <div class="wat-terminal-wrap reveal d2">
+      <div class="terminal-window" id="terminal">
+        <div class="term-header">
+          <span class="term-dot r"></span>
+          <span class="term-dot y"></span>
+          <span class="term-dot g"></span>
+          <span class="term-title">run_briefing.py — GitHub Actions</span>
+        </div>
+        <div class="term-body" id="term-body">
+          <div class="t-line l1"><span class="t-prompt">$</span><span class="t-cmd">python3 run_briefing.py</span></div>
+          <div class="t-line l2"><span class="t-ts">[04:03:01]</span><span>Pre-flight check...</span><span class="t-ok">✓</span></div>
+          <div class="t-line l3"><span class="t-ts">[04:03:02]</span><span>Reading calendar...</span><span class="t-ok">✓</span></div>
+          <div class="t-line l4"><span class="t-ts">[04:03:03]</span><span>Found <span class="t-hl">3 meetings</span> today</span></div>
+          <div class="t-line l5"><span class="t-ts">[04:03:05]</span><span>RAG: <span class="t-hl">Vueling</span>...</span><span class="t-ok">✓</span></div>
+          <div class="t-line l6"><span class="t-ts">[04:03:06]</span><span>RAG: <span class="t-hl">Sesé</span>...</span><span class="t-ok">✓</span></div>
+          <div class="t-line l7"><span class="t-ts">[04:03:08]</span><span>GPT-4o generating<span class="t-dim">...</span></span></div>
+          <div class="t-line l8"><span class="t-ts">[04:04:12]</span><span>Email → <span class="t-hl">joan.boluda@actualgroup.com</span></span><span class="t-ok">✓</span></div>
+          <div class="t-line l9"><span class="t-ts">[04:04:13]</span><span class="t-ok">Done.</span></div>
+          <div class="t-cursor"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="wat-grid">
     <div class="wat-col reveal d1">
       <span class="wat-num">W</span>
@@ -754,29 +785,6 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
     </div>
   </div>
 
-  <!-- Terminal: T in action -->
-  <div class="wat-terminal-wrap reveal d2">
-    <div class="terminal-window" id="terminal">
-      <div class="term-header">
-        <span class="term-dot r"></span>
-        <span class="term-dot y"></span>
-        <span class="term-dot g"></span>
-        <span class="term-title">run_briefing.py — GitHub Actions · ubuntu-latest</span>
-      </div>
-      <div class="term-body" id="term-body">
-        <div class="t-line l1"><span class="t-prompt">$</span><span class="t-cmd">python3 cl-daily-briefing/tools/run_briefing.py</span></div>
-        <div class="t-line l2"><span class="t-ts">[04:03:01]</span><span>Pre-flight check...</span><span class="t-ok">✓</span></div>
-        <div class="t-line l3"><span class="t-ts">[04:03:02]</span><span>Reading calendar (iCal)...</span><span class="t-ok">✓</span></div>
-        <div class="t-line l4"><span class="t-ts">[04:03:03]</span><span>Found <span class="t-hl">3 commercial meetings</span> today</span></div>
-        <div class="t-line l5"><span class="t-ts">[04:03:05]</span><span>RAG search: <span class="t-hl">Vueling</span>...</span><span class="t-ok">✓</span></div>
-        <div class="t-line l6"><span class="t-ts">[04:03:06]</span><span>RAG search: <span class="t-hl">Sesé</span>...</span><span class="t-ok">✓</span></div>
-        <div class="t-line l7"><span class="t-ts">[04:03:08]</span><span>Generating briefing with GPT-4o<span class="t-dim">...</span></span></div>
-        <div class="t-line l8"><span class="t-ts">[04:04:12]</span><span>Email sent → <span class="t-hl">joan.boluda@actualgroup.com</span></span><span class="t-ok">✓</span></div>
-        <div class="t-line l9"><span class="t-ts">[04:04:13]</span><span class="t-ok">Briefing delivered. Done.</span></div>
-        <div class="t-cursor"></div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ▸ CAPACIDADES -->
