@@ -34,6 +34,13 @@ body {
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); will-change: transform, opacity; }
 .reveal.in { opacity: 1; transform: none; will-change: auto; }
 
+/* ─── SCROLL PROGRESS BAR ────────────────────────────────────────────────────── */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; width: 100%; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: left;
+  z-index: 500; transition: transform 0.08s linear;
+}
+
 /* ─── FOCUS ──────────────────────────────────────────────────────────────────── */
 a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
@@ -49,7 +56,17 @@ header {
   border-bottom: 1px solid rgba(255,255,255,0.06);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 48px;
+  transition: height 0.4s cubic-bezier(0.16,1,0.3,1), background 0.4s, border-color 0.4s;
 }
+header.compact {
+  height: 46px;
+  background: rgba(10,10,10,0.98);
+  border-bottom-color: rgba(255,255,255,0.03);
+}
+header.compact .header-wordmark { font-size: 11.5px; letter-spacing: 2.5px; }
+header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
+.header-wordmark { transition: font-size 0.4s, letter-spacing 0.4s; }
+.nav-pill { transition: opacity 0.2s, padding 0.4s, font-size 0.4s, background 0.2s; }
 .header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
 .header-wordmark { font-size: 13px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: white; line-height: 1; }
 .wm-at { color: var(--red); font-size: 15.5px; }
@@ -91,6 +108,7 @@ header {
 
 /* ─── HERO ───────────────────────────────────────────────────────────────────── */
 .hero {
+  --mx: 50%; --my: 50%;
   min-height: 100vh;
   background: var(--near-black);
   background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
@@ -98,19 +116,55 @@ header {
   display: flex; flex-direction: column; justify-content: center;
   padding: 120px 48px 80px; position: relative; overflow: hidden;
 }
-.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(192,25,30,0.1) 0%, transparent 65%); pointer-events: none; }
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle 500px at var(--mx) var(--my), rgba(192,25,30,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(192,25,30,0.1) 0%, transparent 65%);
+  transition: background 0.05s linear;
+}
 .hero::after { content: 'AT'; position: absolute; right: -2vw; bottom: -8vh; font-size: 35vw; font-weight: 900; letter-spacing: -0.06em; color: rgba(255,255,255,0.013); line-height: 1; pointer-events: none; user-select: none; }
+
+/* Particle canvas */
+#hero-canvas { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+
 .hero-inner { max-width: 1100px; position: relative; z-index: 1; }
 .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 36px; }
+
+/* Word-by-word reveal for headline */
 .hero-headline { font-size: clamp(40px, 7vw, 96px); font-weight: 900; line-height: 1.0; letter-spacing: -0.035em; color: white; margin-bottom: 32px; max-width: 900px; }
+.hero-headline .line { display: block; overflow: hidden; }
+.hero-headline .word { display: inline-block; transform: translateY(110%); opacity: 0; transition: transform 0.75s cubic-bezier(0.16,1,0.3,1), opacity 0.5s; }
+.hero-headline.words-in .word { transform: none; opacity: 1; }
+
 .hero-sub { font-size: clamp(15px, 1.7vw, 18px); font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.5); max-width: 480px; margin-bottom: 52px; }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-.cta-primary { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--near-black); background: white; text-decoration: none; padding: 15px 28px; border-radius: 3px; transition: opacity 0.2s; white-space: nowrap; }
-.cta-primary:hover { opacity: 0.88; }
-.cta-secondary { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; padding: 14px 28px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.18); transition: border-color 0.2s, color 0.2s; white-space: nowrap; }
-.cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+/* Magnetic CTAs */
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--near-black); background: white;
+  text-decoration: none; padding: 15px 28px; border-radius: 3px;
+  transition: opacity 0.2s, transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+  white-space: nowrap; will-change: transform;
+}
+.cta-primary:hover { opacity: 0.92; box-shadow: 0 8px 30px rgba(255,255,255,0.15); }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.65);
+  text-decoration: none; padding: 14px 28px; border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: border-color 0.2s, color 0.2s, transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+  white-space: nowrap; will-change: transform;
+}
+.cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+
 .hero-scroll { position: absolute; bottom: 40px; left: 48px; display: flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.2); }
 .scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,0.15); }
+
+/* Animated scroll arrow */
+@keyframes bounce-down { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+.scroll-arrow { animation: bounce-down 2s ease-in-out infinite; }
 
 /* ─── TIMELINE ("UN DÍA") ────────────────────────────────────────────────────── */
 .timeline-sec {
@@ -176,6 +230,12 @@ header {
 .wat-title { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 14px; }
 .wat-desc { font-size: 13px; font-weight: 400; line-height: 1.85; color: rgba(255,255,255,0.5); }
 .wat-example { margin-top: 20px; padding: 12px 16px; border-left: 2px solid var(--red); background: rgba(192,25,30,0.06); font-size: 12px; color: rgba(255,255,255,0.55); font-style: italic; line-height: 1.6; }
+/* WAT letter glow on hover */
+.wat-col:hover .wat-num {
+  -webkit-text-stroke-color: rgba(192,25,30,0.5);
+  filter: drop-shadow(0 0 24px rgba(192,25,30,0.2));
+  transition: -webkit-text-stroke-color 0.4s, filter 0.4s;
+}
 
 /* ─── CAPACIDADES ────────────────────────────────────────────────────────────── */
 .capacidades { background: var(--cream); padding: 100px 48px; }
@@ -295,6 +355,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 </style>
 </head>
 <body>
+<div id="scroll-progress" aria-hidden="true"></div>
 
 <!-- ▸ HEADER -->
 <header>
@@ -323,20 +384,26 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 <main>
 
 <!-- ▸ HERO -->
-<section class="hero">
+<section class="hero" id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <p class="hero-eyebrow reveal">Actual Talent AI Workspace</p>
-    <h1 class="hero-headline reveal d1">La inteligencia<br>que trabaja<br>mientras duermes.</h1>
+    <h1 class="hero-headline" id="hero-headline">
+      <span class="line"><span class="word">La</span> <span class="word">inteligencia</span></span>
+      <span class="line"><span class="word">que</span> <span class="word">trabaja</span></span>
+      <span class="line"><span class="word">mientras</span> <span class="word">duermes.</span></span>
+    </h1>
     <p class="hero-sub reveal d2">
       Llega a cada reunión preparado. Propuestas listas antes de que las pidas. Follow-ups redactados solos. El conocimiento de tu equipo, siempre disponible.
     </p>
     <div class="hero-ctas reveal d3">
-      <a href="#timeline"   class="cta-primary">Cómo funciona →</a>
-      <a href="status.html" class="cta-secondary">Ver el sistema en vivo</a>
+      <a href="#timeline"   class="cta-primary" id="cta1">Cómo funciona →</a>
+      <a href="status.html" class="cta-secondary" id="cta2">Ver el sistema en vivo</a>
     </div>
   </div>
-  <div class="hero-scroll reveal d5">
+  <div class="hero-scroll reveal d5" aria-hidden="true">
     <span class="scroll-line"></span>
+    <span class="scroll-arrow">↓</span>
     Scroll
   </div>
 </section>
@@ -446,19 +513,19 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       <p class="stack-intro reveal d1">Infraestructura elegida por funcionar, no por ser moderna. Cada componente hace exactamente lo que tiene que hacer, sin redundancias.</p>
       <div class="stack-number-block">
         <div class="stack-stat reveal d2">
-          <span class="n"><!-- STAT:docs_indexed -->1700+<!-- /STAT --></span>
+          <span class="n" data-target="1973+">1973+</span>
           <span class="u">docs indexados</span>
         </div>
         <div class="stack-stat reveal d3">
-          <span class="n"><!-- STAT:transcripts -->109<!-- /STAT --></span>
+          <span class="n" data-target="109">109</span>
           <span class="u">reuniones analizadas</span>
         </div>
         <div class="stack-stat reveal d4">
-          <span class="n"><!-- STAT:profiles -->19<!-- /STAT --></span>
+          <span class="n" data-target="19">19</span>
           <span class="u">perfiles de cliente</span>
         </div>
         <div class="stack-stat reveal d5">
-          <span class="n">5</span>
+          <span class="n" data-target="5">5</span>
           <span class="u">daemons activos 24/7</span>
         </div>
       </div>
@@ -520,34 +587,189 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 </footer>
 
 <script>
-// Scroll reveal
+/* ── SCROLL PROGRESS BAR ── */
+const progressBar = document.getElementById('scroll-progress');
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+
+/* ── NAV COMPACT ON SCROLL ── */
+const hdr = document.querySelector('header');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('compact', window.scrollY > 60);
+}, { passive: true });
+
+/* ── SCROLL REVEAL ── */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── HERO HEADLINE WORD REVEAL ── */
 requestAnimationFrame(() => {
   document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+  // Stagger each word
+  const hl = document.getElementById('hero-headline');
+  if (hl) {
+    hl.querySelectorAll('.word').forEach((w, i) => {
+      setTimeout(() => { w.style.transform = 'none'; w.style.opacity = '1'; }, 80 + i * 90);
+    });
+  }
 });
 
-// Hamburger menu
-const burger = document.getElementById('burger');
+/* ── HERO MOUSE SPOTLIGHT ── */
+const heroEl = document.getElementById('hero');
+heroEl.addEventListener('mousemove', e => {
+  const r = heroEl.getBoundingClientRect();
+  heroEl.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+  heroEl.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+}, { passive: true });
+
+/* ── PARTICLE PHYSICS (anti-gravity floating dots) ── */
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], mouse = { x: -999, y: -999 };
+  const COUNT = 90;
+
+  function resize() {
+    W = canvas.width  = heroEl.offsetWidth;
+    H = canvas.height = heroEl.offsetHeight;
+  }
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  heroEl.addEventListener('mousemove', e => {
+    const r = heroEl.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  }, { passive: true });
+  heroEl.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+  class Particle {
+    spawn() {
+      this.x  = Math.random() * W;
+      this.y  = H * 0.4 + Math.random() * H * 0.7; // start in lower 60%
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = -(Math.random() * 0.6 + 0.1);       // float upward
+      this.r  = Math.random() * 2 + 0.8;
+      this.a  = Math.random() * 0.45 + 0.1;
+      // alternate white / red particles
+      this.isRed = Math.random() < 0.25;
+      // random dash rotation
+      this.angle = Math.random() * Math.PI;
+      this.len   = Math.random() * 5 + 2;
+    }
+    update() {
+      // anti-gravity drift
+      this.vy -= 0.003;
+      this.vx += (Math.random() - 0.5) * 0.015;
+
+      // mouse repulsion
+      const dx = this.x - mouse.x, dy = this.y - mouse.y;
+      const d2 = dx*dx + dy*dy;
+      if (d2 < 14400) { // 120px
+        const d = Math.sqrt(d2), f = (120 - d) / 120 * 0.6;
+        this.vx += dx / d * f;
+        this.vy += dy / d * f;
+      }
+      this.vx *= 0.97; this.vy *= 0.98;
+      this.x += this.vx; this.y += this.vy;
+
+      // respawn at bottom when escaped top
+      if (this.y < -20 || this.x < -40 || this.x > W + 40) this.spawn();
+    }
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle + Math.atan2(this.vy, this.vx));
+      ctx.globalAlpha = this.a;
+      ctx.fillStyle = this.isRed ? '#C0191E' : 'rgba(255,255,255,0.85)';
+      ctx.beginPath();
+      ctx.roundRect(-this.len/2, -this.r/2, this.len, this.r, this.r/2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  for (let i = 0; i < COUNT; i++) {
+    const p = new Particle();
+    p.spawn();
+    p.y = Math.random() * H; // spread initial positions
+    particles.push(p);
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ── MAGNETIC BUTTONS ── */
+[document.getElementById('cta1'), document.getElementById('cta2')].forEach(btn => {
+  if (!btn) return;
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width  / 2) * 0.18;
+    const y = (e.clientY - r.top  - r.height / 2) * 0.18;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+/* ── COUNTER ANIMATION FOR STATS ── */
+function animateCount(el) {
+  const raw    = el.dataset.target;
+  const isPlus = raw.endsWith('+');
+  const target = parseInt(raw, 10);
+  const dur    = 1600;
+  const start  = performance.now();
+  (function tick(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(ease * target) + (isPlus ? '+' : '');
+    if (t < 1) requestAnimationFrame(tick);
+  })(start);
+}
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.n[data-target]').forEach(el => countObs.observe(el));
+
+/* ── WAT LETTER PARALLAX ON SCROLL ── */
+window.addEventListener('scroll', () => {
+  const watCols = document.querySelectorAll('.wat-num');
+  watCols.forEach((el, i) => {
+    const rect = el.closest('.wat-col').getBoundingClientRect();
+    const mid  = rect.top + rect.height / 2 - window.innerHeight / 2;
+    el.style.transform = `translateY(${mid * 0.04 * (i % 2 === 0 ? 1 : -1)}px)`;
+  });
+}, { passive: true });
+
+/* ── HAMBURGER MENU ── */
+const burger   = document.getElementById('burger');
 const navMobile = document.getElementById('nav-mobile');
 function closeMenu() {
-  burger.classList.remove('open');
-  navMobile.classList.remove('open');
+  burger.classList.remove('open'); navMobile.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');
 }
-burger.addEventListener('click', (e) => {
+burger.addEventListener('click', e => {
   e.stopPropagation();
-  const isOpen = burger.classList.toggle('open');
-  navMobile.classList.toggle('open', isOpen);
-  burger.setAttribute('aria-expanded', String(isOpen));
+  const open = burger.classList.toggle('open');
+  navMobile.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', String(open));
 });
 navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-document.addEventListener('click', (e) => {
+document.addEventListener('click', e => {
   if (!burger.contains(e.target) && !navMobile.contains(e.target)) closeMenu();
 });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 </script>
 </body>
 </html>
