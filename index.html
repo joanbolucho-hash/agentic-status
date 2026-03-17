@@ -263,6 +263,14 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 .t-dim    { color: rgba(255,255,255,0.3); font-size: 11px; }
 
 /* ─── EMAIL BRIEFING MOCKUP ───────────────────────────────────────────────────── */
+@keyframes em-enter  { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+@keyframes em-exit   { to   { opacity:0; transform:translateY(-6px); } }
+@keyframes em-text-in{ from { opacity:0; } to { opacity:1; } }
+@keyframes shimmer   { 0%   { background-position:200% 0; } 100% { background-position:-200% 0; } }
+@keyframes skel-out  { to   { opacity:0; max-height:0; margin-top:0; } }
+@keyframes typing    { 0%,100%{opacity:0} 50%{opacity:1} }
+
+/* Card — appears immediately */
 .email-mockup {
   margin-top: 16px;
   background: white;
@@ -270,78 +278,111 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.07);
   opacity: 0;
-  transform: translateY(12px);
-  animation: em-enter 0.5s cubic-bezier(0.16,1,0.3,1) forwards 8.0s,
-             em-exit  0.4s ease forwards 12.0s;
+  animation: em-enter 0.5s cubic-bezier(0.16,1,0.3,1) forwards 0.5s,
+             em-exit  0.4s ease forwards 12.4s;
 }
-@keyframes em-enter { to { opacity: 1; transform: none; } }
-@keyframes em-exit  { to { opacity: 0; transform: translateY(-6px); } }
 
-.em-header {
-  background: var(--red);
-  padding: 16px 20px 14px;
-}
-.em-header-top {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 4px;
-}
-.em-logo {
-  font-size: 11px; font-weight: 900; letter-spacing: 3px;
-  text-transform: uppercase; color: white;
-}
-.em-logo span { opacity: 0.6; font-weight: 400; }
-.em-date { font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; }
-.em-subject { font-size: 13px; font-weight: 700; color: white; }
+/* Header */
+.em-header { background: var(--red); padding: 16px 20px 14px; }
+.em-header-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
+.em-logo { font-size:11px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:white; }
+.em-logo span { opacity:0.6; font-weight:400; }
+.em-date { font-size:10px; color:rgba(255,255,255,0.6); letter-spacing:0.5px; }
 
-.em-body { padding: 14px 20px 16px; }
-
-/* Each meeting row */
-.em-row {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  opacity: 0;
-  transform: translateX(-8px);
-  animation: em-row-in 0.35s cubic-bezier(0.16,1,0.3,1) forwards,
-             em-exit 0.4s ease forwards 12.0s;
-}
-.em-row:last-child { border-bottom: none; }
-@keyframes em-row-in { to { opacity: 1; transform: none; } }
-
-.em-row.r1 { animation-delay: 8.6s,  12.0s; }
-.em-row.r2 { animation-delay: 9.3s,  12.0s; }
-.em-row.r3 { animation-delay: 10.0s, 12.0s; }
-.em-row.r4 { animation-delay: 10.7s, 12.0s; }
-
-.em-row-top {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 4px;
-}
-.em-client { font-size: 11px; font-weight: 800; color: var(--black); letter-spacing: 0.5px; text-transform: uppercase; }
-.em-time   { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: 1px; }
-.em-snippet { font-size: 11px; color: var(--gray); line-height: 1.5; }
-
-/* Skeleton shimmer lines inside snippet */
-.em-skel {
-  height: 7px; border-radius: 4px;
-  background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+/* Subject: starts as skeleton, resolves to text */
+.em-subject-skel {
+  height: 10px; width: 75%; border-radius: 4px; margin-top: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.25) 25%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.25) 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.6s infinite;
-  margin-top: 5px;
+  animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 5.4s;
+  max-height: 12px;
 }
-.em-skel.s2 { width: 68%; }
-@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.em-subject-text {
+  font-size:13px; font-weight:700; color:white; margin-top:2px;
+  opacity:0;
+  animation: em-text-in 0.4s ease forwards 5.4s, em-exit 0.4s ease forwards 12.4s;
+}
 
-.em-badge {
-  margin-top: 12px;
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(192,25,30,0.07); border-radius: 100px;
-  padding: 5px 12px;
-  font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: var(--red);
+/* Typing indicator (GPT-4o generating) */
+.em-typing {
+  display: inline-flex; align-items: center; gap: 3px; padding: 4px 0 2px;
   opacity: 0;
-  animation: em-row-in 0.35s cubic-bezier(0.16,1,0.3,1) forwards 11.2s,
-             em-exit 0.4s ease forwards 12.0s;
+  animation: em-text-in 0.3s ease forwards 1.8s, skel-out 0.3s ease forwards 5.2s;
 }
-.em-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #28C840; }
+.em-typing span {
+  width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.7);
+  animation: typing 1.2s ease-in-out infinite;
+}
+.em-typing span:nth-child(2) { animation-delay:.2s; }
+.em-typing span:nth-child(3) { animation-delay:.4s; }
+
+.em-body { padding: 12px 20px 16px; }
+
+/* Rows — always visible as skeleton containers */
+.em-row { padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.06); overflow:hidden; }
+.em-row:last-child { border-bottom:none; }
+.em-row-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:5px; }
+
+/* Row skeleton placeholders (visible from t=0) */
+.em-skel {
+  height:7px; border-radius:4px; margin-top:5px;
+  background: linear-gradient(90deg,#eee 25%,#f5f5f5 50%,#eee 75%);
+  background-size:200% 100%;
+  max-height: 9px;
+  overflow: hidden;
+}
+.em-skel.s2 { width:62%; }
+.em-skel.s3 { width:80%; }
+
+/* Shimmer plays while skeleton visible, stops when resolved */
+.em-row.r1 .em-skel { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 3.3s; }
+.em-row.r2 .em-skel { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 4.0s; }
+.em-row.r3 .em-skel { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 5.6s; }
+
+/* Name/time skeleton */
+.em-skel-title {
+  height:8px; width:45%; border-radius:4px;
+  background: linear-gradient(90deg,#e0e0e0 25%,#ececec 50%,#e0e0e0 75%);
+  background-size:200% 100%;
+  max-height:10px; overflow:hidden;
+}
+.em-skel-time {
+  height:8px; width:22%; border-radius:4px;
+  background: linear-gradient(90deg,rgba(192,25,30,0.15) 25%,rgba(192,25,30,0.25) 50%,rgba(192,25,30,0.15) 75%);
+  background-size:200% 100%;
+  max-height:10px; overflow:hidden;
+}
+.em-row.r1 .em-skel-title,
+.em-row.r1 .em-skel-time { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 3.3s; }
+.em-row.r2 .em-skel-title,
+.em-row.r2 .em-skel-time { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 4.0s; }
+.em-row.r3 .em-skel-title,
+.em-row.r3 .em-skel-time { animation: shimmer 1.6s infinite, skel-out 0.3s ease forwards 5.6s; }
+
+/* Real text — hidden until resolved */
+.em-client  { font-size:11px; font-weight:800; color:var(--black); letter-spacing:.5px; text-transform:uppercase; }
+.em-time    { font-size:10px; font-weight:700; color:var(--red); letter-spacing:1px; }
+.em-snippet { font-size:11px; color:var(--gray); line-height:1.5; }
+.em-real {
+  opacity:0; max-height:0; overflow:hidden;
+  animation: em-text-in 0.4s ease forwards, em-exit 0.4s ease forwards 12.4s;
+}
+.em-row.r1 .em-real { animation-delay: 3.3s, 12.4s; }
+.em-row.r2 .em-real { animation-delay: 4.0s, 12.4s; }
+.em-row.r3 .em-real { animation-delay: 5.6s, 12.4s; }
+.em-real.shown { max-height: 40px; }
+
+/* Badge */
+.em-badge {
+  margin-top:12px;
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(192,25,30,0.07); border-radius:100px;
+  padding:5px 12px;
+  font-size:10px; font-weight:700; letter-spacing:.5px; color:var(--red);
+  opacity:0;
+  animation: em-text-in 0.4s ease forwards 7.2s, em-exit 0.4s ease forwards 12.4s;
+}
+.em-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:#28C840; flex-shrink:0; }
 
 /* blinking cursor */
 .t-cursor {
@@ -630,45 +671,74 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       </div>
     </div>
 
-    <!-- Email briefing mockup — appears after terminal finishes -->
+    <!-- Email briefing mockup — skeleton from t=0, resolves in sync with terminal -->
     <div class="email-mockup" id="email-mockup">
       <div class="em-header">
         <div class="em-header-top">
           <span class="em-logo">AGEN<span>TIC</span></span>
           <span class="em-date">mié 19 mar · 08:00</span>
         </div>
-        <div class="em-subject">Briefing del día — 3 reuniones comerciales</div>
+        <!-- Subject: skeleton → real text -->
+        <div class="em-subject-skel"></div>
+        <div class="em-subject-text">Briefing del día — 3 reuniones</div>
+        <!-- Typing dots while GPT-4o generates -->
+        <div class="em-typing">
+          <span></span><span></span><span></span>
+        </div>
       </div>
       <div class="em-body">
+
+        <!-- Row 1: Vueling -->
         <div class="em-row r1">
           <div class="em-row-top">
-            <span class="em-client">Vueling</span>
-            <span class="em-time">10:00</span>
+            <div class="em-skel-title"></div>
+            <div class="em-skel-time"></div>
           </div>
-          <div class="em-snippet">Propuesta RPO enviada feb · última reunión hace 3 sem</div>
-          <div class="em-skel"></div>
+          <div class="em-skel s3"></div>
           <div class="em-skel s2"></div>
+          <div class="em-real">
+            <div class="em-row-top">
+              <span class="em-client">Vueling</span>
+              <span class="em-time">10:00</span>
+            </div>
+            <div class="em-snippet">Propuesta RPO feb · última reunión hace 3 semanas</div>
+          </div>
         </div>
+
+        <!-- Row 2: Sesé -->
         <div class="em-row r2">
           <div class="em-row-top">
-            <span class="em-client">Sesé Group</span>
-            <span class="em-time">12:30</span>
+            <div class="em-skel-title"></div>
+            <div class="em-skel-time"></div>
           </div>
-          <div class="em-snippet">Primer contacto · sector logística · 4.200 empleados</div>
-          <div class="em-skel"></div>
+          <div class="em-skel s3"></div>
           <div class="em-skel s2"></div>
+          <div class="em-real">
+            <div class="em-row-top">
+              <span class="em-client">Sesé Group</span>
+              <span class="em-time">12:30</span>
+            </div>
+            <div class="em-snippet">Primer contacto · logística · 4.200 empleados</div>
+          </div>
         </div>
+
+        <!-- Row 3: Damm -->
         <div class="em-row r3">
           <div class="em-row-top">
-            <span class="em-client">Damm</span>
-            <span class="em-time">16:00</span>
+            <div class="em-skel-title"></div>
+            <div class="em-skel-time"></div>
           </div>
-          <div class="em-snippet">Follow-up propuesta executive search · pendiente firma</div>
-          <div class="em-skel"></div>
+          <div class="em-skel s3"></div>
+          <div class="em-real">
+            <div class="em-row-top">
+              <span class="em-client">Damm</span>
+              <span class="em-time">16:00</span>
+            </div>
+            <div class="em-snippet">Follow-up executive search · pendiente firma</div>
+          </div>
         </div>
-        <div class="em-row r4" style="border-bottom:none; padding-bottom:0;">
-          <div class="em-badge">3 reuniones preparadas · Entregado ✓</div>
-        </div>
+
+        <div class="em-badge">3 reuniones preparadas · Entregado ✓</div>
       </div>
     </div>
 
@@ -979,12 +1049,15 @@ window.addEventListener('scroll', () => {
 
 /* ── TERMINAL + EMAIL LOOP ── */
 function restartAnimation() {
-  const els = document.querySelectorAll(
-    '#term-body .t-line, #term-body .t-cursor, .email-mockup, .em-row, .em-badge'
-  );
-  els.forEach(el => {
+  const sel = [
+    '#term-body .t-line', '#term-body .t-cursor',
+    '.email-mockup', '.em-subject-skel', '.em-subject-text',
+    '.em-typing', '.em-skel', '.em-skel-title', '.em-skel-time',
+    '.em-real', '.em-badge'
+  ].join(',');
+  document.querySelectorAll(sel).forEach(el => {
     el.style.animation = 'none';
-    void el.offsetHeight; // force reflow
+    void el.offsetHeight;
     el.style.animation = '';
   });
 }
