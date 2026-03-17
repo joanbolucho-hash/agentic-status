@@ -632,7 +632,7 @@ heroEl.addEventListener('mousemove', e => {
   const canvas = document.getElementById('hero-canvas');
   const ctx = canvas.getContext('2d');
   let W, H, particles = [], mouse = { x: -999, y: -999 };
-  const COUNT = 90;
+  const COUNT = 140;
 
   function resize() {
     W = canvas.width  = heroEl.offsetWidth;
@@ -651,16 +651,14 @@ heroEl.addEventListener('mousemove', e => {
   class Particle {
     spawn() {
       this.x  = Math.random() * W;
-      this.y  = H * 0.4 + Math.random() * H * 0.7; // start in lower 60%
-      this.vx = (Math.random() - 0.5) * 0.4;
-      this.vy = -(Math.random() * 0.6 + 0.1);       // float upward
-      this.r  = Math.random() * 2 + 0.8;
-      this.a  = Math.random() * 0.45 + 0.1;
-      // alternate white / red particles
-      this.isRed = Math.random() < 0.25;
-      // random dash rotation
+      this.y  = H * 0.4 + Math.random() * H * 0.7;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = -(Math.random() * 0.7 + 0.15);
+      this.r  = Math.random() * 2.5 + 1.2;
+      this.a  = Math.random() * 0.55 + 0.3;          // higher base opacity
+      this.isRed = Math.random() < 0.3;
       this.angle = Math.random() * Math.PI;
-      this.len   = Math.random() * 5 + 2;
+      this.len   = Math.random() * 8 + 3;             // longer dashes
     }
     update() {
       // anti-gravity drift
@@ -686,7 +684,7 @@ heroEl.addEventListener('mousemove', e => {
       ctx.translate(this.x, this.y);
       ctx.rotate(this.angle + Math.atan2(this.vy, this.vx));
       ctx.globalAlpha = this.a;
-      ctx.fillStyle = this.isRed ? '#C0191E' : 'rgba(255,255,255,0.85)';
+      ctx.fillStyle = this.isRed ? '#C0191E' : 'rgba(255,255,255,0.95)';
       ctx.beginPath();
       ctx.roundRect(-this.len/2, -this.r/2, this.len, this.r, this.r/2);
       ctx.fill();
