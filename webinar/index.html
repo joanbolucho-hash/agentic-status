@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0A0A0A">
-<title>IA de Candidatos vs IA de Empleadores — Actual Talent × Teamtailor</title>
-<meta name="description" content="Webinar: ¿Quién gana la batalla del talento con inteligencia artificial? 28 de abril 2026 a las 12:00h. Mesa redonda con expertos en IA y RRHH.">
-<meta property="og:title" content="IA de Candidatos vs IA de Empleadores — Webinar">
-<meta property="og:description" content="Mesa redonda sobre inteligencia artificial en selección de talento. 28 abril 2026, 12:00h CEST.">
+<title>IA vs IA: La Batalla por el Talento — Actual Talent × Teamtailor</title>
+<meta name="description" content="Webinar: IA de candidatos contra IA de empleadores. ¿Quién gana la batalla por el talento? 28 de abril 2026 a las 12:00h. Mesa redonda con expertos en IA y RRHH.">
+<meta property="og:title" content="IA vs IA: La Batalla por el Talento — Webinar">
+<meta property="og:description" content="IA de candidatos contra IA de empleadores. ¿Quién gana? 28 abril 2026, 12:00h CEST. Mesa redonda gratuita.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -44,15 +44,12 @@ body {
 a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
 
 /* ─── PARTICLE CANVAS ────────────────────────────────────────────────────────── */
-.particle-canvas {
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-}
+.particle-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 
 /* ─── MOUSE GLOW ─────────────────────────────────────────────────────────────── */
 .mouse-glow {
-  position: absolute; width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(192,25,30,0.07) 0%, transparent 70%);
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,25,30,0.09) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
   transform: translate(-50%, -50%);
   transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.4s;
@@ -86,21 +83,15 @@ header {
   background: var(--red); border-radius: 100px; transition: opacity 0.2s; margin-left: 8px;
 }
 .nav-pill:hover { opacity: 0.85; }
-
-/* Hamburger */
 .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; background: none; border: none; }
 .burger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
 .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
 .nav-mobile {
-  display: none; position: fixed;
-  top: 60px; left: 0; right: 0;
-  background: rgba(10,10,10,0.98);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 16px 20px 20px;
-  flex-direction: column; gap: 2px; z-index: 199;
+  display: none; position: fixed; top: 60px; left: 0; right: 0;
+  background: rgba(10,10,10,0.98); border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 20px 20px; flex-direction: column; gap: 2px; z-index: 199;
 }
 .nav-mobile.open { display: flex; }
 .nav-mobile a { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; padding: 14px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
@@ -131,15 +122,12 @@ header {
   pointer-events: none; z-index: 0;
 }
 .hero::after {
-  content: 'VS';
-  position: absolute; right: -3vw; bottom: -6vh;
+  content: 'VS'; position: absolute; right: -3vw; bottom: -6vh;
   font-size: 38vw; font-weight: 900; letter-spacing: -0.06em;
-  color: rgba(255,255,255,0.015); line-height: 1;
-  pointer-events: none; user-select: none;
+  color: rgba(255,255,255,0.015); line-height: 1; pointer-events: none; user-select: none;
 }
 .hero-inner { max-width: 900px; position: relative; z-index: 2; }
 .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 36px; }
-
 .hero-date-badge {
   display: inline-flex; align-items: center; gap: 10px;
   background: rgba(192, 25, 30, 0.12); border: 1px solid rgba(192, 25, 30, 0.25);
@@ -153,10 +141,7 @@ header {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(1.4); }
 }
-.hero-date-badge span {
-  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7);
-}
-
+.hero-date-badge span { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
 .hero-headline {
   font-size: clamp(36px, 6.5vw, 80px); font-weight: 900; line-height: 1.0;
   letter-spacing: -0.035em; color: white; margin-bottom: 24px; max-width: 850px;
@@ -171,7 +156,7 @@ header {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--near-black); background: white; text-decoration: none;
-  padding: 15px 28px; border-radius: 3px; transition: opacity 0.2s; white-space: nowrap;
+  padding: 15px 28px; border-radius: 3px; transition: opacity 0.2s; white-space: nowrap; cursor: pointer; border: none;
 }
 .cta-primary:hover { opacity: 0.88; }
 .cta-secondary {
@@ -182,7 +167,6 @@ header {
   transition: border-color 0.2s, color 0.2s; white-space: nowrap;
 }
 .cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
-
 .hero-scroll {
   position: absolute; bottom: 40px; left: 48px;
   display: flex; align-items: center; gap: 12px;
@@ -192,115 +176,67 @@ header {
 .scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,0.15); }
 
 /* ─── COUNTDOWN ──────────────────────────────────────────────────────────────── */
-.countdown {
-  display: flex; gap: 24px; margin-top: 32px;
-}
+.countdown { display: flex; gap: 24px; margin-top: 32px; }
 .cd-block { text-align: center; }
-.cd-num {
-  font-size: 36px; font-weight: 900; color: white; line-height: 1;
-  letter-spacing: -0.03em;
-  min-width: 56px; display: block;
-}
-.cd-label {
-  font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,0.25); margin-top: 6px;
-}
-.cd-sep {
-  font-size: 28px; font-weight: 300; color: rgba(255,255,255,0.15);
-  align-self: flex-start; padding-top: 4px;
-}
+.cd-num { font-size: 36px; font-weight: 900; color: white; line-height: 1; letter-spacing: -0.03em; min-width: 56px; display: block; }
+.cd-label { font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 6px; }
+.cd-sep { font-size: 28px; font-weight: 300; color: rgba(255,255,255,0.15); align-self: flex-start; padding-top: 4px; }
 
 /* ─── CO-BRANDED STRIP ───────────────────────────────────────────────────────── */
 .cobranded {
-  background: var(--white);
-  padding: 40px 48px;
-  display: flex; align-items: center; justify-content: center; gap: 48px;
+  background: var(--white); padding: 36px 48px;
+  display: flex; align-items: center; justify-content: center; gap: 40px;
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .cobrand-label {
-  font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gray);
+  font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
 }
-.cobrand-logos { display: flex; align-items: center; gap: 32px; }
-.cobrand-logo {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 20px; border: 1px solid rgba(0,0,0,0.08); border-radius: 8px;
-  background: var(--cream);
-}
-.cobrand-logo img { height: 28px; width: auto; }
-.cobrand-logo .cobrand-text {
-  font-size: 14px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--black);
-}
-.cobrand-logo.tt .cobrand-text { display: none; }
-.cobrand-logo.tt img { height: 32px; }
-.cobrand-x { font-size: 14px; color: var(--gray); font-weight: 300; }
+.cobrand-logos { display: flex; align-items: center; gap: 28px; }
+.cobrand-logo img { height: 30px; width: auto; display: block; }
+.cobrand-logo.tt img { height: 34px; }
+.cobrand-x { font-size: 16px; color: rgba(0,0,0,0.15); font-weight: 300; }
 
 /* ─── ABOUT ──────────────────────────────────────────────────────────────────── */
-.about {
-  background: var(--cream);
-  padding: 100px 48px;
-}
+.about { background: var(--cream); padding: 100px 48px; }
 .about-inner { max-width: 1100px; margin: 0 auto; }
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
-}
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .about-text h2 {
   font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
   color: var(--black); line-height: 1.1; margin-bottom: 24px;
 }
 .about-text h2 em { font-style: normal; color: var(--red); }
-.about-text p {
-  font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); margin-bottom: 16px;
-}
+.about-text p { font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); margin-bottom: 16px; }
 .takeaways { list-style: none; display: flex; flex-direction: column; gap: 0; }
 .takeaway {
-  display: flex; gap: 24px; align-items: flex-start;
-  padding: 28px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  display: flex; gap: 24px; align-items: flex-start; padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
 }
 .takeaway:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
 .takeaway:hover { transform: translateX(6px); }
-.takeaway-num {
-  font-size: 32px; font-weight: 900; color: var(--red); opacity: 0.2; line-height: 1;
-  min-width: 48px; padding-top: 2px;
-  transition: opacity 0.3s;
-}
+.takeaway-num { font-size: 32px; font-weight: 900; color: var(--red); opacity: 0.2; line-height: 1; min-width: 48px; padding-top: 2px; transition: opacity 0.3s; }
 .takeaway:hover .takeaway-num { opacity: 1; }
 .takeaway h3 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
 .takeaway p { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.65; }
 
 /* ─── SPEAKERS ───────────────────────────────────────────────────────────────── */
-.speakers {
-  background: var(--white);
-  padding: 100px 48px;
-}
+.speakers { background: var(--white); padding: 100px 48px; }
 .speakers-inner { max-width: 1100px; margin: 0 auto; }
-.speakers-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px;
-}
+.speakers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; }
 .speaker-card {
-  text-align: center; padding: 36px 20px;
-  border-radius: 12px;
+  text-align: center; padding: 36px 20px; border-radius: 12px;
   transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
 }
-.speaker-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
-}
+.speaker-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
 .speaker-photo {
   width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 24px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 36px; font-weight: 800; color: white;
-  position: relative; overflow: hidden;
+  font-size: 36px; font-weight: 800; color: white; position: relative; overflow: hidden;
 }
 .speaker-photo.jb { background: var(--red); }
 .speaker-photo.mg { background: var(--near-black); }
 .speaker-photo.tg { background: var(--gray); }
 .speaker-photo.tbd { background: var(--beige); color: var(--gray); border: 2px dashed rgba(0,0,0,0.12); }
-.speaker-photo img {
-  width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-}
+.speaker-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .speaker-role-badge {
   display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; color: var(--red); background: rgba(192,25,30,0.08);
@@ -314,36 +250,26 @@ header {
 .tbd-card .speaker-company { color: var(--gray); opacity: 0.5; }
 
 /* ─── AGENDA ─────────────────────────────────────────────────────────────────── */
-.agenda {
-  background: var(--cream);
-  padding: 100px 48px;
-}
+.agenda { background: var(--cream); padding: 100px 48px; }
 .agenda-inner { max-width: 800px; margin: 0 auto; }
 .agenda-track { position: relative; padding-left: 48px; }
 .agenda-track::before {
   content: ''; position: absolute; top: 0; bottom: 0; left: 14px; width: 1px;
   background: linear-gradient(to bottom, var(--red) 0%, rgba(192,25,30,0.1) 100%);
 }
-.agenda-item {
-  position: relative; padding: 0 0 48px 0;
-}
+.agenda-item { position: relative; padding: 0 0 48px 0; }
 .agenda-item:last-child { padding-bottom: 0; }
 .agenda-dot {
-  position: absolute; top: 4px; left: -42px;
-  width: 15px; height: 15px; border-radius: 50%;
+  position: absolute; top: 4px; left: -42px; width: 15px; height: 15px; border-radius: 50%;
   background: var(--near-black); border: 2px solid var(--red);
 }
 .agenda-item:first-child .agenda-dot { background: var(--red); }
-.agenda-time {
-  font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--red);
-  margin-bottom: 8px; text-transform: uppercase;
-}
+.agenda-time { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--red); margin-bottom: 8px; text-transform: uppercase; }
 .agenda-title { font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
 .agenda-desc { font-size: 14px; font-weight: 400; color: var(--gray); line-height: 1.7; }
 .agenda-duration {
   display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1px;
-  color: var(--gray); background: rgba(0,0,0,0.04); padding: 3px 10px;
-  border-radius: 100px; margin-top: 10px;
+  color: var(--gray); background: rgba(0,0,0,0.04); padding: 3px 10px; border-radius: 100px; margin-top: 10px;
 }
 
 /* ─── CTA SECTION ────────────────────────────────────────────────────────────── */
@@ -351,9 +277,7 @@ header {
   background: var(--near-black);
   background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size: 28px 28px;
-  padding: 120px 48px;
-  text-align: center;
-  position: relative; overflow: hidden;
+  padding: 120px 48px; text-align: center; position: relative; overflow: hidden;
 }
 .cta-section::before {
   content: ''; position: absolute; inset: 0;
@@ -361,20 +285,15 @@ header {
   pointer-events: none;
 }
 .cta-inner { position: relative; z-index: 2; }
-.cta-section h2 {
-  font-size: clamp(32px, 5vw, 64px); font-weight: 900; color: white;
-  letter-spacing: -0.03em; margin-bottom: 20px;
-}
+.cta-section h2 { font-size: clamp(32px, 5vw, 64px); font-weight: 900; color: white; letter-spacing: -0.03em; margin-bottom: 20px; }
 .cta-section h2 em { font-style: normal; color: var(--red); }
-.cta-date-reminder {
-  font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4); margin-bottom: 44px;
-}
+.cta-date-reminder { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4); margin-bottom: 44px; }
 .cta-date-reminder strong { color: rgba(255,255,255,0.7); font-weight: 700; }
 .cta-big {
   display: inline-flex; align-items: center; gap: 10px;
   font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
   color: white; background: var(--red); text-decoration: none;
-  padding: 20px 44px; border-radius: 4px;
+  padding: 20px 44px; border-radius: 4px; cursor: pointer; border: none;
   transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
   position: relative; overflow: hidden;
 }
@@ -384,31 +303,82 @@ header {
   opacity: 0; transition: opacity 0.3s;
 }
 .cta-big:hover::after { opacity: 1; }
-.cta-big:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(192,25,30,0.35);
-}
+.cta-big:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(192,25,30,0.35); }
 .cta-big svg { width: 18px; height: 18px; position: relative; z-index: 1; }
 
+/* ─── REGISTRATION MODAL ─────────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(12px);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; transition: opacity 0.3s;
+}
+.modal-overlay.open { display: flex; opacity: 1; }
+.modal {
+  background: var(--white); border-radius: 16px; padding: 48px;
+  max-width: 480px; width: 100%; position: relative;
+  transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+}
+.modal-overlay.open .modal { transform: none; }
+.modal-close {
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+  background: none; border: none; cursor: pointer; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray); transition: background 0.2s, color 0.2s;
+}
+.modal-close:hover { background: var(--cream); color: var(--black); }
+.modal-close svg { width: 20px; height: 20px; }
+.modal h3 {
+  font-size: 24px; font-weight: 900; color: var(--black); margin-bottom: 4px; letter-spacing: -0.02em;
+}
+.modal .modal-sub {
+  font-size: 13px; color: var(--gray); margin-bottom: 32px; font-weight: 400;
+}
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
+}
+.form-group input {
+  width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 14px;
+  font-weight: 500; color: var(--black); background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+}
+.form-group input:focus {
+  border-color: var(--red); box-shadow: 0 0 0 3px rgba(192,25,30,0.1);
+}
+.form-group input::placeholder { color: rgba(0,0,0,0.25); }
+.form-submit {
+  width: 100%; padding: 16px; border: none; border-radius: 8px; cursor: pointer;
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; color: white; background: var(--red);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+.form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.form-success {
+  text-align: center; padding: 24px 0;
+}
+.form-success .check-icon {
+  width: 56px; height: 56px; border-radius: 50%; background: rgba(192,25,30,0.08);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+}
+.form-success .check-icon svg { width: 28px; height: 28px; color: var(--red); }
+.form-success h4 { font-size: 20px; font-weight: 900; color: var(--black); margin-bottom: 8px; }
+.form-success p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
 /* ─── FOOTER ─────────────────────────────────────────────────────────────────── */
-footer {
-  background: var(--red);
-  padding: 48px;
-  text-align: center;
-}
-footer p {
-  font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7);
-  letter-spacing: 1px;
-}
+footer { background: var(--red); padding: 48px; text-align: center; }
+footer p { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
 footer p strong { font-weight: 800; color: white; }
-footer .footer-links {
-  margin-top: 16px;
-  display: flex; justify-content: center; gap: 24px;
-}
+footer .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 24px; }
 footer .footer-links a {
   font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
-  text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
-  transition: color 0.2s;
+  text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;
 }
 footer .footer-links a:hover { color: white; }
 
@@ -430,17 +400,18 @@ footer .footer-links a:hover { color: white; }
   .agenda { padding: 80px 24px; }
   .cta-section { padding: 80px 24px; }
   footer { padding: 36px 24px; }
+  .modal { padding: 32px 24px; }
 }
 @media (max-width: 480px) {
   .hero-headline { font-size: clamp(28px, 8vw, 40px); }
   .hero-ctas { flex-direction: column; }
-  .hero-ctas a { text-align: center; justify-content: center; }
+  .hero-ctas a, .hero-ctas button { text-align: center; justify-content: center; }
   .countdown { gap: 12px; }
   .cd-num { font-size: 24px; min-width: 40px; }
   .cd-sep { font-size: 20px; }
   .speakers-grid { grid-template-columns: 1fr; gap: 16px; }
   .speaker-card { padding: 28px 16px; }
-  .cobrand-logos { flex-direction: column; gap: 12px; }
+  .cobrand-logos { flex-direction: column; gap: 16px; }
   footer .footer-links { flex-direction: column; gap: 12px; }
 }
 
@@ -459,7 +430,7 @@ footer .footer-links a:hover { color: white; }
     <a href="#sobre" class="nav-link">Sobre</a>
     <a href="#ponentes" class="nav-link">Ponentes</a>
     <a href="#agenda" class="nav-link">Agenda</a>
-    <a href="#registro" class="nav-pill">Registrarse →</a>
+    <a href="javascript:void(0)" class="nav-pill js-open-modal">Registrarse →</a>
     <button class="burger" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -468,7 +439,7 @@ footer .footer-links a:hover { color: white; }
     <a href="#sobre">Sobre el webinar</a>
     <a href="#ponentes">Ponentes</a>
     <a href="#agenda">Agenda</a>
-    <a href="#registro" class="nm-pill">Registrarse →</a>
+    <a href="javascript:void(0)" class="nm-pill js-open-modal">Registrarse →</a>
   </nav>
 </header>
 
@@ -483,13 +454,13 @@ footer .footer-links a:hover { color: white; }
       <span>28 Abril 2026 · 12:00h CEST</span>
     </div>
     <h1 class="hero-headline reveal d2">
-      IA de <em>candidatos</em> vs IA de <em>empleadores</em>
+      IA vs IA: la <em>batalla</em> por el <em>talento</em>
     </h1>
     <p class="hero-sub reveal d3">
       La IA está cambiando las reglas del juego en selección. Pero al final, las empresas siguen necesitando lo mismo: el talento adecuado, ahora. Cuatro expertos debaten cómo encontrarlo en esta nueva realidad.
     </p>
     <div class="hero-ctas reveal d4">
-      <a href="#registro" class="cta-primary">Reserva tu plaza <span>→</span></a>
+      <button class="cta-primary js-open-modal">Reserva tu plaza <span>→</span></button>
       <a href="#ponentes" class="cta-secondary">Ver ponentes ↓</a>
     </div>
     <div class="countdown reveal d5" id="countdown">
@@ -502,23 +473,16 @@ footer .footer-links a:hover { color: white; }
       <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Seg</span></div>
     </div>
   </div>
-  <div class="hero-scroll">
-    <span class="scroll-line"></span> Scroll
-  </div>
+  <div class="hero-scroll"><span class="scroll-line"></span> Scroll</div>
 </section>
 
 <!-- ─── CO-BRANDED STRIP ───────────────────────────────────────────────────── -->
 <div class="cobranded reveal">
   <span class="cobrand-label">Organizado por</span>
   <div class="cobrand-logos">
-    <span class="cobrand-logo">
-      <img src="assets/logos/actual-talent.png" alt="Actual Talent">
-      <span class="cobrand-text">Actual Talent</span>
-    </span>
+    <span class="cobrand-logo"><img src="assets/logos/actual-talent.png" alt="Actual Talent"></span>
     <span class="cobrand-x">×</span>
-    <span class="cobrand-logo tt">
-      <img src="assets/logos/teamtailor.png" alt="Teamtailor">
-    </span>
+    <span class="cobrand-logo tt"><img src="assets/logos/teamtailor.png" alt="Teamtailor"></span>
   </div>
 </div>
 
@@ -536,24 +500,15 @@ footer .footer-links a:hover { color: white; }
       <ul class="takeaways">
         <li class="takeaway reveal d1">
           <span class="takeaway-num">01</span>
-          <div>
-            <h3>IA en el lado candidato</h3>
-            <p>Cómo los candidatos están utilizando herramientas de IA para optimizar su búsqueda de empleo, desde la generación de CVs hasta la preparación de entrevistas con IA generativa.</p>
-          </div>
+          <div><h3>IA en el lado candidato</h3><p>Cómo los candidatos están utilizando herramientas de IA para optimizar su búsqueda de empleo, desde la generación de CVs hasta la preparación de entrevistas con IA generativa.</p></div>
         </li>
         <li class="takeaway reveal d2">
           <span class="takeaway-num">02</span>
-          <div>
-            <h3>IA en el lado empresa</h3>
-            <p>Las herramientas que las empresas están adoptando para automatizar screening, evaluación y toma de decisiones en selección de talento.</p>
-          </div>
+          <div><h3>IA en el lado empresa</h3><p>Las herramientas que las empresas están adoptando para automatizar screening, evaluación y toma de decisiones en selección de talento.</p></div>
         </li>
         <li class="takeaway reveal d3">
           <span class="takeaway-num">03</span>
-          <div>
-            <h3>Encontrar talento actual</h3>
-            <p>Cuando la IA genera ruido en ambos lados, ¿cómo identifican las empresas al talento que realmente necesitan ahora? El factor humano como ventaja competitiva.</p>
-          </div>
+          <div><h3>Encontrar talento actual</h3><p>Cuando la IA genera ruido en ambos lados, ¿cómo identifican las empresas al talento que realmente necesitan ahora? El factor humano como ventaja competitiva.</p></div>
         </li>
       </ul>
     </div>
@@ -565,37 +520,27 @@ footer .footer-links a:hover { color: white; }
   <div class="speakers-inner">
     <div class="section-label reveal">Ponentes</div>
     <div class="speakers-grid">
-
       <div class="speaker-card reveal d1">
-        <div class="speaker-photo jb">
-          <img src="assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
-        </div>
+        <div class="speaker-photo jb"><img src="assets/speakers/joan-boluda.jpg" alt="Joan Boluda"></div>
         <span class="speaker-role-badge">Moderador</span>
         <div class="speaker-name">Joan Boluda</div>
         <div class="speaker-title">Managing Director</div>
         <div class="speaker-company">Actual Talent</div>
       </div>
-
       <div class="speaker-card reveal d2">
-        <div class="speaker-photo mg">
-          <img src="assets/speakers/mark-galano.jpg" alt="Marc Galanó">
-        </div>
+        <div class="speaker-photo mg"><img src="assets/speakers/mark-galano.jpg" alt="Marc Galanó"></div>
         <span class="speaker-role-badge">Ponente</span>
         <div class="speaker-name">Marc Galanó</div>
         <div class="speaker-title">Sales Manager Spain</div>
         <div class="speaker-company">Teamtailor</div>
       </div>
-
       <div class="speaker-card reveal d3">
-        <div class="speaker-photo tg">
-          <img src="assets/speakers/tony-gimeno.jpg" alt="Tony Gimeno">
-        </div>
+        <div class="speaker-photo tg"><img src="assets/speakers/tony-gimeno.jpg" alt="Tony Gimeno"></div>
         <span class="speaker-role-badge">Ponente</span>
         <div class="speaker-name">Tony Gimeno</div>
         <div class="speaker-title">Employer Branding Strategist</div>
         <div class="speaker-company">Employer Branding</div>
       </div>
-
       <div class="speaker-card tbd-card reveal d4">
         <div class="speaker-photo tbd">?</div>
         <span class="speaker-role-badge">Ponente</span>
@@ -603,7 +548,6 @@ footer .footer-links a:hover { color: white; }
         <div class="speaker-title">Confirmación pendiente</div>
         <div class="speaker-company">— — —</div>
       </div>
-
     </div>
   </div>
 </section>
@@ -613,7 +557,6 @@ footer .footer-links a:hover { color: white; }
   <div class="agenda-inner">
     <div class="section-label reveal">Agenda</div>
     <div class="agenda-track">
-
       <div class="agenda-item reveal">
         <div class="agenda-dot"></div>
         <div class="agenda-time">12:00h</div>
@@ -621,7 +564,6 @@ footer .footer-links a:hover { color: white; }
         <div class="agenda-desc">Bienvenida, presentación de los ponentes y marco del debate: el estado actual de la IA en selección de talento desde ambas perspectivas.</div>
         <span class="agenda-duration">5 min</span>
       </div>
-
       <div class="agenda-item reveal d1">
         <div class="agenda-dot"></div>
         <div class="agenda-time">12:05h</div>
@@ -629,7 +571,6 @@ footer .footer-links a:hover { color: white; }
         <div class="agenda-desc">Debate abierto entre los ponentes. IA generativa en CVs y cover letters. Screening automatizado y sus sesgos. El rol del recruiter humano. Herramientas que están cambiando las reglas. Casos reales y predicciones para los próximos 12 meses.</div>
         <span class="agenda-duration">40 min</span>
       </div>
-
       <div class="agenda-item reveal d2">
         <div class="agenda-dot"></div>
         <div class="agenda-time">12:45h</div>
@@ -637,7 +578,6 @@ footer .footer-links a:hover { color: white; }
         <div class="agenda-desc">Espacio abierto para preguntas de los asistentes. Los ponentes responden en directo a las cuestiones del público.</div>
         <span class="agenda-duration">15 min</span>
       </div>
-
     </div>
   </div>
 </section>
@@ -650,12 +590,51 @@ footer .footer-links a:hover { color: white; }
     <p class="cta-date-reminder reveal d1">
       <strong>28 de abril de 2026</strong> · 12:00h CEST · Online y gratuito
     </p>
-    <a href="#registro" class="cta-big reveal d2">
+    <button class="cta-big reveal d2 js-open-modal">
       <span style="position:relative;z-index:1">Registrarse ahora</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
+    </button>
   </div>
 </section>
+
+<!-- ─── REGISTRATION MODAL ─────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="reg-modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="reg-form-container">
+      <h3>Reserva tu plaza</h3>
+      <p class="modal-sub">28 de abril 2026 · 12:00h CEST · Online y gratuito</p>
+      <form id="reg-form">
+        <div class="form-group">
+          <label for="reg-name">Nombre completo</label>
+          <input type="text" id="reg-name" name="nombre" required placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email</label>
+          <input type="email" id="reg-email" name="email" required placeholder="tu@empresa.com">
+        </div>
+        <div class="form-group">
+          <label for="reg-company">Empresa</label>
+          <input type="text" id="reg-company" name="empresa" placeholder="Tu empresa (opcional)">
+        </div>
+        <div class="form-group">
+          <label for="reg-role">Cargo</label>
+          <input type="text" id="reg-role" name="cargo" placeholder="Tu cargo (opcional)">
+        </div>
+        <button type="submit" class="form-submit" id="reg-submit">Confirmar registro →</button>
+      </form>
+    </div>
+    <div id="reg-success" class="form-success" style="display:none">
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h4>¡Estás dentro!</h4>
+      <p>Te hemos registrado para el webinar del 28 de abril. Recibirás un recordatorio antes del evento.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ─── FOOTER ──────────────────────────────────────────────────────────────── -->
 <footer>
@@ -669,126 +648,155 @@ footer .footer-links a:hover { color: white; }
 
 <!-- ─── JS ──────────────────────────────────────────────────────────────────── -->
 <script>
-// ── Scroll reveal (same as agentic-status) ──
+// ── Scroll reveal ──
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-// Instant hero reveals
 requestAnimationFrame(() => {
   document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
 });
 
-// ── Hamburger menu (with Escape + outside click) ──
+// ── Hamburger ──
 const burger = document.querySelector('.burger');
 const mobileNav = document.querySelector('.nav-mobile');
-function closeMenu() {
-  burger.classList.remove('open');
-  mobileNav.classList.remove('open');
-  burger.setAttribute('aria-expanded', 'false');
-}
-burger.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const open = burger.classList.toggle('open');
-  mobileNav.classList.toggle('open', open);
-  burger.setAttribute('aria-expanded', String(open));
-});
+function closeMenu() { burger.classList.remove('open'); mobileNav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+burger.addEventListener('click', (e) => { e.stopPropagation(); const o = burger.classList.toggle('open'); mobileNav.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); });
 mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-document.addEventListener('click', (e) => {
-  if (!burger.contains(e.target) && !mobileNav.contains(e.target)) closeMenu();
-});
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+document.addEventListener('click', (e) => { if (!burger.contains(e.target) && !mobileNav.contains(e.target)) closeMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeModal(); } });
 
-// ── Countdown to 28 Apr 2026 12:00 CEST ──
+// ── Countdown ──
 const eventDate = new Date('2026-04-28T12:00:00+02:00');
 function updateCountdown() {
-  const now = new Date();
-  const diff = eventDate - now;
-  if (diff <= 0) {
-    document.getElementById('countdown').innerHTML = '<span style="font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);">En directo ahora</span>';
-    return;
-  }
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
-  document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-  document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
-  document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+  const diff = eventDate - new Date();
+  if (diff <= 0) { document.getElementById('countdown').innerHTML = '<span style="font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)">En directo ahora</span>'; return; }
+  const d = Math.floor(diff/864e5), h = Math.floor((diff%864e5)/36e5), m = Math.floor((diff%36e5)/6e4), s = Math.floor((diff%6e4)/1e3);
+  document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+updateCountdown(); setInterval(updateCountdown, 1000);
 
-// ── Mouse glow effect (hero only, desktop) ──
+// ── Mouse glow ──
 const glow = document.getElementById('mouse-glow');
-const hero = document.querySelector('.hero');
-if (window.matchMedia('(pointer: fine)').matches) {
-  hero.addEventListener('mousemove', (e) => {
-    const rect = hero.getBoundingClientRect();
-    glow.style.left = (e.clientX - rect.left) + 'px';
-    glow.style.top = (e.clientY - rect.top) + 'px';
-    glow.classList.add('visible');
-  });
-  hero.addEventListener('mouseleave', () => {
-    glow.classList.remove('visible');
-  });
+const heroEl = document.querySelector('.hero');
+if (window.matchMedia('(pointer:fine)').matches) {
+  heroEl.addEventListener('mousemove', (e) => { const r = heroEl.getBoundingClientRect(); glow.style.left = (e.clientX-r.left)+'px'; glow.style.top = (e.clientY-r.top)+'px'; glow.classList.add('visible'); });
+  heroEl.addEventListener('mouseleave', () => glow.classList.remove('visible'));
 }
 
-// ── Particle system (canvas, for dark sections) ──
-function initParticles(canvasId) {
+// ── Particle system (enhanced) ──
+function initParticles(canvasId, count) {
   const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
+  if (!canvas || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
   const ctx = canvas.getContext('2d');
   let w, h, particles = [];
-  const COUNT = 40;
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
 
-  function resize() {
-    const parent = canvas.parentElement;
-    w = canvas.width = parent.offsetWidth;
-    h = canvas.height = parent.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
+  function resize() { const p = canvas.parentElement; w = canvas.width = p.offsetWidth; h = canvas.height = p.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
 
-  for (let i = 0; i < COUNT; i++) {
+  for (let i = 0; i < count; i++) {
     particles.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.8 + 0.4,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.2 - 0.1,
-      alpha: Math.random() * 0.4 + 0.1,
-      isRed: Math.random() < 0.3
+      x: Math.random()*w, y: Math.random()*h,
+      r: Math.random()*2.2 + 0.5,
+      vx: (Math.random()-0.5)*0.4,
+      vy: (Math.random()-0.5)*0.3 - 0.05,
+      alpha: Math.random()*0.5 + 0.1,
+      isRed: Math.random() < 0.35,
+      pulse: Math.random()*Math.PI*2
     });
   }
 
+  const CONNECT_DIST = 120;
   function draw() {
     ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < -10) p.x = w + 10;
-      if (p.x > w + 10) p.x = -10;
-      if (p.y < -10) p.y = h + 10;
-      if (p.y > h + 10) p.y = -10;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      if (p.isRed) {
-        ctx.fillStyle = `rgba(192, 25, 30, ${p.alpha})`;
-      } else {
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.6})`;
+    // Connection lines between nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECT_DIST) {
+          const opacity = (1 - dist/CONNECT_DIST) * 0.06;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = particles[i].isRed || particles[j].isRed
+            ? `rgba(192,25,30,${opacity})`
+            : `rgba(255,255,255,${opacity})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
       }
+    }
+    // Draw particles
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      p.pulse += 0.015;
+      const pAlpha = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+      if (p.x < -10) p.x = w+10; if (p.x > w+10) p.x = -10;
+      if (p.y < -10) p.y = h+10; if (p.y > h+10) p.y = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.isRed ? `rgba(192,25,30,${pAlpha})` : `rgba(255,255,255,${pAlpha*0.7})`;
       ctx.fill();
     });
     requestAnimationFrame(draw);
   }
   draw();
 }
-initParticles('hero-particles');
-initParticles('cta-particles');
+initParticles('hero-particles', 90);
+initParticles('cta-particles', 50);
+
+// ── Registration modal ──
+const modal = document.getElementById('reg-modal');
+const form = document.getElementById('reg-form');
+function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+document.querySelectorAll('.js-open-modal').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(); }));
+document.getElementById('modal-close').addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+// ── Form submission → Google Sheets via Apps Script ──
+// REPLACE this URL with your deployed Google Apps Script web app URL
+const SHEET_URL = '';
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('reg-submit');
+  btn.disabled = true; btn.textContent = 'Registrando...';
+
+  const data = {
+    nombre: document.getElementById('reg-name').value,
+    email: document.getElementById('reg-email').value,
+    empresa: document.getElementById('reg-company').value,
+    cargo: document.getElementById('reg-role').value,
+    fecha: new Date().toISOString()
+  };
+
+  // Save locally always (backup)
+  const regs = JSON.parse(localStorage.getItem('webinar-regs') || '[]');
+  regs.push(data);
+  localStorage.setItem('webinar-regs', JSON.stringify(regs));
+
+  // Try Google Sheets if URL configured
+  if (SHEET_URL) {
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } catch(err) { /* localStorage backup is saved */ }
+  }
+
+  // Show success
+  document.getElementById('reg-form-container').style.display = 'none';
+  document.getElementById('reg-success').style.display = 'block';
+  btn.disabled = false; btn.textContent = 'Confirmar registro →';
+});
 </script>
 
 </body>
