@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
 <title>AGENTIC Status — Actual Talent AI Workspace</title>
 <meta name="description" content="Sistema de inteligencia autónomo de Actual Talent. Estado en tiempo real de todos los daemons, capacidades y últimas actualizaciones.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,8 +41,12 @@ body {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform, opacity;
 }
-.reveal.in { opacity: 1; transform: none; }
+.reveal.in { opacity: 1; transform: none; will-change: auto; }
+
+/* ─── FOCUS ────────────────────────────────────────────────────────────────── */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 3px; }
 .d1 { transition-delay: 0.05s; }
 .d2 { transition-delay: 0.12s; }
 .d3 { transition-delay: 0.19s; }
@@ -337,15 +342,14 @@ section { padding: 100px 48px; }
   content: '';
   position: absolute;
   top: 0; left: 0;
-  width: 2px;
+  width: 3px;
   height: 100%;
   background: var(--green);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  opacity: 0.25;
+  transition: opacity 0.25s ease;
 }
 .status-card.pending::before { background: var(--amber); }
-.status-card:hover::before { transform: scaleY(1); }
+.status-card:hover::before { opacity: 1; }
 
 .status-indicator {
   width: 9px;
@@ -555,6 +559,30 @@ section { padding: 100px 48px; }
   margin-bottom: 6px;
 }
 
+/* ─── CHANGELOG ENTRY TAGS ─────────────────────────────────────────────────── */
+.entry-tag {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--red);
+  background: rgba(192,25,30,0.08);
+  padding: 1px 5px 0;
+  border-radius: 2px;
+  margin-right: 5px;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+.entry-item code {
+  font-family: 'Courier New', monospace;
+  font-size: 10.5px;
+  background: rgba(26,26,26,0.06);
+  padding: 1px 4px;
+  border-radius: 2px;
+  color: var(--black);
+}
+
 .entry-items {
   display: flex;
   flex-direction: column;
@@ -653,21 +681,23 @@ footer {
 
 <!-- HEADER -->
 <header>
-  <div class="header-left">
+  <nav class="header-left" role="navigation" aria-label="Navegación">
     <a href="index.html" class="wordmark"><span class="wm-at">A</span>GEN<span class="wm-at">T</span>IC</a>
     <div class="header-sep"></div>
     <span class="header-sub">Actual Talent AI Workspace</span>
     <div class="header-sep"></div>
     <a href="index.html" class="nav-home">← Home</a>
-  </div>
+  </nav>
   <div class="header-right">
-    <span class="header-clock" id="clock">--:--:--</span>
+    <span class="header-clock" id="clock" aria-live="polite" aria-label="Hora actual">--:--:--</span>
     <div class="status-pill">
       <div class="status-pill-dot"></div>
       <span class="status-pill-label">Operacional</span>
     </div>
   </div>
 </header>
+
+<main>
 
 <!-- HERO -->
 <section class="hero">
@@ -831,52 +861,52 @@ footer {
       <div class="timeline-entry reveal ">
         <div class="entry-version">v1.5 — 17 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">[cl-client-profiles] 19 client intelligence cards generados: Vueling, Sesé, Moventia, Damm, Megasa, Younited, y más. Un solo archivo por cliente en lugar de buscar en 4 sitios.</div>
-          <div class="entry-item">[workspace_watcher] Ahora regenera el perfil del cliente automáticamente cuando detecta una nueva propuesta o transcript.</div>
-          <div class="entry-item">[cl-zoho] Subproyecto completo: auth, API client, sync (Zoho→workspace), push (workspace→Zoho). Listo para conectar cuando hagamos el OAuth setup juntos.</div>
-          <div class="entry-item">[healthcheck] Daemon de salud instalado: alerta por email si workspace_watcher o granola_watcher llevan 3h sin actividad.</div>
-          <div class="entry-item">[consolidate_kb] Script semanal que promueve hechos estables de kb-updates → knowledge-base automáticamente.</div>
+          <div class="entry-item"><span class="entry-tag">cl-client-profiles</span> 19 client intelligence cards generados: Vueling, Sesé, Moventia, Damm, Megasa, Younited, y más. Un solo archivo por cliente en lugar de buscar en 4 sitios.</div>
+          <div class="entry-item"><span class="entry-tag">workspace_watcher</span> Ahora regenera el perfil del cliente automáticamente cuando detecta una nueva propuesta o transcript.</div>
+          <div class="entry-item"><span class="entry-tag">cl-zoho</span> Subproyecto completo: auth, API client, sync (Zoho→workspace), push (workspace→Zoho). Listo para conectar cuando hagamos el OAuth setup juntos.</div>
+          <div class="entry-item"><span class="entry-tag">healthcheck</span> Daemon de salud instalado: alerta por email si workspace_watcher o granola_watcher llevan 3h sin actividad.</div>
+          <div class="entry-item"><span class="entry-tag">consolidate_kb</span> Script semanal que promueve hechos estables de kb-updates → knowledge-base automáticamente.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d1">
         <div class="entry-version">v1.4 — 16 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">[RAG multimodal] 269 imágenes procesadas con Vision API (160 logos, 54 diagramas, 22 screenshots, 20 fotos) → todas subidas al vector store. El RAG ahora entiende imágenes.</div>
-          <div class="entry-item">[agentic-model.html] Página editorial generada: explica el modelo AGENTIC completo con brand AT, animaciones y diseño de producto.</div>
-          <div class="entry-item">[CHANGELOG] Sistema de versiones + notificación en sesión + sección en briefing diario activados.</div>
-          <div class="entry-item">[workspace_watcher] Nuevo daemon instalado: detecta automáticamente cualquier archivo nuevo en `actual talent/` y en los outputs de Claude, lo registra en el registry y lo sube al vector store. Sin acción manual.</div>
-          <div class="entry-item">[index_images.py] Indexación multimodal activada: 269 imágenes procesadas con Vision API → descripciones de texto en el vector store. RAG ahora entiende imágenes, logos, slides y diagramas.</div>
+          <div class="entry-item"><span class="entry-tag">RAG multimodal</span> 269 imágenes procesadas con Vision API (160 logos, 54 diagramas, 22 screenshots, 20 fotos) → todas subidas al vector store. El RAG ahora entiende imágenes.</div>
+          <div class="entry-item"><span class="entry-tag">agentic-model.html</span> Página editorial generada: explica el modelo AGENTIC completo con brand AT, animaciones y diseño de producto.</div>
+          <div class="entry-item"><span class="entry-tag">CHANGELOG</span> Sistema de versiones + notificación en sesión + sección en briefing diario activados.</div>
+          <div class="entry-item"><span class="entry-tag">workspace_watcher</span> Nuevo daemon instalado: detecta automáticamente cualquier archivo nuevo en <code>actual talent/</code> y en los outputs de Claude, lo registra en el registry y lo sube al vector store. Sin acción manual.</div>
+          <div class="entry-item"><span class="entry-tag">index_images.py</span> Indexación multimodal activada: 269 imágenes procesadas con Vision API → descripciones de texto en el vector store. RAG ahora entiende imágenes, logos, slides y diagramas.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d2">
         <div class="entry-version">v1.3 — 16 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">[register-document.sh] Ahora sube automáticamente al vector store de OpenAI en cada registro. Antes era solo git + JSON.</div>
-          <div class="entry-item">[document-registry.json] Creado con 25 documentos históricos (propuestas, meeting preps, plantillas, docs internos).</div>
-          <div class="entry-item">[find-document.sh] Nueva herramienta: búsqueda en el registry por cliente, tipo, contacto, tags, estado.</div>
-          <div class="entry-item">[post-commit hook] Detecta PDFs/HTML no registrados tras cada commit y avisa.</div>
-          <div class="entry-item">[.github/workflows] GitHub Action añadida para index-documents en cada push.</div>
+          <div class="entry-item"><span class="entry-tag">register-document.sh</span> Ahora sube automáticamente al vector store de OpenAI en cada registro. Antes era solo git + JSON.</div>
+          <div class="entry-item"><span class="entry-tag">document-registry.json</span> Creado con 25 documentos históricos (propuestas, meeting preps, plantillas, docs internos).</div>
+          <div class="entry-item"><span class="entry-tag">find-document.sh</span> Nueva herramienta: búsqueda en el registry por cliente, tipo, contacto, tags, estado.</div>
+          <div class="entry-item"><span class="entry-tag">post-commit hook</span> Detecta PDFs/HTML no registrados tras cada commit y avisa.</div>
+          <div class="entry-item"><span class="entry-tag">.github/workflows</span> GitHub Action añadida para index-documents en cada push.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d3">
         <div class="entry-version">v1.2 — 16 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">[mcp_server_standalone.py] Bug crítico corregido: path del servidor MCP apuntaba a `~/Desktop/` en vez de `~/Desktop/agentic/`. RAG ahora funciona en Claude Desktop.</div>
-          <div class="entry-item">[actual talent/] Carpeta centralizada dentro de `agentic/` para unificar el workspace.</div>
-          <div class="entry-item">[index_images.py] Path de fuente actualizado al nuevo lugar de `actual talent/`.</div>
+          <div class="entry-item"><span class="entry-tag">mcp_server_standalone.py</span> Bug crítico corregido: path del servidor MCP apuntaba a <code>~/Desktop/</code> en vez de <code>~/Desktop/agentic/</code>. RAG ahora funciona en Claude Desktop.</div>
+          <div class="entry-item"><span class="entry-tag">actual talent/</span> Carpeta centralizada dentro de <code>agentic/</code> para unificar el workspace.</div>
+          <div class="entry-item"><span class="entry-tag">index_images.py</span> Path de fuente actualizado al nuevo lugar de <code>actual talent/</code>.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d4">
         <div class="entry-version">v1.1 — 15 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">[cl-rag] Vector store creado (`vs_69b694fbcff8819184a7da8fefc2479e`) con 1973 documentos históricos.</div>
-          <div class="entry-item">[granola_watcher] Daemon instalado como LaunchAgent. Sincronización automática de transcripciones Granola.</div>
-          <div class="entry-item">[sync_granola.py] Pipeline de sync: descubre → extrae → sube transcripciones al vector store.</div>
-          <div class="entry-item">[mcp_server_standalone.py] MCP RAG v1.6 en producción. Herramienta `search_knowledge` con filtros de categoría, cliente y fecha.</div>
+          <div class="entry-item"><span class="entry-tag">cl-rag</span> Vector store creado (<code>vs_69b694fbcff8819184a7da8fefc2479e</code>) con 1973 documentos históricos.</div>
+          <div class="entry-item"><span class="entry-tag">granola_watcher</span> Daemon instalado como LaunchAgent. Sincronización automática de transcripciones Granola.</div>
+          <div class="entry-item"><span class="entry-tag">sync_granola.py</span> Pipeline de sync: descubre → extrae → sube transcripciones al vector store.</div>
+          <div class="entry-item"><span class="entry-tag">mcp_server_standalone.py</span> MCP RAG v1.6 en producción. Herramienta <code>search_knowledge</code> con filtros de categoría, cliente y fecha.</div>
         </div>
       </div>
 
@@ -884,15 +914,17 @@ footer {
         <div class="entry-version">v1.0 — 14 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item">Workspace inicial estructurado con WAT framework (Workflows + Agents + Tools).</div>
-          <div class="entry-item">Subproyectos: `cl-meeting-prep`, `cl-proposal-generator`, `cl-rag`, `cl-daily-briefing`.</div>
+          <div class="entry-item">Subproyectos: <code>cl-meeting-prep</code>, <code>cl-proposal-generator</code>, <code>cl-rag</code>, <code>cl-daily-briefing</code>.</div>
           <div class="entry-item">Integraciones: Gmail MCP, Google Calendar MCP, Granola MCP, Chrome MCP.</div>
-          <div class="entry-item">`CLAUDE.md` como constitución del workspace.</div>
+          <div class="entry-item"><code>CLAUDE.md</code> como constitución del workspace.</div>
         </div>
       </div>
       <!-- /CHANGELOG -->
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -943,10 +975,10 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Mark hero reveals visible immediately
-document.querySelectorAll('.hero .reveal').forEach(el => {
-  setTimeout(() => el.classList.add('in'), 100);
-});
+// Mark hero reveals visible immediately (double rAF ensures first paint is done)
+requestAnimationFrame(() => requestAnimationFrame(() => {
+  document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+}));
 </script>
 
 </body>

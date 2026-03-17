@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
 <title>AGENTIC — Actual Talent AI Workspace</title>
 <meta name="description" content="El sistema que prepara cada reunión, redacta cada follow-up y organiza cada documento. Solo. Siempre activo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,8 +31,11 @@ body {
 }
 
 /* ─── SCROLL REVEAL ──────────────────────────────────────────────────────────── */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); }
-.reveal.in { opacity: 1; transform: none; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); will-change: transform, opacity; }
+.reveal.in { opacity: 1; transform: none; will-change: auto; }
+
+/* ─── FOCUS ──────────────────────────────────────────────────────────────────── */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
 .d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}.d7{transition-delay:.56s}
 
@@ -161,9 +165,9 @@ header {
 .cap-headline em { font-style: normal; color: var(--red); }
 .cap-desc { font-size: 14px; font-weight: 400; line-height: 1.85; color: var(--gray); max-width: 300px; }
 .cap-list { list-style: none; counter-reset: cap; padding-top: 4px; }
-.cap-item { counter-increment: cap; display: flex; align-items: flex-start; gap: 20px; padding: 16px 0; border-bottom: 1px solid rgba(26,26,26,0.08); cursor: default; transition: padding-left 0.2s; }
+.cap-item { counter-increment: cap; display: flex; align-items: flex-start; gap: 20px; padding: 16px 0; border-bottom: 1px solid rgba(26,26,26,0.08); cursor: default; transition: transform 0.2s cubic-bezier(0.16,1,0.3,1); }
 .cap-item:first-child { border-top: 1px solid rgba(26,26,26,0.08); }
-.cap-item:hover { padding-left: 6px; }
+.cap-item:hover { transform: translateX(6px); }
 .cap-item:hover .cap-text { color: var(--red); }
 .cap-n { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: rgba(192,25,30,0.4); flex-shrink: 0; padding-top: 3px; min-width: 24px; }
 .cap-n::before { content: counter(cap, decimal-leading-zero); }
@@ -210,6 +214,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 .footer-brand { display: flex; align-items: center; gap: 18px; }
 .footer-text { line-height: 1.5; }
 .footer-name { font-size: 15px; font-weight: 800; color: white; letter-spacing: 0.5px; }
+.wm-footer { color: rgba(255,255,255,0.7); font-size: 15.5px; }
 .footer-sub { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.55); }
 .footer-right { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
 .footer-link { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
@@ -280,24 +285,26 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
   <a href="index.html" class="header-brand">
     <span class="header-wordmark"><span class="wm-at">A</span>GEN<span class="wm-at">T</span>IC</span>
   </a>
-  <nav class="nav-desktop">
+  <nav class="nav-desktop" role="navigation" aria-label="Navegación principal">
     <a href="#timeline"    class="nav-link">Un día</a>
     <a href="#sistema"     class="nav-link">Sistema</a>
     <a href="#capacidades" class="nav-link">Capacidades</a>
     <a href="status.html"  class="nav-pill">Status →</a>
   </nav>
-  <button class="burger" id="burger" aria-label="Menú">
+  <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-mobile">
     <span></span><span></span><span></span>
   </button>
 </header>
 
 <!-- Mobile nav -->
-<div class="nav-mobile" id="nav-mobile">
+<nav class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Menú móvil">
   <a href="#timeline">Un día con AGENTIC</a>
   <a href="#sistema">Cómo funciona</a>
   <a href="#capacidades">Capacidades</a>
   <a href="status.html" class="nm-pill">Status en vivo →</a>
-</div>
+</nav>
+
+<main>
 
 <!-- ▸ HERO -->
 <section class="hero">
@@ -446,11 +453,13 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
   </div>
 </section>
 
+</main>
+
 <!-- ▸ FOOTER -->
 <footer>
   <div class="footer-brand">
     <div class="footer-text">
-      <div class="footer-name"><span class="wm-at" style="color:rgba(255,255,255,0.7)">A</span>GEN<span class="wm-at" style="color:rgba(255,255,255,0.7)">T</span>IC v1.5</div>
+      <div class="footer-name"><span class="wm-footer">A</span>GEN<span class="wm-footer">T</span>IC v1.5</div>
       <div class="footer-sub">Actual Talent · Built with Claude · 2026</div>
     </div>
   </div>
@@ -473,16 +482,22 @@ requestAnimationFrame(() => {
 // Hamburger menu
 const burger = document.getElementById('burger');
 const navMobile = document.getElementById('nav-mobile');
-burger.addEventListener('click', () => {
-  burger.classList.toggle('open');
-  navMobile.classList.toggle('open');
+function closeMenu() {
+  burger.classList.remove('open');
+  navMobile.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}
+burger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = burger.classList.toggle('open');
+  navMobile.classList.toggle('open', isOpen);
+  burger.setAttribute('aria-expanded', String(isOpen));
 });
-navMobile.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    burger.classList.remove('open');
-    navMobile.classList.remove('open');
-  });
+navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('click', (e) => {
+  if (!burger.contains(e.target) && !navMobile.contains(e.target)) closeMenu();
 });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 </script>
 </body>
 </html>
