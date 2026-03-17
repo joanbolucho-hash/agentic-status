@@ -218,6 +218,32 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 /* Right col of timeline — email only, sticky */
 .terminal-wrap { display: flex; flex-direction: column; gap: 0; position: sticky; top: 80px; }
 
+/* Email column wrapper */
+.email-col { display: flex; flex-direction: column; gap: 20px; }
+
+/* Stats strip below email */
+.em-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(192,25,30,0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.em-stat {
+  background: var(--cream);
+  padding: 22px 14px 20px;
+  text-align: center;
+}
+.em-stat-num {
+  font-size: 22px; font-weight: 900; color: var(--red);
+  letter-spacing: -0.02em; line-height: 1; margin-bottom: 7px;
+}
+.em-stat-label {
+  font-size: 9.5px; font-weight: 600; letter-spacing: 0.6px;
+  color: var(--gray); text-transform: uppercase; line-height: 1.4;
+}
+
 /* Sistema top: intro left + terminal right */
 .sistema-top {
   display: grid;
@@ -665,6 +691,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
     </div><!-- /timeline-left -->
 
     <!-- Email briefing demo — real output of AGENTIC -->
+    <div class="email-col">
     <div class="email-mockup" id="email-mockup">
 
       <!-- Gmail-style chrome -->
@@ -732,7 +759,22 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       </div>
     </div>
 
-    </div><!-- /email-wrap -->
+    <!-- System stats strip -->
+    <div class="em-stats reveal d2">
+      <div class="em-stat">
+        <div class="em-stat-num">1973+</div>
+        <div class="em-stat-label">Documentos indexados</div>
+      </div>
+      <div class="em-stat">
+        <div class="em-stat-num">109</div>
+        <div class="em-stat-label">Transcripciones</div>
+      </div>
+      <div class="em-stat">
+        <div class="em-stat-num">&lt;30s</div>
+        <div class="em-stat-label">De generación</div>
+      </div>
+    </div>
+    </div><!-- /email-col -->
   </div><!-- /timeline-body -->
 </section>
 
