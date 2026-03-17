@@ -215,7 +215,20 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 .tl-desc { font-size: 12px; font-weight: 400; color: var(--gray); line-height: 1.65; }
 
 /* ─── TERMINAL ANIMATION ──────────────────────────────────────────────────────── */
+/* Right col of timeline — email only, sticky */
 .terminal-wrap { display: flex; flex-direction: column; gap: 0; position: sticky; top: 80px; }
+
+/* Terminal inside sistema section (dark bg) */
+.wat-terminal-wrap {
+  margin-top: 56px;
+  max-width: 640px;
+  margin-left: auto; margin-right: auto;
+}
+.wat-terminal-wrap .terminal-window {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 32px 80px rgba(0,0,0,0.6);
+}
+.wat-terminal-wrap .term-header { background: #222; }
+.wat-terminal-wrap .term-title  { color: rgba(255,255,255,0.2); }
 .terminal-window {
   background: #0C0C0C;
   border-radius: 12px;
@@ -503,6 +516,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
   .timeline-sec { padding: 80px 24px; }
   .timeline-body { grid-template-columns: 1fr; gap: 48px; }
   .terminal-wrap { position: static; }
+  .wat-terminal-wrap { margin-top: 40px; }
 
   .sistema { padding: 80px 24px; }
   .wat-grid { grid-template-columns: 1fr; gap: 1px; }
@@ -643,29 +657,6 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       </div>
     </div>
 
-    <!-- Terminal animation -->
-    <div class="terminal-wrap reveal d3">
-    <div class="terminal-window" id="terminal">
-      <div class="term-header">
-        <span class="term-dot r"></span>
-        <span class="term-dot y"></span>
-        <span class="term-dot g"></span>
-        <span class="term-title">run_briefing.py — GitHub Actions · ubuntu-latest</span>
-      </div>
-      <div class="term-body" id="term-body">
-        <div class="t-line l1"><span class="t-prompt">$</span><span class="t-cmd">python3 cl-daily-briefing/tools/run_briefing.py</span></div>
-        <div class="t-line l2"><span class="t-ts">[04:03:01]</span><span>Pre-flight check...</span><span class="t-ok">✓</span></div>
-        <div class="t-line l3"><span class="t-ts">[04:03:02]</span><span>Reading calendar (iCal)...</span><span class="t-ok">✓</span></div>
-        <div class="t-line l4"><span class="t-ts">[04:03:03]</span><span>Found <span class="t-hl">3 commercial meetings</span> today</span></div>
-        <div class="t-line l5"><span class="t-ts">[04:03:05]</span><span>RAG search: <span class="t-hl">Vueling</span>...</span><span class="t-ok">✓</span></div>
-        <div class="t-line l6"><span class="t-ts">[04:03:06]</span><span>RAG search: <span class="t-hl">Sesé</span>...</span><span class="t-ok">✓</span></div>
-        <div class="t-line l7"><span class="t-ts">[04:03:08]</span><span>Generating briefing with GPT-4o<span class="t-dim">...</span></span></div>
-        <div class="t-line l8"><span class="t-ts">[04:04:12]</span><span>Email sent → <span class="t-hl">joan.boluda@actualgroup.com</span></span><span class="t-ok">✓</span></div>
-        <div class="t-line l9"><span class="t-ts">[04:04:13]</span><span class="t-ok">Briefing delivered. Done.</span></div>
-        <div class="t-cursor"></div>
-      </div>
-    </div>
-
     <!-- Email briefing demo — real output of AGENTIC -->
     <div class="email-mockup" id="email-mockup">
 
@@ -734,7 +725,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       </div>
     </div>
 
-    </div><!-- /terminal-wrap -->
+    </div><!-- /email-wrap -->
   </div><!-- /timeline-body -->
 </section>
 
@@ -760,6 +751,30 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       <h3 class="wat-title">Tools</h3>
       <p class="wat-desc">Scripts, parsers, builders y MCPs que ejecutan tareas concretas de forma determinista. Cada herramienta hace una cosa y la hace siempre igual.</p>
       <div class="wat-example">register-document.sh · sync_granola.py · workspace_watcher.py · mcp_server_standalone.py</div>
+    </div>
+  </div>
+
+  <!-- Terminal: T in action -->
+  <div class="wat-terminal-wrap reveal d2">
+    <div class="terminal-window" id="terminal">
+      <div class="term-header">
+        <span class="term-dot r"></span>
+        <span class="term-dot y"></span>
+        <span class="term-dot g"></span>
+        <span class="term-title">run_briefing.py — GitHub Actions · ubuntu-latest</span>
+      </div>
+      <div class="term-body" id="term-body">
+        <div class="t-line l1"><span class="t-prompt">$</span><span class="t-cmd">python3 cl-daily-briefing/tools/run_briefing.py</span></div>
+        <div class="t-line l2"><span class="t-ts">[04:03:01]</span><span>Pre-flight check...</span><span class="t-ok">✓</span></div>
+        <div class="t-line l3"><span class="t-ts">[04:03:02]</span><span>Reading calendar (iCal)...</span><span class="t-ok">✓</span></div>
+        <div class="t-line l4"><span class="t-ts">[04:03:03]</span><span>Found <span class="t-hl">3 commercial meetings</span> today</span></div>
+        <div class="t-line l5"><span class="t-ts">[04:03:05]</span><span>RAG search: <span class="t-hl">Vueling</span>...</span><span class="t-ok">✓</span></div>
+        <div class="t-line l6"><span class="t-ts">[04:03:06]</span><span>RAG search: <span class="t-hl">Sesé</span>...</span><span class="t-ok">✓</span></div>
+        <div class="t-line l7"><span class="t-ts">[04:03:08]</span><span>Generating briefing with GPT-4o<span class="t-dim">...</span></span></div>
+        <div class="t-line l8"><span class="t-ts">[04:04:12]</span><span>Email sent → <span class="t-hl">joan.boluda@actualgroup.com</span></span><span class="t-ok">✓</span></div>
+        <div class="t-line l9"><span class="t-ts">[04:04:13]</span><span class="t-ok">Briefing delivered. Done.</span></div>
+        <div class="t-cursor"></div>
+      </div>
     </div>
   </div>
 </section>
