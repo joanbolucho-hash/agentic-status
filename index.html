@@ -244,11 +244,15 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
   color: var(--gray); text-transform: uppercase; line-height: 1.4;
 }
 
-/* Sistema intro — full width, no grid */
+/* Sistema intro — horizontal 2-col */
 .sistema-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: end;
   margin-bottom: 56px;
-  max-width: 560px;
 }
+.sistema-top .section-label { margin-bottom: 16px; }
 
 /* Compact terminal (in timeline right col) */
 .compact-terminal .terminal-window {
@@ -438,7 +442,8 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 }
 .sistema .section-label { color: rgba(255,255,255,0.28); }
 .sistema .section-label::after { opacity: 1; background: rgba(255,255,255,0.2); }
-.wat-intro { font-size: clamp(16px, 2vw, 20px); font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.5); max-width: 580px; margin-bottom: 64px; }
+.wat-heading { font-size: clamp(28px, 3.5vw, 46px); font-weight: 900; letter-spacing: -0.03em; color: var(--white); line-height: 1.05; }
+.wat-intro { font-size: clamp(14px, 1.5vw, 17px); font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.45); }
 .wat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); }
 .wat-col {
   background: var(--near-black);
@@ -606,6 +611,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 
 
   .sistema { padding: 80px 24px; }
+  .sistema-top { grid-template-columns: 1fr; gap: 24px; }
   .wat-grid { grid-template-columns: 1fr; gap: 1px; }
   .wat-col { padding: 36px 28px; }
 
@@ -651,6 +657,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
     <a href="#timeline"    class="nav-link">Un día</a>
     <a href="#sistema"     class="nav-link">Sistema</a>
     <a href="#capacidades" class="nav-link">Capacidades</a>
+    <a href="#seguridad"   class="nav-link">Seguridad</a>
     <a href="status.html"  class="nav-pill">Status →</a>
   </nav>
   <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-mobile">
@@ -663,6 +670,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
   <a href="#timeline">Un día con AGENTIC</a>
   <a href="#sistema">Cómo funciona</a>
   <a href="#capacidades">Capacidades</a>
+  <a href="#seguridad">Seguridad</a>
   <a href="status.html" class="nm-pill">Status en vivo →</a>
 </nav>
 
@@ -844,8 +852,11 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 <!-- ▸ SISTEMA (WAT) -->
 <section class="sistema" id="sistema">
   <div class="sistema-top">
-    <div class="section-label reveal">Cómo está construido</div>
-    <p class="wat-intro reveal d1">Tres capas que se coordinan sin rozamiento: las instrucciones definen el proceso, el agente razona y decide, las herramientas ejecutan con precisión.</p>
+    <div>
+      <div class="section-label reveal">Cómo está construido</div>
+      <h2 class="wat-heading reveal d1">WAT framework.</h2>
+    </div>
+    <p class="wat-intro reveal d2">Tres capas que se coordinan sin rozamiento: las instrucciones definen el proceso, el agente razona y decide, las herramientas ejecutan con precisión.</p>
   </div>
   <div class="wat-grid">
     <div class="wat-col reveal d1">
