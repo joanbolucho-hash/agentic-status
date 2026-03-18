@@ -526,6 +526,123 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
 .stack-name { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 4px; }
 .stack-detail { font-size: 12px; font-weight: 400; color: var(--gray); line-height: 1.65; }
 
+/* ─── ACTIVIDAD RECIENTE (mini) ──────────────────────────────────────────────── */
+.activity-mini {
+  background: var(--near-black);
+  padding: 100px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.activity-mini::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.activity-mini .section-label { color: rgba(255,255,255,0.28); }
+.activity-mini .section-label::after { opacity: 1; background: rgba(255,255,255,0.2); }
+
+.activity-mini-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 48px;
+}
+.activity-mini-headline {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.activity-mini-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.activity-mini-link {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.activity-mini-link:hover { opacity: 0.7; }
+
+.activity-mini-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.feed-list-mini {
+  max-height: 320px;
+  overflow: hidden;
+}
+
+.feed-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.15s;
+}
+.feed-entry:hover { background: rgba(255,255,255,0.03); }
+.feed-entry:last-child { border-bottom: none; }
+
+.feed-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.feed-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.feed-ts {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  min-width: 110px;
+  letter-spacing: 0.5px;
+}
+
+.feed-msg {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.feed-empty {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
 /* ─── SEGURIDAD ──────────────────────────────────────────────────────────────── */
 .security {
   background: var(--black);
@@ -624,6 +741,9 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
   .stack { padding: 80px 24px; }
   .stack-layout { grid-template-columns: 1fr; gap: 48px; }
 
+  .activity-mini { padding: 80px 24px; }
+  .activity-mini-layout { grid-template-columns: 1fr; gap: 32px; }
+
   footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
   .footer-right { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
@@ -636,7 +756,10 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 
   .timeline-sec { padding: 64px 20px; }
 
-  .sistema, .capacidades, .stack { padding: 64px 20px; }
+  .sistema, .capacidades, .stack, .activity-mini { padding: 64px 20px; }
+  .feed-ts { min-width: 80px; font-size: 10px; }
+  .feed-icon { display: none; }
+  .feed-entry { padding: 10px 14px; gap: 8px; }
   .quote-strip { padding: 52px 20px; }
   .wat-num { font-size: 72px; }
 
@@ -971,6 +1094,25 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
           <div class="stack-name">WeasyPrint · LaunchAgents macOS</div>
           <div class="stack-detail">Propuestas HTML → PDF con calidad de imprenta. Cinco daemons (workspace_watcher, granola_watcher, healthcheck, git-sync, zoho-sync) corriendo permanentemente — se reinician solos si fallan.</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ▸ ACTIVIDAD RECIENTE -->
+<section class="activity-mini" id="actividad">
+  <div class="section-label reveal">Actividad reciente</div>
+  <div class="activity-mini-layout">
+    <div class="reveal">
+      <div class="activity-mini-headline">El sistema<br>nunca para.</div>
+      <p class="activity-mini-sub">Commits, sincronizaciones y acciones de los daemons — en tiempo real.</p>
+      <a href="status.html#activity-feed" class="activity-mini-link">Ver toda la actividad →</a>
+    </div>
+    <div class="activity-mini-card reveal d1">
+      <div class="feed-list-mini" id="activity-feed-mini">
+<!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-18 13:13</span><span class="feed-msg">docs: CHANGELOG with activity feed entry</span></div>
+<!-- /ACTIVITY_FEED -->
       </div>
     </div>
   </div>

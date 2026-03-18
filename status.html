@@ -414,6 +414,110 @@ section { padding: 100px 48px; }
 .status-badge.amber  { background: rgba(245,158,11,0.1); color: #92400e; }
 .status-badge.red    { background: rgba(239,68,68,0.1);  color: #991b1b; }
 
+/* ─── ACTIVITY FEED SECTION ────────────────────────────────────────────────── */
+.section-activity {
+  background: var(--near-black);
+  position: relative;
+  overflow: hidden;
+}
+.section-activity::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.section-activity .section-label { color: rgba(255,255,255,0.35); }
+.section-activity .section-label::after { background: rgba(255,255,255,0.35); }
+
+.activity-headline {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 40px;
+  line-height: 1.1;
+}
+
+.activity-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.feed-list {
+  max-height: 520px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+.feed-list::-webkit-scrollbar { width: 4px; }
+.feed-list::-webkit-scrollbar-track { background: transparent; }
+.feed-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+
+.feed-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.15s;
+}
+.feed-entry:hover { background: rgba(255,255,255,0.03); }
+.feed-entry:last-child { border-bottom: none; }
+
+.feed-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.feed-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.feed-ts {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  min-width: 110px;
+  letter-spacing: 0.5px;
+}
+
+.feed-msg {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.feed-empty {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+  .feed-ts { min-width: 80px; font-size: 10px; }
+  .feed-icon { display: none; }
+  .feed-entry { padding: 10px 14px; gap: 8px; }
+}
+
 /* ─── CAPABILITIES SECTION ─────────────────────────────────────────────────── */
 .section-capabilities {
   background: var(--near-black);
@@ -780,7 +884,7 @@ footer {
       <div class="status-card-body">
         <div class="status-daemon">workspace_watcher</div>
         <div class="status-desc">Detecta y sube documentos nuevos automáticamente al vector store.</div>
-        <div class="status-meta">Última actividad: <!-- DAEMON:workspace_watcher -->2026-03-18 09:14:56<!-- /DAEMON --></div>
+        <div class="status-meta">Última actividad: <!-- DAEMON:workspace_watcher -->2026-03-18 12:51:11<!-- /DAEMON --></div>
       </div>
       <div class="status-badge green">Operativo</div>
     </div>
@@ -790,7 +894,7 @@ footer {
       <div class="status-card-body">
         <div class="status-daemon">granola_watcher</div>
         <div class="status-desc">Sincroniza transcripciones de reuniones de Granola al vector store.</div>
-        <div class="status-meta">Última actividad: <!-- DAEMON:granola_watcher -->2026-03-18 11:45:47<!-- /DAEMON --></div>
+        <div class="status-meta">Última actividad: <!-- DAEMON:granola_watcher -->2026-03-18 13:11:02<!-- /DAEMON --></div>
       </div>
       <div class="status-badge green">Operativo</div>
     </div>
@@ -825,6 +929,19 @@ footer {
       <div class="status-badge amber">Pendiente</div>
     </div>
 
+  </div>
+</section>
+
+<!-- ACTIVITY FEED SECTION -->
+<section class="section-activity">
+  <div class="section-label reveal">Actividad reciente</div>
+  <h2 class="activity-headline reveal d1">Lo que acaba<br>de pasar.</h2>
+  <div class="activity-card reveal d2">
+    <div class="feed-list" id="activity-feed">
+<!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-18 13:13</span><span class="feed-msg">docs: CHANGELOG with activity feed entry</span></div>
+<!-- /ACTIVITY_FEED -->
+    </div>
   </div>
 </section>
 
