@@ -343,13 +343,14 @@ a.speaker-card { text-decoration: none; color: inherit; display: block; }
   display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
 }
-.form-group input {
+.form-group input, .form-group select {
   width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.1);
   border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 14px;
   font-weight: 500; color: var(--black); background: var(--cream);
   transition: border-color 0.2s, box-shadow 0.2s; outline: none;
 }
-.form-group input:focus {
+.form-group select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+.form-group input:focus, .form-group select:focus {
   border-color: var(--red); box-shadow: 0 0 0 3px rgba(192,25,30,0.1);
 }
 .form-group input::placeholder { color: rgba(0,0,0,0.25); }
@@ -624,6 +625,22 @@ footer .footer-links a:hover { color: white; }
           <label for="reg-role">Cargo</label>
           <input type="text" id="reg-role" name="cargo" placeholder="Tu cargo (opcional)">
         </div>
+        <div class="form-group">
+          <label for="reg-phone">Teléfono móvil</label>
+          <input type="tel" id="reg-phone" name="telefono" placeholder="+34 600 000 000" pattern="[\+]?[\d\s\-]{6,15}">
+        </div>
+        <div class="form-group">
+          <label for="reg-size">Tamaño de empresa</label>
+          <select id="reg-size" name="tamano_empresa">
+            <option value="" disabled selected>Selecciona un rango</option>
+            <option value="1-10">1–10 empleados</option>
+            <option value="11-50">11–50 empleados</option>
+            <option value="51-200">51–200 empleados</option>
+            <option value="201-500">201–500 empleados</option>
+            <option value="501-1000">501–1.000 empleados</option>
+            <option value="1001+">+1.000 empleados</option>
+          </select>
+        </div>
         <button type="submit" class="form-submit" id="reg-submit">Confirmar registro →</button>
       </form>
     </div>
@@ -805,6 +822,8 @@ form.addEventListener('submit', (e) => {
     email: document.getElementById('reg-email').value,
     empresa: document.getElementById('reg-company').value,
     cargo: document.getElementById('reg-role').value,
+    telefono: document.getElementById('reg-phone').value,
+    tamano_empresa: document.getElementById('reg-size').value,
     fecha: new Date().toISOString()
   };
 
