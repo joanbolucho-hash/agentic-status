@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 10:25</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 10:10</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 09:55</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 09:40</span><span class="feed-msg">Sincronización completada</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-19 00:46</span><span class="feed-msg">📋 Documento registrado en el catálogo: 2026-03-18_followup-zoho-AT.pdf</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-19 00:46</span><span class="feed-msg">📤 Nuevo documento indexado en la base de conocimiento: 2026-03-18_followup-zoho-AT.html</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-19 00:46</span><span class="feed-msg">📋 Documento registrado en el catálogo: cl-proposal-generator/outputs/2026-03-18_followup-zoho-AT.html</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-19 00:46</span><span class="feed-msg">📋 Documento registrado en el catálogo: 2026-03-18_followup-zoho-AT.html</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,91 +1097,111 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
-        <div class="entry-version">v2.2 — 18 marzo 2026</div>
+        <div class="entry-version">v2.4 — 19 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">El sistema genera seguimientos post-reunión automáticamente: detecta compromisos en la conversación, encuentra el email del asistente en Calendar y prepara un borrador listo para enviar</div>
-          <div class="entry-item">Corregido un error que impedía localizar asistentes en el calendario — ahora funciona con todas las zonas horarias</div>
-          <div class="entry-item">Nuevo sistema de auditoría interna: verifica que todas las automatizaciones funcionan y detecta las que dependen de memoria humana</div>
+          <div class="entry-item"><span class="entry-tag">status-page</span> Leyenda visual en el feed de actividad (index + status): colores, iconos y significado de cada tipo de entrada</div>
+          <div class="entry-item"><span class="entry-tag">status-page</span> Fix: commits "sync:" ahora se clasifican como mantenimiento (blanco) en vez de cambio relevante (rojo)</div>
+          <div class="entry-item"><span class="entry-tag">status-page</span> Hardening: generate_status_page.py requiere STATUS_AUTOMATION_CONTEXT (hook/ci/wrapper) — bloquea ejecución manual directa</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d1">
-        <div class="entry-version">v2.1 — 18 marzo 2026</div>
+        <div class="entry-version">v2.3 — 18 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">Nuevo template base para documentos comerciales: 6 páginas con diseño consistente que se reutiliza en cada propuesta</div>
-          <div class="entry-item">Generador automático de documentos: introduce los datos del cliente y el sistema produce un PDF con logos del sector, equipo y ecosistema tecnológico</div>
-          <div class="entry-item">Los logos de referencia se seleccionan automáticamente por sector (energía, tech, pharma, alimentación, etc.)</div>
+          <div class="entry-item"><span class="entry-tag">validate-proposals</span> Workflow added to GitHub Actions — validates client-facing HTML on push/PR with self-test fixtures</div>
+          <div class="entry-item"><span class="entry-tag">validate-proposals</span> Fix: workflow_dispatch default is now smoke-test (self-test only) — full legacy sweep opt-in via <code>validate_all=true</code></div>
+          <div class="entry-item"><span class="entry-tag">pre-commit</span> Fix: <code>set -euo pipefail</code> + grep no-match pipeline caused silent commit failures on non-py/sh/html/json files</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d2">
-        <div class="entry-version">v2.0 — 18 marzo 2026</div>
+        <div class="entry-version">v2.2 — 18 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">Panel de actividad en tiempo real: cada cambio del sistema aparece en la página de estado con icono, timestamp y descripción</div>
-          <div class="entry-item">Seguimiento post-reunión con documento PDF adjunto personalizado por sector y cliente</div>
-          <div class="entry-item">Sistema de reglas de calidad que verifica cada documento antes de generarlo</div>
+          <div class="entry-item"><span class="entry-tag">health-check</span> Reescrito health-check.sh: 9 checks que ejecutan componentes y verifican output real (feed entries, PIDs, sync status) — ya no solo verifica config/existencia. Produce health-report.json consumido por session-startup.sh</div>
+          <div class="entry-item"><span class="entry-tag">status</span> Fix: generate_status_page.py fallaba con <code>str | None</code> en Python 3.9 — eliminado type hint incompatible</div>
+          <div class="entry-item"><span class="entry-tag">golden-rules</span> #3 reformulada: "VERIFY = EXECUTE + CHECK OUTPUT" — nunca declarar que algo funciona sin ejecutarlo</div>
         </div>
       </div>
 
       <div class="changelog-older" id="changelog-older">
       <div class="timeline-entry reveal d3">
-        <div class="entry-version">v1.9 — 17 marzo 2026</div>
+        <div class="entry-version">v2.1 — 18 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">Sección de seguridad en el sitio público: repositorio privado, credenciales cifradas, base de conocimiento aislada y trazabilidad completa</div>
-          <div class="entry-item">Historial de versiones completo en el panel de estado, con versiones anteriores colapsables</div>
-          <div class="entry-item">El número de versión se actualiza solo en cada mejora — sin intervención manual</div>
+          <div class="entry-item"><span class="entry-tag">cl-proposal-generator</span> Template base <code>base-followup.html</code>: 6 páginas (cover, contexto, servicios, proceso, referencias+ecosistema, contacto) con placeholders, CSS del gold standard Younited</div>
+          <div class="entry-item"><span class="entry-tag">cl-proposal-generator</span> <code>generate_document.py</code>: script autónomo que llena template, embebe logos/fotos b64, genera PDF con WeasyPrint, y opcionalmente crea draft Gmail</div>
+          <div class="entry-item"><span class="entry-tag">cl-proposal-generator</span> <code>config/sector-logos.json</code>: mapping de 12 logos por sector (energy, fintech, pharma, food, services, utilities, default)</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d4">
+        <div class="entry-version">v2.0 — 18 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">status</span> Activity feed en status.html (15 entradas) e index.html (5 entradas): commits, daemons y watcher logs con timestamps, iconos y color-coding</div>
+          <div class="entry-item"><span class="entry-tag">veolia</span> Follow-up post-reunión Lidia Fernández: PDF branded 4 páginas (employer branding + BMS formación + equipo) + draft con attachment en Gmail</div>
+          <div class="entry-item"><span class="entry-tag">veolia</span> v4 follow-up: 7 páginas con logos sector-relevantes (grid 4×3), ecosistema tecnológico (8 partners), stats rojos, título Karim corregido</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v1.9 — 17 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">agentic-status/index.html</span> Sección de seguridad añadida: repositorio privado, credenciales cifradas, bbdd aislada, trazabilidad completa</div>
+          <div class="entry-item"><span class="entry-tag">agentic-status/index.html</span> Nav actualizado con enlace a Seguridad</div>
+          <div class="entry-item"><span class="entry-tag">agentic-status/index.html</span> WAT intro rediseñado en 2 columnas horizontales — elimina espacio vacío superior derecha</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v1.8 — 17 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">cl-webinar-launch</span> New subproject: webinar "IA vs IA: La batalla por el talento" — AT × Teamtailor, 28 Apr 2026</div>
+          <div class="entry-item"><span class="entry-tag">cl-webinar-launch</span> Landing page live at joanbolucho-hash.github.io/agentic-status/webinar/ — AT brand, particles, countdown, scroll reveals</div>
+          <div class="entry-item"><span class="entry-tag">cl-webinar-launch</span> Registration form → Google Apps Script → Google Sheet (hidden iframe POST)</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v1.7 — 17 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">Sitio público rediseñado: sección WAT con iniciales en tipografía outline, sección de stack con detalle de cada herramienta</div>
+          <div class="entry-item"><span class="entry-tag">run_briefing</span> Pre-flight check: falla rápido si faltan variables de entorno</div>
+          <div class="entry-item"><span class="entry-tag">run_briefing</span> Idempotencia: no envía dos veces si el briefing ya existe hoy</div>
+          <div class="entry-item"><span class="entry-tag">run_briefing</span> Degradación elegante: si GPT-4o falla, envía email mínimo con el calendario</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d5">
         <div class="entry-version">v1.6 — 17 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">El briefing diario ya no depende de que el ordenador esté encendido — corre automáticamente en la nube cada mañana a las 4am</div>
-          <div class="entry-item">El email incluye contexto de cada reunión comercial extraído de la base de conocimiento en tiempo real</div>
-          <div class="entry-item">El sistema de estado público se actualiza solo en cada cambio, sin intervención manual</div>
+          <div class="entry-item"><span class="entry-tag">github-actions</span> Briefing diario migrado a la nube: corre a las 4am sin Mac ni Claude abierto. GitHub Actions + GPT-4o + iCal + Gmail SMTP.</div>
+          <div class="entry-item"><span class="entry-tag">github-actions</span> Status page deploy también en la nube: se actualiza automáticamente en cada push o a las 8am.</div>
+          <div class="entry-item"><span class="entry-tag">run_briefing.py</span> Script cloud standalone: lee iCal, busca RAG, genera HTML con GPT-4o, envía por SMTP. Sin dependencia de MCPs ni Anthropic.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d5">
         <div class="entry-version">v1.5 — 17 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">Fichas de inteligencia por cliente: historial de reuniones, propuestas enviadas y contactos clave en un solo lugar</div>
-          <div class="entry-item">El sistema detecta nuevas reuniones y actualiza los perfiles de cliente automáticamente</div>
-          <div class="entry-item">Integración con Zoho CRM en desarrollo: sincronización bidireccional de contactos y oportunidades</div>
+          <div class="entry-item"><span class="entry-tag">cl-client-profiles</span> 19 client intelligence cards generados: Vueling, Sesé, Moventia, Damm, Megasa, Younited, y más. Un solo archivo por cliente en lugar de buscar en 4 sitios.</div>
+          <div class="entry-item"><span class="entry-tag">workspace_watcher</span> Ahora regenera el perfil del cliente automáticamente cuando detecta una nueva propuesta o transcript.</div>
+          <div class="entry-item"><span class="entry-tag">cl-zoho</span> Subproyecto completo: auth, API client, sync (Zoho→workspace), push (workspace→Zoho). Listo para conectar cuando hagamos el OAuth setup juntos.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d5">
         <div class="entry-version">v1.4 — 16 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">Reconocimiento visual activado: el sistema entiende logos, diagramas y presentaciones, no solo texto</div>
-          <div class="entry-item">Briefing diario rediseñado con formato visual y propuestas adjuntas cuando la reunión lo requiere</div>
-          <div class="entry-item">Sistema de versiones en producción: cada mejora queda registrada y notificada automáticamente</div>
+          <div class="entry-item"><span class="entry-tag">RAG multimodal</span> 269 imágenes procesadas con Vision API (160 logos, 54 diagramas, 22 screenshots, 20 fotos) → todas subidas al vector store. El RAG ahora entiende imágenes.</div>
+          <div class="entry-item"><span class="entry-tag">agentic-model.html</span> Página editorial generada: explica el modelo AGENTIC completo con brand AT, animaciones y diseño de producto.</div>
+          <div class="entry-item"><span class="entry-tag">CHANGELOG</span> Sistema de versiones + notificación en sesión + sección en briefing diario activados.</div>
         </div>
       </div>
 
       <div class="timeline-entry reveal d5">
         <div class="entry-version">v1.3 — 16 marzo 2026</div>
         <div class="entry-items">
-          <div class="entry-item">Catálogo central de documentos: todos los informes, propuestas y briefings generados, indexados y buscables</div>
-          <div class="entry-item">Cada documento generado queda disponible en el sistema RAG de inmediato</div>
-          <div class="entry-item">Sincronización automática con GitHub en cada cambio del workspace</div>
-        </div>
-      </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v1.2 — 16 marzo 2026</div>
-        <div class="entry-items">
-          <div class="entry-item">Sistema RAG completamente operativo: 1973+ documentos históricos disponibles al instante</div>
-          <div class="entry-item">Base de conocimiento centralizada: toda la información del equipo en un único lugar accesible</div>
-          <div class="entry-item">MCP de conocimiento en producción con búsqueda por cliente, fecha y categoría</div>
+          <div class="entry-item"><span class="entry-tag">register-document.sh</span> Ahora sube automáticamente al vector store de OpenAI en cada registro. Antes era solo git + JSON.</div>
+          <div class="entry-item"><span class="entry-tag">document-registry.json</span> Creado con 25 documentos históricos (propuestas, meeting preps, plantillas, docs internos).</div>
+          <div class="entry-item"><span class="entry-tag">find-document.sh</span> Nueva herramienta: búsqueda en el registry por cliente, tipo, contacto, tags, estado.</div>
         </div>
       </div>
       </div>
