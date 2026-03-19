@@ -643,37 +643,6 @@ header.compact .nav-pill { padding: 6px 14px; font-size: 10px; }
   letter-spacing: 1px;
 }
 
-/* ─── FEED LEGEND ─────────────────────────────────────────────────────────── */
-.feed-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 24px;
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  background: rgba(255,255,255,0.02);
-}
-.feed-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-.feed-legend-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.feed-legend-icon {
-  display: flex;
-  align-items: center;
-  opacity: 0.5;
-  flex-shrink: 0;
-}
-
 /* ─── SEGURIDAD ──────────────────────────────────────────────────────────────── */
 .security {
   background: var(--black);
@@ -1061,7 +1030,7 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
     <p class="quote-text">
       "El sistema no te reemplaza. <strong>Te libera para hacer lo que solo tú puedes hacer:</strong> construir la relación, cerrar la propuesta, entender al cliente."
     </p>
-    <div class="quote-attr">Actual Talent · Workspace AGENTIC <!-- VERSION -->v2.4<!-- /VERSION --></div>
+    <div class="quote-attr">Actual Talent · Workspace AGENTIC <!-- VERSION -->v2.3<!-- /VERSION --></div>
   </div>
 </section>
 
@@ -1140,40 +1109,16 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
       <a href="status.html#activity-feed" class="activity-mini-link">Ver toda la actividad →</a>
     </div>
     <div class="activity-mini-card reveal d1">
-<!-- FEED_LEGEND -->
-      <div class="feed-legend">
-        <div class="feed-legend-item">
-          <span class="feed-legend-dot" style="background:#C0191E"></span>
-          <svg class="feed-legend-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg>
-          Cambio relevante
-        </div>
-        <div class="feed-legend-item">
-          <span class="feed-legend-dot" style="background:rgba(255,255,255,0.45)"></span>
-          <svg class="feed-legend-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg>
-          Mantenimiento
-        </div>
-        <div class="feed-legend-item">
-          <span class="feed-legend-dot" style="background:#22C55E"></span>
-          <svg class="feed-legend-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
-          Daemon activo
-        </div>
-        <div class="feed-legend-item">
-          <span class="feed-legend-dot" style="background:#F59E0B"></span>
-          <svg class="feed-legend-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          Error de watcher
-        </div>
-      </div>
-<!-- /FEED_LEGEND -->
       <div class="feed-list-mini" id="activity-feed-mini">
 <!-- ACTIVITY_FEED -->
-<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 08:53</span><span class="feed-msg">Corregida sincronización de archivos</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 08:39</span><span class="feed-msg">Sincronización completada</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 08:24</span><span class="feed-msg">Sincronización completada</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 08:09</span><span class="feed-msg">Sincronización completada</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 02:28</span><span class="feed-msg">Integración con calendario mejorada</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 02:20</span><span class="feed-msg">Registro de cambios actualizado</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 02:20</span><span class="feed-msg">Operational hardening — watcher proof markers + run IDs</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-19 02:15</span><span class="feed-msg">Estadísticas del sistema actualizadas</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-18 22:17</span><span class="feed-msg">Propuesta comercial generada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-18 22:09</span><span class="feed-msg">Propuesta comercial generada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-18 22:03</span><span class="feed-msg">Registro de cambios actualizado</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-18 22:03</span><span class="feed-msg">Propuesta comercial generada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-18 21:54</span><span class="feed-msg">Propuesta comercial generada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-18 20:27</span><span class="feed-msg">✅ Ciclo de monitorización completado — archivos procesados</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-18 20:27</span><span class="feed-msg">📤 Nuevo documento indexado en la base de conocimiento: 2026-03-18_followup-testcorp-AT.html</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-18 20:27</span><span class="feed-msg">📋 Documento registrado en el catálogo: cl-proposal-generator/outputs/2026-03-18_followup-testcorp-AT.html</span></div>
 <!-- /ACTIVITY_FEED -->
       </div>
     </div>
@@ -1232,13 +1177,13 @@ footer { background: var(--red); padding: 52px 48px; display: flex; align-items:
 <footer>
   <div class="footer-brand">
     <div class="footer-text">
-      <div class="footer-name"><span class="wm-footer">A</span>GEN<span class="wm-footer">T</span>IC <!-- VERSION -->v2.4<!-- /VERSION --></div>
+      <div class="footer-name"><span class="wm-footer">A</span>GEN<span class="wm-footer">T</span>IC <!-- VERSION -->v2.3<!-- /VERSION --></div>
       <div class="footer-sub">Actual Talent · Built with Claude · 2026</div>
     </div>
   </div>
   <div class="footer-right">
     <a href="status.html" class="footer-link">Status →</a>
-    <span class="footer-meta"><!-- STAT:generated_date -->19 marzo 2026<!-- /STAT --></span>
+    <span class="footer-meta"><!-- STAT:generated_date -->18 marzo 2026<!-- /STAT --></span>
   </div>
 </footer>
 
