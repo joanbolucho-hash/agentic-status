@@ -137,17 +137,17 @@
       overflow: hidden;
       transition: opacity .3s ease, transform .34s cubic-bezier(.4,0,.2,1);
     }
-    /* Odd events: card LEFT → panel extends RIGHT */
+    /* Odd nth-child = Events 2,4,6 → card LEFT → panel extends LEFT (outward) */
     .ev:nth-child(odd) .ev-expand {
-      left: 100%; margin-left: -1px;
-      border-left: 2px solid var(--red);
-      transform: translateX(10px);
-    }
-    /* Even events: card RIGHT → panel extends LEFT */
-    .ev:nth-child(even) .ev-expand {
       right: 100%; margin-right: -1px;
       border-right: 2px solid var(--red);
       transform: translateX(-10px);
+    }
+    /* Even nth-child = Events 1,3,5 → card RIGHT → panel extends RIGHT (outward) */
+    .ev:nth-child(even) .ev-expand {
+      left: 100%; margin-left: -1px;
+      border-left: 2px solid var(--red);
+      transform: translateX(10px);
     }
     /* CSS :hover propagates to parent through absolutely-positioned descendants */
     .ev-card:hover .ev-expand { opacity: 1; transform: translateX(0); pointer-events: auto; }
@@ -401,11 +401,19 @@
         <div class="ev-expand" aria-hidden="true">
           <span class="evx-eyebrow">Speakers · 1 Abril</span>
           <div class="evx-speakers-list">
-            <div class="evx-sp"><div class="evx-sp-name">Joan Boluda</div><div class="evx-sp-co">Actual Talent</div><div class="evx-sp-role">Business Development Manager</div></div>
-            <div class="evx-sp"><div class="evx-sp-name">Javier F. Santín</div><div class="evx-sp-co">Danone</div><div class="evx-sp-role">Global Employer Branding Lead</div></div>
+            <div class="evx-sp">
+              <div class="evx-sp-name">Joan Boluda</div>
+              <div class="evx-sp-co">Actual Talent</div>
+              <div class="evx-sp-role">20 años en selección compleja para el mercado español</div>
+            </div>
+            <div class="evx-sp">
+              <div class="evx-sp-name">Javier F. Santín</div>
+              <div class="evx-sp-co">Danone · Global Employer Branding Lead</div>
+              <div class="evx-sp-role">50 mercados · gestiona la propuesta de valor para candidatos que eligen empresa antes de que exista una vacante</div>
+            </div>
           </div>
           <div class="evx-divider"></div>
-          <p class="evx-pitch">Cómo las grandes marcas compiten por talento que no las busca activamente — desde dentro de una multinacional con 50 mercados.</p>
+          <p class="evx-pitch">La brecha entre empresas que atraen talento y las que lo persiguen se amplía cada mes.</p>
           <div class="evx-bg">Dan</div>
         </div>
       </div>
@@ -439,13 +447,24 @@
         <div class="ev-expand" aria-hidden="true">
           <span class="evx-eyebrow">Speakers · 28 Abril</span>
           <div class="evx-speakers-list">
-            <div class="evx-sp"><div class="evx-sp-name">Joan Boluda</div><div class="evx-sp-co">Actual Talent</div></div>
-            <div class="evx-sp"><div class="evx-sp-name">Marc Galanó</div><div class="evx-sp-co">Teamtailor</div><div class="evx-sp-role">Sales Manager España</div></div>
-            <div class="evx-sp"><div class="evx-sp-name">Toni Gimeno</div><div class="evx-sp-co">Inbound Recruiting</div><div class="evx-sp-role">Talent Clue · 8.000 alumnos</div></div>
-            <div class="evx-sp"><div class="evx-sp-name">Iker Jusué</div><div class="evx-sp-co">Navantia</div><div class="evx-sp-role">Head HR Digitalization &amp; Innovation</div></div>
+            <div class="evx-sp">
+              <div class="evx-sp-name">Marc Galanó</div>
+              <div class="evx-sp-co">Teamtailor · Sales Manager España</div>
+              <div class="evx-sp-role">Trabaja con cientos de equipos de RRHH — habla de patrones, no de producto</div>
+            </div>
+            <div class="evx-sp">
+              <div class="evx-sp-name">Toni Gimeno</div>
+              <div class="evx-sp-co">Inbound Recruiting · Talent Clue</div>
+              <div class="evx-sp-role">8.000 profesionales de RRHH formados · creador del método Inbound Recruiting</div>
+            </div>
+            <div class="evx-sp">
+              <div class="evx-sp-name">Iker Jusué</div>
+              <div class="evx-sp-co">Navantia · Head HR Digitalization</div>
+              <div class="evx-sp-role">14.000 personas · IA en selección industrial donde el margen de error es mínimo</div>
+            </div>
           </div>
           <div class="evx-divider"></div>
-          <p class="evx-pitch">El debate que define cómo van a contratar las empresas que quieran seguir siendo relevantes.</p>
+          <p class="evx-pitch">¿Quién gana cuando candidatos y empresas usan IA al mismo tiempo — y en dirección contraria?</p>
           <div class="evx-bg">IA</div>
         </div>
       </div>
@@ -477,11 +496,19 @@
         <div class="ev-expand" aria-hidden="true">
           <span class="evx-eyebrow">Speakers · 7 Mayo</span>
           <div class="evx-speakers-list">
-            <div class="evx-sp"><div class="evx-sp-name">Joan Boluda</div><div class="evx-sp-co">Actual Talent</div></div>
-            <div class="evx-sp"><div class="evx-sp-name">Enrique Balboa</div><div class="evx-sp-co">Damm</div><div class="evx-sp-role">International HR Director</div></div>
+            <div class="evx-sp">
+              <div class="evx-sp-name">Joan Boluda</div>
+              <div class="evx-sp-co">Actual Talent</div>
+              <div class="evx-sp-role">Presenta los números que nadie quiere calcular — el coste real de contratar mal</div>
+            </div>
+            <div class="evx-sp">
+              <div class="evx-sp-name">Enrique Balboa</div>
+              <div class="evx-sp-co">Damm · International HR Director</div>
+              <div class="evx-sp-role">50+ mercados (EEUU, China, Senegal) · ha externalizado toda contratación fuera de Barcelona</div>
+            </div>
           </div>
           <div class="evx-divider"></div>
-          <p class="evx-pitch">Gestionar talento en 50 mercados con un equipo que no puede crecer al mismo ritmo que la empresa — desde dentro del proceso de cambio.</p>
+          <p class="evx-pitch">Empresa de 150 años expandiéndose en 50 mercados con la agilidad de una startup — desde dentro del proceso.</p>
           <div class="evx-bg">Da</div>
         </div>
       </div>
@@ -517,22 +544,22 @@
           <div class="evx-speakers-list">
             <div class="evx-sp">
               <div class="evx-sp-name">Joan Boluda</div>
-              <div class="evx-sp-co">Actual Talent</div>
-              <div class="evx-sp-role">Facilitador</div>
+              <div class="evx-sp-co">Actual Talent · Facilitador</div>
+              <div class="evx-sp-role">En una sala de 20 CHROs, hace las preguntas que nadie se atreve a hacer</div>
             </div>
             <div class="evx-sp">
               <div class="evx-sp-name">Raquel Pamies</div>
-              <div class="evx-sp-co">Steelter</div>
-              <div class="evx-sp-role">Co-anfitriona</div>
+              <div class="evx-sp-co">Steelter · Co-anfitriona</div>
+              <div class="evx-sp-role">Consultora HR tech · trabaja con empresas de 200 a 600 empleados que quieren hacer RRHH diferente</div>
             </div>
             <div class="evx-sp">
               <div class="evx-sp-name">Xavi Sáez</div>
-              <div class="evx-sp-co">KPI Xavi Sáez</div>
-              <div class="evx-sp-role">Dinámica de arranque</div>
+              <div class="evx-sp-co">KPI Xavi Sáez · Dinámica de arranque</div>
+              <div class="evx-sp-role">20 minutos estructurados para que cada asistente llegue con el problema claro</div>
             </div>
           </div>
           <div class="evx-divider"></div>
-          <p class="evx-pitch">20 plazas. Sin agenda fija. La conversación que los directores de RRHH tienen en privado, en público.</p>
+          <p class="evx-pitch">La conversación que los CHROs tienen en privado. 20 plazas seleccionadas — sin agenda preestablecida.</p>
           <div class="evx-bg">HR</div>
         </div>
       </div>
@@ -576,26 +603,22 @@
           <div class="evx-speakers-list">
             <div class="evx-sp">
               <div class="evx-sp-name">Sara Castro</div>
-              <div class="evx-sp-co">Danone France</div>
-              <div class="evx-sp-role">Directora RRHH · TA</div>
+              <div class="evx-sp-co">Danone France · Directora RRHH/TA</div>
+              <div class="evx-sp-role">2.000 contrataciones anuales en Francia · por qué el modelo interno tiene un techo</div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Representante</div>
-              <div class="evx-sp-co">Deel</div>
-              <div class="evx-sp-role">Talento Internacional</div>
-            </div>
-            <div class="evx-sp">
-              <div class="evx-sp-name">Joan Boluda</div>
-              <div class="evx-sp-co">Actual Talent</div>
+              <div class="evx-sp-name">Representante Deel</div>
+              <div class="evx-sp-co">Deel · Talento Internacional</div>
+              <div class="evx-sp-role">150+ países sin entidades locales · datos reales de empresas españolas que ya han movido ficha</div>
             </div>
             <div class="evx-sp">
               <div class="evx-sp-name">Jon Hernández</div>
-              <div class="evx-sp-co">Keynote</div>
-              <div class="evx-sp-role">Cierre de la noche</div>
+              <div class="evx-sp-co">Keynote de cierre</div>
+              <div class="evx-sp-role">630.000 suscriptores · 45M visualizaciones · keynote speaker en Microsoft, Repsol, Airbus</div>
             </div>
           </div>
           <div class="evx-divider"></div>
-          <p class="evx-pitch">El evento que cierra el semestre. Cuatro voces, una sola pregunta urgente.</p>
+          <p class="evx-pitch">El evento de cierre. Cámara Francesa, Danone, Deel y Jon Hernández — en una sola noche.</p>
           <div class="evx-bg">Jun</div>
         </div>
       </div>
@@ -636,20 +659,21 @@
             <div class="evx-sp">
               <div class="evx-sp-name">Joan Boluda</div>
               <div class="evx-sp-co">Actual Talent</div>
+              <div class="evx-sp-role">No hace presentaciones — tiene conversaciones con cada mesa, en privado</div>
             </div>
             <div class="evx-sp">
               <div class="evx-sp-name">Enrique Balboa</div>
-              <div class="evx-sp-co">Damm</div>
-              <div class="evx-sp-role">International HR Director</div>
+              <div class="evx-sp-co">Damm · International HR Director</div>
+              <div class="evx-sp-role">Empresa de 150 años · 50 mercados · toda contratación internacional externalizada</div>
             </div>
             <div class="evx-sp">
               <div class="evx-sp-name">Sophie Celani</div>
-              <div class="evx-sp-co">STADA España</div>
-              <div class="evx-sp-role">HR Business Partner</div>
+              <div class="evx-sp-co">STADA España · HR Business Partner</div>
+              <div class="evx-sp-role">€220M de facturación · cómo evaluaron y decidieron externalizar la captación de talento</div>
             </div>
           </div>
           <div class="evx-divider"></div>
-          <p class="evx-pitch">Dos casos reales de transformación. 20 decisores. Una decisión que muchos llevan meses posponiendo.</p>
+          <p class="evx-pitch">Dos casos reales. 20 decisores. Una decisión que muchos llevan meses posponiendo.</p>
           <div class="evx-bg">Cena</div>
         </div>
       </div>
