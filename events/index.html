@@ -127,11 +127,11 @@
     /* ── SIDE EXPAND PANEL ── */
     .ev-card { position: relative; }
     .ev-expand {
-      position: absolute; top: 0; bottom: 0; width: 250px;
+      position: absolute; top: 0; bottom: 0; width: 272px;
       background: linear-gradient(155deg, #161616 0%, #0c0c0c 100%);
       border: 1px solid rgba(255,255,255,.07);
       border-radius: 3px;
-      padding: 1.5rem 1.35rem;
+      padding: 1.4rem 1.25rem;
       opacity: 0; pointer-events: none; z-index: 30;
       display: flex; flex-direction: column; justify-content: center;
       overflow: hidden;
@@ -153,14 +153,16 @@
     .ev-card:hover .ev-expand { opacity: 1; transform: translateX(0); pointer-events: auto; }
 
     /* Panel content */
-    .evx-eyebrow { font-size: .52rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .6rem; }
-    .evx-speakers-list { display: flex; flex-direction: column; gap: .6rem; }
-    .evx-sp { padding-left: .65rem; border-left: 1px solid rgba(255,255,255,.1); }
-    .evx-sp-name { font-family: 'Playfair Display', serif; font-size: .9rem; font-weight: 700; color: #fff; line-height: 1.2; }
-    .evx-sp-co { font-size: .58rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: rgba(255,255,255,.6); margin-top: .12rem; }
-    .evx-sp-role { font-size: .55rem; color: rgba(255,255,255,.36); margin-top: .07rem; line-height: 1.35; }
-    .evx-divider { height: 1px; background: rgba(255,255,255,.08); margin: .75rem 0; flex-shrink: 0; }
-    .evx-pitch { font-size: .63rem; line-height: 1.68; color: rgba(255,255,255,.44); }
+    .evx-eyebrow { font-size: .52rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .55rem; }
+    .evx-speakers-list { display: flex; flex-direction: column; gap: .55rem; }
+    .evx-sp { display: flex; align-items: flex-start; gap: .5rem; }
+    .evx-sp-photo { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: center top; border: 1.5px solid rgba(255,255,255,.18); flex-shrink: 0; margin-top: .08rem; }
+    .evx-sp-info { flex: 1; min-width: 0; padding-left: .55rem; border-left: 1px solid rgba(255,255,255,.1); }
+    .evx-sp-name { font-family: 'Playfair Display', serif; font-size: .87rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .evx-sp-co { font-size: .57rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: rgba(255,255,255,.55); margin-top: .1rem; }
+    .evx-sp-role { font-size: .54rem; color: rgba(255,255,255,.32); margin-top: .06rem; line-height: 1.35; }
+    .evx-divider { height: 1px; background: rgba(255,255,255,.08); margin: .7rem 0; flex-shrink: 0; }
+    .evx-pitch { font-size: .62rem; line-height: 1.68; color: rgba(255,255,255,.44); }
     /* Decorative bg letterform */
     .evx-bg { position: absolute; bottom: -.8rem; right: -.3rem; font-family: 'Playfair Display', serif; font-size: 5.5rem; font-weight: 900; color: rgba(255,255,255,.022); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -.04em; }
     @media (max-width: 860px) { .ev-expand { display: none; } }
@@ -402,14 +404,19 @@
           <span class="evx-eyebrow">Speakers · 1 Abril</span>
           <div class="evx-speakers-list">
             <div class="evx-sp">
-              <div class="evx-sp-name">Joan Boluda</div>
-              <div class="evx-sp-co">Actual Talent</div>
-              <div class="evx-sp-role">20 años en selección compleja para el mercado español</div>
+              <img class="evx-sp-photo" src="../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Joan Boluda</div>
+                <div class="evx-sp-co">Actual Talent · BD Manager</div>
+                <div class="evx-sp-role">20 años en selección compleja · mercado español</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Javier F. Santín</div>
-              <div class="evx-sp-co">Danone · Global Employer Branding Lead</div>
-              <div class="evx-sp-role">50 mercados · gestiona la propuesta de valor para candidatos que eligen empresa antes de que exista una vacante</div>
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Javier F. Santín</div>
+                <div class="evx-sp-co">Danone · Global EB Lead</div>
+                <div class="evx-sp-role">50 mercados · atracción pasiva vs activa</div>
+              </div>
             </div>
           </div>
           <div class="evx-divider"></div>
@@ -448,19 +455,28 @@
           <span class="evx-eyebrow">Speakers · 28 Abril</span>
           <div class="evx-speakers-list">
             <div class="evx-sp">
-              <div class="evx-sp-name">Marc Galanó</div>
-              <div class="evx-sp-co">Teamtailor · Sales Manager España</div>
-              <div class="evx-sp-role">Trabaja con cientos de equipos de RRHH — habla de patrones, no de producto</div>
+              <img class="evx-sp-photo" src="../webinar/assets/speakers/mark-galano.jpg" alt="Marc Galanó">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Marc Galanó</div>
+                <div class="evx-sp-co">Teamtailor · Sales Manager España</div>
+                <div class="evx-sp-role">Patrones de cientos de empresas · datos del ATS</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Toni Gimeno</div>
-              <div class="evx-sp-co">Inbound Recruiting · Talent Clue</div>
-              <div class="evx-sp-role">8.000 profesionales de RRHH formados · creador del método Inbound Recruiting</div>
+              <img class="evx-sp-photo" src="../webinar/assets/speakers/tony-gimeno.jpg" alt="Toni Gimeno">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Toni Gimeno</div>
+                <div class="evx-sp-co">Inbound Recruiting · Talent Clue</div>
+                <div class="evx-sp-role">8.000 profesionales formados · método Inbound</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Iker Jusué</div>
-              <div class="evx-sp-co">Navantia · Head HR Digitalization</div>
-              <div class="evx-sp-role">14.000 personas · IA en selección industrial donde el margen de error es mínimo</div>
+              <img class="evx-sp-photo" src="../webinar/assets/speakers/iker-jusue.jpg" alt="Iker Jusué">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Iker Jusué</div>
+                <div class="evx-sp-co">Navantia · Head HR Digitalization</div>
+                <div class="evx-sp-role">14.000 personas · IA en industria de defensa</div>
+              </div>
             </div>
           </div>
           <div class="evx-divider"></div>
@@ -497,18 +513,23 @@
           <span class="evx-eyebrow">Speakers · 7 Mayo</span>
           <div class="evx-speakers-list">
             <div class="evx-sp">
-              <div class="evx-sp-name">Joan Boluda</div>
-              <div class="evx-sp-co">Actual Talent</div>
-              <div class="evx-sp-role">Presenta los números que nadie quiere calcular — el coste real de contratar mal</div>
+              <img class="evx-sp-photo" src="../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Joan Boluda</div>
+                <div class="evx-sp-co">Actual Talent · BD Manager</div>
+                <div class="evx-sp-role">Los números que nadie quiere calcular</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Enrique Balboa</div>
-              <div class="evx-sp-co">Damm · International HR Director</div>
-              <div class="evx-sp-role">50+ mercados (EEUU, China, Senegal) · ha externalizado toda contratación fuera de Barcelona</div>
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Enrique Balboa</div>
+                <div class="evx-sp-co">Damm · International HR Director</div>
+                <div class="evx-sp-role">50+ mercados · toda contratación externalizada</div>
+              </div>
             </div>
           </div>
           <div class="evx-divider"></div>
-          <p class="evx-pitch">Empresa de 150 años expandiéndose en 50 mercados con la agilidad de una startup — desde dentro del proceso.</p>
+          <p class="evx-pitch">150 años de empresa. 50 mercados. El equipo de RRHH que no puede crecer al mismo ritmo.</p>
           <div class="evx-bg">Da</div>
         </div>
       </div>
@@ -543,19 +564,26 @@
           <span class="evx-eyebrow">Co-anfitriones · 22 Mayo</span>
           <div class="evx-speakers-list">
             <div class="evx-sp">
-              <div class="evx-sp-name">Joan Boluda</div>
-              <div class="evx-sp-co">Actual Talent · Facilitador</div>
-              <div class="evx-sp-role">En una sala de 20 CHROs, hace las preguntas que nadie se atreve a hacer</div>
+              <img class="evx-sp-photo" src="../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Joan Boluda</div>
+                <div class="evx-sp-co">Actual Talent · Facilitador</div>
+                <div class="evx-sp-role">Hace las preguntas que nadie se atreve a hacer</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Raquel Pamies</div>
-              <div class="evx-sp-co">Steelter · Co-anfitriona</div>
-              <div class="evx-sp-role">Consultora HR tech · trabaja con empresas de 200 a 600 empleados que quieren hacer RRHH diferente</div>
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Raquel Pamies</div>
+                <div class="evx-sp-co">Steelter · Co-anfitriona</div>
+                <div class="evx-sp-role">HR tech · empresas 200-600 empleados</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Xavi Sáez</div>
-              <div class="evx-sp-co">KPI Xavi Sáez · Dinámica de arranque</div>
-              <div class="evx-sp-role">20 minutos estructurados para que cada asistente llegue con el problema claro</div>
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Xavi Sáez</div>
+                <div class="evx-sp-co">KPI Xavi Sáez · Dinámica arranque</div>
+                <div class="evx-sp-role">20 min estructurados — cada CHRO llega con el problema claro</div>
+              </div>
             </div>
           </div>
           <div class="evx-divider"></div>
@@ -602,19 +630,32 @@
           <span class="evx-eyebrow">Speakers · 10 Junio</span>
           <div class="evx-speakers-list">
             <div class="evx-sp">
-              <div class="evx-sp-name">Sara Castro</div>
-              <div class="evx-sp-co">Danone France · Directora RRHH/TA</div>
-              <div class="evx-sp-role">2.000 contrataciones anuales en Francia · por qué el modelo interno tiene un techo</div>
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Sara Castro</div>
+                <div class="evx-sp-co">Danone France · Directora RRHH/TA</div>
+                <div class="evx-sp-role">2.000 contrataciones/año · modelo interno tiene un techo</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Representante Deel</div>
-              <div class="evx-sp-co">Deel · Talento Internacional</div>
-              <div class="evx-sp-role">150+ países sin entidades locales · datos reales de empresas españolas que ya han movido ficha</div>
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Representante Deel</div>
+                <div class="evx-sp-co">Deel · Talento Internacional</div>
+                <div class="evx-sp-role">150+ países · sin entidades locales</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Jon Hernández</div>
-              <div class="evx-sp-co">Keynote de cierre</div>
-              <div class="evx-sp-role">630.000 suscriptores · 45M visualizaciones · keynote speaker en Microsoft, Repsol, Airbus</div>
+              <img class="evx-sp-photo" src="../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Joan Boluda</div>
+                <div class="evx-sp-co">Actual Talent · BD Manager</div>
+              </div>
+            </div>
+            <div class="evx-sp">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Jon Hernández</div>
+                <div class="evx-sp-co">Keynote de cierre</div>
+                <div class="evx-sp-role">630K suscriptores · Microsoft, Repsol, Airbus</div>
+              </div>
             </div>
           </div>
           <div class="evx-divider"></div>
@@ -657,19 +698,26 @@
           <span class="evx-eyebrow">Speakers · Junio</span>
           <div class="evx-speakers-list">
             <div class="evx-sp">
-              <div class="evx-sp-name">Joan Boluda</div>
-              <div class="evx-sp-co">Actual Talent</div>
-              <div class="evx-sp-role">No hace presentaciones — tiene conversaciones con cada mesa, en privado</div>
+              <img class="evx-sp-photo" src="../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Joan Boluda</div>
+                <div class="evx-sp-co">Actual Talent · BD Manager</div>
+                <div class="evx-sp-role">Con cada mesa, en privado — no en el escenario</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Enrique Balboa</div>
-              <div class="evx-sp-co">Damm · International HR Director</div>
-              <div class="evx-sp-role">Empresa de 150 años · 50 mercados · toda contratación internacional externalizada</div>
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Enrique Balboa</div>
+                <div class="evx-sp-co">Damm · International HR Director</div>
+                <div class="evx-sp-role">150 años de empresa · 50 mercados · todo externalizado</div>
+              </div>
             </div>
             <div class="evx-sp">
-              <div class="evx-sp-name">Sophie Celani</div>
-              <div class="evx-sp-co">STADA España · HR Business Partner</div>
-              <div class="evx-sp-role">€220M de facturación · cómo evaluaron y decidieron externalizar la captación de talento</div>
+              <div class="evx-sp-info">
+                <div class="evx-sp-name">Sophie Celani</div>
+                <div class="evx-sp-co">STADA España · HR Business Partner</div>
+                <div class="evx-sp-role">€220M · cómo se decide externalizar desde dentro</div>
+              </div>
             </div>
           </div>
           <div class="evx-divider"></div>
