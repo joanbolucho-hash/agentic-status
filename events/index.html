@@ -23,7 +23,7 @@
       --black:        #1A1A1A;
       --gray:         #6B6B6B;
       --dark:         #0B0B0B;
-      --dark-surface: #131313;
+      --dark-surface: #111111;
       --border-dim:   rgba(255,255,255,0.07);
       --border-light: rgba(0,0,0,0.08);
     }
@@ -42,53 +42,28 @@
        NAVIGATION
     ═══════════════════════════════════════ */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       padding: 1.2rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.4s, backdrop-filter 0.4s, border-bottom 0.4s;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .4s, backdrop-filter .4s, border-bottom .4s;
     }
-
     nav.scrolled {
-      background: rgba(11,11,11,0.9);
+      background: rgba(11,11,11,.92);
       backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-dim);
     }
-
-    .nav-logo {
-      display: flex; align-items: center; gap: 0.65rem;
-      text-decoration: none; color: #fff;
-    }
-
-    .nav-logo-text {
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex; align-items: center;
-      gap: 2.5rem; list-style: none;
-    }
-
+    .nav-logo { display: flex; align-items: center; gap: .65rem; text-decoration: none; color: #fff; }
+    .nav-logo-text { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
     .nav-links a {
-      color: rgba(255,255,255,0.55);
-      text-decoration: none;
-      font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      transition: color 0.2s;
+      color: rgba(255,255,255,.55); text-decoration: none;
+      font-size: .7rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase;
+      transition: color .2s;
     }
     .nav-links a:hover { color: #fff; }
-
     .nav-cta {
-      background: var(--red) !important;
-      color: #fff !important;
-      padding: 0.55rem 1.35rem;
-      border-radius: 2px;
-      transition: background 0.2s !important;
+      background: var(--red) !important; color: #fff !important;
+      padding: .55rem 1.35rem; border-radius: 2px;
     }
     .nav-cta:hover { background: var(--red-dark) !important; }
 
@@ -96,328 +71,183 @@
        HERO
     ═══════════════════════════════════════ */
     .hero {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 3rem 100px;
-      overflow: hidden;
-      text-align: center;
+      min-height: 100vh; position: relative;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 120px 3rem 100px; overflow: hidden; text-align: center;
     }
 
-    /* Grid background */
-    .hero-grid {
+    /* Particle canvas */
+    #hero-canvas {
       position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Grid lines */
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
       background-image:
-        linear-gradient(rgba(192,25,30,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(192,25,30,0.07) 1px, transparent 1px);
+        linear-gradient(rgba(192,25,30,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192,25,30,.07) 1px, transparent 1px);
       background-size: 64px 64px;
       animation: gridBreath 9s ease-in-out infinite;
-      pointer-events: none;
     }
-    @keyframes gridBreath {
-      0%,100% { opacity: 0.45; }
-      50%      { opacity: 1; }
-    }
+    @keyframes gridBreath { 0%,100%{opacity:.4} 50%{opacity:.9} }
 
-    /* Radial vignette */
     .hero-vignette {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 55%, transparent 20%, rgba(11,11,11,0.8) 100%);
-      pointer-events: none;
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 55%, transparent 20%, rgba(11,11,11,.8) 100%);
     }
-
-    /* Glow orb */
     .hero-glow {
-      position: absolute;
-      top: 30%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(192,25,30,0.12) 0%, transparent 65%);
-      pointer-events: none;
-      animation: glowPulse 6s ease-in-out infinite;
+      position: absolute; top: 30%; left: 50%; z-index: 0;
+      transform: translate(-50%,-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(192,25,30,.1) 0%, transparent 65%);
+      animation: glowPulse 7s ease-in-out infinite;
     }
     @keyframes glowPulse {
-      0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
-      50%      { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
+      0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}
+      50%{transform:translate(-50%,-50%) scale(1.2);opacity:1}
     }
 
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 820px;
-    }
+    /* Hero content above canvas */
+    .hero-content { position: relative; z-index: 3; max-width: 840px; }
 
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(192,25,30,0.12);
-      border: 1px solid rgba(192,25,30,0.3);
-      color: #f0a0a3;
-      padding: 0.38rem 1rem;
-      border-radius: 100px;
-      font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.7s 0.1s both;
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(192,25,30,.12);
+      border: 1px solid rgba(192,25,30,.3);
+      color: #f0a0a3; padding: .38rem 1rem; border-radius: 100px;
+      font-size: .65rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 2rem; animation: fadeUp .7s .1s both;
     }
-    .badge-dot {
-      width: 6px; height: 6px;
-      background: var(--red); border-radius: 50%;
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .badge-dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
     .hero-eyebrow {
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 1.25rem;
-      animation: fadeUp 0.7s 0.2s both;
+      font-size: .68rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1.25rem; animation: fadeUp .7s .2s both;
     }
-
     .hero-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.8rem, 7vw, 6.2rem);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.7s 0.3s both;
+      font-weight: 900; line-height: 1.05; letter-spacing: -.025em;
+      margin-bottom: 1.5rem; animation: fadeUp .7s .3s both;
     }
     .hero-title em { font-style: italic; color: var(--red); }
-
     .hero-sub {
-      font-size: clamp(0.9rem, 1.3vw, 1.05rem);
-      font-weight: 300; line-height: 1.75;
-      color: rgba(255,255,255,0.52);
-      max-width: 560px; margin: 0 auto 2.5rem;
-      animation: fadeUp 0.7s 0.4s both;
+      font-size: clamp(.88rem, 1.3vw, 1.05rem); font-weight: 300; line-height: 1.75;
+      color: rgba(255,255,255,.5); max-width: 580px; margin: 0 auto 2.5rem;
+      animation: fadeUp .7s .4s both;
     }
-
     .hero-ctas {
-      display: flex; gap: 0.9rem;
-      align-items: center; justify-content: center;
-      animation: fadeUp 0.7s 0.5s both;
+      display: flex; gap: .9rem; align-items: center; justify-content: center;
+      animation: fadeUp .7s .5s both;
     }
 
     /* Ticker */
     .ticker-strip {
-      position: relative; z-index: 2;
-      margin-top: 3.5rem;
-      width: 100%; max-width: 860px;
+      position: relative; z-index: 3;
+      margin-top: 3.5rem; width: 100%; max-width: 880px;
       border-top: 1px solid var(--border-dim);
       border-bottom: 1px solid var(--border-dim);
-      padding: 0.65rem 0;
-      overflow: hidden;
-      animation: fadeUp 0.7s 0.7s both;
+      padding: .65rem 0; overflow: hidden;
+      animation: fadeUp .7s .7s both;
     }
-
     .ticker-track {
-      display: flex; gap: 2.5rem;
-      white-space: nowrap;
-      animation: tickerRoll 22s linear infinite;
+      display: flex; gap: 2.5rem; white-space: nowrap;
       width: max-content;
+      animation: tickerRoll 24s linear infinite;
     }
     .ticker-track:hover { animation-play-state: paused; }
-
-    @keyframes tickerRoll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    .ticker-item {
-      font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-    }
-    .ticker-item.active { color: rgba(255,255,255,0.88); }
-    .ticker-sep { color: var(--red); opacity: 0.7; }
+    @keyframes tickerRoll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .ticker-item { font-size: .7rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.32); }
+    .ticker-item.active { color: rgba(255,255,255,.88); }
+    .ticker-sep { color: var(--red); opacity: .7; }
 
     .scroll-hint {
-      position: absolute; bottom: 2.5rem; left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 0.5rem;
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .5rem;
       animation: fadeUp 1s 1s both;
     }
-    .scroll-hint span {
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-    }
-    .scroll-line {
-      width: 1px; height: 44px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-      animation: drip 2s ease-in-out infinite;
-    }
-    @keyframes drip {
-      0%,100% { transform: scaleY(0.3) translateY(-8px); opacity: 0.3; }
-      50%      { transform: scaleY(1) translateY(0); opacity: 0.8; }
-    }
+    .scroll-hint span { font-size: .58rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: rgba(255,255,255,.22); }
+    .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent); animation: drip 2s ease-in-out infinite; }
+    @keyframes drip { 0%,100%{transform:scaleY(.3) translateY(-8px);opacity:.3} 50%{transform:scaleY(1) translateY(0);opacity:.8} }
 
     /* ═══════════════════════════════════════
        BUTTONS
     ═══════════════════════════════════════ */
     .btn-primary {
-      background: var(--red); color: #fff;
-      padding: 0.85rem 2rem;
-      border: none; border-radius: 2px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      text-decoration: none; cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      display: inline-block;
+      background: var(--red); color: #fff; padding: .85rem 2rem;
+      border: none; border-radius: 2px; font-family: 'Montserrat', sans-serif;
+      font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; display: inline-block;
+      transition: background .2s, transform .2s, box-shadow .2s;
     }
-    .btn-primary:hover {
-      background: var(--red-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(192,25,30,0.38);
-    }
-
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(192,25,30,.38); }
     .btn-ghost {
-      background: transparent; color: rgba(255,255,255,0.7);
-      padding: 0.85rem 2rem;
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 2px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      text-decoration: none; cursor: pointer;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-      display: inline-block;
+      background: transparent; color: rgba(255,255,255,.7);
+      padding: .85rem 2rem; border: 1px solid rgba(255,255,255,.18); border-radius: 2px;
+      font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase; text-decoration: none; cursor: pointer;
+      display: inline-block; transition: border-color .2s, color .2s, background .2s;
     }
-    .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.4);
-      color: #fff;
-      background: rgba(255,255,255,0.05);
-    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.4); color: #fff; background: rgba(255,255,255,.05); }
 
     /* ═══════════════════════════════════════
        MANIFESTO
     ═══════════════════════════════════════ */
-    .manifesto {
-      background: var(--cream);
-      color: var(--black);
-      padding: 9rem 3rem;
-    }
-
+    .manifesto { background: var(--cream); color: var(--black); padding: 9rem 3rem; }
     .manifesto-inner {
       max-width: 1080px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 7rem; align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center;
     }
-
-    .eyebrow {
-      font-size: 0.62rem; font-weight: 700;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 1.25rem;
-      display: block;
-    }
-
-    .manifesto-text h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 3vw, 2.75rem);
-      font-weight: 700; line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
+    .eyebrow { font-size: .62rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--red); margin-bottom: 1.25rem; display: block; }
+    .manifesto-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3vw, 2.75rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
     .manifesto-text h2 em { font-style: italic; color: var(--red); }
-
-    .manifesto-text p {
-      font-size: 0.9rem; line-height: 1.85;
-      color: var(--gray); margin-bottom: 0.9rem;
-    }
+    .manifesto-text p { font-size: .9rem; line-height: 1.85; color: var(--gray); margin-bottom: .9rem; }
     .manifesto-text p strong { color: var(--black); font-weight: 600; }
-
     .pillars { display: flex; flex-direction: column; gap: 2.25rem; }
-
-    .pillar {
-      display: flex; gap: 1.4rem; align-items: flex-start;
-      opacity: 0; transform: translateX(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    .pillar { display: flex; gap: 1.4rem; align-items: flex-start; opacity: 0; transform: translateX(28px); transition: opacity .6s ease, transform .6s ease; }
     .pillar.vis { opacity: 1; transform: translateX(0); }
-
-    .pillar-n {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem; font-weight: 900;
-      color: var(--beige); line-height: 1;
-      flex-shrink: 0; width: 48px; text-align: right;
-    }
-
-    .pillar-body h3 {
-      font-size: 0.82rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--black); margin-bottom: 0.4rem;
-    }
-    .pillar-body p {
-      font-size: 0.83rem; line-height: 1.65;
-      color: var(--gray); margin: 0;
-    }
+    .pillar-n { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--beige); line-height: 1; flex-shrink: 0; width: 48px; text-align: right; }
+    .pillar-body h3 { font-size: .82rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--black); margin-bottom: .4rem; }
+    .pillar-body p { font-size: .83rem; line-height: 1.65; color: var(--gray); margin: 0; }
 
     /* ═══════════════════════════════════════
-       TIMELINE / EVENTS
+       EVENTS TIMELINE
     ═══════════════════════════════════════ */
-    .events-section {
-      background: #fff;
-      padding: 9rem 3rem;
-    }
+    .events-section { background: #fff; padding: 9rem 3rem; }
+    .section-head { text-align: center; max-width: 600px; margin: 0 auto 6rem; }
+    .section-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.2vw, 2.7rem); font-weight: 700; color: var(--black); line-height: 1.2; }
+    .section-head p { margin-top: .9rem; font-size: .88rem; color: var(--gray); line-height: 1.7; }
 
-    .section-head {
-      text-align: center;
-      max-width: 560px; margin: 0 auto 6rem;
-    }
-    .section-head h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 3.2vw, 2.7rem);
-      font-weight: 700; color: var(--black); line-height: 1.2;
-    }
-    .section-head p {
-      margin-top: 0.9rem;
-      font-size: 0.88rem; color: var(--gray); line-height: 1.7;
-    }
-
-    /* Timeline container */
-    .timeline {
-      max-width: 880px; margin: 0 auto;
-      position: relative;
-    }
+    .timeline { max-width: 940px; margin: 0 auto; position: relative; }
 
     /* Vertical line */
     .tl-line {
-      position: absolute;
-      left: 50%; top: 0;
-      transform: translateX(-50%);
-      width: 2px;
-      background: var(--beige);
-      height: 100%;
-      pointer-events: none;
+      position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+      width: 2px; background: var(--beige); height: 100%; pointer-events: none;
     }
     .tl-line-fill {
-      position: absolute; top: 0; left: 0;
-      width: 100%;
-      background: linear-gradient(to bottom, var(--red), rgba(192,25,30,0.3));
-      height: 0;
-      transition: height 0.25s ease;
+      position: absolute; top: 0; left: 0; width: 100%;
+      background: linear-gradient(to bottom, var(--red), rgba(192,25,30,.25));
+      height: 0; transition: height .25s ease;
     }
 
-    /* Event item */
+    /* Event rows */
     .ev {
-      display: grid;
-      grid-template-columns: 1fr 56px 1fr;
-      gap: 2rem;
-      margin-bottom: 5rem;
-      align-items: start;
-      opacity: 0;
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      display: grid; grid-template-columns: 1fr 60px 1fr;
+      gap: 2rem; margin-bottom: 5rem; align-items: start;
+      opacity: 0; transition: opacity .65s ease, transform .65s ease;
     }
-    .ev:nth-child(odd)  { transform: translateX(-24px); }
-    .ev:nth-child(even) { transform: translateX(24px); }
+    .ev:nth-child(odd)  { transform: translateX(-22px); }
+    .ev:nth-child(even) { transform: translateX(22px); }
     .ev.vis { opacity: 1; transform: translateX(0); }
 
-    /* Grid column assignments */
+    /* Grid placement — all items share explicit column/row */
     .ev-card     { grid-column: 1; grid-row: 1; }
     .ev-dot-col  { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: center; padding-top: 1.4rem; }
     .ev-meta     { grid-column: 3; grid-row: 1; }
@@ -428,324 +258,157 @@
 
     /* Dot */
     .ev-dot {
-      width: 14px; height: 14px;
-      background: var(--red);
-      border-radius: 50%;
-      border: 3px solid #fff;
-      box-shadow: 0 0 0 2px var(--red);
+      width: 14px; height: 14px; background: var(--red);
+      border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--red);
       position: relative; z-index: 2; flex-shrink: 0;
     }
     .ev-dot.pulse { animation: dotPulse 2.5s ease-in-out infinite; }
-    @keyframes dotPulse {
-      0%,100% { box-shadow: 0 0 0 2px var(--red), 0 0 0 5px rgba(192,25,30,0.2); }
-      50%      { box-shadow: 0 0 0 2px var(--red), 0 0 0 14px rgba(192,25,30,0); }
-    }
-    .ev-dot.dim {
-      background: var(--beige);
-      box-shadow: 0 0 0 2px var(--beige);
-    }
+    @keyframes dotPulse { 0%,100%{box-shadow:0 0 0 2px var(--red),0 0 0 5px rgba(192,25,30,.2)} 50%{box-shadow:0 0 0 2px var(--red),0 0 0 14px rgba(192,25,30,0)} }
+    .ev-dot.dim  { background: var(--beige); box-shadow: 0 0 0 2px var(--beige); }
 
     /* Card */
     .ev-card-inner {
-      background: var(--cream);
-      border-radius: 3px;
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.07);
-      transition: box-shadow 0.3s, transform 0.3s;
+      background: var(--cream); border-radius: 3px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,.07);
+      transition: box-shadow .3s, transform .3s;
     }
-    .ev-card-inner:hover {
-      box-shadow: 0 18px 52px rgba(0,0,0,0.1);
-      transform: translateY(-4px);
-    }
+    .ev-card-inner:hover { box-shadow: 0 18px 52px rgba(0,0,0,.1); transform: translateY(-4px); }
 
     .ev-card-top {
-      background: var(--black);
-      padding: 1.1rem 1.4rem;
-      display: flex; align-items: center;
-      justify-content: space-between;
+      background: var(--black); padding: 1.1rem 1.4rem;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .ev-date {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem; font-weight: 700; color: #fff;
-    }
+    .ev-date { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; }
     .ev-badge {
-      font-size: 0.58rem; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 0.28rem 0.75rem; border-radius: 100px;
+      font-size: .57rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      padding: .28rem .75rem; border-radius: 100px;
     }
+    .ev-badge.teaser  { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.12); }
     .ev-badge.live    { background: var(--red); color: #fff; }
-    .ev-badge.pending { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.12); }
-    .ev-badge.soon    { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.07); }
+    .ev-badge.premium { background: rgba(192,25,30,.25); color: #f0a0a3; border: 1px solid rgba(192,25,30,.35); }
+    .ev-badge.private { background: rgba(255,255,255,.04); color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.1); }
 
-    .ev-card-body { padding: 1.4rem; }
+    .ev-card-body { padding: 1.4rem 1.4rem .8rem; }
+    .ev-type { font-size: .6rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .45rem; }
+    .ev-title { font-family: 'Playfair Display', serif; font-size: 1.08rem; font-weight: 700; color: var(--black); line-height: 1.3; margin-bottom: .75rem; }
+    .ev-pitch { font-size: .78rem; line-height: 1.65; color: var(--gray); margin-bottom: .9rem; }
 
-    .ev-type {
-      font-size: 0.6rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 0.45rem;
-    }
-    .ev-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; font-weight: 700;
-      color: var(--black); line-height: 1.3;
-      margin-bottom: 0.9rem;
-    }
-
-    .ev-speakers { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 0.5rem; }
-    .speaker {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.76rem; color: var(--gray);
-    }
+    .ev-speakers { display: flex; flex-direction: column; gap: .4rem; margin-bottom: .5rem; }
+    .speaker { display: flex; align-items: center; gap: .5rem; font-size: .75rem; color: var(--gray); }
     .av {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: var(--beige);
+      width: 22px; height: 22px; border-radius: 50%; background: var(--beige);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.52rem; font-weight: 700;
-      color: var(--gray); flex-shrink: 0;
+      font-size: .5rem; font-weight: 700; color: var(--gray); flex-shrink: 0;
     }
+    .av.red { background: rgba(192,25,30,.12); color: var(--red); }
 
     .ev-card-foot {
-      border-top: 1px solid rgba(0,0,0,0.07);
-      padding: 0.9rem 1.4rem;
-      display: flex; align-items: center;
-      justify-content: space-between;
+      border-top: 1px solid rgba(0,0,0,.07); padding: .9rem 1.4rem;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .ev-partner { font-size: 0.68rem; color: var(--gray); }
+    .ev-partner { font-size: .67rem; color: var(--gray); }
     .ev-partner strong { color: var(--black); }
-
     .ev-link {
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
       color: var(--red); text-decoration: none;
-      display: flex; align-items: center; gap: 0.35rem;
-      transition: gap 0.2s;
+      display: flex; align-items: center; gap: .35rem; transition: gap .2s;
     }
-    .ev-link:hover { gap: 0.6rem; }
-
-    .ev-link-off {
-      font-size: 0.68rem; font-weight: 500;
-      color: var(--gray); opacity: 0.5;
-    }
+    .ev-link:hover { gap: .6rem; }
+    .ev-link-off { font-size: .67rem; font-weight: 500; color: var(--gray); opacity: .5; }
 
     /* Meta column */
-    .ev-meta-inner {
-      display: flex; flex-direction: column;
-      gap: 0.7rem; padding-top: 1.4rem;
-    }
-    .meta-row {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.76rem; color: var(--gray);
-    }
+    .ev-meta-inner { display: flex; flex-direction: column; gap: .65rem; padding-top: 1.4rem; }
+    .meta-row { display: flex; align-items: center; gap: .5rem; font-size: .75rem; color: var(--gray); }
     .ev:nth-child(even) .meta-row { justify-content: flex-end; }
+    .meta-icon { width: 14px; height: 14px; color: var(--red); flex-shrink: 0; }
+    .meta-highlight { color: var(--red); font-weight: 600; }
 
-    .meta-icon {
-      width: 15px; height: 15px;
-      color: var(--red); flex-shrink: 0;
+    /* Narrative badge on June 10 */
+    .ev-narrative {
+      background: rgba(192,25,30,.06);
+      border-left: 3px solid var(--red);
+      padding: .7rem 1rem; margin: .5rem 0 0;
+      font-size: .72rem; line-height: 1.6; color: var(--gray);
+      font-style: italic;
     }
-
-    /* Coming-soon placeholder */
-    .ev-soon-card {
-      background: var(--cream);
-      border: 2px dashed var(--beige);
-      border-radius: 3px;
-      padding: 2.2rem 1.4rem;
-      text-align: center;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 0.4rem;
-    }
-    .ev-soon-card p { font-size: 0.72rem; font-weight: 500; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; }
-    .ev-soon-card span { font-size: 0.65rem; color: rgba(107,107,107,0.55); }
 
     /* ═══════════════════════════════════════
        PARTNER SECTION
     ═══════════════════════════════════════ */
-    .partner-section {
-      background: var(--dark-surface);
-      padding: 9rem 3rem;
-      position: relative; overflow: hidden;
-    }
+    .partner-section { background: var(--dark-surface); padding: 9rem 3rem; position: relative; overflow: hidden; }
     .partner-section::before {
-      content: '';
-      position: absolute;
-      top: -180px; left: 50%;
-      transform: translateX(-50%);
+      content: ''; position: absolute; top: -180px; left: 50%; transform: translateX(-50%);
       width: 750px; height: 750px;
-      background: radial-gradient(circle, rgba(192,25,30,0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(192,25,30,.1) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .partner-inner {
       max-width: 960px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5.5rem; align-items: start;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5.5rem; align-items: start;
       position: relative; z-index: 1;
     }
-
-    .partner-copy .eyebrow { color: var(--red); }
-
-    .partner-copy h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-      font-weight: 700; line-height: 1.2;
-      color: #fff; margin-bottom: 1.5rem;
-    }
+    .partner-copy h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.5rem); font-weight: 700; line-height: 1.2; color: #fff; margin-bottom: 1.5rem; }
     .partner-copy h2 em { font-style: italic; color: var(--red); }
-
-    .partner-copy p {
-      font-size: 0.88rem; line-height: 1.85;
-      color: rgba(255,255,255,0.48); margin-bottom: 1.25rem;
-    }
-
-    .partner-perks {
-      list-style: none;
-      display: flex; flex-direction: column; gap: 0.7rem;
-      margin-top: 0.25rem;
-    }
-    .partner-perks li {
-      display: flex; align-items: center; gap: 0.7rem;
-      font-size: 0.82rem; color: rgba(255,255,255,0.6);
-    }
-    .partner-perks li::before {
-      content: '';
-      width: 4px; height: 4px;
-      background: var(--red); border-radius: 50%; flex-shrink: 0;
-    }
+    .partner-copy p { font-size: .88rem; line-height: 1.85; color: rgba(255,255,255,.45); margin-bottom: 1.25rem; }
+    .partner-perks { list-style: none; display: flex; flex-direction: column; gap: .7rem; margin-top: .25rem; }
+    .partner-perks li { display: flex; align-items: center; gap: .7rem; font-size: .82rem; color: rgba(255,255,255,.58); }
+    .partner-perks li::before { content: ''; width: 4px; height: 4px; background: var(--red); border-radius: 50%; flex-shrink: 0; }
 
     /* Form */
-    .p-form-wrap {
-      background: rgba(255,255,255,0.035);
-      border: 1px solid var(--border-dim);
-      border-radius: 3px;
-      padding: 2rem;
-    }
-
-    .form-head {
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: #fff; margin-bottom: 1.75rem;
-    }
-
+    .p-form-wrap { background: rgba(255,255,255,.035); border: 1px solid var(--border-dim); border-radius: 3px; padding: 2rem; }
+    .form-head { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #fff; margin-bottom: 1.75rem; }
     .fg { margin-bottom: 1.1rem; }
-    .fg label {
-      display: block;
-      font-size: 0.62rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(255,255,255,0.38); margin-bottom: 0.45rem;
+    .fg label { display: block; font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.38); margin-bottom: .45rem; }
+    .fg input, .fg select, .fg textarea {
+      width: 100%; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09);
+      border-radius: 2px; padding: .7rem .9rem; color: #fff;
+      font-family: 'Montserrat', sans-serif; font-size: .83rem; outline: none;
+      transition: border-color .2s, background .2s;
     }
-    .fg input,
-    .fg select,
-    .fg textarea {
-      width: 100%;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 2px;
-      padding: 0.7rem 0.9rem;
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.83rem;
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .fg input::placeholder,
-    .fg textarea::placeholder { color: rgba(255,255,255,0.22); }
-    .fg input:focus,
-    .fg select:focus,
-    .fg textarea:focus {
-      border-color: var(--red);
-      background: rgba(255,255,255,0.08);
-    }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(255,255,255,.22); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--red); background: rgba(255,255,255,.08); }
     .fg select {
       cursor: pointer; appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,0.35)' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.9rem center;
+      background-repeat: no-repeat; background-position: right .9rem center;
     }
     .fg select option { background: #1c1c1c; color: #fff; }
     .fg textarea { resize: none; height: 86px; }
-
     .form-submit {
-      width: 100%; margin-top: 0.5rem;
-      background: var(--red); color: #fff;
-      border: none; border-radius: 2px;
-      padding: 0.95rem;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      width: 100%; margin-top: .5rem; background: var(--red); color: #fff;
+      border: none; border-radius: 2px; padding: .95rem;
+      font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase; cursor: pointer;
+      transition: background .2s, transform .2s, box-shadow .2s;
     }
-    .form-submit:hover {
-      background: var(--red-dark);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 22px rgba(192,25,30,0.4);
-    }
-    .form-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
-
-    .form-privacy {
-      margin-top: 0.75rem;
-      font-size: 0.62rem; color: rgba(255,255,255,0.22);
-      line-height: 1.5; text-align: center;
-    }
-
-    .form-ok {
-      display: none; text-align: center; padding: 2rem 1rem;
-    }
-    .form-ok-icon {
-      width: 46px; height: 46px;
-      background: var(--red-glow);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.1rem;
-    }
-    .form-ok h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
-    .form-ok p  { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+    .form-submit:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(192,25,30,.4); }
+    .form-submit:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+    .form-privacy { margin-top: .75rem; font-size: .62rem; color: rgba(255,255,255,.22); line-height: 1.5; text-align: center; }
+    .form-ok { display: none; text-align: center; padding: 2rem 1rem; }
+    .form-ok-icon { width: 46px; height: 46px; background: var(--red-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.1rem; }
+    .form-ok h3 { font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: .5rem; }
+    .form-ok p  { font-size: .8rem; color: rgba(255,255,255,.45); line-height: 1.6; }
 
     /* ═══════════════════════════════════════
        FOOTER
     ═══════════════════════════════════════ */
     footer {
-      background: var(--red);
-      padding: 2.5rem 3rem;
-      display: flex; align-items: center;
-      justify-content: space-between;
+      background: var(--red); padding: 2.5rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-brand {
-      display: flex; align-items: center; gap: 0.65rem;
-    }
-    .footer-brand-name {
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.9);
-    }
-    .footer-links {
-      display: flex; gap: 2.2rem; list-style: none;
-    }
-    .footer-links a {
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.55); text-decoration: none;
-      transition: color 0.2s;
-    }
+    .footer-brand { display: flex; align-items: center; gap: .65rem; }
+    .footer-brand-name { font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.9); }
+    .footer-links { display: flex; gap: 2.2rem; list-style: none; }
+    .footer-links a { font-size: .65rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: #fff; }
-    .footer-copy {
-      font-size: 0.62rem; color: rgba(255,255,255,0.45);
-    }
+    .footer-copy { font-size: .62rem; color: rgba(255,255,255,.45); }
 
     /* ═══════════════════════════════════════
-       REVEAL UTILITY
+       UTILITIES
     ═══════════════════════════════════════ */
-    .reveal {
-      opacity: 0; transform: translateY(22px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.vis { opacity: 1; transform: translateY(0); }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
 
     /* ═══════════════════════════════════════
        RESPONSIVE
@@ -753,32 +416,20 @@
     @media (max-width: 860px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
-
-      .hero         { padding: 100px 1.5rem 80px; }
-      .manifesto    { padding: 5.5rem 1.5rem; }
+      .hero { padding: 100px 1.5rem 80px; }
+      .manifesto { padding: 5.5rem 1.5rem; }
       .events-section { padding: 5.5rem 1.5rem; }
       .partner-section { padding: 5.5rem 1.5rem; }
-      footer        { padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
-
-      .manifesto-inner  { grid-template-columns: 1fr; gap: 3.5rem; }
-      .partner-inner    { grid-template-columns: 1fr; gap: 3.5rem; }
-
-      /* Collapse timeline to single column */
+      .manifesto-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+      .partner-inner   { grid-template-columns: 1fr; gap: 3.5rem; }
       .tl-line { display: none; }
-      .ev {
-        grid-template-columns: 1fr;
-        margin-bottom: 2.5rem;
-      }
+      .ev { grid-template-columns: 1fr; margin-bottom: 2.5rem; }
       .ev-card, .ev-dot-col, .ev-meta,
       .ev:nth-child(even) .ev-card,
       .ev:nth-child(even) .ev-dot-col,
-      .ev:nth-child(even) .ev-meta {
-        grid-column: 1;
-        grid-row: auto;
-        order: unset;
-        text-align: left;
-      }
+      .ev:nth-child(even) .ev-meta { grid-column: 1; grid-row: auto; order: unset; text-align: left; }
       .ev-dot-col { display: none; }
       .ev:nth-child(odd), .ev:nth-child(even) { transform: none; }
       .ev:nth-child(even) .meta-row { justify-content: flex-start; }
@@ -787,17 +438,14 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════
-     NAV
-══════════════════════════════════════════════════ -->
+<!-- ══════ NAV ══════ -->
 <nav id="nav">
-  <a href="../" class="nav-logo" aria-label="Actual Talent — inicio">
-    <!-- AT monogram -->
-    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36" aria-hidden="true">
-      <path d="M6 38 L22 6 L38 38" stroke="#C0191E" stroke-width="2.4" fill="none" stroke-linejoin="round"/>
-      <path d="M12 26 L32 26" stroke="#C0191E" stroke-width="2.4" stroke-linecap="square"/>
-      <path d="M22 6 L22 38" stroke="#C0191E" stroke-width="2.4"/>
-      <path d="M14 6 L30 6" stroke="#C0191E" stroke-width="2.4" stroke-linecap="square"/>
+  <a href="../" class="nav-logo" aria-label="Actual Talent">
+    <svg viewBox="0 0 44 44" fill="none" width="36" height="36" aria-hidden="true">
+      <path d="M6 38L22 6l16 32" stroke="#C0191E" stroke-width="2.4" fill="none" stroke-linejoin="round"/>
+      <path d="M12 26h20" stroke="#C0191E" stroke-width="2.4" stroke-linecap="square"/>
+      <path d="M22 6v32" stroke="#C0191E" stroke-width="2.4"/>
+      <path d="M14 6h16" stroke="#C0191E" stroke-width="2.4" stroke-linecap="square"/>
     </svg>
     <span class="nav-logo-text">Actual Talent</span>
   </a>
@@ -805,67 +453,47 @@
     <li><a href="#sobre">Por qué</a></li>
     <li><a href="#eventos">Eventos</a></li>
     <li><a href="#partners">Partners</a></li>
-    <li><a href="#partners" class="nav-cta">Quiero participar</a></li>
+    <li><a href="#partners" class="nav-cta">Participar</a></li>
   </ul>
 </nav>
 
-<!-- ══════════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════════ -->
+<!-- ══════ HERO ══════ -->
 <section class="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow"  aria-hidden="true"></div>
   <div class="hero-vignette" aria-hidden="true"></div>
-  <div class="hero-glow" aria-hidden="true"></div>
 
   <div class="hero-content">
     <div class="hero-badge">
       <span class="badge-dot" aria-hidden="true"></span>
       Actual Talent · España 2026
     </div>
-
     <p class="hero-eyebrow">Actual Hiring Partner Series</p>
-
     <h1 class="hero-title">
-      El ciclo de eventos<br>
-      que define el futuro<br>
-      del <em>talento</em>
+      El ciclo de eventos<br>que define el futuro<br>del <em>talento</em>
     </h1>
-
     <p class="hero-sub">
       En la era de la IA, las empresas que ganen la guerra por el talento serán las que primero entiendan las nuevas reglas. Estamos construyendo el espacio donde esa conversación ocurre.
     </p>
-
     <div class="hero-ctas">
       <a href="#eventos" class="btn-primary">Ver todos los eventos</a>
       <a href="#partners" class="btn-ghost">Participar como partner</a>
     </div>
   </div>
 
-  <!-- Naming ticker -->
   <div class="ticker-strip" aria-label="Naming del servicio">
     <div class="ticker-track">
-      <!-- Set 1 -->
-      <span class="ticker-item active">Actual Hiring Partner</span>
-      <span class="ticker-sep">·</span>
-      <span class="ticker-item">Recruiting Partner</span>
-      <span class="ticker-sep">·</span>
-      <span class="ticker-item">Selección de Talento Integrada</span>
-      <span class="ticker-sep">·</span>
-      <span class="ticker-item">Talent Acquisition Partner</span>
-      <span class="ticker-sep">·</span>
-      <span class="ticker-item">Talent as a Service</span>
-      <span class="ticker-sep">·</span>
-      <!-- Set 2 (duplicate for seamless loop) -->
-      <span class="ticker-item active">Actual Hiring Partner</span>
-      <span class="ticker-sep">·</span>
-      <span class="ticker-item">Recruiting Partner</span>
-      <span class="ticker-sep">·</span>
-      <span class="ticker-item">Selección de Talento Integrada</span>
-      <span class="ticker-sep">·</span>
-      <span class="ticker-item">Talent Acquisition Partner</span>
-      <span class="ticker-sep">·</span>
-      <span class="ticker-item">Talent as a Service</span>
-      <span class="ticker-sep">·</span>
+      <span class="ticker-item active">Actual Hiring Partner</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Recruiting Partner</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Selección de Talento Integrada</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Talent Acquisition Partner</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Talent as a Service</span><span class="ticker-sep">·</span>
+      <span class="ticker-item active">Actual Hiring Partner</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Recruiting Partner</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Selección de Talento Integrada</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Talent Acquisition Partner</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Talent as a Service</span><span class="ticker-sep">·</span>
     </div>
   </div>
 
@@ -875,27 +503,24 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-     MANIFESTO
-══════════════════════════════════════════════════ -->
+<!-- ══════ MANIFESTO ══════ -->
 <section class="manifesto" id="sobre">
   <div class="manifesto-inner">
     <div class="manifesto-text reveal">
       <span class="eyebrow">Por qué lo hacemos</span>
       <h2>La IA está cambiando<br>las reglas del <em>talento</em></h2>
       <p>
-        Las empresas que buscan talento y los candidatos que lo ofrecen están usando IA de formas radicalmente distintas. El resultado: más ruido, menos señal, y procesos que ya no funcionan como antes.
+        Las empresas que buscan talento y los candidatos que lo ofrecen están usando IA de formas radicalmente distintas. El resultado: más ruido, menos señal, y procesos que ya no funcionan.
       </p>
       <p>
         Desde Actual Talent creemos que la solución no es más tecnología, sino más <strong>criterio</strong>. La Actual Hiring Partner Series es el espacio donde los líderes que toman decisiones sobre talento encuentran perspectivas reales, sin filtros.
       </p>
     </div>
-
     <div class="pillars">
       <div class="pillar">
         <div class="pillar-n">01</div>
         <div class="pillar-body">
-          <h3>Conversaciones que importan</h3>
+          <h3>Conversaciones sin filtros</h3>
           <p>Debates reales con decisores reales. Sin presentaciones de producto, sin ventas disfrazadas de contenido.</p>
         </div>
       </div>
@@ -903,39 +528,80 @@
         <div class="pillar-n">02</div>
         <div class="pillar-body">
           <h3>Perspectiva internacional</h3>
-          <p>Desde Teamtailor hasta la Cámara de Comercio Francesa, construimos una red de voces diversas sobre el futuro del trabajo.</p>
+          <p>De Teamtailor a Deel y la Cámara Francesa, construimos una red de voces diversas sobre el futuro del trabajo.</p>
         </div>
       </div>
       <div class="pillar">
         <div class="pillar-n">03</div>
         <div class="pillar-body">
-          <h3>Un ecosistema, no un evento</h3>
-          <p>Cada sesión añade un nodo a la red. Los asistentes, speakers y partners construyen algo que dura más allá del evento.</p>
+          <h3>Conversión, no contenido</h3>
+          <p>Cada sesión genera pipeline. Los asistentes no solo aprenden — conectan con el modelo que transforma su forma de captar talento.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-     EVENTS TIMELINE
-══════════════════════════════════════════════════ -->
+<!-- ══════ EVENTS TIMELINE ══════ -->
 <section class="events-section" id="eventos">
   <div class="section-head reveal">
     <span class="eyebrow">Agenda 2026</span>
-    <h2>Los próximos eventos</h2>
-    <p>Una serie de encuentros que conectan a los líderes de talento con las ideas que están transformando cómo se capta, desarrolla y retiene a las personas.</p>
+    <h2>Cuatro eventos.<br>Una sola conversación.</h2>
+    <p>De la provocación al pipeline: cada evento construye sobre el anterior y amplifica el mensaje. Una serie diseñada para convertir, no solo para informar.</p>
   </div>
 
   <div class="timeline">
-    <!-- Animated vertical line -->
     <div class="tl-line" aria-hidden="true">
       <div class="tl-line-fill" id="tl-fill"></div>
     </div>
 
-    <!-- ─── EVENT 1: April 28 ─── -->
+    <!-- ─── EVENTO 1: 1 ABRIL ─── -->
     <div class="ev" id="ev1">
-      <!-- Card -->
+      <div class="ev-card">
+        <div class="ev-card-inner">
+          <div class="ev-card-top">
+            <span class="ev-date">1 Abril 2026</span>
+            <span class="ev-badge teaser">Apertura · Online · Gratis</span>
+          </div>
+          <div class="ev-card-body">
+            <p class="ev-type">LinkedIn Live · 30 min · 12:00h CEST</p>
+            <h3 class="ev-title">Hiring Unplugged: lo que nadie te dice sobre captar talento en 2026</h3>
+            <p class="ev-pitch">Una charla directa, sin guión y sin filtros. El punto de partida de la serie: por qué el modelo tradicional de selección está roto y qué viene después.</p>
+            <div class="ev-speakers">
+              <div class="speaker"><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
+            </div>
+          </div>
+          <div class="ev-card-foot">
+            <span class="ev-partner">Warm-up de la serie</span>
+            <a href="#partners" class="ev-link">Recibir aviso →</a>
+          </div>
+        </div>
+      </div>
+      <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
+      <div class="ev-meta">
+        <div class="ev-meta-inner">
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            12:00h CEST · 30 minutos
+          </div>
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 2.5v2M11 2.5v2M2 7.5h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            1 de abril de 2026
+          </div>
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M5.5 5.5h5M5.5 8h5M5.5 10.5h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            LinkedIn Live — aforo ilimitado
+          </div>
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="meta-highlight">Gratuito · Abierto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── EVENTO 2: 28 ABRIL ─── -->
+    <div class="ev" id="ev2">
       <div class="ev-card">
         <div class="ev-card-inner">
           <div class="ev-card-top">
@@ -943,8 +609,9 @@
             <span class="ev-badge live">Próximo · 12:00h CEST</span>
           </div>
           <div class="ev-card-body">
-            <p class="ev-type">Webinar Online · Gratuito</p>
+            <p class="ev-type">Webinar Online · Gratuito · 1h</p>
             <h3 class="ev-title">IA vs IA: La Batalla por el Talento</h3>
+            <p class="ev-pitch">Candidatos usando IA para postular. Empresas usando IA para filtrar. ¿Quién gana? Un debate con los referentes que están viviendo esto en primera línea.</p>
             <div class="ev-speakers">
               <div class="speaker"><div class="av">JB</div>Joan Boluda — Actual Talent</div>
               <div class="speaker"><div class="av">MG</div>Marc Galanó — Teamtailor</div>
@@ -958,123 +625,121 @@
           </div>
         </div>
       </div>
-
-      <!-- Dot -->
-      <div class="ev-dot-col">
-        <div class="ev-dot pulse"></div>
-      </div>
-
-      <!-- Meta -->
+      <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
       <div class="ev-meta">
         <div class="ev-meta-inner">
           <div class="meta-row">
-            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
-              <path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            </svg>
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             12:00 – 13:00h CEST
           </div>
           <div class="meta-row">
-            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <rect x="2" y="3.5" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/>
-              <path d="M5 2.5v2M11 2.5v2M2 7.5h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            </svg>
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 2.5v2M11 2.5v2M2 7.5h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             28 de abril de 2026
           </div>
           <div class="meta-row">
-            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
-              <ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/>
-              <path d="M1.5 8h13M3 5.5h10M3 10.5h10" stroke="currentColor" stroke-width="1.2"/>
-            </svg>
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13" stroke="currentColor" stroke-width="1.2"/></svg>
             Online — Zoom / LinkedIn Live
+          </div>
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="meta-highlight">Gratuito · Plazas abiertas</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ─── EVENT 2: June 10 ─── -->
-    <div class="ev" id="ev2">
-      <!-- Card -->
+    <!-- ─── EVENTO 3: 10 JUNIO ─── -->
+    <div class="ev" id="ev3">
       <div class="ev-card">
         <div class="ev-card-inner">
           <div class="ev-card-top">
             <span class="ev-date">10 Junio 2026</span>
-            <span class="ev-badge pending">Abierto a partners</span>
+            <span class="ev-badge premium">Presencial · Aforo 50</span>
           </div>
           <div class="ev-card-body">
-            <p class="ev-type">Evento Presencial · Barcelona</p>
-            <h3 class="ev-title">Talento sin Fronteras: el factor humano en la expansión internacional</h3>
+            <p class="ev-type">Conferencia Presencial · Barcelona · CCFE</p>
+            <h3 class="ev-title">Talento sin Fronteras: contratar global en la era de la IA</h3>
+            <p class="ev-pitch">El mayor divulgador de IA en habla hispana, la plataforma de contratación internacional líder y Actual Talent. Una tarde para entender cómo van a captar talento las empresas que ganen en los próximos 5 años.</p>
             <div class="ev-speakers">
-              <div class="speaker"><div class="av">JH</div>John Hernández — CCFE</div>
+              <div class="speaker"><div class="av red">JH</div>Jon Hernández — Divulgador de IA (630K YouTube)</div>
+              <div class="speaker"><div class="av">DE</div>Representante Deel — Talento Internacional</div>
               <div class="speaker"><div class="av">JB</div>Joan Boluda — Actual Talent</div>
+            </div>
+            <div class="ev-narrative">
+              "La IA y el talento internacional no son el futuro: son el presente que todavía no has procesado."
             </div>
           </div>
           <div class="ev-card-foot">
-            <span class="ev-partner">Con <strong>Cámara de Comercio Francia-España</strong></span>
+            <span class="ev-partner">Con <strong>Deel</strong> &amp; <strong>CCFE</strong></span>
             <span class="ev-link-off">Registro próximamente</span>
           </div>
         </div>
       </div>
-
-      <!-- Dot -->
-      <div class="ev-dot-col">
-        <div class="ev-dot pulse"></div>
-      </div>
-
-      <!-- Meta -->
+      <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
       <div class="ev-meta">
         <div class="ev-meta-inner">
           <div class="meta-row">
-            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
-              <path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            </svg>
-            Horario por confirmar
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Tarde · Horario por confirmar
           </div>
           <div class="meta-row">
-            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <rect x="2" y="3.5" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/>
-              <path d="M5 2.5v2M11 2.5v2M2 7.5h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            </svg>
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 2.5v2M11 2.5v2M2 7.5h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             10 de junio de 2026
           </div>
           <div class="meta-row">
-            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M8 2C5.8 2 4 3.8 4 6c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="currentColor" stroke-width="1.2"/>
-              <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/>
-            </svg>
-            Barcelona — sede por confirmar
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2C5.8 2 4 3.8 4 6c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/></svg>
+            Barcelona — Cámara Francesa (CCFE)
           </div>
           <div class="meta-row">
-            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            </svg>
-            <span style="color:var(--red);font-weight:600;">¿Quieres co-organizar? →</span>
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="meta-highlight">¿Quieres co-organizar? →</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ─── COMING SOON ─── -->
-    <div class="ev" id="ev3">
+    <!-- ─── EVENTO 4: FINALES JUNIO ─── -->
+    <div class="ev" id="ev4">
       <div class="ev-card">
-        <div class="ev-soon-card">
-          <p>Próximo anuncio</p>
-          <span>Verano – Otoño 2026</span>
+        <div class="ev-card-inner">
+          <div class="ev-card-top">
+            <span class="ev-date">Junio 2026</span>
+            <span class="ev-badge private">Privado · Solo invitación</span>
+          </div>
+          <div class="ev-card-body">
+            <p class="ev-type">Mesa ejecutiva · Presencial · Barcelona</p>
+            <h3 class="ev-title">Talent Forward: Mesa de CHROs para organizaciones que escalan</h3>
+            <p class="ev-pitch">20 directores de talento de empresas +500 empleados. Una cena de trabajo con dinámicas estructuradas, sin presentaciones. Solo acción: el momento en que las mejores empresas deciden cómo van a captar talento los próximos años.</p>
+            <div class="ev-speakers">
+              <div class="speaker"><div class="av">JB</div>Joan Boluda — Actual Talent</div>
+              <div class="speaker"><div class="av red">XS</div>Xavi Sáez — KPI · Dinámicas de networking</div>
+            </div>
+          </div>
+          <div class="ev-card-foot">
+            <span class="ev-partner">Dinámicas <strong>KPI</strong> · Conversión <strong>AT</strong></span>
+            <a href="#partners" class="ev-link">Solicitar plaza →</a>
+          </div>
         </div>
       </div>
-
-      <div class="ev-dot-col">
-        <div class="ev-dot dim"></div>
-      </div>
-
+      <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
       <div class="ev-meta">
         <div class="ev-meta-inner">
-          <p style="font-size:0.76rem;color:var(--gray);font-style:italic;">
-            ¿Tienes un tema o un espacio?<br>Hablemos.
-          </p>
-          <a href="#partners" class="ev-link" style="margin-top:0.25rem;">Proponer evento →</a>
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Cena de trabajo · Finales de junio
+          </div>
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2C5.8 2 4 3.8 4 6c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/></svg>
+            Barcelona — Venue premium
+          </div>
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2a5 5 0 100 10A5 5 0 008 2zM4 12.5C5.2 11.5 6.5 11 8 11s2.8.5 4 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="6" r="2" stroke="currentColor" stroke-width="1.2"/></svg>
+            20 asistentes · Empresas +500 empleados
+          </div>
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="meta-highlight">Invitación directa de AT</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1082,50 +747,41 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-     PARTNER SECTION
-══════════════════════════════════════════════════ -->
+<!-- ══════ PARTNER SECTION ══════ -->
 <section class="partner-section" id="partners">
   <div class="partner-inner">
-    <!-- Copy -->
     <div class="partner-copy reveal">
       <span class="eyebrow">Colabora con nosotros</span>
       <h2>¿Quieres formar<br>parte de <em>la serie</em>?</h2>
       <p>
-        Buscamos organizaciones con criterio que quieran construir con nosotros el ecosistema de talento más relevante de España.
+        Buscamos organizaciones con criterio que quieran construir con nosotros el ecosistema de talento más relevante de España. Puedes participar de muchas formas.
       </p>
       <p>
-        Puedes participar de muchas formas: como co-organizador, speaker, media partner o patrocinador. Lo que importa es que tengas algo real que aportar.
+        Si eres empresa con algo real que aportar — budget, audiencia, credibilidad o conocimiento — esta es tu plataforma.
       </p>
       <ul class="partner-perks">
-        <li>Visibilidad ante decisores de RRHH y talento en toda España</li>
-        <li>Acceso anticipado a la agenda y los speakers</li>
-        <li>Presencia en materiales de comunicación del evento</li>
-        <li>Conexión directa con la red Actual Talent</li>
-        <li>Posibilidad de coorganizar eventos futuros de la serie</li>
+        <li>Visibilidad ante CHROs y líderes de talento de toda España</li>
+        <li>Acceso anticipado a la agenda, speakers y red de contactos</li>
+        <li>Presencia en comunicaciones del evento y materiales AT</li>
+        <li>Posibilidad de coorganizar uno o varios eventos de la serie</li>
+        <li>Conexión directa con las empresas que toman decisiones sobre RPO</li>
       </ul>
     </div>
-
-    <!-- Form -->
     <div class="p-form-wrap">
       <p class="form-head">Quiero participar</p>
-
       <form id="partnerForm" novalidate>
         <div class="fg">
           <label for="pname">Nombre completo</label>
           <input type="text" id="pname" name="name" placeholder="Tu nombre" required autocomplete="name">
         </div>
-
         <div class="fg">
           <label for="pemail">Email profesional</label>
           <input type="email" id="pemail" name="email" placeholder="tu@empresa.com" required autocomplete="email">
         </div>
-
         <div class="fg">
           <label for="pcompany">Empresa / Organización</label>
           <input type="text" id="pcompany" name="company" placeholder="Nombre de tu empresa" required autocomplete="organization">
         </div>
-
         <div class="fg">
           <label for="prole">¿Cómo quieres participar?</label>
           <select id="prole" name="role" required>
@@ -1138,22 +794,13 @@
             <option value="otro">Otra forma</option>
           </select>
         </div>
-
         <div class="fg">
           <label for="pmsg">¿Qué quieres aportar? <span style="opacity:.5">(breve)</span></label>
           <textarea id="pmsg" name="message" placeholder="Cuéntanos tu propuesta en 2-3 líneas…" maxlength="300" required></textarea>
         </div>
-
-        <button type="submit" class="form-submit" id="psubmit">
-          Enviar propuesta
-        </button>
-
-        <p class="form-privacy">
-          Tus datos se usan exclusivamente para valorar tu propuesta de colaboración.<br>
-          Sin spam. Respuesta en menos de 48h.
-        </p>
+        <button type="submit" class="form-submit" id="psubmit">Enviar propuesta</button>
+        <p class="form-privacy">Tus datos se usan exclusivamente para valorar tu propuesta.<br>Sin spam. Respuesta en menos de 48h.</p>
       </form>
-
       <div class="form-ok" id="formOk">
         <div class="form-ok-icon">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
@@ -1167,84 +814,172 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════════════ -->
+<!-- ══════ FOOTER ══════ -->
 <footer>
   <div class="footer-brand">
-    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" width="26" height="26" aria-hidden="true">
-      <path d="M6 38 L22 6 L38 38" stroke="rgba(255,255,255,0.9)" stroke-width="2.4" fill="none" stroke-linejoin="round"/>
-      <path d="M12 26 L32 26" stroke="rgba(255,255,255,0.9)" stroke-width="2.4" stroke-linecap="square"/>
-      <path d="M22 6 L22 38" stroke="rgba(255,255,255,0.9)" stroke-width="2.4"/>
-      <path d="M14 6 L30 6" stroke="rgba(255,255,255,0.9)" stroke-width="2.4" stroke-linecap="square"/>
+    <svg viewBox="0 0 44 44" fill="none" width="26" height="26" aria-hidden="true">
+      <path d="M6 38L22 6l16 32" stroke="rgba(255,255,255,.9)" stroke-width="2.4" fill="none" stroke-linejoin="round"/>
+      <path d="M12 26h20" stroke="rgba(255,255,255,.9)" stroke-width="2.4" stroke-linecap="square"/>
+      <path d="M22 6v32" stroke="rgba(255,255,255,.9)" stroke-width="2.4"/>
+      <path d="M14 6h16" stroke="rgba(255,255,255,.9)" stroke-width="2.4" stroke-linecap="square"/>
     </svg>
     <span class="footer-brand-name">Actual Talent</span>
   </div>
-
   <ul class="footer-links">
     <li><a href="../">Status</a></li>
     <li><a href="../webinar/">Webinar 28 Abr</a></li>
     <li><a href="mailto:joan.boluda@actualgroup.com">Contacto</a></li>
   </ul>
-
   <span class="footer-copy">© 2026 Actual Talent · Actual Hiring Partner Series</span>
 </footer>
 
-<!-- ══════════════════════════════════════════════════
-     JS
-══════════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
 <script>
-  // ── Nav scroll shadow ──
+  // ── Nav shadow ──
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 50);
-  }, { passive: true });
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
 
-  // ── IntersectionObserver for reveal + events + pillars ──
+  // ─────────────────────────────────────
+  // PARTICLE SYSTEM (same engine as webinar page)
+  // ─────────────────────────────────────
+  const mousePos = { x: -1000, y: -1000, active: false };
+  window.addEventListener('mousemove', e => { mousePos.x = e.clientX; mousePos.y = e.clientY; mousePos.active = true; }, { passive: true });
+  window.addEventListener('mouseleave', () => { mousePos.active = false; });
+
+  function initParticles(canvasId, count) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+
+    function resize() {
+      const p = canvas.parentElement;
+      w = canvas.width  = p.offsetWidth;
+      h = canvas.height = p.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2.5 + 0.8,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.35 - 0.05,
+        alpha: Math.random() * 0.5 + 0.2,
+        isRed: Math.random() < 0.38,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+
+    const CONNECT = 155;
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      // Connection lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < CONNECT) {
+            const op = (1 - d / CONNECT) * 0.15;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = (particles[i].isRed || particles[j].isRed)
+              ? `rgba(192,25,30,${op})`
+              : `rgba(255,255,255,${op * 0.55})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles + mouse repulsion
+      const rect = canvas.getBoundingClientRect();
+      const mx = mousePos.x - rect.left;
+      const my = mousePos.y - rect.top;
+      const MR = 180;
+
+      particles.forEach(p => {
+        if (mousePos.active && mx > -50 && mx < w + 50 && my > -50 && my < h + 50) {
+          const dx = p.x - mx, dy = p.y - my;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < MR && d > 0) {
+            const f = (1 - d / MR) * 2.5;
+            p.vx += (dx / d) * f * 0.3;
+            p.vy += (dy / d) * f * 0.3;
+          }
+        }
+        p.vx *= 0.97; p.vy *= 0.97;
+        p.vx += (Math.random() - 0.5) * 0.04;
+        p.vy += (Math.random() - 0.5) * 0.03 - 0.005;
+        p.x += p.vx; p.y += p.vy;
+        p.pulse += 0.018;
+        const a = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+        if (p.x < -10) p.x = w + 10;
+        if (p.x > w + 10) p.x = -10;
+        if (p.y < -10) p.y = h + 10;
+        if (p.y > h + 10) p.y = -10;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.isRed ? `rgba(192,25,30,${a})` : `rgba(255,255,255,${a * 0.75})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  initParticles('hero-canvas', 130);
+
+  // ── Scroll reveal (IntersectionObserver) ──
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
       if (el.classList.contains('pillar')) {
         const all = [...document.querySelectorAll('.pillar')];
-        const i   = all.indexOf(el);
-        setTimeout(() => el.classList.add('vis'), i * 160);
+        setTimeout(() => el.classList.add('vis'), all.indexOf(el) * 160);
       } else {
         el.classList.add('vis');
       }
       observer.unobserve(el);
     });
-  }, { threshold: 0.14 });
+  }, { threshold: 0.13 });
 
   document.querySelectorAll('.reveal, .ev, .pillar').forEach(el => observer.observe(el));
 
-  // ── Timeline line fill on scroll ──
-  const tl      = document.querySelector('.timeline');
-  const tlFill  = document.getElementById('tl-fill');
-
-  function updateTlFill() {
+  // ── Timeline fill on scroll ──
+  const tl     = document.querySelector('.timeline');
+  const tlFill = document.getElementById('tl-fill');
+  function updateFill() {
     if (!tl || !tlFill) return;
-    const rect   = tl.getBoundingClientRect();
-    const h      = tl.offsetHeight;
-    const scrolled = window.scrollY + window.innerHeight * 0.62 - (tl.offsetTop);
-    const pct    = Math.max(0, Math.min(1, scrolled / h));
-    tlFill.style.height = (pct * h) + 'px';
+    const h       = tl.offsetHeight;
+    const scrolled = window.scrollY + window.innerHeight * 0.62 - tl.offsetTop;
+    tlFill.style.height = Math.max(0, Math.min(1, scrolled / h)) * h + 'px';
   }
-  window.addEventListener('scroll', updateTlFill, { passive: true });
-  updateTlFill();
+  window.addEventListener('scroll', updateFill, { passive: true });
+  updateFill();
 
   // ── Smooth anchor scroll ──
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (!target) return;
+      const t = document.querySelector(a.getAttribute('href'));
+      if (!t) return;
       e.preventDefault();
-      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 75, behavior: 'smooth' });
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 75, behavior: 'smooth' });
     });
   });
 
   // ── Partner form ──
-  // TODO: Replace with Google Apps Script endpoint for partner form submissions
+  // TODO: Replace with Google Apps Script endpoint for partner submissions
   const ENDPOINT = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
   const form    = document.getElementById('partnerForm');
@@ -1270,14 +1005,14 @@
       if (ENDPOINT !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
         await fetch(ENDPOINT, { method: 'POST', body: new URLSearchParams(vals) });
       } else {
-        await new Promise(r => setTimeout(r, 700)); // dev preview
+        await new Promise(r => setTimeout(r, 700));
       }
       form.style.display = 'none';
       success.style.display = 'block';
     } catch {
       submit.disabled = false;
       submit.textContent = 'Enviar propuesta';
-      alert('Error al enviar. Escríbenos directamente a joan.boluda@actualgroup.com');
+      alert('Error al enviar. Escríbenos a joan.boluda@actualgroup.com');
     }
   });
 </script>
