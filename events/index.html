@@ -121,8 +121,34 @@
     .ev-dot.dim { background: var(--beige); box-shadow: 0 0 0 2px var(--beige); }
 
     /* card */
-    .ev-card-inner { background: var(--cream); border-radius: 3px; overflow: hidden; border: 1px solid rgba(0,0,0,.07); transition: box-shadow .3s,transform .3s; }
-    .ev-card-inner:hover { box-shadow: 0 18px 52px rgba(0,0,0,.1); transform: translateY(-4px); }
+    .ev-card-inner { background: var(--cream); border-radius: 3px; overflow: hidden; border: 1px solid rgba(0,0,0,.07); transition: box-shadow .3s,transform .3s; position: relative; }
+    .ev-card-inner:hover { box-shadow: 0 18px 52px rgba(0,0,0,.13); transform: translateY(-4px); }
+
+    /* ── SPEAKER HOVER PANEL ── */
+    .sp-panel {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
+      background: rgba(14,14,14,.97);
+      backdrop-filter: blur(12px);
+      border-top: 2px solid var(--red);
+      padding: 1.1rem 1.4rem 1.15rem;
+      display: flex; align-items: flex-start; gap: .7rem; flex-wrap: wrap;
+      transform: translateY(100%);
+      transition: transform .42s cubic-bezier(.4,0,.2,1);
+    }
+    .ev-card-inner:hover .sp-panel { transform: translateY(0); }
+    .sp { display: flex; flex-direction: column; align-items: center; gap: .3rem; width: 60px; text-align: center; }
+    .sp-av {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+      color: #fff; flex-shrink: 0; letter-spacing: -.01em;
+    }
+    .sp-av.r { background: var(--red); box-shadow: 0 0 0 2px rgba(192,25,30,.35), 0 4px 14px rgba(192,25,30,.3); }
+    .sp-av.d { background: #1e1e1e; box-shadow: 0 0 0 2px rgba(255,255,255,.1); }
+    .sp-av.g { background: #7a560e; box-shadow: 0 0 0 2px rgba(192,140,25,.3); }
+    .sp-av.b { background: #1a3a5c; box-shadow: 0 0 0 2px rgba(30,80,140,.3); }
+    .sp-name { font-size: .55rem; font-weight: 600; color: rgba(255,255,255,.88); line-height: 1.3; }
+    .sp-co   { font-size: .5rem;  color: rgba(255,255,255,.38); line-height: 1.3; }
     .ev-card-top { background: var(--black); padding: 1.1rem 1.4rem; display: flex; align-items: center; justify-content: space-between; }
     .ev-date { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; }
     .ev-badge { font-size: .57rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: .28rem .75rem; border-radius: 100px; }
@@ -356,6 +382,10 @@
             </div>
           </div>
           <div class="ev-card-foot"><span class="ev-partner">Con <strong>Danone</strong> · apertura de la serie</span><a href="#partners" class="ev-link">Recibir aviso →</a></div>
+          <div class="sp-panel">
+            <div class="sp"><div class="sp-av r">JB</div><span class="sp-name">Joan Boluda</span><span class="sp-co">Actual Talent</span></div>
+            <div class="sp"><div class="sp-av d">JF</div><span class="sp-name">Javier F. Santín</span><span class="sp-co">Danone</span></div>
+          </div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
@@ -384,6 +414,12 @@
             </div>
           </div>
           <div class="ev-card-foot"><span class="ev-partner">Con <strong>Teamtailor</strong></span><a href="../webinar/" class="ev-link">Reservar plaza →</a></div>
+          <div class="sp-panel">
+            <div class="sp"><div class="sp-av r">JB</div><span class="sp-name">Joan Boluda</span><span class="sp-co">Actual Talent</span></div>
+            <div class="sp"><div class="sp-av d">MG</div><span class="sp-name">Marc Galanó</span><span class="sp-co">Teamtailor</span></div>
+            <div class="sp"><div class="sp-av d">TG</div><span class="sp-name">Toni Gimeno</span><span class="sp-co">Inbound Rec.</span></div>
+            <div class="sp"><div class="sp-av d">IJ</div><span class="sp-name">Iker Jusué</span><span class="sp-co">Navantia</span></div>
+          </div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
@@ -410,6 +446,10 @@
             </div>
           </div>
           <div class="ev-card-foot"><span class="ev-partner">Con <strong>Damm</strong> · sesión de profundidad</span><a href="#partners" class="ev-link">Recibir aviso →</a></div>
+          <div class="sp-panel">
+            <div class="sp"><div class="sp-av r">JB</div><span class="sp-name">Joan Boluda</span><span class="sp-co">Actual Talent</span></div>
+            <div class="sp"><div class="sp-av d">EB</div><span class="sp-name">Enrique Balboa</span><span class="sp-co">Damm</span></div>
+          </div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
@@ -438,6 +478,11 @@
             <div class="ev-narrative">"No hay agenda preestablecida. Hay preguntas incómodas y conversaciones que valen mucho más que cualquier conferencia. Las 20 plazas son seleccionadas por AT y Steelter."</div>
           </div>
           <div class="ev-card-foot"><span class="ev-partner">Con <strong>Steelter</strong> · solo por invitación</span><a href="#partners" class="ev-link">Solicitar plaza →</a></div>
+          <div class="sp-panel">
+            <div class="sp"><div class="sp-av r">JB</div><span class="sp-name">Joan Boluda</span><span class="sp-co">Actual Talent</span></div>
+            <div class="sp"><div class="sp-av d">RP</div><span class="sp-name">Raquel Pamies</span><span class="sp-co">Steelter</span></div>
+            <div class="sp"><div class="sp-av b">XS</div><span class="sp-name">Xavi Sáez</span><span class="sp-co">KPI Xavi Sáez</span></div>
+          </div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
@@ -474,6 +519,12 @@
             <div class="ev-narrative">"La Cámara de Comercio Francia-España representa más de 400 empresas con operaciones binacionales. Danone como empresa francesa de referencia, Deel como infraestructura de contratación global, y Jon Hernández para poner la urgencia en perspectiva."</div>
           </div>
           <div class="ev-card-foot"><span class="ev-partner">Con <strong>Danone</strong> · <strong>Deel</strong> · <strong>CCFE</strong> · Jon Hernández</span><span class="ev-link-off">Registro próximamente</span></div>
+          <div class="sp-panel">
+            <div class="sp"><div class="sp-av d">SC</div><span class="sp-name">Sara Castro</span><span class="sp-co">Danone France</span></div>
+            <div class="sp"><div class="sp-av d">DE</div><span class="sp-name">Representante</span><span class="sp-co">Deel</span></div>
+            <div class="sp"><div class="sp-av r">JB</div><span class="sp-name">Joan Boluda</span><span class="sp-co">Actual Talent</span></div>
+            <div class="sp"><div class="sp-av g">JH</div><span class="sp-name">Jon Hernández</span><span class="sp-co">Keynote</span></div>
+          </div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
@@ -506,6 +557,11 @@
             </div>
           </div>
           <div class="ev-card-foot"><span class="ev-partner">Cierre comercial de la serie</span><a href="#partners" class="ev-link">Solicitar invitación →</a></div>
+          <div class="sp-panel">
+            <div class="sp"><div class="sp-av r">JB</div><span class="sp-name">Joan Boluda</span><span class="sp-co">Actual Talent</span></div>
+            <div class="sp"><div class="sp-av d">EB</div><span class="sp-name">Enrique Balboa</span><span class="sp-co">Damm</span></div>
+            <div class="sp"><div class="sp-av d">SC</div><span class="sp-name">Sophie Celani</span><span class="sp-co">STADA España</span></div>
+          </div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
