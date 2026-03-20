@@ -127,11 +127,11 @@
     /* ── SIDE EXPAND PANEL ── */
     .ev-card { position: relative; }
     .ev-expand {
-      position: absolute; top: 0; bottom: 0; width: 272px;
+      position: absolute; top: 0; bottom: 0; width: 300px;
       background: linear-gradient(155deg, #161616 0%, #0c0c0c 100%);
       border: 1px solid rgba(255,255,255,.07);
       border-radius: 3px;
-      padding: 1.4rem 1.25rem;
+      padding: 1.6rem 1.4rem;
       opacity: 0; pointer-events: none; z-index: 30;
       display: flex; flex-direction: column; justify-content: center;
       overflow: hidden;
@@ -153,16 +153,16 @@
     .ev-card:hover .ev-expand { opacity: 1; transform: translateX(0); pointer-events: auto; }
 
     /* Panel content */
-    .evx-eyebrow { font-size: .52rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .55rem; }
-    .evx-speakers-list { display: flex; flex-direction: column; gap: .55rem; }
-    .evx-sp { display: flex; align-items: flex-start; gap: .5rem; }
-    .evx-sp-photo { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: center top; border: 1.5px solid rgba(255,255,255,.18); flex-shrink: 0; margin-top: .08rem; }
-    .evx-sp-info { flex: 1; min-width: 0; padding-left: .55rem; border-left: 1px solid rgba(255,255,255,.1); }
-    .evx-sp-name { font-family: 'Playfair Display', serif; font-size: .87rem; font-weight: 700; color: #fff; line-height: 1.2; }
-    .evx-sp-co { font-size: .57rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: rgba(255,255,255,.55); margin-top: .1rem; }
-    .evx-sp-role { font-size: .54rem; color: rgba(255,255,255,.32); margin-top: .06rem; line-height: 1.35; }
-    .evx-divider { height: 1px; background: rgba(255,255,255,.08); margin: .7rem 0; flex-shrink: 0; }
-    .evx-pitch { font-size: .62rem; line-height: 1.68; color: rgba(255,255,255,.44); }
+    .evx-eyebrow { font-size: .55rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .75rem; }
+    .evx-speakers-list { display: flex; flex-direction: column; gap: .8rem; }
+    .evx-sp { display: flex; align-items: flex-start; gap: .6rem; }
+    .evx-sp-photo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; object-position: center top; border: 1.5px solid rgba(255,255,255,.2); flex-shrink: 0; margin-top: .06rem; }
+    .evx-sp-info { flex: 1; min-width: 0; padding-left: .65rem; border-left: 1px solid rgba(255,255,255,.12); }
+    .evx-sp-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .evx-sp-co { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: rgba(255,255,255,.5); margin-top: .12rem; }
+    .evx-sp-role { font-size: .62rem; color: rgba(255,255,255,.38); margin-top: .18rem; line-height: 1.45; }
+    .evx-divider { height: 1px; background: rgba(255,255,255,.08); margin: .85rem 0; flex-shrink: 0; }
+    .evx-pitch { font-size: .68rem; line-height: 1.7; color: rgba(255,255,255,.48); font-style: italic; }
     /* Decorative bg letterform */
     .evx-bg { position: absolute; bottom: -.8rem; right: -.3rem; font-family: 'Playfair Display', serif; font-size: 5.5rem; font-weight: 900; color: rgba(255,255,255,.022); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -.04em; }
     @media (max-width: 860px) { .ev-expand { display: none; } }
@@ -187,19 +187,7 @@
     .speaker.text-only { padding-left: .65rem; border-left: 2px solid var(--beige); transition: border-color .2s; }
     .speaker.text-only:hover { border-left-color: var(--red); }
     .speaker.text-only strong { color: var(--black); font-weight: 600; }
-    /* tooltip popup */
-    .speaker::after {
-      content: attr(data-tip);
-      position: absolute; bottom: calc(100% + 8px); left: 0;
-      background: var(--black); color: rgba(255,255,255,.82);
-      font-size: .66rem; line-height: 1.55; font-style: normal;
-      padding: .65rem .9rem; border-radius: 3px; width: 260px;
-      white-space: normal; opacity: 0; pointer-events: none;
-      transition: opacity .2s; z-index: 20;
-      border-left: 2px solid var(--red);
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    .speaker:hover::after { opacity: 1; }
+    /* tooltip disabled — content lives in the expand panel */
     .av { width: 22px; height: 22px; border-radius: 50%; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: .5rem; font-weight: 700; color: var(--gray); flex-shrink: 0; }
     .av.red { background: rgba(192,25,30,.12); color: var(--red); }
     .av.gold { background: rgba(192,140,25,.12); color: #a07010; }
@@ -392,9 +380,7 @@
             <h3 class="ev-title">Hiring Unplugged: lo que las empresas que ganan la guerra por el talento hacen diferente</h3>
             <p class="ev-pitch">Sin slides corporativos, sin filtros. Joan y Javier Fernández Santín — Global Employer Branding Lead en Danone — abren la serie con una conversación directa: qué separa a las empresas que atraen talento de las que lo persiguen, y por qué la diferencia se está ampliando.</p>
             <div class="ev-speakers">
-              <div class="speaker" data-tip="Business Development Manager en Actual Talent. Más de 20 años gestionando procesos de selección complejos para empresas del mercado español. Habla desde los datos reales de lo que cuesta contratar mal y de cómo se puede hacer diferente.">
-                <div class="av red">JB</div>Joan Boluda — Actual Talent
-              </div>
+              <div class="speaker text-only"><strong>Joan Boluda</strong> — Actual Talent</div>
               <div class="speaker text-only" data-tip="Global Employer Branding Lead en Danone — responsable de la propuesta de valor a empleados en más de 50 mercados y de cómo una marca global de consumo compite por talento técnico y directivo en entornos donde los candidatos eligen empresa antes de que exista una vacante. Habla desde datos reales de atracción pasiva vs. activa."><strong>Javier Fernández Santín</strong> — Danone · Global EB Lead</div>
             </div>
           </div>
@@ -408,14 +394,14 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Joan Boluda</div>
                 <div class="evx-sp-co">Actual Talent · BD Manager</div>
-                <div class="evx-sp-role">20 años en selección compleja · mercado español</div>
+                <div class="evx-sp-role">Lo que cuesta contratar mal — y cómo se puede hacer diferente</div>
               </div>
             </div>
             <div class="evx-sp">
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Javier F. Santín</div>
                 <div class="evx-sp-co">Danone · Global EB Lead</div>
-                <div class="evx-sp-role">50 mercados · atracción pasiva vs activa</div>
+                <div class="evx-sp-role">Candidatos que eligen empresa antes de que exista una vacante · 50 mercados</div>
               </div>
             </div>
           </div>
@@ -443,7 +429,7 @@
             <h3 class="ev-title">IA vs IA: La Batalla por el Talento</h3>
             <p class="ev-pitch">Candidatos usando IA para postular. Empresas usando IA para filtrar. ¿Quién gana? Cuatro voces desde la primera línea de la selección, el employer branding, la innovación en RRHH y la tecnología.</p>
             <div class="ev-speakers">
-              <div class="speaker" data-tip="Business Development Manager en Actual Talent. Más de 20 años gestionando procesos de selección complejos para empresas del mercado español. Modera y da contexto estratégico a todo el debate."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
+              <div class="speaker text-only"><strong>Joan Boluda</strong> — Actual Talent</div>
               <div class="speaker text-only" data-tip="Sales Manager España en Teamtailor. Trabaja con los equipos de RRHH de cientos de empresas. Habla desde los datos del ATS: qué separa a las empresas que contratan bien de las que desperdician tiempo y candidatos. No habla de producto — habla de patrones."><strong>Marc Galanó</strong> — Teamtailor · Sales Manager España</div>
               <div class="speaker text-only" data-tip="Creador del método Inbound Recruiting y cofundador de Talent Clue. Ha formado a más de 8.000 profesionales de RRHH. La perspectiva que más falta en el debate: cómo atraer candidatos sin perseguirlos. Employer branding como ventaja competitiva real."><strong>Toni Gimeno</strong> — Inbound Recruiting · Talent Clue</div>
               <div class="speaker text-only" data-tip="Head of HR Digitalization & Innovation en Navantia (14.000 personas, sector defensa). Profesor de IA aplicada al comportamiento organizacional en la UNIR. Habla desde la trinchera: qué funciona cuando implementas IA en selección en entornos industriales donde el margen de error es mínimo."><strong>Iker Jusué</strong> — Navantia · Head HR Digitalization & Innovation</div>
@@ -459,7 +445,7 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Marc Galanó</div>
                 <div class="evx-sp-co">Teamtailor · Sales Manager España</div>
-                <div class="evx-sp-role">Patrones de cientos de empresas · datos del ATS</div>
+                <div class="evx-sp-role">Qué separa empresas que contratan bien de las que desperdician candidatos</div>
               </div>
             </div>
             <div class="evx-sp">
@@ -467,7 +453,7 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Toni Gimeno</div>
                 <div class="evx-sp-co">Inbound Recruiting · Talent Clue</div>
-                <div class="evx-sp-role">8.000 profesionales formados · método Inbound</div>
+                <div class="evx-sp-role">Cómo atraer candidatos sin perseguirlos · 8.000 profesionales formados</div>
               </div>
             </div>
             <div class="evx-sp">
@@ -475,7 +461,7 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Iker Jusué</div>
                 <div class="evx-sp-co">Navantia · Head HR Digitalization</div>
-                <div class="evx-sp-role">14.000 personas · IA en industria de defensa</div>
+                <div class="evx-sp-role">IA en selección donde el margen de error es mínimo · 14.000 personas</div>
               </div>
             </div>
           </div>
@@ -503,7 +489,7 @@
             <h3 class="ev-title">El coste real de contratar: lo que el 80% de las empresas no ha calculado nunca</h3>
             <p class="ev-pitch">Cuánto cuesta contratar en 50 mercados cuando tu empresa tiene 150 años y opera con agilidad de startup. Joan y Enrique Balboa — International HR Director en Damm — muestran los números que nadie quiere calcular: coste de vacante vacía, coste de contratación equivocada, y coste de la dependencia de candidatos que no te buscan.</p>
             <div class="ev-speakers">
-              <div class="speaker" data-tip="Business Development Manager en Actual Talent. Presenta los datos sin nombrar clientes — los patrones que se repiten en empresas que contratan 50, 100 o 500 personas al año. El ejercicio que ayuda a los CHROs a construir el business case interno para cambiar el modelo."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
+              <div class="speaker text-only"><strong>Joan Boluda</strong> — Actual Talent</div>
               <div class="speaker text-only" data-tip="International HR Director en Damm — llegó hace 3 meses a liderar la expansión global de una empresa cervecera de 150 años con operaciones en 50+ mercados (EEUU, Senegal, Reino Unido, China, Latinoamérica). Ha tomado la decisión de externalizar toda contratación fuera de Barcelona. Habla desde dentro del proceso de cambio, no desde el resultado. [Propuesta — pendiente confirmar]"><strong>Enrique Balboa</strong> — Damm · International HR Director <em style="font-size:.62rem;opacity:.6">(propuesto)</em></div>
             </div>
           </div>
@@ -525,12 +511,12 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Enrique Balboa</div>
                 <div class="evx-sp-co">Damm · International HR Director</div>
-                <div class="evx-sp-role">50+ mercados · toda contratación externalizada</div>
+                <div class="evx-sp-role">Habla desde dentro del proceso, no del resultado · 50+ mercados</div>
               </div>
             </div>
           </div>
           <div class="evx-divider"></div>
-          <p class="evx-pitch">150 años de empresa. 50 mercados. El equipo de RRHH que no puede crecer al mismo ritmo.</p>
+          <p class="evx-pitch">Empresa de 150 años. 50 mercados. Toda la contratación internacional externalizada — desde dentro del cambio.</p>
           <div class="evx-bg">Da</div>
         </div>
       </div>
@@ -553,7 +539,7 @@
             <h3 class="ev-title">HR Leaders Breakfast: el nuevo mapa del talento en organizaciones que escalan</h3>
             <p class="ev-pitch">Sin panel, sin ponencias. 90 minutos de conversación estructurada entre 20 directores de RRHH de empresas +500 empleados. Joan facilita. La agenda la pone la sala. Organizado conjuntamente con Steelter — dos perspectivas sobre la función de RRHH, un solo objetivo: que cada asistente salga con una perspectiva que no tenía al entrar.</p>
             <div class="ev-speakers">
-              <div class="speaker" data-tip="Business Development Manager en Actual Talent. Facilita la conversación — no la protagoniza. En una sala de 20 CHROs, la conversación entre pares vale más que cualquier ponencia. Joan observa, conecta y hace las preguntas que nadie se atreve a hacer."><div class="av red">JB</div>Joan Boluda — Actual Talent (facilitador)</div>
+              <div class="speaker text-only"><strong>Joan Boluda</strong> — Actual Talent · facilitador</div>
               <div class="speaker text-only" data-tip="Fundadora de Steelter — consultora de HR technology y transformación de la función de RRHH. Trabaja con empresas de 200 a 600 empleados con directores de RRHH que quieren hacer las cosas de otra manera. Co-anfitriona del desayuno: aporta red de contactos y perspectiva de HR tech."><strong>Raquel Pamies</strong> — Steelter · co-anfitriona</div>
               <div class="speaker text-only" data-tip="Speaker y facilitador especializado en performance y KPIs de negocio. Facilita el ejercicio de arranque: una dinámica de conversación estructurada de 20 minutos que ayuda a cada asistente a definir el problema de talento que quiere resolver antes de empezar la conversación abierta. [Pendiente de confirmar]"><strong>Xavi Sáez</strong> — KPI Xavi Sáez · dinámica de arranque <em style="font-size:.62rem;opacity:.6">(por confirmar)</em></div>
             </div>
@@ -577,7 +563,7 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Raquel Pamies</div>
                 <div class="evx-sp-co">Steelter · Co-anfitriona</div>
-                <div class="evx-sp-role">HR tech · empresas 200-600 empleados</div>
+                <div class="evx-sp-role">Directores de RRHH que quieren hacer las cosas de otra manera</div>
               </div>
             </div>
             <div class="evx-sp">
@@ -621,7 +607,7 @@
             <div class="ev-speakers" style="margin-top:.9rem">
               <div class="speaker text-only" data-tip="Directora RRHH en Danone France — gestiona los centros de excelencia en Talent Acquisition de Danone en Francia, con más de 2.000 contrataciones anuales. Danone es una empresa francesa con operaciones en más de 50 países. En el contexto de la Cámara Francesa, Sara habla desde dentro de una multinacional que ha tenido que construir infraestructura de TA a escala: qué funciona, qué no escala, y por qué el modelo build-everything-internal tiene un techo. [Propuesta — pendiente confirmar]"><strong>Sara Castro</strong> — Danone France · Directora RRHH / TA <em style="font-size:.62rem;opacity:.6">(propuesta)</em></div>
               <div class="speaker text-only" data-tip="Deel es la plataforma que permite contratar en más de 150 países sin establecer entidades locales. No viene a vender el producto — viene con datos reales de cómo están contratando las empresas españolas que más crecen internacionalmente y dónde se están quedando atrás las que no han movido ficha."><strong>Representante Deel</strong> — Talento Internacional</div>
-              <div class="speaker" data-tip="Business Development Manager en Actual Talent. Presenta el Actual Hiring Partner: qué es, cómo se implementa, y por qué las empresas de más de 300 personas están empezando a externalizar la captación de talento como decisión estratégica."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
+              <div class="speaker text-only"><strong>Joan Boluda</strong> — Actual Talent</div>
               <div class="speaker text-only" data-tip="El mayor divulgador de IA en habla hispana. Más de 630.000 suscriptores, 45 millones de visualizaciones. Keynote speaker en eventos con Microsoft, Repsol y Airbus. Cierra la noche con la perspectiva que incomoda: por qué las empresas que no actúen en los próximos 18 meses van a tener un problema de talento que no podrán resolver internamente."><strong>Jon Hernández</strong> — Keynote de cierre &nbsp;🎤</div>
             </div>
             <div class="ev-narrative">"La Cámara de Comercio Francia-España representa más de 400 empresas con operaciones binacionales. Danone como empresa francesa de referencia, Deel como infraestructura de contratación global, y Jon Hernández para poner la urgencia en perspectiva."</div>
@@ -636,7 +622,7 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Sara Castro</div>
                 <div class="evx-sp-co">Danone France · Directora RRHH/TA</div>
-                <div class="evx-sp-role">2.000 contrataciones/año · modelo interno tiene un techo</div>
+                <div class="evx-sp-role">2.000 contrataciones/año · por qué el modelo interno tiene un techo</div>
               </div>
             </div>
             <div class="evx-sp">
@@ -657,7 +643,7 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Jon Hernández</div>
                 <div class="evx-sp-co">Keynote de cierre</div>
-                <div class="evx-sp-role">630K suscriptores · Microsoft, Repsol, Airbus</div>
+                <div class="evx-sp-role">El mayor divulgador de IA en habla hispana · 630K suscriptores</div>
               </div>
             </div>
           </div>
@@ -690,7 +676,7 @@
               <div class="agenda-item"><span class="agenda-n">3</span><span>Cena + conversaciones privadas — Joan con cada mesa</span></div>
             </div>
             <div class="ev-speakers" style="margin-top:.9rem">
-              <div class="speaker" data-tip="Business Development Manager en Actual Talent. En la cena no hace una presentación — tiene conversaciones. Con cada mesa, con cada CHRO. Pregunta, escucha, diagnostica. El pipeline se crea aquí."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
+              <div class="speaker text-only"><strong>Joan Boluda</strong> — Actual Talent</div>
               <div class="speaker text-only" data-tip="International HR Director en Damm — lleva 3 meses gestionando la expansión de una empresa de 150 años en 50+ mercados. Ha tomado en primera persona la decisión de externalizar toda contratación fuera de Barcelona. Habla desde dentro del proceso, no desde el resultado. [Propuesta — pendiente confirmar]"><strong>Enrique Balboa</strong> — Damm · International HR Director <em style="font-size:.62rem;opacity:.6">(propuesto)</em></div>
               <div class="speaker text-only" data-tip="HR Business Partner en STADA España — TOP 5 mercado global de STADA, €220M de facturación. Habla de la decisión real de externalizar la captación de talento: por qué lo evaluaron, cómo eligieron el modelo, y qué cambió. Más del 50% de reducción en costes de selección con un partner RPO externo. No es un testimonial — es una conversación entre pares. [Propuesta — pendiente confirmar]"><strong>Sophie Celani</strong> — STADA España · HR Business Partner <em style="font-size:.62rem;opacity:.6">(propuesta)</em></div>
             </div>
@@ -713,7 +699,7 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Enrique Balboa</div>
                 <div class="evx-sp-co">Damm · International HR Director</div>
-                <div class="evx-sp-role">150 años de empresa · 50 mercados · todo externalizado</div>
+                <div class="evx-sp-role">Decisión en primera persona · habla desde dentro del proceso, no del resultado</div>
               </div>
             </div>
             <div class="evx-sp">
@@ -721,7 +707,7 @@
               <div class="evx-sp-info">
                 <div class="evx-sp-name">Sophie Celani</div>
                 <div class="evx-sp-co">STADA España · HR Business Partner</div>
-                <div class="evx-sp-role">€220M · cómo se decide externalizar desde dentro</div>
+                <div class="evx-sp-role">Top 5 mercado global STADA · >50% reducción coste selección · €220M</div>
               </div>
             </div>
           </div>
