@@ -137,9 +137,13 @@
     .ev-pitch { font-size: .77rem; line-height: 1.65; color: var(--gray); margin-bottom: .9rem; }
 
     /* speaker chips with tooltip */
-    .ev-speakers { display: flex; flex-direction: column; gap: .4rem; margin-bottom: .5rem; }
+    .ev-speakers { display: flex; flex-direction: column; gap: .5rem; margin-bottom: .5rem; }
     .speaker { display: flex; align-items: center; gap: .5rem; font-size: .74rem; color: var(--gray); position: relative; cursor: default; }
     .speaker:hover { color: var(--black); }
+    /* text-only speaker (no .av avatar) */
+    .speaker.text-only { padding-left: .65rem; border-left: 2px solid var(--beige); transition: border-color .2s; }
+    .speaker.text-only:hover { border-left-color: var(--red); }
+    .speaker.text-only strong { color: var(--black); font-weight: 600; }
     /* tooltip popup */
     .speaker::after {
       content: attr(data-tip);
@@ -275,21 +279,22 @@
     </div>
   </div>
 
-  <div class="ticker-strip" aria-label="Naming del servicio">
+  <div class="ticker-strip" aria-label="Empresas colaboradoras">
     <div class="ticker-track">
-      <span class="ti active">Actual Hiring Partner</span><span class="ts">·</span>
-      <span class="ti">Recruiting Partner</span><span class="ts">·</span>
-      <span class="ti">Selección de Talento Integrada</span><span class="ts">·</span>
-      <span class="ti">Talent Acquisition Partner</span><span class="ts">·</span>
-      <span class="ti">Talent as a Service</span><span class="ts">·</span>
-      <span class="ti active">Actual Hiring Partner</span><span class="ts">·</span>
-      <span class="ti">Recruiting Partner</span><span class="ts">·</span>
-      <span class="ti">Selección de Talento Integrada</span><span class="ts">·</span>
-      <span class="ti">Talent Acquisition Partner</span><span class="ts">·</span>
-      <span class="ti">Talent as a Service</span><span class="ts">·</span>
+      <span class="ti active">Teamtailor</span><span class="ts">·</span>
+      <span class="ti">Deel</span><span class="ts">·</span>
+      <span class="ti">Danone</span><span class="ts">·</span>
+      <span class="ti">Damm</span><span class="ts">·</span>
+      <span class="ti">Cámara Francesa</span><span class="ts">·</span>
+      <span class="ti">Steelter</span><span class="ts">·</span>
+      <span class="ti active">Teamtailor</span><span class="ts">·</span>
+      <span class="ti">Deel</span><span class="ts">·</span>
+      <span class="ti">Danone</span><span class="ts">·</span>
+      <span class="ti">Damm</span><span class="ts">·</span>
+      <span class="ti">Cámara Francesa</span><span class="ts">·</span>
+      <span class="ti">Steelter</span><span class="ts">·</span>
     </div>
   </div>
-  <div class="scroll-hint" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
 
 <!-- MANIFESTO -->
@@ -324,25 +329,26 @@
     <div class="ev">
       <div class="ev-card">
         <div class="ev-card-inner">
-          <div class="ev-card-top"><span class="ev-date">1 Abril 2026</span><span class="ev-badge teaser">Apertura · LinkedIn Live · 30 min</span></div>
+          <div class="ev-card-top"><span class="ev-date">1 Abril 2026</span><span class="ev-badge teaser">Apertura · Webinar · 45 min</span></div>
           <div class="ev-card-body">
-            <p class="ev-type">Online · Gratuito · Abierto</p>
-            <h3 class="ev-title">Hiring Unplugged: lo que nadie te dice sobre captar talento en 2026</h3>
-            <p class="ev-pitch">Sin guión, sin slides, sin filtros. 30 minutos de diagnóstico real del mercado de talento en España. El punto de partida de la serie: por qué el modelo tradicional de selección está roto y qué viene después.</p>
+            <p class="ev-type">Webinar Online · Gratuito · Abierto</p>
+            <h3 class="ev-title">Hiring Unplugged: lo que las empresas que ganan la guerra por el talento hacen diferente</h3>
+            <p class="ev-pitch">Sin slides corporativos, sin filtros. Joan y Javier Fernández Santín — Global Employer Branding Lead en Danone — abren la serie con una conversación directa: qué separa a las empresas que atraen talento de las que lo persiguen, y por qué la diferencia se está ampliando.</p>
             <div class="ev-speakers">
               <div class="speaker" data-tip="Fundador de Actual Talent. Más de 20 años gestionando procesos de selección complejos para empresas del mercado español. Habla desde los datos reales de lo que cuesta contratar mal y de cómo se puede hacer diferente.">
                 <div class="av red">JB</div>Joan Boluda — Actual Talent
               </div>
+              <div class="speaker text-only" data-tip="Global Employer Branding Lead en Danone — responsable de la propuesta de valor a empleados en más de 50 mercados y de cómo una marca global de consumo compite por talento técnico y directivo en entornos donde los candidatos eligen empresa antes de que exista una vacante. Habla desde datos reales de atracción pasiva vs. activa."><strong>Javier Fernández Santín</strong> — Danone · Global EB Lead</div>
             </div>
           </div>
-          <div class="ev-card-foot"><span class="ev-partner">Warm-up de la serie</span><a href="#partners" class="ev-link">Recibir aviso →</a></div>
+          <div class="ev-card-foot"><span class="ev-partner">Con <strong>Danone</strong> · apertura de la serie</span><a href="#partners" class="ev-link">Recibir aviso →</a></div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
       <div class="ev-meta"><div class="ev-meta-inner">
-        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>12:00h CEST · 30 minutos</div>
+        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>12:00h CEST · 45 minutos</div>
         <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="3.5" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 2.5v2M11 2.5v2M2 7.5h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>1 de abril de 2026</div>
-        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13" stroke="currentColor" stroke-width="1.2"/></svg>LinkedIn Live</div>
+        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13" stroke="currentColor" stroke-width="1.2"/></svg>LinkedIn Live · Zoom</div>
         <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="meta-hi">Gratuito · Aforo ilimitado</span></div>
       </div></div>
     </div>
@@ -358,9 +364,9 @@
             <p class="ev-pitch">Candidatos usando IA para postular. Empresas usando IA para filtrar. ¿Quién gana? Cuatro voces desde la primera línea de la selección, el employer branding, la innovación en RRHH y la tecnología.</p>
             <div class="ev-speakers">
               <div class="speaker" data-tip="Fundador de Actual Talent. Más de 20 años gestionando procesos de selección complejos para empresas del mercado español. Modera y da contexto estratégico a todo el debate."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
-              <div class="speaker" data-tip="Sales Manager España en Teamtailor. Trabaja con los equipos de RRHH de cientos de empresas. Habla desde los datos del ATS: qué separa a las empresas que contratan bien de las que desperdician tiempo y candidatos. No habla de producto — habla de patrones."><div class="av">MG</div>Marc Galanó — Teamtailor</div>
-              <div class="speaker" data-tip="Creador del método Inbound Recruiting y cofundador de Talent Clue. Ha formado a más de 8.000 profesionales de RRHH. La perspectiva que más falta en el debate: cómo atraer candidatos sin perseguirlos. Employer branding como ventaja competitiva real."><div class="av">TG</div>Toni Gimeno — Inbound Recruiting</div>
-              <div class="speaker" data-tip="Head of HR Digitalization & Innovation en Navantia (14.000 personas, sector defensa). Profesor de IA aplicada al comportamiento organizacional en la UNIR. Habla desde la trinchera: qué funciona cuando implementas IA en selección en entornos industriales donde el margen de error es mínimo."><div class="av">IJ</div>Iker Jusué — Navantia / UNIR</div>
+              <div class="speaker text-only" data-tip="Sales Manager España en Teamtailor. Trabaja con los equipos de RRHH de cientos de empresas. Habla desde los datos del ATS: qué separa a las empresas que contratan bien de las que desperdician tiempo y candidatos. No habla de producto — habla de patrones."><strong>Marc Galanó</strong> — Teamtailor · Sales Manager España</div>
+              <div class="speaker text-only" data-tip="Creador del método Inbound Recruiting y cofundador de Talent Clue. Ha formado a más de 8.000 profesionales de RRHH. La perspectiva que más falta en el debate: cómo atraer candidatos sin perseguirlos. Employer branding como ventaja competitiva real."><strong>Toni Gimeno</strong> — Inbound Recruiting · Talent Clue</div>
+              <div class="speaker text-only" data-tip="Head of HR Digitalization & Innovation en Navantia (14.000 personas, sector defensa). Profesor de IA aplicada al comportamiento organizacional en la UNIR. Habla desde la trinchera: qué funciona cuando implementas IA en selección en entornos industriales donde el margen de error es mínimo."><strong>Iker Jusué</strong> — Navantia · Head HR Digitalization & Innovation</div>
             </div>
           </div>
           <div class="ev-card-foot"><span class="ev-partner">Con <strong>Teamtailor</strong></span><a href="../webinar/" class="ev-link">Reservar plaza →</a></div>
@@ -379,24 +385,25 @@
     <div class="ev">
       <div class="ev-card">
         <div class="ev-card-inner">
-          <div class="ev-card-top"><span class="ev-date">7 Mayo 2026</span><span class="ev-badge may">Nurture · Online · 45 min</span></div>
+          <div class="ev-card-top"><span class="ev-date">7 Mayo 2026</span><span class="ev-badge may">Nurture · Webinar · 60 min</span></div>
           <div class="ev-card-body">
             <p class="ev-type">Webinar Online · Gratuito</p>
             <h3 class="ev-title">El coste real de contratar: lo que el 80% de las empresas no ha calculado nunca</h3>
-            <p class="ev-pitch">Una sesión de datos. Cuánto cuesta realmente una mala contratación. Qué hacen diferente las empresas que contratan mejor. Joan trae números reales de los procesos de AT — sin nombres, con contexto. El ejercicio que muchos CHROs necesitan para construir el business case interno.</p>
+            <p class="ev-pitch">Cuánto cuesta contratar en 50 mercados cuando tu empresa tiene 150 años y opera con agilidad de startup. Joan y Enrique Balboa — International HR Director en Damm — muestran los números que nadie quiere calcular: coste de vacante vacía, coste de contratación equivocada, y coste de la dependencia de candidatos que no te buscan.</p>
             <div class="ev-speakers">
-              <div class="speaker" data-tip="Fundador de Actual Talent. En esta sesión no presenta el servicio — presenta los datos. Lo que cuestan los procesos ineficientes, lo que se puede mejorar, y cómo se toma la decisión en empresas que ya lo han hecho de otra manera."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
+              <div class="speaker" data-tip="Fundador de Actual Talent. Presenta los datos sin nombrar clientes — los patrones que se repiten en empresas que contratan 50, 100 o 500 personas al año. El ejercicio que ayuda a los CHROs a construir el business case interno para cambiar el modelo."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
+              <div class="speaker text-only" data-tip="International HR Director en Damm — llegó hace 3 meses a liderar la expansión global de una empresa cervecera de 150 años con operaciones en 50+ mercados (EEUU, Senegal, Reino Unido, China, Latinoamérica). Ha tomado la decisión de externalizar toda contratación fuera de Barcelona. Habla desde dentro del proceso de cambio, no desde el resultado. [Propuesta — pendiente confirmar]"><strong>Enrique Balboa</strong> — Damm · International HR Director <em style="font-size:.62rem;opacity:.6">(propuesto)</em></div>
             </div>
           </div>
-          <div class="ev-card-foot"><span class="ev-partner">Continuación del webinar de Abril</span><a href="#partners" class="ev-link">Recibir aviso →</a></div>
+          <div class="ev-card-foot"><span class="ev-partner">Con <strong>Damm</strong> · sesión de profundidad</span><a href="#partners" class="ev-link">Recibir aviso →</a></div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
       <div class="ev-meta"><div class="ev-meta-inner">
-        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>12:00h CEST · 45 minutos</div>
+        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>12:00h CEST · 60 minutos</div>
         <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="3.5" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 2.5v2M11 2.5v2M2 7.5h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>7 de mayo de 2026</div>
-        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13" stroke="currentColor" stroke-width="1.2"/></svg>Online · Formato sesión de trabajo</div>
-        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="meta-hi">Gratuito · Para CHRO y People Directors</span></div>
+        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13" stroke="currentColor" stroke-width="1.2"/></svg>Online · Zoom</div>
+        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="meta-hi">Gratuito · CHRO y People Directors</span></div>
       </div></div>
     </div>
 
@@ -406,15 +413,17 @@
         <div class="ev-card-inner">
           <div class="ev-card-top"><span class="ev-date">22 Mayo 2026</span><span class="ev-badge may">Presencial · Solo invitación · 20 plazas</span></div>
           <div class="ev-card-body">
-            <p class="ev-type">Desayuno de trabajo · Barcelona</p>
+            <p class="ev-type">Desayuno de trabajo · Barcelona · Co-organizado con Steelter</p>
             <h3 class="ev-title">HR Leaders Breakfast: el nuevo mapa del talento en organizaciones que escalan</h3>
-            <p class="ev-pitch">Sin panel, sin ponencias. 90 minutos de conversación estructurada entre 20 directores de RRHH y talento de empresas +500 empleados. Joan facilita. La agenda la pone la sala. El objetivo: que cada asistente salga con una perspectiva que no tenía al entrar.</p>
+            <p class="ev-pitch">Sin panel, sin ponencias. 90 minutos de conversación estructurada entre 20 directores de RRHH de empresas +500 empleados. Joan facilita. La agenda la pone la sala. Organizado conjuntamente con Steelter — dos perspectivas sobre la función de RRHH, un solo objetivo: que cada asistente salga con una perspectiva que no tenía al entrar.</p>
             <div class="ev-speakers">
-              <div class="speaker" data-tip="Fundador de Actual Talent. Facilita la conversación — no la protagoniza. Este formato es deliberado: en una sala de 20 CHROs, la conversación entre pares vale más que cualquier ponencia. Joan observa, conecta y hace las preguntas que nadie se atreve a hacer."><div class="av red">JB</div>Joan Boluda — Actual Talent (facilitador)</div>
+              <div class="speaker" data-tip="Fundador de Actual Talent. Facilita la conversación — no la protagoniza. En una sala de 20 CHROs, la conversación entre pares vale más que cualquier ponencia. Joan observa, conecta y hace las preguntas que nadie se atreve a hacer."><div class="av red">JB</div>Joan Boluda — Actual Talent (facilitador)</div>
+              <div class="speaker text-only" data-tip="Fundadora de Steelter — consultora de HR technology y transformación de la función de RRHH. Trabaja con empresas de 200 a 600 empleados con directores de RRHH que quieren hacer las cosas de otra manera. Co-anfitriona del desayuno: aporta red de contactos y perspectiva de HR tech."><strong>Raquel Pamies</strong> — Steelter · co-anfitriona</div>
+              <div class="speaker text-only" data-tip="Speaker y facilitador especializado en performance y KPIs de negocio. Facilita el ejercicio de arranque: una dinámica de conversación estructurada de 20 minutos que ayuda a cada asistente a definir el problema de talento que quiere resolver antes de empezar la conversación abierta. [Pendiente de confirmar]"><strong>Xavi Sáez</strong> — KPI Xavi Sáez · dinámica de arranque <em style="font-size:.62rem;opacity:.6">(por confirmar)</em></div>
             </div>
-            <div class="ev-narrative">"El desayuno donde se habla de lo que realmente pasa en las empresas. No hay agenda preestablecida. Hay preguntas incómodas y conversaciones que valen mucho más que una conferencia."</div>
+            <div class="ev-narrative">"No hay agenda preestablecida. Hay preguntas incómodas y conversaciones que valen mucho más que cualquier conferencia. Las 20 plazas son seleccionadas por AT y Steelter."</div>
           </div>
-          <div class="ev-card-foot"><span class="ev-partner">Acceso por solicitud · AT selecciona asistentes</span><a href="#partners" class="ev-link">Solicitar plaza →</a></div>
+          <div class="ev-card-foot"><span class="ev-partner">Con <strong>Steelter</strong> · solo por invitación</span><a href="#partners" class="ev-link">Solicitar plaza →</a></div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
@@ -437,20 +446,20 @@
             <h3 class="ev-title">Talento sin Fronteras: contratar global en la era de la IA</h3>
             <p class="ev-pitch">El evento que cierra el primer semestre de la serie. Cuatro voces sobre la misma pregunta urgente: cómo van a captar talento las empresas que ganen en los próximos cinco años. Y Jon Hernández para ponerlo en perspectiva.</p>
             <div class="ev-agenda">
-              <div class="agenda-item"><span class="agenda-n">1</span><span>Ainoa Irurre (Schneider Electric) — Contratar 4.500 personas/año en Europa: qué funciona y qué no</span></div>
-              <div class="agenda-item"><span class="agenda-n">2</span><span>Representante Deel — La infraestructura del talento global: cómo contratan las empresas que crecen más rápido</span></div>
-              <div class="agenda-item"><span class="agenda-n">3</span><span>Joan Boluda (AT) — El Actual Hiring Partner: cuando subcontratar el talento es la mejor decisión de negocio</span></div>
+              <div class="agenda-item"><span class="agenda-n">1</span><span>Sara Castro (Danone France) — Talent Acquisition a escala europea: cómo Danone gestiona 2.000 contrataciones anuales en Francia y qué modelo no puede escalar solo con equipo interno</span></div>
+              <div class="agenda-item"><span class="agenda-n">2</span><span>Representante Deel — La infraestructura del talento global: cómo contratan las empresas que crecen más rápido sin abrir entidades locales</span></div>
+              <div class="agenda-item"><span class="agenda-n">3</span><span>Joan Boluda (AT) — El Actual Hiring Partner: cuándo externalizar la captación de talento es la mejor decisión de negocio</span></div>
               <div class="agenda-item"><span class="agenda-n">4↑</span><span><strong>Jon Hernández</strong> — Keynote de cierre: por qué todo lo que has escuchado esta noche no es opcional</span></div>
             </div>
             <div class="ev-speakers" style="margin-top:.9rem">
-              <div class="speaker" data-tip="Directora de HR para Europa y Francia en Schneider Electric. Gestiona un equipo de 100 personas y más de 4.500 contrataciones al año en el mercado europeo. Habla desde la realidad de una multinacional francesa con operaciones masivas: qué significa contratar sin fronteras cuando lo haces a escala industrial. [Propuesta — pendiente confirmación]"><div class="av">AI</div>Ainoa Irurre — Schneider Electric <em style="font-size:.62rem;opacity:.6">(propuesta)</em></div>
-              <div class="speaker" data-tip="Deel es la plataforma que permite contratar en más de 150 países sin establecer entidades locales. No viene a vender el producto — viene con datos reales de cómo están contratando las empresas españolas que más crecen internacionalmente y dónde se están quedando atrás las que no han movido ficha."><div class="av">DE</div>Representante Deel — Talento Internacional</div>
-              <div class="speaker" data-tip="Fundador de Actual Talent. Cierra la parte estratégica del evento antes del keynote de Jon: qué significa el Actual Hiring Partner, cómo se implementa, y por qué las empresas de más de 300 personas están empezando a externalizar la captación de talento."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
-              <div class="speaker" data-tip="El mayor divulgador de IA en habla hispana. 630.000 suscriptores, 45 millones de visualizaciones. Keynote speaker junto a Microsoft, Repsol y Airbus. Cierra el evento con la perspectiva que nadie quiere escuchar pero todos necesitan: por qué las empresas que no actúen en los próximos 18 meses van a tener un problema de talento que no podrán resolver internamente."><div class="av gold">JH</div><strong>Jon Hernández</strong> — Keynote de cierre &nbsp;🎤</div>
+              <div class="speaker text-only" data-tip="Directora RRHH en Danone France — gestiona los centros de excelencia en Talent Acquisition de Danone en Francia, con más de 2.000 contrataciones anuales. Danone es una empresa francesa con operaciones en más de 50 países. En el contexto de la Cámara Francesa, Sara habla desde dentro de una multinacional que ha tenido que construir infraestructura de TA a escala: qué funciona, qué no escala, y por qué el modelo build-everything-internal tiene un techo. [Propuesta — pendiente confirmar]"><strong>Sara Castro</strong> — Danone France · Directora RRHH / TA <em style="font-size:.62rem;opacity:.6">(propuesta)</em></div>
+              <div class="speaker text-only" data-tip="Deel es la plataforma que permite contratar en más de 150 países sin establecer entidades locales. No viene a vender el producto — viene con datos reales de cómo están contratando las empresas españolas que más crecen internacionalmente y dónde se están quedando atrás las que no han movido ficha."><strong>Representante Deel</strong> — Talento Internacional</div>
+              <div class="speaker" data-tip="Fundador de Actual Talent. Presenta el Actual Hiring Partner: qué es, cómo se implementa, y por qué las empresas de más de 300 personas están empezando a externalizar la captación de talento como decisión estratégica."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
+              <div class="speaker text-only" data-tip="El mayor divulgador de IA en habla hispana. Más de 630.000 suscriptores, 45 millones de visualizaciones. Keynote speaker en eventos con Microsoft, Repsol y Airbus. Cierra la noche con la perspectiva que incomoda: por qué las empresas que no actúen en los próximos 18 meses van a tener un problema de talento que no podrán resolver internamente."><strong>Jon Hernández</strong> — Keynote de cierre &nbsp;🎤</div>
             </div>
-            <div class="ev-narrative">"La Cámara de Comercio Francia-España representa más de 400 empresas con operaciones binacionales. No es solo una sala — es el endorsement institucional más relevante para este evento."</div>
+            <div class="ev-narrative">"La Cámara de Comercio Francia-España representa más de 400 empresas con operaciones binacionales. Danone como empresa francesa de referencia, Deel como infraestructura de contratación global, y Jon Hernández para poner la urgencia en perspectiva."</div>
           </div>
-          <div class="ev-card-foot"><span class="ev-partner">Con <strong>Deel</strong> · <strong>CCFE</strong> · Jon Hernández</span><span class="ev-link-off">Registro próximamente</span></div>
+          <div class="ev-card-foot"><span class="ev-partner">Con <strong>Danone</strong> · <strong>Deel</strong> · <strong>CCFE</strong> · Jon Hernández</span><span class="ev-link-off">Registro próximamente</span></div>
         </div>
       </div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
@@ -470,15 +479,16 @@
           <div class="ev-card-body">
             <p class="ev-type">Cena ejecutiva · Barcelona · 20 plazas</p>
             <h3 class="ev-title">Talent Forward: la mesa donde se deciden los próximos tres años</h3>
-            <p class="ev-pitch">20 directores de talento de empresas +500 empleados. Una cena de trabajo con tres actos: dinámicas de conversación, un caso real de RPO con métricas, y el espacio para tomar la decisión que llevan meses posponiendo.</p>
+            <p class="ev-pitch">20 directores de talento de empresas +500 empleados. Una cena de trabajo con tres momentos: una conversación entre pares sobre decisiones pendientes, dos casos reales de transformación del modelo de selección, y el espacio para que cada CHRO tome la decisión que lleva meses posponiendo.</p>
             <div class="ev-agenda">
-              <div class="agenda-item"><span class="agenda-n">1</span><span>Dinámica de arranque — ejercicio de conversación estructurada (20 min)</span></div>
-              <div class="agenda-item"><span class="agenda-n">2</span><span>Caso real: cómo STADA España redujo el coste de selección más del 50% externalizando con AT</span></div>
-              <div class="agenda-item"><span class="agenda-n">3</span><span>Cena + conversaciones privadas — Joan habla con cada mesa</span></div>
+              <div class="agenda-item"><span class="agenda-n">1</span><span>Joan + Enrique Balboa (Damm) — De 1 mercado a 50: qué cambia en tu modelo de talento cuando la empresa crece más rápido que el equipo de RRHH</span></div>
+              <div class="agenda-item"><span class="agenda-n">2</span><span>Sophie Celani (STADA España) — La decisión de externalizar: cómo se evalúa un modelo RPO desde dentro de una empresa farmacéutica y qué supuso en coste y tiempo</span></div>
+              <div class="agenda-item"><span class="agenda-n">3</span><span>Cena + conversaciones privadas — Joan con cada mesa</span></div>
             </div>
             <div class="ev-speakers" style="margin-top:.9rem">
               <div class="speaker" data-tip="Fundador de Actual Talent. En la cena no hace una presentación — tiene conversaciones. Con cada mesa, con cada CHRO. Pregunta, escucha, diagnostica. El pipeline se crea aquí."><div class="av red">JB</div>Joan Boluda — Actual Talent</div>
-              <div class="speaker" data-tip="HR Business Partner en STADA España, TOP 5 mercado global de STADA, €220M de facturación. Habla de la decisión real: qué les llevó a externalizar la captación de talento con AT, cómo fue el proceso, y qué ha cambiado. Más del 50% de reducción en costes de selección. No es un testimonial — es una conversación entre pares. [Propuesta — pendiente confirmación]"><div class="av">SC</div>Sophie Celani — STADA España <em style="font-size:.62rem;opacity:.6">(propuesta)</em></div>
+              <div class="speaker text-only" data-tip="International HR Director en Damm — lleva 3 meses gestionando la expansión de una empresa de 150 años en 50+ mercados. Ha tomado en primera persona la decisión de externalizar toda contratación fuera de Barcelona. Habla desde dentro del proceso, no desde el resultado. [Propuesta — pendiente confirmar]"><strong>Enrique Balboa</strong> — Damm · International HR Director <em style="font-size:.62rem;opacity:.6">(propuesto)</em></div>
+              <div class="speaker text-only" data-tip="HR Business Partner en STADA España — TOP 5 mercado global de STADA, €220M de facturación. Habla de la decisión real de externalizar la captación de talento: por qué lo evaluaron, cómo eligieron el modelo, y qué cambió. Más del 50% de reducción en costes de selección con un partner RPO externo. No es un testimonial — es una conversación entre pares. [Propuesta — pendiente confirmar]"><strong>Sophie Celani</strong> — STADA España · HR Business Partner <em style="font-size:.62rem;opacity:.6">(propuesta)</em></div>
             </div>
           </div>
           <div class="ev-card-foot"><span class="ev-partner">Cierre comercial de la serie</span><a href="#partners" class="ev-link">Solicitar invitación →</a></div>
