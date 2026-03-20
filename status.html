@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 15:49</span><span class="feed-msg">Registro de cambios actualizado</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 15:48</span><span class="feed-msg">Material de seguimiento post-reunión preparado</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 15:35</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 15:33</span><span class="feed-msg">Material de seguimiento post-reunión preparado</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 12:04</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 11:49</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 11:34</span><span class="feed-msg">Sincronización completada</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 11:19</span><span class="feed-msg">Sincronización completada</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,6 +1097,15 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.9 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Add <code>check_contact_conflict()</code> — compares email username tokens vs GPT contact name. Blocks draft if mismatch (Xavi/Sofia pattern)</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Add <code>normalize_client_name_with_source()</code> — returns (name, source) where source=explicit/domain_map/domain_slug. Provenance tracked end-to-end</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Add <code>check_company_confidence()</code> — blocks draft if company derived from domain_slug, is generic/empty/single-char</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.8 — 20 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">auto_followup</span> Add MEETING_OUTPUT_POLICY dict — explicit allow_pdf/allow_email/skip per type. Single source of truth</div>
@@ -1105,7 +1114,7 @@ footer {
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.7 — 20 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">auto_followup</span> Fix crítico: clasificación de tipo de reunión (commercial/partnership/internal) antes de extracción GPT. Las reuniones de partnership ya no generan PDF de ventas</div>
@@ -1114,7 +1123,8 @@ footer {
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.6 — 20 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">briefing</span> Fix: reuniones con título genérico (ej. "Reunión comercial") ya no se muestran sin contexto — se detectan como empresa desconocida y se advierte a Joan que revise el calendario. RAG ya no busca el título literal genérico</div>
@@ -1123,8 +1133,7 @@ footer {
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.5 — 19 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">consolidate_kb</span> 86 hechos estables promovidos de kb-updates → knowledge-base</div>
@@ -1133,7 +1142,7 @@ footer {
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.4 — 19 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">veolia</span> Follow-up v2: PDF 6 páginas con formación expandida (BMS micro-píldoras, módulos IA para RRHH, Lektio, metodología neuropsicológica) + EB y RPO combinados + email más corto + borrador con adjunto creado</div>
@@ -1195,15 +1204,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">cl-webinar-launch</span> Registration form → Google Apps Script → Google Sheet (hidden iframe POST)</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v1.7 — 17 marzo 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">run_briefing</span> Pre-flight check: falla rápido si faltan variables de entorno</div>
-          <div class="entry-item"><span class="entry-tag">run_briefing</span> Idempotencia: no envía dos veces si el briefing ya existe hoy</div>
-          <div class="entry-item"><span class="entry-tag">run_briefing</span> Degradación elegante: si GPT-4o falla, envía email mínimo con el calendario</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1222,7 +1222,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.8<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.9<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
