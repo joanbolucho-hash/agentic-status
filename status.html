@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-24 11:33</span><span class="feed-msg">Registro de cambios actualizado</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-24 11:32</span><span class="feed-msg">Mantenimiento del workspace</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-24 00:14</span><span class="feed-msg">/Users/joan/Desktop/agentic/actual talent</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-24 00:14</span><span class="feed-msg">/Users/joan/Desktop/agentic/claude/agents/actual-talent/cl-daily-briefing/output</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 15:49</span><span class="feed-msg">Registro de cambios actualizado</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 15:48</span><span class="feed-msg">Material de seguimiento post-reunión preparado</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 15:35</span><span class="feed-msg">Sincronización completada</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-20 15:33</span><span class="feed-msg">Material de seguimiento post-reunión preparado</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,20 +1097,30 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.14 — 24 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">infra</span> Fixed stale .git/index.lock + HEAD.lock blocking git-sync LaunchAgent (83h sin push)</div>
+          <div class="entry-item"><span class="entry-tag">infra</span> Fixed VERSION drift: HTML markers v2.11 → v2.13 to match CHANGELOG</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Cleaned retry queue: removed 3 internal meetings (no external attendee = expected). 2 GPT failures remain pending OpenAI quota renewal</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.13 — 20 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-meeting-prep</span> Informe speakers AHPS 2026 v3 (PDF 2.6MB): 25 speakers, diseño rediseñado — logo blanco b64 en portada, columnas CSS table (no flex), ranking 2 páginas, body 7.5pt mínimo. Reglas documentadas en docs/speaker-report-design-rules.md</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.12 — 20 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-proposal-generator</span> Info sheet aRaymond creada (PDF 606KB, 4p): perfil AT + serveis + tarifes orientatives + refs industrials (Megasa, Sesé, RHI, TE Connectivity, Schneider, SEAT). Borrador en catalán creat a joan.boluda@actualgroup.com per a Montse Amils (montse.amils@araymond.com)</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.11 — 20 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">auto_followup</span> PRODUCTION PROOF: Xavi/KPI re-run with new pipeline (run=d4f34958, trigger=watcher) — client=KPI, contact=Xavi Saez, no PDF, real Gmail draft created. Same transcript that caused incident now produces correct output</div>
@@ -1119,8 +1129,7 @@ footer {
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.10 — 20 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">auto_followup</span> BUGFIX CRITICAL: <code>find_attendee_email</code> returned bare <code>None</code> instead of <code>(None, None)</code> in 2 error paths → <code>TypeError</code> crash when iCal URL missing or calendar fetch fails, transcript silently never marked failed</div>
@@ -1129,7 +1138,7 @@ footer {
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.9 — 20 marzo 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">auto_followup</span> Add <code>check_contact_conflict()</code> — compares email username tokens vs GPT contact name. Blocks draft if mismatch (Xavi/Sofia pattern)</div>
@@ -1191,15 +1200,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">pre-commit</span> Fix: <code>set -euo pipefail</code> + grep no-match pipeline caused silent commit failures on non-py/sh/html/json files</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v2.2 — 18 marzo 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">health-check</span> Reescrito health-check.sh: 9 checks que ejecutan componentes y verifican output real (feed entries, PIDs, sync status) — ya no solo verifica config/existencia. Produce health-report.json consumido por session-startup.sh</div>
-          <div class="entry-item"><span class="entry-tag">status</span> Fix: generate_status_page.py fallaba con <code>str | None</code> en Python 3.9 — eliminado type hint incompatible</div>
-          <div class="entry-item"><span class="entry-tag">golden-rules</span> #3 reformulada: "VERIFY = EXECUTE + CHECK OUTPUT" — nunca declarar que algo funciona sin ejecutarlo</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1218,7 +1218,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.13<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.14<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
