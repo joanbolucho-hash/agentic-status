@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -15,20 +14,18 @@ body {
   font-family: 'Montserrat', sans-serif;
   background: #0A0A0A;
   -webkit-font-smoothing: antialiased;
+}
+
+#wrapper {
+  width: 100vw; height: 100vh;
   display: flex; align-items: center; justify-content: center;
-  min-height: 100vh;
+  overflow: hidden;
 }
 
 .flyer {
   width: 1080px; height: 1350px; position: relative; overflow: hidden;
   display: flex; flex-direction: column;
-  transform-origin: top center;
-}
-@media (max-width: 1080px) {
-  .flyer { transform: scale(calc(100vw / 1080)); margin-bottom: calc((1350px * (100vw / 1080)) - 1350px); }
-}
-@media (min-width: 1081px) {
-  .flyer { box-shadow: 0 20px 80px rgba(0,0,0,.5); border-radius: 4px; }
+  flex-shrink: 0;
 }
 
 /* Red top accent */
@@ -122,33 +119,21 @@ body {
   border: 4px solid #C0191E;
   box-shadow: 0 0 28px rgba(192,25,30,0.3);
 }
-.speaker-photo-wrap.tbd::before {
-  border: 3px dashed rgba(255,255,255,0.08);
-}
 .speaker-photo {
   width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
 }
 .speaker-photo img {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
-.speaker-photo.tbd-ph {
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.02);
-}
-.speaker-photo.tbd-ph span {
-  font-size: 52px; font-weight: 900; color: rgba(255,255,255,0.06);
-}
 
 .speaker-name {
   font-size: 24px; font-weight: 900; color: #fff;
   margin-bottom: 6px; line-height: 1.15;
 }
-.speaker-name.dim { color: rgba(255,255,255,0.1); font-size: 22px; }
 .speaker-company {
   font-size: 17px; font-weight: 700; letter-spacing: 1px;
   text-transform: uppercase; color: #C0191E;
 }
-.speaker-company.dim { color: rgba(255,255,255,0.06); }
 
 /* ─── BOTTOM: Red CTA ─── */
 .cta-bar {
@@ -191,15 +176,14 @@ body {
 .cta-logos img { height: 32px; width: auto; filter: brightness(0) invert(1); }
 .cta-logos img.tt { height: 40px; }
 .cta-logos .sep { font-size: 20px; color: rgba(255,255,255,0.35); font-weight: 300; }
-
 </style>
 </head>
 <body>
 
-<div class="flyer">
+<div id="wrapper">
+<div class="flyer" id="flyer">
   <div class="red-line"></div>
 
-  <!-- ─── HERO ─── -->
   <div class="hero">
     <div class="hero-content">
       <div class="top-row">
@@ -211,10 +195,8 @@ body {
     </div>
   </div>
 
-  <!-- ─── SPEAKERS ─── -->
   <div class="speakers">
     <div class="speakers-grid">
-
       <div class="speaker">
         <div class="speaker-photo-wrap mod">
           <div class="speaker-photo"><img src="../assets/speakers/joan-boluda.jpg" alt="Joan Boluda"></div>
@@ -222,7 +204,6 @@ body {
         <div class="speaker-name">Joan Boluda</div>
         <div class="speaker-company">Actual Talent</div>
       </div>
-
       <div class="speaker">
         <div class="speaker-photo-wrap">
           <div class="speaker-photo"><img src="../assets/speakers/mark-galano.jpg" alt="Marc Galanó"></div>
@@ -230,7 +211,6 @@ body {
         <div class="speaker-name">Marc Galanó</div>
         <div class="speaker-company">Teamtailor</div>
       </div>
-
       <div class="speaker">
         <div class="speaker-photo-wrap">
           <div class="speaker-photo"><img src="../assets/speakers/tony-gimeno.jpg" alt="Tony Gimeno"></div>
@@ -238,7 +218,6 @@ body {
         <div class="speaker-name">Tony Gimeno</div>
         <div class="speaker-company">Employer Branding</div>
       </div>
-
       <div class="speaker">
         <div class="speaker-photo-wrap">
           <div class="speaker-photo"><img src="../assets/speakers/iker-jusue.jpg" alt="Iker Jusué"></div>
@@ -246,11 +225,9 @@ body {
         <div class="speaker-name">Iker Jusué</div>
         <div class="speaker-company">Navantia</div>
       </div>
-
     </div>
   </div>
 
-  <!-- ─── CTA ─── -->
   <div class="cta-bar">
     <div class="cta-content">
       <div class="cta-org">Organizado por</div>
@@ -264,9 +241,22 @@ body {
       </div>
     </div>
   </div>
-
+</div>
 </div>
 
+<script>
+function scaleFlyer() {
+  const flyer = document.getElementById('flyer');
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const scaleW = vw / 1080;
+  const scaleH = vh / 1350;
+  const scale = Math.min(scaleW, scaleH, 1);
+  flyer.style.transform = 'scale(' + scale + ')';
+  flyer.style.transformOrigin = 'center center';
+}
+scaleFlyer();
+window.addEventListener('resize', scaleFlyer);
+</script>
 </body>
 </html>
-<!-- validation-trigger: 20260319223546 -->
