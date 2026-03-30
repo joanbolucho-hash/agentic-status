@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1080">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flyer LinkedIn — IA vs IA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,15 +11,24 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  width: 1080px; height: 1350px; overflow: hidden;
+  margin: 0; padding: 0;
   font-family: 'Montserrat', sans-serif;
   background: #0A0A0A;
   -webkit-font-smoothing: antialiased;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh;
 }
 
 .flyer {
   width: 1080px; height: 1350px; position: relative; overflow: hidden;
   display: flex; flex-direction: column;
+  transform-origin: top center;
+}
+@media (max-width: 1080px) {
+  .flyer { transform: scale(calc(100vw / 1080)); margin-bottom: calc((1350px * (100vw / 1080)) - 1350px); }
+}
+@media (min-width: 1081px) {
+  .flyer { box-shadow: 0 20px 80px rgba(0,0,0,.5); border-radius: 4px; }
 }
 
 /* Red top accent */
