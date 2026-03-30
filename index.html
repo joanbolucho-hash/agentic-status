@@ -231,9 +231,10 @@
     .logo-track { display: flex; align-items: center; gap: 56px; width: max-content; animation: slideLogos 45s linear infinite; }
     .logo-slider:hover .logo-track { animation-play-state: paused; }
     @keyframes slideLogos { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .logo-track img { height: 28px; width: auto; flex-shrink: 0; filter: grayscale(1); opacity: .35; transition: filter .3s, opacity .3s; }
+    .logo-track img { height: 28px; width: auto; max-width: 120px; object-fit: contain; flex-shrink: 0; filter: grayscale(1); opacity: .35; transition: filter .3s, opacity .3s; }
     .logo-track img:hover { filter: grayscale(0); opacity: 1; }
     .logo-track img.svg-logo { height: 22px; }
+    .logo-track img.tall { height: 32px; }
     .partner-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); text-decoration: none; transition: gap .2s; }
     .partner-cta:hover { gap: 10px; }
 
@@ -455,7 +456,7 @@
         <img src="assets/logos/sanofi.png" alt="Sanofi">
         <img src="assets/logos/mercedes-benz.svg" alt="Mercedes-Benz" class="svg-logo">
         <img src="assets/logos/louis-vuitton.svg" alt="Louis Vuitton" class="svg-logo">
-        <img src="assets/logos/caixabank.png" alt="CaixaBank">
+        <img src="assets/logos/caixabank.png" alt="CaixaBank" class="tall">
         <img src="assets/logos/deloitte.png" alt="Deloitte">
         <img src="assets/logos/carrefour.png" alt="Carrefour">
         <img src="assets/logos/telefonica.png" alt="Telefónica">
@@ -472,7 +473,7 @@
         <img src="assets/logos/gb-foods.png" alt="GB Foods">
         <img src="assets/logos/lyreco.png" alt="Lyreco">
         <img src="assets/logos/teka.png" alt="Teka">
-        <img src="assets/logos/werfen.jpg" alt="Werfen">
+        <img src="assets/logos/werfen.png" alt="Werfen">
         <img src="assets/logos/cooltra.png" alt="Cooltra">
         <img src="assets/logos/sese.png" alt="Sesé">
         <img src="assets/logos/moventia.png" alt="Moventia">
@@ -486,7 +487,7 @@
         <img src="assets/logos/sanofi.png" alt="Sanofi">
         <img src="assets/logos/mercedes-benz.svg" alt="Mercedes-Benz" class="svg-logo">
         <img src="assets/logos/louis-vuitton.svg" alt="Louis Vuitton" class="svg-logo">
-        <img src="assets/logos/caixabank.png" alt="CaixaBank">
+        <img src="assets/logos/caixabank.png" alt="CaixaBank" class="tall">
         <img src="assets/logos/deloitte.png" alt="Deloitte">
         <img src="assets/logos/carrefour.png" alt="Carrefour">
         <img src="assets/logos/telefonica.png" alt="Telefónica">
@@ -503,7 +504,7 @@
         <img src="assets/logos/gb-foods.png" alt="GB Foods">
         <img src="assets/logos/lyreco.png" alt="Lyreco">
         <img src="assets/logos/teka.png" alt="Teka">
-        <img src="assets/logos/werfen.jpg" alt="Werfen">
+        <img src="assets/logos/werfen.png" alt="Werfen">
         <img src="assets/logos/cooltra.png" alt="Cooltra">
         <img src="assets/logos/sese.png" alt="Sesé">
         <img src="assets/logos/moventia.png" alt="Moventia">
