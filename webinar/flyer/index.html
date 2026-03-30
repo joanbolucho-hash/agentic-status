@@ -16,16 +16,12 @@ body {
   background: #0A0A0A;
   -webkit-font-smoothing: antialiased;
 }
-#wrapper {
-  width: 100vw; height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
 
 .flyer {
   width: 1080px; height: 1350px; position: relative; overflow: hidden;
   display: flex; flex-direction: column; flex-shrink: 0;
 }
+#wrapper { width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0A0A0A; }
 
 /* Red top accent */
 .red-line {
@@ -35,7 +31,7 @@ body {
 
 /* ─── TOP: Title ─── */
 .hero {
-  flex: 0 0 530px; position: relative; overflow: hidden;
+  flex: 0 0 490px; position: relative; overflow: hidden;
   background: #0A0A0A;
   background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 24px 24px;
@@ -85,7 +81,7 @@ body {
 
 /* ─── MIDDLE: Speakers ─── */
 .speakers {
-  flex: 0 0 500px;
+  flex: 0 0 460px;
   background: #0d0d0d;
   padding: 48px 40px 40px;
   position: relative;
@@ -148,7 +144,7 @@ body {
 
 /* ─── BOTTOM: Red CTA ─── */
 .cta-bar {
-  flex: 0 0 300px;
+  flex: 0 0 400px;
   background: #C0191E;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -178,22 +174,21 @@ body {
 }
 .cta-detail {
   font-size: 20px; font-weight: 500; color: rgba(255,255,255,0.65);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .cta-logos {
   display: flex; align-items: center; justify-content: center; gap: 24px;
 }
-.cta-logos img { height: 44px; width: auto; filter: brightness(0) invert(1); }
-.cta-logos img.tt { height: 52px; }
+.cta-logos img { height: 56px; width: auto; filter: brightness(0) invert(1); }
+.cta-logos img.tt { height: 64px; }
 .cta-logos .sep { font-size: 20px; color: rgba(255,255,255,0.35); font-weight: 300; }
 
 </style>
 </head>
 <body>
 
-<div id="wrapper">
-<div class="flyer" id="flyer">
+<div id="wrapper"><div class="flyer" id="flyer">
   <div class="red-line"></div>
 
   <!-- ─── HERO ─── -->
@@ -265,17 +260,11 @@ body {
 </div>
 </div>
 
-<a href="flyer-linkedin.png" download="IA-vs-IA-Flyer-ActualTalent.png" style="position:fixed;bottom:24px;right:24px;z-index:100;background:#C0191E;color:#fff;padding:12px 24px;border-radius:100px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">↓ Descargar PNG (1080×1350)</a>
+<a href="flyer-linkedin.png" download="IA-vs-IA-Flyer-ActualTalent.png" style="position:fixed;bottom:24px;right:24px;z-index:100;background:#C0191E;color:#fff;padding:12px 24px;border-radius:100px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.4);">↓ Descargar PNG (1080×1350)</a>
 
 <script>
-function scaleFlyer() {
-  var f = document.getElementById('flyer');
-  var s = Math.min(window.innerWidth / 1080, window.innerHeight / 1350, 1);
-  f.style.transform = 'scale(' + s + ')';
-  f.style.transformOrigin = 'center center';
-}
-scaleFlyer();
-window.addEventListener('resize', scaleFlyer);
+function s(){var f=document.getElementById('flyer'),r=Math.min(innerWidth/1080,innerHeight/1350,1);f.style.transform='scale('+r+')';f.style.transformOrigin='center center';}
+s();addEventListener('resize',s);
 </script>
 </body>
 </html>
