@@ -2,10 +2,1281 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex, nofollow">
-<title>Redirigiendo...</title>
-<meta http-equiv="refresh" content="0;url=/intranet/">
-<script>window.location.href='/intranet/';</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>AGENTIC Status — Actual Talent AI Workspace</title>
+<meta name="description" content="Sistema de inteligencia autónomo de Actual Talent. Estado en tiempo real de todos los daemons, capacidades y últimas actualizaciones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET & BASE ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:     #C0191E;
+  --beige:   #E8E5DC;
+  --cream:   #F0EEEB;
+  --black:   #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:    #6B6B6B;
+  --white:   #ffffff;
+  --green:   #22C55E;
+  --amber:   #F59E0B;
+  --danger:  #EF4444;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SCROLL REVEAL ────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform, opacity;
+}
+.reveal.in { opacity: 1; transform: none; will-change: auto; }
+
+/* ─── FOCUS ────────────────────────────────────────────────────────────────── */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 3px; }
+.d1 { transition-delay: 0.05s; }
+.d2 { transition-delay: 0.12s; }
+.d3 { transition-delay: 0.19s; }
+.d4 { transition-delay: 0.26s; }
+.d5 { transition-delay: 0.33s; }
+.d6 { transition-delay: 0.40s; }
+.d7 { transition-delay: 0.47s; }
+
+/* ─── HEADER ───────────────────────────────────────────────────────────────── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 48px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.wordmark {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+}
+.wm-at {
+  color: var(--red);
+  font-size: 15.5px;
+}
+.nav-home {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-home:hover { color: rgba(255,255,255,0.8); }
+
+.header-sep {
+  width: 1px;
+  height: 16px;
+  background: rgba(255,255,255,0.18);
+}
+
+.header-sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-clock {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+  min-width: 68px;
+  text-align: right;
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+
+.status-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  position: relative;
+}
+.status-pill-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: 0;
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0%   { opacity: 0.4; transform: scale(1); }
+  100% { opacity: 0;   transform: scale(2.4); }
+}
+
+.status-pill-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+/* ─── HERO ─────────────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--near-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* dot grid texture */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* vertical accent line */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(192,25,30,0.15) 40%, rgba(192,25,30,0.15) 60%, transparent);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 32px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--red);
+}
+
+.hero-headline {
+  font-size: clamp(52px, 9vw, 112px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  margin-bottom: 28px;
+  max-width: 900px;
+}
+
+.hero-headline em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.hero-sub {
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 80px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.stat-block {
+  padding: 32px 48px 32px 0;
+  margin-right: 48px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.stat-block:last-child {
+  border-right: none;
+  margin-right: 0;
+}
+
+.stat-number {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.hero-bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, transparent);
+}
+
+/* ─── SECTION SHARED ───────────────────────────────────────────────────────── */
+section { padding: 100px 48px; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 56px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
+  max-width: 60px;
+}
+
+/* ─── STATUS SECTION ───────────────────────────────────────────────────────── */
+.section-status {
+  background: var(--cream);
+}
+
+.status-headline {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 56px;
+  line-height: 1.1;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2px;
+}
+
+.status-card {
+  background: var(--white);
+  padding: 28px 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.status-card:hover { background: var(--beige); }
+.status-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--green);
+  opacity: 0.25;
+  transition: opacity 0.25s ease;
+}
+.status-card.pending::before { background: var(--amber); }
+.status-card:hover::before { opacity: 1; }
+
+.status-indicator {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+  position: relative;
+}
+.status-indicator.green  { background: var(--green); }
+.status-indicator.amber  { background: var(--amber); }
+.status-indicator.red    { background: var(--danger); }
+
+.status-indicator.green::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: 0;
+  animation: pulse-ring 3s ease-out infinite;
+}
+
+.status-card-body { flex: 1; min-width: 0; }
+
+.status-daemon {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  font-family: 'Montserrat', monospace;
+}
+
+.status-desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.status-meta {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(107,107,107,0.6);
+}
+
+.status-badge {
+  align-self: flex-start;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.status-badge.green  { background: rgba(34,197,94,0.1);  color: #15803d; }
+.status-badge.amber  { background: rgba(245,158,11,0.1); color: #92400e; }
+.status-badge.red    { background: rgba(239,68,68,0.1);  color: #991b1b; }
+
+/* ─── ACTIVITY FEED SECTION ────────────────────────────────────────────────── */
+.section-activity {
+  background: var(--near-black);
+  position: relative;
+  overflow: hidden;
+}
+.section-activity::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.section-activity .section-label { color: rgba(255,255,255,0.35); }
+.section-activity .section-label::after { background: rgba(255,255,255,0.35); }
+
+.activity-headline {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 40px;
+  line-height: 1.1;
+}
+
+.activity-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.feed-list {
+  max-height: 520px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+.feed-list::-webkit-scrollbar { width: 4px; }
+.feed-list::-webkit-scrollbar-track { background: transparent; }
+.feed-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+
+.feed-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.15s;
+}
+.feed-entry:hover { background: rgba(255,255,255,0.03); }
+.feed-entry:last-child { border-bottom: none; }
+
+.feed-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.feed-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.feed-ts {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  min-width: 110px;
+  letter-spacing: 0.5px;
+}
+
+.feed-msg {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.feed-empty {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* ─── FEED LEGEND ─────────────────────────────────────────────────────────── */
+.feed-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+}
+.feed-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.feed-legend-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.feed-legend-icon {
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .feed-ts { min-width: 80px; font-size: 10px; }
+  .feed-icon { display: none; }
+  .feed-entry { padding: 10px 14px; gap: 8px; }
+  .feed-legend { gap: 10px 16px; padding: 10px 14px; }
+  .feed-legend-icon { display: none; }
+  .feed-legend-item { font-size: 10px; }
+}
+
+/* ─── CAPABILITIES SECTION ─────────────────────────────────────────────────── */
+.section-capabilities {
+  background: var(--near-black);
+  position: relative;
+  overflow: hidden;
+}
+.section-capabilities::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.section-capabilities .section-label { color: rgba(255,255,255,0.35); }
+.section-capabilities .section-label::after { background: rgba(255,255,255,0.35); }
+
+.cap-headline {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 56px;
+  line-height: 1.1;
+}
+
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.05);
+}
+
+.cap-card {
+  background: var(--near-black);
+  padding: 36px 32px;
+  border-left: 2px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+.cap-card:hover {
+  border-left-color: var(--red);
+  background: rgba(255,255,255,0.02);
+}
+
+.cap-num {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.cap-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.cap-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+}
+
+/* ─── CHANGELOG SECTION ────────────────────────────────────────────────────── */
+.section-changelog {
+  background: var(--white);
+}
+
+.changelog-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.changelog-sticky {
+  position: sticky;
+  top: 80px;
+}
+
+.changelog-big {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.changelog-note {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--red) 0%, rgba(192,25,30,0.08) 100%);
+}
+
+.timeline-entry {
+  position: relative;
+  padding-bottom: 52px;
+}
+.timeline-entry:last-child { padding-bottom: 0; }
+
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 7px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--red);
+}
+
+.entry-version {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+/* ─── CHANGELOG ENTRY TAGS ─────────────────────────────────────────────────── */
+.entry-tag {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--red);
+  background: rgba(192,25,30,0.08);
+  padding: 1px 5px 0;
+  border-radius: 2px;
+  margin-right: 5px;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+.entry-item code {
+  font-family: 'Courier New', monospace;
+  font-size: 10.5px;
+  background: rgba(26,26,26,0.06);
+  padding: 1px 4px;
+  border-radius: 2px;
+  color: var(--black);
+}
+
+.entry-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.entry-item {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray);
+  line-height: 1.5;
+  display: flex;
+  gap: 10px;
+}
+.entry-item::before {
+  content: '—';
+  color: rgba(192,25,30,0.4);
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+/* ─── CHANGELOG EXPAND ─────────────────────────────────────────────────────── */
+.changelog-older {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.changelog-older.open { max-height: 1200px; }
+
+.btn-more-versions {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 32px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--red);
+  background: none; border: 1px solid rgba(192,25,30,0.25);
+  padding: 10px 20px; border-radius: 100px; cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  font-family: 'Montserrat', sans-serif;
+}
+.btn-more-versions:hover { background: rgba(192,25,30,0.06); border-color: var(--red); }
+.btn-more-versions svg { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+.btn-more-versions.open svg { transform: rotate(180deg); }
+
+/* ─── FOOTER ───────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--red);
+  padding: 52px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-brand {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  line-height: 1.2;
+}
+.footer-brand span { font-weight: 300; opacity: 0.65; }
+
+.footer-right { text-align: right; }
+.footer-right p {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  line-height: 2.2;
+}
+
+/* ─── RESPONSIVE ───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  header { padding: 0 24px; }
+  section { padding: 72px 24px; }
+  .hero { padding: 100px 24px 64px; }
+  .hero-stats { gap: 0; }
+  .stat-block { padding: 24px 32px 24px 0; margin-right: 32px; }
+  .changelog-layout { grid-template-columns: 1fr; gap: 32px; }
+  .changelog-sticky { position: static; }
+  .changelog-big { font-size: clamp(26px, 6vw, 40px); }
+  footer { padding: 40px 24px; flex-wrap: wrap; }
+  .footer-right { text-align: left; }
+  .header-sub { display: none; }
+  .header-sep { display: none; }
+  .hero::after { display: none; }
+  .footer-brand { font-size: clamp(18px, 5vw, 28px); }
+}
+@media (max-width: 600px) {
+  .status-grid { grid-template-columns: 1fr; }
+  .cap-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  header { padding: 0 16px; height: 52px; }
+  .wordmark { font-size: 12px; letter-spacing: 2px; }
+  .wm-at { font-size: 13.5px; }
+  .header-clock { display: none; }
+  .status-pill-label { display: none; }
+  .status-pill { padding: 6px 10px; }
+  section { padding: 52px 20px; }
+  .hero { padding: 80px 20px 56px; }
+  .hero-stats { flex-direction: column; }
+  .stat-block { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 0; margin-right: 0; }
+  .stat-block:last-child { border-bottom: none; }
+  .stat-number { font-size: clamp(32px, 12vw, 56px); }
+  .status-card { padding: 20px; gap: 14px; }
+  .status-card::before { width: 3px; }
+  .status-badge { font-size: 8px; padding: 2px 6px; }
+  .cap-card { padding: 24px 20px; }
+  /* Changelog mobile */
+  .section-changelog { padding: 52px 20px; }
+  .changelog-layout { gap: 24px; }
+  .changelog-big { font-size: 28px; margin-bottom: 12px; }
+  .changelog-note { font-size: 13px; }
+  .timeline { padding-left: 20px; }
+  .timeline-entry { padding-bottom: 36px; }
+  .timeline-entry::before { left: -24px; width: 8px; height: 8px; }
+  .entry-version { font-size: 8px; letter-spacing: 2px; }
+  .entry-item { font-size: 11px; }
+  .entry-tag { font-size: 7px; }
+  footer { padding: 32px 20px; }
+  .footer-brand { font-size: 20px; }
+}
+
+</style>
 </head>
-<body><p>Redirigiendo a la <a href="/intranet/">intranet</a>...</p></body>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav class="header-left" role="navigation" aria-label="Navegación">
+    <a href="index.html" class="wordmark"><span class="wm-at">A</span>GEN<span class="wm-at">T</span>IC</a>
+    <div class="header-sep"></div>
+    <span class="header-sub">Actual Talent AI Workspace</span>
+    <div class="header-sep"></div>
+    <a href="index.html" class="nav-home">← Home</a>
+  </nav>
+  <div class="header-right">
+    <span class="header-clock" id="clock" aria-live="polite" aria-label="Hora actual">--:--:--</span>
+    <div class="status-pill">
+      <div class="status-pill-dot"></div>
+      <span class="status-pill-label">Operacional</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow reveal">Sistema en producción</div>
+
+  <h1 class="hero-headline reveal d1">
+    Everything<br>is <em>running.</em>
+  </h1>
+
+  <p class="hero-sub reveal d2">
+    Sistema de inteligencia autónomo. <!-- COUNTER:daemons -->4<!-- /COUNTER --> daemons activos. <!-- COUNTER:docs_indexed -->1700+<!-- /COUNTER --> documentos indexados.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat-block reveal d2">
+      <div class="stat-number"><!-- STAT:docs_indexed -->1700+<!-- /STAT --></div>
+      <div class="stat-label">Documentos indexados</div>
+    </div>
+    <div class="stat-block reveal d3">
+      <div class="stat-number"><!-- STAT:profiles -->21<!-- /STAT --></div>
+      <div class="stat-label">Perfiles de cliente</div>
+    </div>
+    <div class="stat-block reveal d4">
+      <div class="stat-number"><!-- STAT:transcripts -->138<!-- /STAT --></div>
+      <div class="stat-label">Transcripciones</div>
+    </div>
+    <div class="stat-block reveal d5">
+      <div class="stat-number"><!-- STAT:registry -->99<!-- /STAT --></div>
+      <div class="stat-label">Documentos registrados</div>
+    </div>
+  </div>
+
+  <div class="hero-bottom-bar"></div>
+</section>
+
+<!-- STATUS SECTION -->
+<section class="section-status">
+  <div class="section-label reveal">Estado del sistema</div>
+  <h2 class="status-headline reveal d1"><!-- COUNTER:daemons -->4<!-- /COUNTER --> daemons.<br>Todos operativos.</h2>
+  <p class="status-last-checked reveal d1" id="last-checked" style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(107,107,107,0.5);margin-top:-36px;margin-bottom:40px;">Última comprobación: --:--</p>
+
+  <div class="status-grid">
+
+    <div class="status-card reveal d1">
+      <div class="status-indicator green"></div>
+      <div class="status-card-body">
+        <div class="status-daemon">workspace_watcher</div>
+        <div class="status-desc">Detecta y sube documentos nuevos automáticamente al vector store.</div>
+        <div class="status-meta">Última actividad: <!-- DAEMON:workspace_watcher -->2026-03-30 15:36:42<!-- /DAEMON --></div>
+      </div>
+      <div class="status-badge green">Operativo</div>
+    </div>
+
+    <div class="status-card reveal d2">
+      <div class="status-indicator green"></div>
+      <div class="status-card-body">
+        <div class="status-daemon">granola_watcher</div>
+        <div class="status-desc">Sincroniza transcripciones de reuniones de Granola al vector store.</div>
+        <div class="status-meta">Última actividad: <!-- DAEMON:granola_watcher -->2026-03-26 13:32:31<!-- /DAEMON --></div>
+      </div>
+      <div class="status-badge green">Operativo</div>
+    </div>
+
+    <div class="status-card reveal d3">
+      <div class="status-indicator green"></div>
+      <div class="status-card-body">
+        <div class="status-daemon">healthcheck</div>
+        <div class="status-desc">Monitoriza que todos los daemons estén activos. Alerta por email si detecta inactividad.</div>
+        <div class="status-meta">Frecuencia: cada hora</div>
+      </div>
+      <div class="status-badge green">Operativo</div>
+    </div>
+
+    <div class="status-card reveal d4">
+      <div class="status-indicator green"></div>
+      <div class="status-card-body">
+        <div class="status-daemon">git_sync</div>
+        <div class="status-desc">Backup automático de todos los cambios del workspace a GitHub.</div>
+        <div class="status-meta">Frecuencia: 23:00 diario</div>
+      </div>
+      <div class="status-badge green">Operativo</div>
+    </div>
+
+    <div class="status-card pending reveal d5">
+      <div class="status-indicator amber"></div>
+      <div class="status-card-body">
+        <div class="status-daemon">zoho_sync</div>
+        <div class="status-desc">Integración bidireccional con Zoho CRM. Sincroniza contactos, deals y transcripciones.</div>
+        <div class="status-meta">Estado: OAuth setup pendiente</div>
+      </div>
+      <div class="status-badge amber">Pendiente</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACTIVITY FEED SECTION -->
+<section class="section-activity">
+  <div class="section-label reveal">Actividad reciente</div>
+  <h2 class="activity-headline reveal d1">Lo que acaba<br>de pasar.</h2>
+  <div class="activity-card reveal d2">
+<!-- FEED_LEGEND -->
+    <div class="feed-legend">
+      <div class="feed-legend-item">
+        <span class="feed-legend-dot" style="background:#C0191E"></span>
+        <svg class="feed-legend-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg>
+        Cambio relevante
+      </div>
+      <div class="feed-legend-item">
+        <span class="feed-legend-dot" style="background:rgba(255,255,255,0.45)"></span>
+        <svg class="feed-legend-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg>
+        Mantenimiento
+      </div>
+      <div class="feed-legend-item">
+        <span class="feed-legend-dot" style="background:#22C55E"></span>
+        <svg class="feed-legend-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+        Daemon activo
+      </div>
+      <div class="feed-legend-item">
+        <span class="feed-legend-dot" style="background:#F59E0B"></span>
+        <svg class="feed-legend-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Error de watcher
+      </div>
+    </div>
+<!-- /FEED_LEGEND -->
+    <div class="feed-list" id="activity-feed">
+<!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 17:50</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 17:35</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 17:20</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 17:05</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 16:50</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 16:35</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 16:20</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 16:04</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 15:49</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-30 15:36</span><span class="feed-msg">✅ Ciclo de monitorización completado — archivos procesados</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-30 15:36</span><span class="feed-msg">📤 Nuevo documento indexado en la base de conocimiento: RPO-presentation-EN-2024.pdf</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-30 15:36</span><span class="feed-msg">📋 Documento registrado en el catálogo: /Users/joan/Desktop/agentic/actual talent/02_propuestas_clientes/RPO-presentation-EN-2024.pdf</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-30 15:36</span><span class="feed-msg">📋 Documento registrado en el catálogo: RPO-presentation-EN-2024.pdf</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 15:34</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 15:19</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 15:04</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 14:49</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 14:34</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 14:19</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 14:04</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 13:49</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 13:34</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 13:19</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 13:04</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 12:49</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-03-30 12:34</span><span class="feed-msg">Sincronización completada</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-30 12:22</span><span class="feed-msg">✅ Ciclo de monitorización completado — archivos procesados</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-30 12:22</span><span class="feed-msg">📤 Nuevo documento indexado en la base de conocimiento: onepager-actualtalent-EN.pdf</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-30 12:22</span><span class="feed-msg">📋 Documento registrado en el catálogo: cl-proposal-generator/outputs/onepager-actualtalent-EN.pdf</span></div>
+<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-03-30 12:22</span><span class="feed-msg">📋 Documento registrado en el catálogo: onepager-actualtalent-EN.pdf</span></div>
+<!-- /ACTIVITY_FEED -->
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES SECTION -->
+<section class="section-capabilities">
+  <div class="section-label reveal">Capacidades</div>
+  <h2 class="cap-headline reveal d1">Lo que hace<br>el sistema.</h2>
+
+  <div class="cap-grid">
+
+    <div class="cap-card reveal d1">
+      <span class="cap-num">01</span>
+      <div class="cap-title">Briefing diario</div>
+      <p class="cap-desc">Prepara cada reunión del día con contexto RAG antes de las 8am. Histórico de cliente, propuestas previas y prompt listo para LinkedIn/LTI. Llega a tu correo mientras duermes.</p>
+    </div>
+
+    <div class="cap-card reveal d2">
+      <span class="cap-num">02</span>
+      <div class="cap-title">Perfiles de cliente</div>
+      <p class="cap-desc">19 fichas de inteligencia consolidadas: contactos, pipeline, propuestas enviadas, historial de reuniones y hechos clave. Se actualizan automáticamente con cada nuevo transcript o propuesta.</p>
+    </div>
+
+    <div class="cap-card reveal d3">
+      <span class="cap-num">03</span>
+      <div class="cap-title">Propuestas comerciales</div>
+      <p class="cap-desc">Genera propuestas HTML → PDF con brand AT y precios contextualizados por cliente, volumen y complejidad. Con fotos del equipo y logo. Registradas automáticamente en el catálogo.</p>
+    </div>
+
+    <div class="cap-card reveal d4">
+      <span class="cap-num">04</span>
+      <div class="cap-title">Post-reunión automático</div>
+      <p class="cap-desc">Detecta nuevas transcripciones de Granola cada hora. Extrae compromisos y next steps. Redacta el email de seguimiento y lo deja como borrador listo para enviar.</p>
+    </div>
+
+    <div class="cap-card reveal d5">
+      <span class="cap-num">05</span>
+      <div class="cap-title">Document registry</div>
+      <p class="cap-desc"><!-- STAT:registry -->99<!-- /STAT --> entregables catalogados con metadata completa: cliente, tipo y estado. Propuestas, meeting preps e informes registrados individualmente — todos indexados y buscables dentro de los 1700+ documentos del knowledge base.</p>
+    </div>
+
+    <div class="cap-card reveal d6">
+      <span class="cap-num">06</span>
+      <div class="cap-title">Visión multimodal</div>
+      <p class="cap-desc">El sistema no solo lee texto. Presentaciones, organigramas, logos y capturas de pantalla se procesan con IA visual y quedan indexados como cualquier documento — buscables en RAG de inmediato.</p>
+    </div>
+
+    <div class="cap-card reveal d7">
+      <span class="cap-num">07</span>
+      <div class="cap-title">Notificaciones de versión</div>
+      <p class="cap-desc">Cuando el sistema mejora, lo sabes. Una frase natural en el chat al inicio de sesión, una línea humana en el briefing diario, y el CHANGELOG como registro permanente en git.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHANGELOG SECTION -->
+<section class="section-changelog">
+  <div class="section-label reveal">Últimas actualizaciones</div>
+
+  <div class="changelog-layout">
+    <div class="changelog-sticky reveal">
+      <div class="changelog-big">Un sistema<br>que mejora<br>solo.</div>
+      <p class="changelog-note">Cada sesión deja el workspace mejor que antes. El CHANGELOG es el registro permanente de esa evolución.</p>
+    </div>
+
+    <div class="timeline">
+      <!-- CHANGELOG -->
+      <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.17 — 26 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">consolidate_kb</span> 106 hechos estables promovidos de kb-updates → knowledge-base</div>
+          <div class="entry-item"><span class="entry-tag">deploy-status</span> Fix: workflow now informational-only (never fails) — MD5 comparison was structurally impossible, staleness check had vacation false-positives. Post-commit hook + healthcheck LaunchAgent already cover monitoring</div>
+          <div class="entry-item"><span class="entry-tag">followup</span> SQLI — follow-up PDF generado + email draft creado para Josep Solé (jsole@sqli.com). 6 páginas: AT intro, modelos colaboración, Valencia, webinar IA, referencias sector tech, contacto</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
+        <div class="entry-version">v2.16 — 25 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">consolidate_kb</span> 105 hechos estables promovidos de kb-updates → knowledge-base</div>
+          <div class="entry-item"><span class="entry-tag">cl-daily-briefing</span> Rewrite: briefing HTML now generated deterministically in Python — GPT-4o only summarizes RAG context (strict, anti-hallucination, temperature=0.1). Fixes fabricated company descriptions and meeting objectives in v2.15 briefing</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d2">
+        <div class="entry-version">v2.15 — 25 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">kb</span> Registered SQLi as new prospect: intel from Enrique Peralada call, meeting with Josep Solé (MD Spain) scheduled 2026-03-26</div>
+        </div>
+      </div>
+
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
+        <div class="entry-version">v2.14 — 24 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">consolidate_kb</span> 103 hechos estables promovidos de kb-updates → knowledge-base</div>
+          <div class="entry-item"><span class="entry-tag">infra</span> Fixed stale .git/index.lock + HEAD.lock blocking git-sync LaunchAgent (83h sin push)</div>
+          <div class="entry-item"><span class="entry-tag">infra</span> Fixed VERSION drift: HTML markers v2.11 → v2.13 to match CHANGELOG</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d4">
+        <div class="entry-version">v2.13 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">consolidate_kb</span> 86 hechos estables promovidos de kb-updates → knowledge-base</div>
+          <div class="entry-item"><span class="entry-tag">cl-meeting-prep</span> Informe speakers AHPS 2026 v3 (PDF 2.6MB): 25 speakers, diseño rediseñado — logo blanco b64 en portada, columnas CSS table (no flex), ranking 2 páginas, body 7.5pt mínimo. Reglas documentadas en docs/speaker-report-design-rules.md</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v2.12 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">cl-proposal-generator</span> Info sheet aRaymond creada (PDF 606KB, 4p): perfil AT + serveis + tarifes orientatives + refs industrials (Megasa, Sesé, RHI, TE Connectivity, Schneider, SEAT). Borrador en catalán creat a joan.boluda@actualgroup.com per a Montse Amils (montse.amils@araymond.com)</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v2.11 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> PRODUCTION PROOF: Xavi/KPI re-run with new pipeline (run=d4f34958, trigger=watcher) — client=KPI, contact=Xavi Saez, no PDF, real Gmail draft created. Same transcript that caused incident now produces correct output</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> BUGFIX: <code>mark_processed</code> and <code>mark_manual_review</code> now clean up <code>failed-followups.json</code> — fixes double-state where terminal outcomes remained in retry queue</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> BUGFIX: <code>path_str = str(transcript_path.resolve())</code> — always canonical absolute path key, prevents manual-run (relative) vs watcher-run (absolute) producing duplicate processed entries for same transcript</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v2.10 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> BUGFIX CRITICAL: <code>find_attendee_email</code> returned bare <code>None</code> instead of <code>(None, None)</code> in 2 error paths → <code>TypeError</code> crash when iCal URL missing or calendar fetch fails, transcript silently never marked failed</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Remove duplicate <code>classify_meeting_type</code> definition (lines 370-397 shadowed the wrapper) — dead code that introduced divergence risk</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Fix: <code>check_contact_conflict</code> no longer called when <code>contact_unknown=True</code> — was producing misleading <code>CONTACT_IDENTITY_CONFLICT</code> when the real issue is <code>NO_IDENTITY_CONTACT</code></div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v2.9 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Add <code>check_contact_conflict()</code> — compares email username tokens vs GPT contact name. Blocks draft if mismatch (Xavi/Sofia pattern)</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Add <code>normalize_client_name_with_source()</code> — returns (name, source) where source=explicit/domain_map/domain_slug. Provenance tracked end-to-end</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Add <code>check_company_confidence()</code> — blocks draft if company derived from domain_slug, is generic/empty/single-char</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v2.8 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Add MEETING_OUTPUT_POLICY dict — explicit allow_pdf/allow_email/skip per type. Single source of truth</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Hard PDF block: enforced in code (<code>policy["allow_pdf"]</code> check), not just in GPT prompt — GPT drift can no longer produce a partnership PDF</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Add <code>normalize_client_name()</code> — strips TLD suffixes, maps known domains to proper names (KPI, Cainiao, Vueling, etc). Client identity now clean in subjects and logs</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v2.7 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Fix crítico: clasificación de tipo de reunión (commercial/partnership/internal) antes de extracción GPT. Las reuniones de partnership ya no generan PDF de ventas</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Fix: attendee display name (CN iCal) pasado como contexto a GPT — elimina extracción de nombres incorrectos de conversaciones de fondo ("Sofía" en lugar de "Xavi")</div>
+          <div class="entry-item"><span class="entry-tag">auto_followup</span> Fix: prompt diferenciado por tipo de reunión — partnership prompt enfoca en colaboración mutua, no en compromisos de venta</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d5">
+        <div class="entry-version">v2.6 — 20 marzo 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">briefing</span> Fix: reuniones con título genérico (ej. "Reunión comercial") ya no se muestran sin contexto — se detectan como empresa desconocida y se advierte a Joan que revise el calendario. RAG ya no busca el título literal genérico</div>
+          <div class="entry-item"><span class="entry-tag">health-check</span> Fix: falsa alarma <code>granola_queue_stall</code> — el check ahora distingue entre el fast-path ("Everything up to date", sin meetings nuevos) y un SYNC COMPLETE real con fallos. Sin meetings nuevos ≠ stall</div>
+          <div class="entry-item"><span class="entry-tag">status-page</span> Fix: deploy sincronizado (drift CHANGELOG entre source y agentic-status). Regenerado y pusheado via run-status-update.sh</div>
+        </div>
+      </div>
+      </div>
+
+      <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
+        <span id="btn-more-label">Ver versiones anteriores</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <!-- /CHANGELOG -->
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand reveal">
+    AGENTIC <!-- VERSION -->v2.17<!-- /VERSION --><br>
+    <span>Actual Talent AI Workspace</span>
+  </div>
+  <div class="footer-right reveal d1">
+    <p>Built with Claude · 2026</p>
+    <p>Última actualización: <!-- STAT:generated_date -->30 marzo 2026<!-- /STAT --></p>
+  </div>
+</footer>
+
+<script>
+// Toggle older versions
+function toggleVersions() {
+  const el = document.getElementById('changelog-older');
+  const btn = document.getElementById('btn-more-versions');
+  const label = document.getElementById('btn-more-label');
+  const isOpen = el.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  label.textContent = isOpen ? 'Ocultar versiones anteriores' : 'Ver versiones anteriores';
+}
+
+// Live clock
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const s = String(now.getSeconds()).padStart(2,'0');
+  const el = document.getElementById('clock');
+  if (el) el.textContent = `${h}:${m}:${s}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// Last checked timestamp (updates every minute)
+function updateLastChecked() {
+  const el = document.getElementById('last-checked');
+  if (!el) return;
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  el.textContent = `Última comprobación: ${h}:${m}`;
+}
+updateLastChecked();
+setInterval(updateLastChecked, 60000);
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Mark hero reveals visible immediately (double rAF ensures first paint is done)
+requestAnimationFrame(() => requestAnimationFrame(() => {
+  document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+}));
+</script>
+
+</body>
 </html>
