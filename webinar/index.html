@@ -807,8 +807,9 @@ document.querySelectorAll('.js-open-modal').forEach(btn => btn.addEventListener(
 document.getElementById('modal-close').addEventListener('click', closeModal);
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-// ── Form submission → Google Sheets via Apps Script ──
-// REPLACE this URL with your deployed Google Apps Script web app URL
+// ── Form submission → Google Apps Script → Google Sheet ──
+// Sheet ID: 1Q8O1Ac94rni_AtGdm-GGjVzw9gheQcDacEV_yDLkLk8
+// n8n watches this Sheet for new rows → handles Zoho, emails, WhatsApp, reminders
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbylRAWg84q4-7XJCC3voTzgE_YA6WFQhxt3i6go_gERxEjNBeqcfOeKP6lvI55aw1rF/exec';
 
 form.addEventListener('submit', (e) => {
@@ -831,10 +832,9 @@ form.addEventListener('submit', (e) => {
   regs.push(data);
   localStorage.setItem('webinar-regs', JSON.stringify(regs));
 
-  // Submit to Google Sheets via hidden iframe + form (most reliable method)
+  // Submit to Google Sheet via hidden iframe + form
   if (SHEET_URL) {
     try {
-      const iframe = document.getElementById('hidden-iframe');
       const tempForm = document.createElement('form');
       tempForm.method = 'POST';
       tempForm.action = SHEET_URL;
