@@ -430,7 +430,7 @@ footer .footer-links a:hover { color: white; }
     <a href="#sobre" class="nav-link">Sobre</a>
     <a href="#ponentes" class="nav-link">Ponentes</a>
     <a href="#agenda" class="nav-link">Agenda</a>
-    <a href="javascript:void(0)" class="nav-pill js-open-modal">Registrarse →</a>
+    <a href="https://www.linkedin.com/events/iavsia-labatallaporeltalento7447272355157958656/" class="nav-pill" target="_blank" rel="noopener">Registrarse →</a>
     <button class="burger" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -440,7 +440,7 @@ footer .footer-links a:hover { color: white; }
     <a href="#sobre">Sobre el webinar</a>
     <a href="#ponentes">Ponentes</a>
     <a href="#agenda">Agenda</a>
-    <a href="javascript:void(0)" class="nm-pill js-open-modal">Registrarse →</a>
+    <a href="https://www.linkedin.com/events/iavsia-labatallaporeltalento7447272355157958656/" class="nm-pill" target="_blank" rel="noopener">Registrarse →</a>
   </nav>
 </header>
 
@@ -461,8 +461,8 @@ footer .footer-links a:hover { color: white; }
       La IA está cambiando las reglas del juego en selección. Pero al final, las empresas siguen necesitando lo mismo: el talento adecuado, ahora. Cuatro expertos debaten cómo encontrarlo en esta nueva realidad.
     </p>
     <div class="hero-ctas reveal d4">
-      <button class="cta-primary js-open-modal">Reserva tu plaza <span>→</span></button>
-      <a href="#ponentes" class="cta-secondary">Ver ponentes ↓</a>
+      <a href="https://www.linkedin.com/events/iavsia-labatallaporeltalento7447272355157958656/" class="cta-primary" target="_blank" rel="noopener">Registrarse en LinkedIn <span>→</span></a>
+      <a href="https://lu.ma/event/evt-DnO7UHN4M8ryJpj" class="cta-secondary luma-checkout--button" data-luma-action="checkout" data-luma-event-id="evt-DnO7UHN4M8ryJpj">Registrarse sin LinkedIn</a>
     </div>
     <div class="countdown reveal d5" id="countdown">
       <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Días</span></div>
@@ -591,14 +591,20 @@ footer .footer-links a:hover { color: white; }
     <p class="cta-date-reminder reveal d1">
       <strong>28 de abril de 2026</strong> · 12:00h CEST · Online y gratuito
     </p>
-    <button class="cta-big reveal d2 js-open-modal">
-      <span style="position:relative;z-index:1">Registrarse ahora</span>
+    <a href="https://www.linkedin.com/events/iavsia-labatallaporeltalento7447272355157958656/" class="cta-big reveal d2" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:12px">
+      <span style="position:relative;z-index:1">Registrarse en LinkedIn</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </button>
+    </a>
+    <p class="reveal d3" style="margin-top:16px">
+      <a href="https://lu.ma/event/evt-DnO7UHN4M8ryJpj" class="luma-checkout--button" data-luma-action="checkout" data-luma-event-id="evt-DnO7UHN4M8ryJpj" style="color:rgba(255,255,255,0.4);font-size:13px;font-weight:500;text-decoration:underline;text-underline-offset:3px">¿No tienes LinkedIn? Regístrate aquí</a>
+    </p>
   </div>
 </section>
 
-<!-- ─── REGISTRATION MODAL ─────────────────────────────────────────────────── -->
+<!-- ─── LUMA CHECKOUT SCRIPT ────────────────────────────────────────────────── -->
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+
+<!-- ─── REGISTRATION MODAL (commented out — Luma handles registration now) ───
 <div class="modal-overlay" id="reg-modal">
   <div class="modal">
     <button class="modal-close" id="modal-close" aria-label="Cerrar">
@@ -654,6 +660,7 @@ footer .footer-links a:hover { color: white; }
 </div>
 
 <iframe name="hidden-iframe" id="hidden-iframe" style="display:none"></iframe>
+─── END COMMENTED MODAL ──────────────────────────────────────────────────── -->
 
 <!-- ─── FOOTER ──────────────────────────────────────────────────────────────── -->
 <footer>
@@ -798,7 +805,14 @@ function initParticles(canvasId, count) {
 initParticles('hero-particles', 140);
 initParticles('cta-particles', 80);
 
-// ── Registration modal ──
+// ── Registration — now handled by Luma checkout overlay ──
+// All .luma-checkout--button elements are automatically handled by embed.lu.ma/checkout-button.js
+
+// Luma checkout buttons handled automatically by embed.lu.ma/checkout-button.js
+// LinkedIn Event is the primary registration channel
+// Old modal + Google Sheet form code commented out below for easy revert.
+
+/* ── OLD REGISTRATION MODAL (commented out) ──
 const modal = document.getElementById('reg-modal');
 const form = document.getElementById('reg-form');
 function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
@@ -807,16 +821,12 @@ document.querySelectorAll('.js-open-modal').forEach(btn => btn.addEventListener(
 document.getElementById('modal-close').addEventListener('click', closeModal);
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-// ── Form submission → Google Apps Script → Google Sheet ──
-// Sheet ID: 1Q8O1Ac94rni_AtGdm-GGjVzw9gheQcDacEV_yDLkLk8
-// n8n watches this Sheet for new rows → handles Zoho, emails, WhatsApp, reminders
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbylRAWg84q4-7XJCC3voTzgE_YA6WFQhxt3i6go_gERxEjNBeqcfOeKP6lvI55aw1rF/exec';
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const btn = document.getElementById('reg-submit');
   btn.disabled = true; btn.textContent = 'Registrando...';
-
   const data = {
     nombre: document.getElementById('reg-name').value,
     email: document.getElementById('reg-email').value,
@@ -826,20 +836,14 @@ form.addEventListener('submit', (e) => {
     tamano_empresa: document.getElementById('reg-size').value,
     fecha: new Date().toISOString()
   };
-
-  // Save locally always (backup)
   const regs = JSON.parse(localStorage.getItem('webinar-regs') || '[]');
   regs.push(data);
   localStorage.setItem('webinar-regs', JSON.stringify(regs));
-
-  // Submit to Google Sheet via hidden iframe + form
   if (SHEET_URL) {
     try {
       const tempForm = document.createElement('form');
-      tempForm.method = 'POST';
-      tempForm.action = SHEET_URL;
-      tempForm.target = 'hidden-iframe';
-      tempForm.style.display = 'none';
+      tempForm.method = 'POST'; tempForm.action = SHEET_URL;
+      tempForm.target = 'hidden-iframe'; tempForm.style.display = 'none';
       Object.entries(data).forEach(([k, v]) => {
         const input = document.createElement('input');
         input.type = 'hidden'; input.name = k; input.value = v;
@@ -848,14 +852,13 @@ form.addEventListener('submit', (e) => {
       document.body.appendChild(tempForm);
       tempForm.submit();
       document.body.removeChild(tempForm);
-    } catch(err) { /* localStorage backup is saved */ }
+    } catch(err) {}
   }
-
-  // Show success
   document.getElementById('reg-form-container').style.display = 'none';
   document.getElementById('reg-success').style.display = 'block';
   btn.disabled = false; btn.textContent = 'Confirmar registro →';
 });
+── END OLD REGISTRATION ── */
 </script>
 
 </body>
