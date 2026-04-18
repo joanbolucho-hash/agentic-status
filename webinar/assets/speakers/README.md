@@ -9,7 +9,7 @@ Fotos de speakers para eventos AT. Usar en panels de hover en `events/index.html
 | `joan-boluda.jpg` | Joan Boluda (Actual Talent) | ✅ en todos los eventos |
 | `mark-galano.jpg` | Marc Galanó (Teamtailor) | ✅ Ev 2 |
 | `tony-gimeno.jpg` | Toni Gimeno (Inbound Recruiting / Talent Clue) | ✅ Ev 2 |
-| `iker-jusue.jpg` | Iker Jusué (Navantia) | ✅ Ev 2 |
+| `iker-jusue.jpg` | Iker Jusué (Talent, Ops & HR Technology) | ✅ Ev 2 |
 | `enrique-balboa.jpg` | Enrique Balboa (Damm) | ✅ Ev 3 + Ev 6 |
 | `raquel-pamies.jpg` | Raquel Pamies (Steelter) | ✅ Ev 4 |
 | `sara-castro.jpg` | Sara Castro (Danone France) | ✅ Ev 5 |
