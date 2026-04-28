@@ -169,7 +169,6 @@ header {
   transition: border-color 0.2s, color 0.2s; white-space: nowrap;
 }
 .cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
-.cta-disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
 .hero-scroll {
   position: absolute; bottom: 40px; left: 48px;
   display: flex; align-items: center; gap: 12px;
@@ -471,11 +470,10 @@ footer .footer-links a:hover { color: white; }
       La IA escribe código, redacta informes, atiende clientes. ¿Dónde acaba la asistencia y empieza la sustitución? Una mesa redonda con voces de la IA empresarial, moderada desde la primera línea del talento.
     </p>
     <div class="hero-ctas reveal d4">
-      <a href="#PENDIENTE-LINKEDIN-26MAYO" class="cta-primary cta-disabled" aria-disabled="true" title="Disponible en breve — registro pendiente de configurar">Registro LinkedIn <span>→</span></a>
-      <a href="#PENDIENTE-LUMA-26MAYO" class="cta-secondary cta-disabled" aria-disabled="true" title="Disponible en breve — registro pendiente de configurar">Registro Luma</a>
+      <a href="https://www.linkedin.com/events/7454990349430689792?viewAsMember=true" class="cta-primary" target="_blank" rel="noopener">Registrarse en LinkedIn <span>→</span></a>
+      <a href="https://luma.com/event/evt-pKfTdywjERw41ft" class="cta-secondary luma-checkout--button" data-luma-action="checkout" data-luma-event-id="evt-pKfTdywjERw41ft">Registrarse sin LinkedIn</a>
       <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="cta-secondary" style="border-color:rgba(37,211,102,0.4);color:#25D366" target="_blank" rel="noopener">Comunidad WhatsApp</a>
     </div>
-    <p class="reveal d5" style="margin-top:18px;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:1px">Registro abriendo pronto — únete a la comunidad WhatsApp para recibir el link el primero.</p>
     <div class="countdown reveal d5" id="countdown" style="margin-top:32px">
       <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Días</span></div>
       <span class="cd-sep">:</span>
@@ -601,15 +599,18 @@ footer .footer-links a:hover { color: white; }
     <p class="cta-date-reminder reveal d1">
       <strong>26 de mayo de 2026</strong> · 12:00h CEST · Online y gratuito
     </p>
-    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="cta-big reveal d2" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:12px;background:#25D366">
-      <span style="position:relative;z-index:1">Comunidad WhatsApp</span>
+    <a href="https://www.linkedin.com/events/7454990349430689792?viewAsMember=true" class="cta-big reveal d2" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:12px">
+      <span style="position:relative;z-index:1">Registrarse en LinkedIn</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
-    <p class="reveal d3" style="margin-top:18px;font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;line-height:1.7;max-width:520px;margin-left:auto;margin-right:auto">
-      Registro de LinkedIn y Luma se activarán cuando se publiquen los enlaces oficiales. Únete a la comunidad para recibir el link de registro tan pronto esté disponible.
+    <p class="reveal d3" style="margin-top:16px">
+      <a href="https://luma.com/event/evt-pKfTdywjERw41ft" class="luma-checkout--button" data-luma-action="checkout" data-luma-event-id="evt-pKfTdywjERw41ft" style="color:rgba(255,255,255,0.4);font-size:13px;font-weight:500;text-decoration:underline;text-underline-offset:3px">¿No tienes LinkedIn? Regístrate aquí</a>
     </p>
   </div>
 </section>
+
+<!-- ─── LUMA CHECKOUT SCRIPT ────────────────────────────────────────────────── -->
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
 
 <!-- ─── REGISTRATION MODAL (commented out — Luma handles registration now) ───
 <div class="modal-overlay" id="reg-modal">
