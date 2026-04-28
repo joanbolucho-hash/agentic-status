@@ -119,63 +119,50 @@ body {
 
 /* ── TITLE ── */
 .title-wrap {
-  position: absolute; top: 386px; left: 56px; right: 56px;
+  position: absolute; top: 432px; left: 56px; right: 56px;
   z-index: 5;
 }
 .title {
-  font-size: 78px; font-weight: 900; line-height: 0.96;
+  font-size: 76px; font-weight: 900; line-height: 0.96;
   letter-spacing: -0.035em; color: var(--white);
-  max-width: 760px;
+  max-width: 740px;
 }
 .title .accent { color: var(--red); font-style: normal; }
 .title .q { color: var(--red); }
-.subtitle {
-  margin-top: 18px;
-  font-size: 19px; font-weight: 500; letter-spacing: 0.5px;
-  color: rgba(255,255,255,0.55);
-  max-width: 640px;
-}
 
-/* ── SPEAKERS COLUMN (right) ── */
+/* ── SPEAKERS (single row, top-right) ── */
 .speakers {
-  position: absolute; top: 130px; right: 56px;
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 28px 32px;
+  position: absolute; top: 138px; right: 56px;
+  display: flex; gap: 36px;
   z-index: 5;
 }
 .speaker {
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  width: 160px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  width: 200px;
 }
 .sp-photo {
-  width: 144px; height: 144px; border-radius: 50%;
+  width: 184px; height: 184px; border-radius: 50%;
   overflow: hidden; position: relative;
   border: 3px solid rgba(255,255,255,0.1);
   background: rgba(255,255,255,0.04);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  box-shadow: 0 14px 48px rgba(0,0,0,0.45);
 }
 .sp-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.sp-photo.tbd {
-  border-style: dashed; border-color: rgba(255,255,255,0.18);
-  font-size: 56px; font-weight: 800; color: rgba(255,255,255,0.25);
-}
 
 .sp-meta { text-align: center; }
 .sp-role-tag {
   display: inline-block;
-  font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
   color: var(--red); background: rgba(192,25,30,0.14);
-  padding: 3px 10px; border-radius: 100px; margin-bottom: 6px;
+  padding: 4px 12px; border-radius: 100px; margin-bottom: 8px;
 }
-.sp-role-tag.tbd { color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
 .sp-name {
-  font-size: 15px; font-weight: 800; color: var(--white); line-height: 1.15;
+  font-size: 18px; font-weight: 800; color: var(--white); line-height: 1.2;
 }
-.sp-name.tbd { color: rgba(255,255,255,0.4); font-weight: 500; font-style: italic; }
 .sp-org {
-  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  color: rgba(255,255,255,0.5); margin-top: 3px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-top: 4px;
 }
 
 /* ── BOTTOM ── */
@@ -237,10 +224,9 @@ body {
         <span class="q">¿</span>La IA como <span class="accent">copiloto</span><br>
         o <span class="accent">sustituto</span> del humano<span class="q">?</span>
       </h1>
-      <p class="subtitle">Mesa redonda · 60 minutos · Online y gratuito</p>
     </div>
 
-    <!-- SPEAKERS GRID 2×2 -->
+    <!-- SPEAKERS (single row, 2 confirmed) -->
     <div class="speakers">
       <div class="speaker">
         <div class="sp-photo"><img src="../../assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
@@ -256,22 +242,6 @@ body {
           <div class="sp-role-tag">Ponente</div>
           <div class="sp-name">Bruno Pincolini</div>
           <div class="sp-org">SAP</div>
-        </div>
-      </div>
-      <div class="speaker">
-        <div class="sp-photo tbd">?</div>
-        <div class="sp-meta">
-          <div class="sp-role-tag tbd">Por confirmar</div>
-          <div class="sp-name tbd">Próximamente</div>
-          <div class="sp-org">&nbsp;</div>
-        </div>
-      </div>
-      <div class="speaker">
-        <div class="sp-photo tbd">?</div>
-        <div class="sp-meta">
-          <div class="sp-role-tag tbd">Por confirmar</div>
-          <div class="sp-name tbd">Próximamente</div>
-          <div class="sp-org">&nbsp;</div>
         </div>
       </div>
     </div>
