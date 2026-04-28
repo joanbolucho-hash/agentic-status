@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>¿La IA como copiloto o sustituto del humano? — Webinar Actual Talent</title>
+<meta name="description" content="Webinar 26 de mayo 2026, 12:00h CEST. ¿Dónde acaba la asistencia y empieza la sustitución? Con Bruno Cianni (SAP) y José Luis Casal (Head of AI, Kearney). Modera Karim Barmose.">
+<meta property="og:title" content="¿La IA como copiloto o sustituto del humano? — Webinar Actual Talent">
+<meta property="og:description" content="26 de mayo 2026, 12:00h CEST. Con Bruno Cianni (SAP) y José Luis Casal (Head of AI, Kearney). Modera Karim Barmose. Online y gratuito.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red:        #C0191E;
+  --red-glow:   rgba(192, 25, 30, 0.12);
+  --beige:      #E8E5DC;
+  --cream:      #F0EEEB;
+  --black:      #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); will-change: transform, opacity; }
+.reveal.in { opacity: 1; transform: none; will-change: auto; }
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}.d7{transition-delay:.56s}
+
+/* ─── FOCUS ──────────────────────────────────────────────────────────────────── */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
+
+/* ─── PARTICLE CANVAS ────────────────────────────────────────────────────────── */
+.particle-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ─── MOUSE GLOW ─────────────────────────────────────────────────────────────── */
+.mouse-glow {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,25,30,0.09) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.4s;
+  opacity: 0;
+}
+.mouse-glow.visible { opacity: 1; }
+
+/* ─── HEADER ─────────────────────────────────────────────────────────────────── */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.header-wordmark {
+  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: white; line-height: 1;
+}
+.header-wordmark .wm-sep { color: rgba(255,255,255,0.25); margin: 0 6px; font-weight: 400; }
+.header-wordmark .wm-tt { color: rgba(255,255,255,0.6); font-weight: 600; }
+.header-nav { display: flex; align-items: center; gap: 4px; }
+.nav-link { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 7px 14px; border-radius: 4px; transition: color 0.2s; }
+.nav-link:hover { color: rgba(255,255,255,0.9); }
+.nav-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: white; text-decoration: none; padding: 8px 18px;
+  background: var(--red); border-radius: 100px; transition: opacity 0.2s; margin-left: 8px;
+}
+.nav-pill:hover { opacity: 0.85; }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; background: none; border: none; }
+.burger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+.burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.nav-mobile {
+  display: none; position: fixed; top: 60px; left: 0; right: 0;
+  background: rgba(10,10,10,0.98); border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 20px 20px; flex-direction: column; gap: 2px; z-index: 199;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; padding: 14px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+.nav-mobile a:hover { background: rgba(255,255,255,0.05); color: white; }
+.nav-mobile .nm-pill { background: var(--red); color: white; text-align: center; margin-top: 8px; border-radius: 8px; }
+
+/* ─── SECTION LABEL ──────────────────────────────────────────────────────────── */
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red);
+  margin-bottom: 56px; display: flex; align-items: center; gap: 16px;
+}
+.section-label::after { content: ''; width: 32px; height: 1px; background: currentColor; opacity: 0.3; }
+.section-label.light { color: rgba(255,255,255,0.3); }
+.section-label.light::after { opacity: 1; }
+
+/* ─── HERO ───────────────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(192,25,30,0.1) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+.hero::after {
+  content: 'VS'; position: absolute; right: -3vw; bottom: -6vh;
+  font-size: 38vw; font-weight: 900; letter-spacing: -0.06em;
+  color: rgba(255,255,255,0.015); line-height: 1; pointer-events: none; user-select: none;
+}
+.hero-inner { max-width: 900px; position: relative; z-index: 2; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 36px; }
+.hero-date-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(192, 25, 30, 0.12); border: 1px solid rgba(192, 25, 30, 0.25);
+  border-radius: 100px; padding: 8px 20px; margin-bottom: 32px;
+}
+.hero-date-badge .badge-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--red);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+.hero-date-badge span { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+.hero-headline {
+  font-size: clamp(36px, 6.5vw, 80px); font-weight: 900; line-height: 1.0;
+  letter-spacing: -0.035em; color: white; margin-bottom: 24px; max-width: 850px;
+}
+.hero-headline em { font-style: normal; color: var(--red); }
+.hero-sub {
+  font-size: clamp(15px, 1.7vw, 18px); font-weight: 300; line-height: 1.85;
+  color: rgba(255,255,255,0.5); max-width: 520px; margin-bottom: 48px;
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--near-black); background: white; text-decoration: none;
+  padding: 15px 28px; border-radius: 3px; transition: opacity 0.2s; white-space: nowrap; cursor: pointer; border: none;
+}
+.cta-primary:hover { opacity: 0.88; }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); text-decoration: none; padding: 14px 28px;
+  border-radius: 3px; border: 1px solid rgba(255,255,255,0.18);
+  transition: border-color 0.2s, color 0.2s; white-space: nowrap;
+}
+.cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
+.cta-disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 48px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); z-index: 2;
+}
+.scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,0.15); }
+
+/* ─── COUNTDOWN ──────────────────────────────────────────────────────────────── */
+.countdown { display: flex; gap: 24px; margin-top: 32px; }
+.cd-block { text-align: center; }
+.cd-num { font-size: 36px; font-weight: 900; color: white; line-height: 1; letter-spacing: -0.03em; min-width: 56px; display: block; }
+.cd-label { font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 6px; }
+.cd-sep { font-size: 28px; font-weight: 300; color: rgba(255,255,255,0.15); align-self: flex-start; padding-top: 4px; }
+
+/* ─── CO-BRANDED STRIP ───────────────────────────────────────────────────────── */
+.cobranded {
+  background: var(--white); padding: 36px 48px;
+  display: flex; align-items: center; justify-content: center; gap: 40px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.cobrand-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
+}
+.cobrand-logos { display: flex; align-items: center; gap: 28px; }
+.cobrand-logo img { height: 30px; width: auto; display: block; }
+.cobrand-logo.tt img { height: 34px; }
+.cobrand-x { font-size: 16px; color: rgba(0,0,0,0.15); font-weight: 300; }
+
+/* ─── ABOUT ──────────────────────────────────────────────────────────────────── */
+.about { background: var(--cream); padding: 100px 48px; }
+.about-inner { max-width: 1100px; margin: 0 auto; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-text h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.1; margin-bottom: 24px;
+}
+.about-text h2 em { font-style: normal; color: var(--red); }
+.about-text p { font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); margin-bottom: 16px; }
+.takeaways { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.takeaway {
+  display: flex; gap: 24px; align-items: flex-start; padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.takeaway:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
+.takeaway:hover { transform: translateX(6px); }
+.takeaway-num { font-size: 32px; font-weight: 900; color: var(--red); opacity: 0.2; line-height: 1; min-width: 48px; padding-top: 2px; transition: opacity 0.3s; }
+.takeaway:hover .takeaway-num { opacity: 1; }
+.takeaway h3 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.takeaway p { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.65; }
+
+/* ─── SPEAKERS ───────────────────────────────────────────────────────────────── */
+.speakers { background: var(--white); padding: 100px 48px; }
+.speakers-inner { max-width: 1100px; margin: 0 auto; }
+.speakers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; max-width: 880px; margin: 0 auto; }
+a.speaker-card { text-decoration: none; color: inherit; display: block; }
+.speaker-card {
+  text-align: center; padding: 36px 20px; border-radius: 12px;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.speaker-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+.speaker-photo {
+  width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; font-weight: 800; color: white; position: relative; overflow: hidden;
+}
+.speaker-photo.jb { background: var(--red); }
+.speaker-photo.mg { background: var(--near-black); }
+.speaker-photo.tg { background: var(--gray); }
+.speaker-photo.ij { background: #2C3E50; }
+.speaker-photo.kb { background: var(--near-black); }
+.speaker-photo.bc { background: #0FAAFF; }   /* SAP blue accent */
+.speaker-photo.jlc { background: #2C3E50; }  /* Kearney slate */
+.speaker-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.speaker-role-badge {
+  display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--red); background: rgba(192,25,30,0.08);
+  padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
+}
+.speaker-name { font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px; }
+.speaker-title { font-size: 13px; font-weight: 500; color: var(--gray); margin-bottom: 6px; }
+.speaker-company { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); }
+
+/* ─── AGENDA ─────────────────────────────────────────────────────────────────── */
+.agenda { background: var(--cream); padding: 100px 48px; }
+.agenda-inner { max-width: 800px; margin: 0 auto; }
+.agenda-track { position: relative; padding-left: 48px; }
+.agenda-track::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 14px; width: 1px;
+  background: linear-gradient(to bottom, var(--red) 0%, rgba(192,25,30,0.1) 100%);
+}
+.agenda-item { position: relative; padding: 0 0 48px 0; }
+.agenda-item:last-child { padding-bottom: 0; }
+.agenda-dot {
+  position: absolute; top: 4px; left: -42px; width: 15px; height: 15px; border-radius: 50%;
+  background: var(--near-black); border: 2px solid var(--red);
+}
+.agenda-item:first-child .agenda-dot { background: var(--red); }
+.agenda-time { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--red); margin-bottom: 8px; text-transform: uppercase; }
+.agenda-title { font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
+.agenda-desc { font-size: 14px; font-weight: 400; color: var(--gray); line-height: 1.7; }
+.agenda-duration {
+  display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  color: var(--gray); background: rgba(0,0,0,0.04); padding: 3px 10px; border-radius: 100px; margin-top: 10px;
+}
+
+/* ─── CTA SECTION ────────────────────────────────────────────────────────────── */
+.cta-section {
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 120px 48px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(192,25,30,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; }
+.cta-section h2 { font-size: clamp(32px, 5vw, 64px); font-weight: 900; color: white; letter-spacing: -0.03em; margin-bottom: 20px; }
+.cta-section h2 em { font-style: normal; color: var(--red); }
+.cta-date-reminder { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4); margin-bottom: 44px; }
+.cta-date-reminder strong { color: rgba(255,255,255,0.7); font-weight: 700; }
+.cta-big {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: white; background: var(--red); text-decoration: none;
+  padding: 20px 44px; border-radius: 4px; cursor: pointer; border: none;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.cta-big::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.cta-big:hover::after { opacity: 1; }
+.cta-big:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(192,25,30,0.35); }
+.cta-big svg { width: 18px; height: 18px; position: relative; z-index: 1; }
+
+/* ─── REGISTRATION MODAL ─────────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(12px);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; transition: opacity 0.3s;
+}
+.modal-overlay.open { display: flex; opacity: 1; }
+.modal {
+  background: var(--white); border-radius: 16px; padding: 48px;
+  max-width: 480px; width: 100%; position: relative;
+  transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+}
+.modal-overlay.open .modal { transform: none; }
+.modal-close {
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+  background: none; border: none; cursor: pointer; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray); transition: background 0.2s, color 0.2s;
+}
+.modal-close:hover { background: var(--cream); color: var(--black); }
+.modal-close svg { width: 20px; height: 20px; }
+.modal h3 {
+  font-size: 24px; font-weight: 900; color: var(--black); margin-bottom: 4px; letter-spacing: -0.02em;
+}
+.modal .modal-sub {
+  font-size: 13px; color: var(--gray); margin-bottom: 32px; font-weight: 400;
+}
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
+}
+.form-group input, .form-group select {
+  width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 14px;
+  font-weight: 500; color: var(--black); background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+}
+.form-group select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--red); box-shadow: 0 0 0 3px rgba(192,25,30,0.1);
+}
+.form-group input::placeholder { color: rgba(0,0,0,0.25); }
+.form-submit {
+  width: 100%; padding: 16px; border: none; border-radius: 8px; cursor: pointer;
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; color: white; background: var(--red);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+.form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.form-success {
+  text-align: center; padding: 24px 0;
+}
+.form-success .check-icon {
+  width: 56px; height: 56px; border-radius: 50%; background: rgba(192,25,30,0.08);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+}
+.form-success .check-icon svg { width: 28px; height: 28px; color: var(--red); }
+.form-success h4 { font-size: 20px; font-weight: 900; color: var(--black); margin-bottom: 8px; }
+.form-success p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────────────────────── */
+footer { background: var(--red); padding: 48px; text-align: center; }
+footer p { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
+footer p strong { font-weight: 800; color: white; }
+footer .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 24px; }
+footer .footer-links a {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
+  text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;
+}
+footer .footer-links a:hover { color: white; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  .header-nav .nav-link { display: none; }
+  .burger { display: flex; }
+  .hero { padding: 100px 24px 64px; }
+  .hero-scroll { display: none; }
+  .mouse-glow { display: none; }
+  .countdown { gap: 16px; }
+  .cd-num { font-size: 28px; }
+  .cobranded { flex-direction: column; gap: 16px; padding: 32px 24px; }
+  .about { padding: 80px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .speakers { padding: 80px 24px; }
+  .speakers-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .agenda { padding: 80px 24px; }
+  .cta-section { padding: 80px 24px; }
+  footer { padding: 36px 24px; }
+  .modal { padding: 32px 24px; }
+}
+@media (max-width: 480px) {
+  .hero-headline { font-size: clamp(28px, 8vw, 40px); }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas a, .hero-ctas button { text-align: center; justify-content: center; }
+  .countdown { gap: 12px; }
+  .cd-num { font-size: 24px; min-width: 40px; }
+  .cd-sep { font-size: 20px; }
+  .speakers-grid { grid-template-columns: 1fr; gap: 16px; }
+  .speaker-card { padding: 28px 16px; }
+  .cobrand-logos { flex-direction: column; gap: 16px; }
+  footer .footer-links { flex-direction: column; gap: 12px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ──────────────────────────────────────────────────────────────── -->
+<header>
+  <a href="/" class="header-brand" aria-label="Eventos Actual Talent">
+    <span class="header-wordmark">
+      Actual Talent
+    </span>
+  </a>
+  <nav class="header-nav">
+    <a href="/" class="nav-link">Serie</a>
+    <a href="#sobre" class="nav-link">Sobre</a>
+    <a href="#ponentes" class="nav-link">Ponentes</a>
+    <a href="#agenda" class="nav-link">Agenda</a>
+    <a href="#registro" class="nav-pill">Registrarse →</a>
+    <button class="burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="/">← Serie de eventos</a>
+    <a href="#sobre">Sobre el webinar</a>
+    <a href="#ponentes">Ponentes</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#registro" class="nm-pill">Registrarse →</a>
+  </nav>
+</header>
+
+<!-- ─── HERO ────────────────────────────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <canvas class="particle-canvas" id="hero-particles"></canvas>
+  <div class="mouse-glow" id="mouse-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal">Webinar · Mesa Redonda</div>
+    <div class="hero-date-badge reveal d1">
+      <span class="badge-dot"></span>
+      <span>26 Mayo 2026 · 12:00h CEST</span>
+    </div>
+    <h1 class="hero-headline reveal d2">
+      ¿La IA como <em>copiloto</em> o <em>sustituto</em> del humano?
+    </h1>
+    <p class="hero-sub reveal d3">
+      La IA escribe código, redacta informes, atiende clientes. ¿Dónde acaba la asistencia y empieza la sustitución? Una conversación entre IA empresarial y consultoría estratégica, moderada desde la primera línea de la selección de talento.
+    </p>
+    <div class="hero-ctas reveal d4">
+      <a href="#PENDIENTE-LINKEDIN-26MAYO" class="cta-primary cta-disabled" aria-disabled="true" title="Disponible en breve — registro pendiente de configurar">Registro LinkedIn <span>→</span></a>
+      <a href="#PENDIENTE-LUMA-26MAYO" class="cta-secondary cta-disabled" aria-disabled="true" title="Disponible en breve — registro pendiente de configurar">Registro Luma</a>
+      <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="cta-secondary" style="border-color:rgba(37,211,102,0.4);color:#25D366" target="_blank" rel="noopener">Comunidad WhatsApp</a>
+    </div>
+    <p class="reveal d5" style="margin-top:18px;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:1px">Registro abriendo pronto — únete a la comunidad WhatsApp para recibir el link el primero.</p>
+    <div class="countdown reveal d5" id="countdown" style="margin-top:32px">
+      <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Días</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Horas</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Seg</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span class="scroll-line"></span> Scroll</div>
+</section>
+
+<!-- ─── CO-BRANDED STRIP ───────────────────────────────────────────────────── -->
+<div class="cobranded reveal">
+  <span class="cobrand-label">Organizado por</span>
+  <div class="cobrand-logos">
+    <span class="cobrand-logo"><img src="../assets/logos/actual-talent.png" alt="Actual Talent"></span>
+  </div>
+</div>
+
+<!-- ─── ABOUT ──────────────────────────────────────────────────────────────── -->
+<section class="about" id="sobre">
+  <div class="about-inner">
+    <div class="section-label reveal">Sobre el webinar</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="reveal">¿Asistente o <em>reemplazo</em>?</h2>
+        <p class="reveal d1">La IA ya escribe código, redacta informes, atiende llamadas y resuelve incidencias. La pregunta de fondo no es si llega — es dónde acaba la asistencia y empieza la sustitución.</p>
+        <p class="reveal d2">Y la respuesta cambia el negocio: los roles que entran en la nómina, los procesos que se automatizan por completo, las decisiones que sigue tomando un humano.</p>
+        <p class="reveal d3">Una conversación entre IA empresarial, consultoría estratégica y la primera línea de la selección de talento, para separar lo que ya está pasando de lo que aún es promesa.</p>
+      </div>
+      <ul class="takeaways">
+        <li class="takeaway reveal d1">
+          <span class="takeaway-num">01</span>
+          <div><h3>Copiloto: asistencia real</h3><p>Dónde la IA acelera el trabajo humano sin reemplazarlo — y por qué seguir necesitando a la persona detrás cambia cómo se contrata.</p></div>
+        </li>
+        <li class="takeaway reveal d2">
+          <span class="takeaway-num">02</span>
+          <div><h3>Sustituto: el límite real</h3><p>Qué procesos completos están desapareciendo, en qué sectores, y cómo lo viven los equipos que conviven con esa transición.</p></div>
+        </li>
+        <li class="takeaway reveal d3">
+          <span class="takeaway-num">03</span>
+          <div><h3>Implicaciones para el talento</h3><p>Qué perfiles ganan peso, cuáles desaparecen y cómo recolocar a los que quedan en medio. Decisiones de plantilla, no titulares.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPEAKERS ────────────────────────────────────────────────────────────── -->
+<section class="speakers" id="ponentes">
+  <div class="speakers-inner">
+    <div class="section-label reveal">Ponentes</div>
+    <div class="speakers-grid">
+      <div class="speaker-card reveal d1">
+        <div class="speaker-photo kb"><img src="../assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
+        <span class="speaker-role-badge">Moderador</span>
+        <div class="speaker-name">Karim Barmose</div>
+        <div class="speaker-title">Co-founder</div>
+        <div class="speaker-company">Actual Talent</div>
+      </div>
+      <div class="speaker-card reveal d2">
+        <div class="speaker-photo bc">BC</div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Bruno Cianni</div>
+        <div class="speaker-title">SAP</div>
+        <div class="speaker-company">SAP</div>
+      </div>
+      <div class="speaker-card reveal d3">
+        <div class="speaker-photo jlc">JLC</div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">José Luis Casal</div>
+        <div class="speaker-title">Head of AI</div>
+        <div class="speaker-company">Kearney</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── AGENDA ──────────────────────────────────────────────────────────────── -->
+<section class="agenda" id="agenda">
+  <div class="agenda-inner">
+    <div class="section-label reveal">Agenda</div>
+    <div class="agenda-track">
+      <div class="agenda-item reveal">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">12:00h</div>
+        <div class="agenda-title">Introducción y contexto</div>
+        <div class="agenda-desc">Bienvenida, presentación de los ponentes y marco del debate: dónde está la IA hoy en el trabajo del conocimiento.</div>
+        <span class="agenda-duration">5 min</span>
+      </div>
+      <div class="agenda-item reveal d1">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">12:05h</div>
+        <div class="agenda-title">Mesa redonda</div>
+        <div class="agenda-desc">Debate entre los ponentes: copiloto vs sustituto en empresas reales. Casos donde la IA acelera al humano y casos donde ya lo reemplaza. Cómo se decide el reparto de tareas. Implicaciones para la plantilla y el talento que entra.</div>
+        <span class="agenda-duration">40 min</span>
+      </div>
+      <div class="agenda-item reveal d2">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">12:45h</div>
+        <div class="agenda-title">Preguntas y respuestas</div>
+        <div class="agenda-desc">Espacio abierto para preguntas de los asistentes. Los ponentes responden en directo a las cuestiones del público.</div>
+        <span class="agenda-duration">15 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA SECTION ────────────────────────────────────────────────────────── -->
+<section class="cta-section" id="registro">
+  <canvas class="particle-canvas" id="cta-particles"></canvas>
+  <div class="cta-inner">
+    <h2 class="reveal">¿Te lo vas a <em>perder</em>?</h2>
+    <p class="cta-date-reminder reveal d1">
+      <strong>26 de mayo de 2026</strong> · 12:00h CEST · Online y gratuito
+    </p>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="cta-big reveal d2" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:12px;background:#25D366">
+      <span style="position:relative;z-index:1">Comunidad WhatsApp</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <p class="reveal d3" style="margin-top:18px;font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;line-height:1.7;max-width:520px;margin-left:auto;margin-right:auto">
+      Registro de LinkedIn y Luma se activarán cuando se publiquen los enlaces oficiales. Únete a la comunidad para recibir el link de registro tan pronto esté disponible.
+    </p>
+  </div>
+</section>
+
+<!-- ─── REGISTRATION MODAL (commented out — Luma handles registration now) ───
+<div class="modal-overlay" id="reg-modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="reg-form-container">
+      <h3>Reserva tu plaza</h3>
+      <p class="modal-sub">28 de abril 2026 · 12:00h CEST · Online y gratuito</p>
+      <form id="reg-form">
+        <div class="form-group">
+          <label for="reg-name">Nombre completo</label>
+          <input type="text" id="reg-name" name="nombre" required placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email</label>
+          <input type="email" id="reg-email" name="email" required placeholder="tu@empresa.com">
+        </div>
+        <div class="form-group">
+          <label for="reg-company">Empresa</label>
+          <input type="text" id="reg-company" name="empresa" placeholder="Tu empresa (opcional)">
+        </div>
+        <div class="form-group">
+          <label for="reg-role">Cargo</label>
+          <input type="text" id="reg-role" name="cargo" placeholder="Tu cargo (opcional)">
+        </div>
+        <div class="form-group">
+          <label for="reg-phone">Teléfono móvil</label>
+          <input type="tel" id="reg-phone" name="telefono" placeholder="+34 600 000 000" pattern="[\+]?[\d\s\-]{6,15}">
+        </div>
+        <div class="form-group">
+          <label for="reg-size">Tamaño de empresa</label>
+          <select id="reg-size" name="tamano_empresa">
+            <option value="" disabled selected>Selecciona un rango</option>
+            <option value="1-10">1–10 empleados</option>
+            <option value="11-50">11–50 empleados</option>
+            <option value="51-200">51–200 empleados</option>
+            <option value="201-500">201–500 empleados</option>
+            <option value="501-1000">501–1.000 empleados</option>
+            <option value="1001+">+1.000 empleados</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit" id="reg-submit">Confirmar registro →</button>
+      </form>
+    </div>
+    <div id="reg-success" class="form-success" style="display:none">
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h4>¡Estás dentro!</h4>
+      <p>Te hemos registrado para el webinar del 28 de abril. Recibirás un recordatorio antes del evento.</p>
+    </div>
+  </div>
+</div>
+
+<iframe name="hidden-iframe" id="hidden-iframe" style="display:none"></iframe>
+─── END COMMENTED MODAL ──────────────────────────────────────────────────── -->
+
+<!-- ─── FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer>
+  <p><strong>Actual Talent</strong> · Webinar 26 mayo 2026</p>
+  <div class="footer-links">
+    <a href="/">Serie de eventos</a>
+    <a href="../iavsia/">Recap 28 abril</a>
+    <a href="https://www.actual-talent.com/es" target="_blank" rel="noopener">Actual Talent</a>
+  </div>
+</footer>
+
+<!-- ─── JS ──────────────────────────────────────────────────────────────────── -->
+<script>
+// ── Scroll reveal ──
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+requestAnimationFrame(() => {
+  document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+});
+
+// ── Hamburger ──
+const burger = document.querySelector('.burger');
+const mobileNav = document.querySelector('.nav-mobile');
+function closeMenu() { burger.classList.remove('open'); mobileNav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+burger.addEventListener('click', (e) => { e.stopPropagation(); const o = burger.classList.toggle('open'); mobileNav.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); });
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('click', (e) => { if (!burger.contains(e.target) && !mobileNav.contains(e.target)) closeMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeModal(); } });
+
+// ── Countdown ──
+const eventDate = new Date('2026-05-26T12:00:00+02:00');
+function updateCountdown() {
+  const cd = document.getElementById('countdown');
+  if (!cd) return;
+  const diff = eventDate - new Date();
+  if (diff <= 0) { cd.innerHTML = '<span style="font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)">En directo ahora</span>'; return; }
+  const d = Math.floor(diff/864e5), h = Math.floor((diff%864e5)/36e5), m = Math.floor((diff%36e5)/6e4), s = Math.floor((diff%6e4)/1e3);
+  document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+}
+updateCountdown(); setInterval(updateCountdown, 1000);
+
+// ── Mouse glow ──
+const glow = document.getElementById('mouse-glow');
+const heroEl = document.querySelector('.hero');
+if (window.matchMedia('(pointer:fine)').matches) {
+  heroEl.addEventListener('mousemove', (e) => { const r = heroEl.getBoundingClientRect(); glow.style.left = (e.clientX-r.left)+'px'; glow.style.top = (e.clientY-r.top)+'px'; glow.classList.add('visible'); });
+  heroEl.addEventListener('mouseleave', () => glow.classList.remove('visible'));
+}
+
+// ── Mouse position for particle interaction ──
+const mousePos = { x: -1000, y: -1000, active: false };
+if (window.matchMedia('(pointer:fine)').matches) {
+  document.addEventListener('mousemove', (e) => { mousePos.x = e.clientX; mousePos.y = e.clientY; mousePos.active = true; });
+  document.addEventListener('mouseleave', () => { mousePos.active = false; });
+}
+
+// ── Particle system (enhanced) ──
+function initParticles(canvasId, count) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+
+  function resize() { const p = canvas.parentElement; w = canvas.width = p.offsetWidth; h = canvas.height = p.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random()*w, y: Math.random()*h,
+      r: Math.random()*3 + 0.8,
+      vx: (Math.random()-0.5)*0.5,
+      vy: (Math.random()-0.5)*0.35 - 0.05,
+      alpha: Math.random()*0.55 + 0.25,
+      isRed: Math.random() < 0.4,
+      pulse: Math.random()*Math.PI*2
+    });
+  }
+
+  const CONNECT_DIST = 160;
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    // Connection lines between nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECT_DIST) {
+          const opacity = (1 - dist/CONNECT_DIST) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = particles[i].isRed || particles[j].isRed
+            ? `rgba(192,25,30,${opacity})`
+            : `rgba(255,255,255,${opacity * 0.7})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+    // Draw particles with mouse interaction
+    const canvasRect = canvas.getBoundingClientRect();
+    const mx = mousePos.x - canvasRect.left;
+    const my = mousePos.y - canvasRect.top;
+    const MOUSE_RADIUS = 180;
+
+    particles.forEach(p => {
+      // Mouse repulsion
+      if (mousePos.active && mx > -50 && mx < w+50 && my > -50 && my < h+50) {
+        const dx = p.x - mx;
+        const dy = p.y - my;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < MOUSE_RADIUS && dist > 0) {
+          const force = (1 - dist/MOUSE_RADIUS) * 2.5;
+          p.vx += (dx/dist) * force * 0.3;
+          p.vy += (dy/dist) * force * 0.3;
+        }
+      }
+      // Dampen velocity back to base
+      p.vx *= 0.97;
+      p.vy *= 0.97;
+      p.vx += (Math.random()-0.5)*0.04;
+      p.vy += (Math.random()-0.5)*0.03 - 0.005;
+
+      p.x += p.vx; p.y += p.vy;
+      p.pulse += 0.018;
+      const pAlpha = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+      if (p.x < -10) p.x = w+10; if (p.x > w+10) p.x = -10;
+      if (p.y < -10) p.y = h+10; if (p.y > h+10) p.y = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.isRed ? `rgba(192,25,30,${pAlpha})` : `rgba(255,255,255,${pAlpha*0.8})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+initParticles('hero-particles', 140);
+initParticles('cta-particles', 80);
+
+// ── Registration — now handled by Luma checkout overlay ──
+// All .luma-checkout--button elements are automatically handled by embed.lu.ma/checkout-button.js
+
+// Luma checkout buttons handled automatically by embed.lu.ma/checkout-button.js
+// LinkedIn Event is the primary registration channel
+// Old modal + Google Sheet form code commented out below for easy revert.
+
+/* ── OLD REGISTRATION MODAL (commented out) ──
+const modal = document.getElementById('reg-modal');
+const form = document.getElementById('reg-form');
+function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+document.querySelectorAll('.js-open-modal').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(); }));
+document.getElementById('modal-close').addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbylRAWg84q4-7XJCC3voTzgE_YA6WFQhxt3i6go_gERxEjNBeqcfOeKP6lvI55aw1rF/exec';
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('reg-submit');
+  btn.disabled = true; btn.textContent = 'Registrando...';
+  const data = {
+    nombre: document.getElementById('reg-name').value,
+    email: document.getElementById('reg-email').value,
+    empresa: document.getElementById('reg-company').value,
+    cargo: document.getElementById('reg-role').value,
+    telefono: document.getElementById('reg-phone').value,
+    tamano_empresa: document.getElementById('reg-size').value,
+    fecha: new Date().toISOString()
+  };
+  const regs = JSON.parse(localStorage.getItem('webinar-regs') || '[]');
+  regs.push(data);
+  localStorage.setItem('webinar-regs', JSON.stringify(regs));
+  if (SHEET_URL) {
+    try {
+      const tempForm = document.createElement('form');
+      tempForm.method = 'POST'; tempForm.action = SHEET_URL;
+      tempForm.target = 'hidden-iframe'; tempForm.style.display = 'none';
+      Object.entries(data).forEach(([k, v]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden'; input.name = k; input.value = v;
+        tempForm.appendChild(input);
+      });
+      document.body.appendChild(tempForm);
+      tempForm.submit();
+      document.body.removeChild(tempForm);
+    } catch(err) {}
+  }
+  document.getElementById('reg-form-container').style.display = 'none';
+  document.getElementById('reg-success').style.display = 'block';
+  btn.disabled = false; btn.textContent = 'Confirmar registro →';
+});
+── END OLD REGISTRATION ── */
+</script>
+
+</body>
+</html>

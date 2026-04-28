@@ -179,6 +179,7 @@
     .ev-badge.provisional { background: rgba(245,158,11,.1); color: #d97706; }
     .ev-badge.tbd { background: rgba(107,107,107,.1); color: var(--gray); }
     .ev-badge.premium { background: rgba(0,0,0,.08); color: var(--black); }
+    .ev-badge.past { background: rgba(107,107,107,.08); color: var(--gray); }
 
     .ev-card-body { padding: 20px 18px; }
     .ev-type { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
@@ -215,6 +216,29 @@
       .ev-meta, .ev:nth-child(even) .ev-meta { display: none; }
       .tl-line { left: 12px; }
       .ev:nth-child(odd), .ev:nth-child(even) { transform: translateY(16px); }
+    }
+
+    /* ── COMUNIDAD (WhatsApp) ── */
+    .community-section { background: var(--cream); color: var(--black); padding: 96px 48px; text-align: center; }
+    .community-inner { max-width: 720px; margin: 0 auto; }
+    .community-section .section-label { justify-content: center; }
+    .community-section h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 900; line-height: 1.15; letter-spacing: -.02em; color: var(--black); margin-bottom: 18px; }
+    .community-section h2 em { font-style: normal; color: #25D366; }
+    .community-section > .community-inner > p { font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 36px; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .community-section .community-inner > p strong { color: var(--black); font-weight: 700; }
+    .wa-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #25D366; color: #fff;
+      font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 18px 36px; border-radius: 100px;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+    }
+    .wa-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,211,102,.35); }
+    .wa-cta svg { width: 20px; height: 20px; fill: currentColor; }
+    .community-locations { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-top: 28px; }
+    .community-locations strong { color: var(--red); }
+    @media (max-width: 600px) {
+      .community-section { padding: 72px 24px; }
     }
 
     /* ── PARTNERS ── */
@@ -280,15 +304,17 @@
   <div class="nav-links">
     <a href="#manifesto">Visión</a>
     <a href="#eventos">Eventos</a>
+    <a href="#comunidad">Comunidad</a>
     <a href="#partners">Partners</a>
-    <a href="webinar/" class="nav-pill">Próximo evento →</a>
+    <a href="webinar/copilotosustituto/" class="nav-pill">Próximo evento →</a>
   </div>
   <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
   <nav class="nav-mobile" id="navMobile">
     <a href="#manifesto">Visión</a>
     <a href="#eventos">Eventos</a>
+    <a href="#comunidad">Comunidad</a>
     <a href="#partners">Partners</a>
-    <a href="webinar/" class="nm-pill">Próximo evento →</a>
+    <a href="webinar/copilotosustituto/" class="nm-pill">Próximo evento →</a>
   </nav>
 </nav>
 
@@ -306,7 +332,7 @@
     <h1 class="hero-title">El futuro del <em>talento</em> ya ha empezado</h1>
     <p class="hero-sub">Una serie de conversaciones sobre IA, talento y transformación empresarial. Webinars, encuentros y eventos presenciales para entender qué está cambiando — y cómo adaptarse.</p>
     <div class="hero-ctas">
-      <a href="webinar/" class="btn-primary">Próximo webinar →</a>
+      <a href="webinar/copilotosustituto/" class="btn-primary">Próximo webinar — 26 may →</a>
       <a href="#eventos" class="btn-ghost">Ver la serie ↓</a>
     </div>
   </div>
@@ -362,9 +388,9 @@
     <!-- EVENT 1 · 28 ABRIL -->
     <div class="ev">
       <div class="ev-card"><div class="ev-card-inner">
-        <div class="ev-card-top"><span class="ev-date">28 Abril 2026</span><span class="ev-badge live">Próximo · 12:00h CEST</span></div>
+        <div class="ev-card-top"><span class="ev-date">28 Abril 2026</span><span class="ev-badge past">Evento celebrado</span></div>
         <div class="ev-card-body">
-          <p class="ev-type">Webinar 1 · Online · Gratuito · 1h</p>
+          <p class="ev-type">Webinar 1 · Online · 1h</p>
           <h3 class="ev-title">IA vs IA: La Batalla por el Talento</h3>
           <p class="ev-pitch">Candidatos usando IA para postular. Empresas usando IA para filtrar. Cuatro voces desde la primera línea de la selección, el employer branding, la innovación en RRHH y la tecnología.</p>
           <div class="ev-speakers">
@@ -374,35 +400,36 @@
             <div class="ev-speaker"><strong>Iker Jusué</strong> — Talent, Ops & HR Technology</div>
           </div>
         </div>
-        <div class="ev-card-foot"><span class="ev-partner">Con <strong>Teamtailor</strong></span><a href="webinar/" class="ev-link">Reservar plaza →</a></div>
+        <div class="ev-card-foot"><span class="ev-partner">Con <strong>Teamtailor</strong></span><a href="webinar/iavsia/" class="ev-link">Ver recap →</a></div>
       </div></div>
-      <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
+      <div class="ev-dot-col"><div class="ev-dot"></div></div>
       <div class="ev-meta"><div class="ev-meta-inner">
         <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>12:00 – 13:00h CEST</div>
-        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13" stroke="currentColor" stroke-width="1.2"/></svg>Restream — YouTube · LinkedIn</div>
-        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="meta-hi">Gratuito · Plazas abiertas</span></div>
+        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13" stroke="currentColor" stroke-width="1.2"/></svg>Online · LinkedIn</div>
+        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="meta-hi">Recap disponible</span></div>
       </div></div>
     </div>
 
-    <!-- EVENT 2 · 19 MAYO -->
+    <!-- EVENT 2 · 26 MAYO -->
     <div class="ev">
       <div class="ev-card"><div class="ev-card-inner">
-        <div class="ev-card-top"><span class="ev-date">19 Mayo 2026</span><span class="ev-badge provisional">Fecha provisional</span></div>
+        <div class="ev-card-top"><span class="ev-date">26 Mayo 2026</span><span class="ev-badge live">Próximo · 12:00h CEST</span></div>
         <div class="ev-card-body">
-          <p class="ev-type">Webinar 2 · Online · Gratuito</p>
-          <h3 class="ev-title">IA como copiloto o sustituto: dónde está el límite real</h3>
-          <p class="ev-pitch">La IA que asiste y la IA que reemplaza no usan la misma tecnología — pero las empresas las tratan igual. Un webinar para separar realidad de hype y tomar decisiones informadas.</p>
+          <p class="ev-type">Webinar 2 · Online · Gratuito · 1h</p>
+          <h3 class="ev-title">¿La IA como copiloto o sustituto del humano?</h3>
+          <p class="ev-pitch">La IA escribe código, redacta informes, atiende clientes. ¿Dónde acaba la asistencia y empieza la sustitución? Una conversación entre IA empresarial, consultoría estratégica y selección de talento.</p>
           <div class="ev-speakers">
-            <div class="ev-speaker"><strong>Joan Boluda</strong> — Actual Talent · Moderador</div>
-            <div class="ev-speaker"><strong>Jamal Ibrahim</strong> <span class="pending">(por confirmar)</span></div>
+            <div class="ev-speaker"><strong>Karim Barmose</strong> — Actual Talent · Moderador</div>
+            <div class="ev-speaker"><strong>Bruno Cianni</strong> — SAP</div>
+            <div class="ev-speaker"><strong>José Luis Casal</strong> — Head of AI · Kearney</div>
           </div>
         </div>
-        <div class="ev-card-foot"><span class="ev-partner">Speakers por confirmar</span><a href="mailto:joan.boluda@actualgroup.com?subject=Aviso%20webinar%2019%20mayo" class="ev-link">Recibir aviso →</a></div>
+        <div class="ev-card-foot"><span class="ev-partner">Webinar 2 de la serie</span><a href="webinar/copilotosustituto/" class="ev-link">Reservar plaza →</a></div>
       </div></div>
       <div class="ev-dot-col"><div class="ev-dot pulse"></div></div>
       <div class="ev-meta"><div class="ev-meta-inner">
         <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.2l2.2 1.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>12:00h CEST · ~60 min</div>
-        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="meta-hi">Gratuito · Pendiente confirmar</span></div>
+        <div class="meta-row"><svg class="meta-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="meta-hi">Gratuito · Plazas abiertas</span></div>
       </div></div>
     </div>
 
@@ -445,6 +472,20 @@
   </div>
 </section>
 
+<!-- ── COMUNIDAD ── -->
+<section class="community-section" id="comunidad">
+  <div class="community-inner">
+    <div class="section-label reveal">Comunidad</div>
+    <h2 class="reveal d1">Las próximas conversaciones empiezan en <em>WhatsApp</em></h2>
+    <p class="reveal d2">Eventos online y presenciales en <strong>Barcelona</strong> y <strong>Madrid</strong> sobre cómo la IA está cambiando el talento. Únete antes de que se anuncie el siguiente.</p>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="wa-cta reveal d3" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      Únete a la comunidad
+    </a>
+    <div class="community-locations reveal d4"><strong>Barcelona</strong> · <strong>Madrid</strong> · Online</div>
+  </div>
+</section>
+
 <!-- ── PARTNERS ── -->
 <section class="partners-section" id="partners">
   <div class="partners-inner">
@@ -471,7 +512,7 @@
   <div class="cta-content">
     <h2 class="reveal">¿Quieres estar en la <em>conversación</em>?</h2>
     <p class="reveal d1">Abril – Junio 2026 · Online y presencial · Gratuito</p>
-    <div class="reveal d2"><a href="webinar/" class="btn-primary">Reservar plaza — 28 de abril →</a></div>
+    <div class="reveal d2" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a href="webinar/copilotosustituto/" class="btn-primary">Reservar plaza — 26 de mayo →</a><a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="btn-ghost" target="_blank" rel="noopener">Comunidad WhatsApp</a></div>
   </div>
 </section>
 
@@ -479,8 +520,9 @@
 <footer>
   <div class="footer-brand">Actual Talent</div>
   <div class="footer-links">
-    <a href="webinar/">Webinar</a>
+    <a href="webinar/">Webinars</a>
     <a href="#eventos">Eventos</a>
+    <a href="#comunidad">Comunidad</a>
     <a href="mailto:joan.boluda@actualgroup.com">Contacto</a>
     <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Arriba</a>
   </div>
