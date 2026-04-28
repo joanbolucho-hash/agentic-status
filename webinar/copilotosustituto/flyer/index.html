@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flyer 1280×720 — ¿La IA como copiloto o sustituto del humano? · 26 may 2026</title>
+<meta name="description" content="Flyer 1280x720 para webinar Actual Talent del 26 de mayo 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:        #C0191E;
+  --red-glow:   rgba(192, 25, 30, 0.15);
+  --beige:      #E8E5DC;
+  --cream:      #F0EEEB;
+  --black:      #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+
+#wrapper {
+  width: min(100vw, 100vh * 16 / 9);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.flyer {
+  width: 1280px; height: 720px;
+  flex-shrink: 0;
+  position: relative; overflow: hidden;
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--white);
+  /* fit-to-viewport scaling */
+  transform-origin: center;
+}
+
+@media (max-width: 1320px), (max-height: 760px) {
+  body { padding: 0; background: #000; }
+  .flyer { transform: scale(min(calc((100vw - 0px) / 1280), calc((100vh - 0px) / 720))); }
+}
+
+/* ── ATMOSPHERE ── */
+.flyer::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 0% 100%, rgba(192,25,30,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 100% 0%, rgba(192,25,30,0.08) 0%, transparent 55%);
+  pointer-events: none;
+}
+.flyer::after {
+  content: '?';
+  position: absolute; right: -60px; top: -120px;
+  font-size: 760px; font-weight: 900; line-height: 1;
+  color: rgba(255,255,255,0.018);
+  pointer-events: none; user-select: none;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  position: absolute; top: 36px; left: 56px; right: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 10;
+}
+
+.brand-mark {
+  display: flex; align-items: center; gap: 14px;
+}
+.at-logo {
+  width: 38px; height: 38px;
+  border-radius: 8px; background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; letter-spacing: 1px; color: var(--white);
+}
+.brand-name {
+  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--white);
+}
+.brand-sub {
+  display: block; font-size: 9px; font-weight: 500; letter-spacing: 2px;
+  color: rgba(255,255,255,0.4); margin-top: 2px;
+}
+
+.date-pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(192, 25, 30, 0.14); border: 1px solid rgba(192, 25, 30, 0.32);
+  border-radius: 100px; padding: 9px 22px;
+}
+.date-pill .dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--red);
+}
+.date-pill span {
+  font-size: 11px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ── HEADLINE ── */
+.headline-wrap {
+  position: absolute; top: 130px; left: 56px; right: 56px;
+  z-index: 5;
+}
+.eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 4.5px; text-transform: uppercase;
+  color: var(--red); margin-bottom: 22px;
+}
+.eyebrow .sep {
+  display: inline-block; width: 28px; height: 1px;
+  background: var(--red); vertical-align: middle; margin: 0 12px;
+  opacity: 0.4;
+}
+.headline {
+  font-size: 78px; font-weight: 900; line-height: 0.97;
+  letter-spacing: -0.035em; color: var(--white);
+  max-width: 1050px;
+}
+.headline em { font-style: normal; color: var(--red); }
+.headline .q { color: var(--red); font-style: normal; }
+
+.tagline {
+  margin-top: 22px;
+  font-size: 17px; font-weight: 300; line-height: 1.55;
+  color: rgba(255,255,255,0.55); max-width: 720px;
+}
+.tagline strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+/* ── SPEAKERS STRIP ── */
+.speakers {
+  position: absolute; bottom: 90px; left: 56px;
+  display: flex; gap: 26px; align-items: flex-start;
+  z-index: 5;
+}
+.speaker {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  width: 130px;
+}
+.sp-photo {
+  width: 84px; height: 84px; border-radius: 50%; overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.04);
+  font-size: 28px; font-weight: 800; color: rgba(255,255,255,0.4);
+  position: relative;
+}
+.sp-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sp-photo.tbd { border-style: dashed; border-color: rgba(255,255,255,0.18); }
+
+.sp-role {
+  font-size: 8.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--red);
+}
+.sp-role.tbd { color: rgba(255,255,255,0.35); }
+
+.sp-name {
+  font-size: 13px; font-weight: 700; color: var(--white);
+  text-align: center; line-height: 1.2;
+}
+.sp-name.tbd { color: rgba(255,255,255,0.4); font-weight: 500; font-style: italic; }
+.sp-company {
+  font-size: 9.5px; font-weight: 600; color: rgba(255,255,255,0.5);
+  letter-spacing: 1px; text-transform: uppercase; text-align: center;
+}
+
+/* ── BOTTOM CORNER ── */
+.bottom-corner {
+  position: absolute; bottom: 36px; right: 56px;
+  text-align: right;
+  z-index: 10;
+}
+.bottom-corner .label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 6px;
+}
+.bottom-corner .url {
+  font-size: 14px; font-weight: 800; color: var(--white);
+  letter-spacing: 0.5px;
+}
+.bottom-corner .url em {
+  font-style: normal; color: var(--red);
+}
+
+/* ── DIVIDER ── */
+.divider-line {
+  position: absolute; bottom: 78px; left: 56px; right: 56px;
+  height: 1px; background: linear-gradient(to right, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 70%, transparent 100%);
+}
+
+/* ── RED ACCENT BAR ── */
+.accent-bar {
+  position: absolute; bottom: 0; left: 0; height: 6px; width: 240px;
+  background: var(--red);
+  z-index: 10;
+}
+
+/* ── FORMAT BADGE ── */
+.format-badge {
+  position: absolute; bottom: 36px; left: 56px;
+  display: flex; align-items: center; gap: 16px;
+  z-index: 10;
+}
+.format-badge .item {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.format-badge .sep {
+  width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2);
+}
+
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+  <div class="flyer">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="brand-mark">
+        <div class="at-logo">AT</div>
+        <div>
+          <div class="brand-name">Actual Talent</div>
+          <span class="brand-sub">Webinar · Mesa redonda</span>
+        </div>
+      </div>
+      <div class="date-pill">
+        <span class="dot"></span>
+        <span>26 mayo 2026 · 12:00h CEST</span>
+      </div>
+    </div>
+
+    <!-- HEADLINE -->
+    <div class="headline-wrap">
+      <div class="eyebrow">Serie de webinars 2026<span class="sep"></span>Episodio 02</div>
+      <h1 class="headline">
+        <span class="q">¿</span>La IA como <em>copiloto</em><br>
+        o <em>sustituto</em> del humano<span class="q">?</span>
+      </h1>
+      <p class="tagline">
+        La IA <strong>escribe código</strong>, <strong>redacta informes</strong>, <strong>atiende clientes</strong>. ¿Dónde acaba la asistencia y empieza la sustitución?
+      </p>
+    </div>
+
+    <!-- SPEAKERS -->
+    <div class="speakers">
+      <div class="speaker">
+        <div class="sp-photo"><img src="../../assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
+        <div class="sp-role">Moderador</div>
+        <div class="sp-name">Karim Barmose</div>
+        <div class="sp-company">Actual Talent</div>
+      </div>
+      <div class="speaker">
+        <div class="sp-photo"><img src="../../assets/speakers/bruno-pincolini.jpg" alt="Bruno Pincolini"></div>
+        <div class="sp-role">Ponente</div>
+        <div class="sp-name">Bruno Pincolini</div>
+        <div class="sp-company">SAP</div>
+      </div>
+      <div class="speaker">
+        <div class="sp-photo tbd">?</div>
+        <div class="sp-role tbd">Por confirmar</div>
+        <div class="sp-name tbd">Próximamente</div>
+        <div class="sp-company">&nbsp;</div>
+      </div>
+      <div class="speaker">
+        <div class="sp-photo tbd">?</div>
+        <div class="sp-role tbd">Por confirmar</div>
+        <div class="sp-name tbd">Próximamente</div>
+        <div class="sp-company">&nbsp;</div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="divider-line"></div>
+
+    <!-- FORMAT BADGE -->
+    <div class="format-badge">
+      <span class="item">Online</span>
+      <span class="sep"></span>
+      <span class="item">Gratuito</span>
+      <span class="sep"></span>
+      <span class="item">60 min</span>
+    </div>
+
+    <!-- BOTTOM-RIGHT URL -->
+    <div class="bottom-corner">
+      <div class="label">Inscripción</div>
+      <div class="url">actualtalent.tech/<em>webinar</em></div>
+    </div>
+
+    <!-- ACCENT BAR -->
+    <div class="accent-bar"></div>
+
+  </div>
+</div>
+
+</body>
+</html>
