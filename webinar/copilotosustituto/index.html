@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0A0A0A">
 <title>¿La IA como copiloto o sustituto del humano? — Webinar Actual Talent</title>
-<meta name="description" content="Webinar 26 de mayo 2026, 12:00h CEST. ¿Dónde acaba la asistencia y empieza la sustitución? Con Bruno Cianni (SAP) y José Luis Casal (Head of AI, Kearney). Modera Karim Barmose.">
+<meta name="description" content="Webinar 26 de mayo 2026, 12:00h CEST. ¿Dónde acaba la asistencia y empieza la sustitución? Con Bruno Pincolini (SAP) y dos ponentes por confirmar. Modera Karim Barmose.">
 <meta property="og:title" content="¿La IA como copiloto o sustituto del humano? — Webinar Actual Talent">
-<meta property="og:description" content="26 de mayo 2026, 12:00h CEST. Con Bruno Cianni (SAP) y José Luis Casal (Head of AI, Kearney). Modera Karim Barmose. Online y gratuito.">
+<meta property="og:description" content="26 de mayo 2026, 12:00h CEST. Con Bruno Pincolini (SAP) y dos ponentes por confirmar. Modera Karim Barmose. Online y gratuito.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -224,7 +224,12 @@ header {
 /* ─── SPEAKERS ───────────────────────────────────────────────────────────────── */
 .speakers { background: var(--white); padding: 100px 48px; }
 .speakers-inner { max-width: 1100px; margin: 0 auto; }
-.speakers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; max-width: 880px; margin: 0 auto; }
+.speakers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.speaker-card.tbd { opacity: 0.55; }
+.speaker-card.tbd .speaker-photo { background: rgba(0,0,0,0.04); color: var(--gray); border: 1px dashed rgba(0,0,0,0.18); font-size: 28px; }
+.speaker-card.tbd .speaker-role-badge { background: rgba(107,107,107,0.1); color: var(--gray); }
+.speaker-card.tbd .speaker-name { color: var(--gray); }
+.speaker-card.tbd .speaker-company { color: var(--gray); }
 a.speaker-card { text-decoration: none; color: inherit; display: block; }
 .speaker-card {
   text-align: center; padding: 36px 20px; border-radius: 12px;
@@ -241,8 +246,7 @@ a.speaker-card { text-decoration: none; color: inherit; display: block; }
 .speaker-photo.tg { background: var(--gray); }
 .speaker-photo.ij { background: #2C3E50; }
 .speaker-photo.kb { background: var(--near-black); }
-.speaker-photo.bc { background: #0FAAFF; }   /* SAP blue accent */
-.speaker-photo.jlc { background: #2C3E50; }  /* Kearney slate */
+.speaker-photo.bp { background: #0FAAFF; }   /* SAP blue fallback */
 .speaker-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .speaker-role-badge {
   display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 2px;
@@ -464,7 +468,7 @@ footer .footer-links a:hover { color: white; }
       ¿La IA como <em>copiloto</em> o <em>sustituto</em> del humano?
     </h1>
     <p class="hero-sub reveal d3">
-      La IA escribe código, redacta informes, atiende clientes. ¿Dónde acaba la asistencia y empieza la sustitución? Una conversación entre IA empresarial y consultoría estratégica, moderada desde la primera línea de la selección de talento.
+      La IA escribe código, redacta informes, atiende clientes. ¿Dónde acaba la asistencia y empieza la sustitución? Una mesa redonda con voces de la IA empresarial, moderada desde la primera línea del talento.
     </p>
     <div class="hero-ctas reveal d4">
       <a href="#PENDIENTE-LINKEDIN-26MAYO" class="cta-primary cta-disabled" aria-disabled="true" title="Disponible en breve — registro pendiente de configurar">Registro LinkedIn <span>→</span></a>
@@ -534,19 +538,26 @@ footer .footer-links a:hover { color: white; }
         <div class="speaker-title">Co-founder</div>
         <div class="speaker-company">Actual Talent</div>
       </div>
-      <div class="speaker-card reveal d2">
-        <div class="speaker-photo bc">BC</div>
+      <a href="https://www.linkedin.com/in/brunopincolini/" target="_blank" rel="noopener" class="speaker-card reveal d2">
+        <div class="speaker-photo bp"><img src="../assets/speakers/bruno-pincolini.jpg" alt="Bruno Pincolini"></div>
         <span class="speaker-role-badge">Ponente</span>
-        <div class="speaker-name">Bruno Cianni</div>
+        <div class="speaker-name">Bruno Pincolini</div>
         <div class="speaker-title">SAP</div>
         <div class="speaker-company">SAP</div>
+      </a>
+      <div class="speaker-card tbd reveal d3">
+        <div class="speaker-photo">?</div>
+        <span class="speaker-role-badge">Por confirmar</span>
+        <div class="speaker-name">Ponente</div>
+        <div class="speaker-title">&nbsp;</div>
+        <div class="speaker-company">Confirmación próxima</div>
       </div>
-      <div class="speaker-card reveal d3">
-        <div class="speaker-photo jlc">JLC</div>
-        <span class="speaker-role-badge">Ponente</span>
-        <div class="speaker-name">José Luis Casal</div>
-        <div class="speaker-title">Head of AI</div>
-        <div class="speaker-company">Kearney</div>
+      <div class="speaker-card tbd reveal d4">
+        <div class="speaker-photo">?</div>
+        <span class="speaker-role-badge">Por confirmar</span>
+        <div class="speaker-name">Ponente</div>
+        <div class="speaker-title">&nbsp;</div>
+        <div class="speaker-company">Confirmación próxima</div>
       </div>
     </div>
   </div>
