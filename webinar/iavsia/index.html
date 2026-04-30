@@ -277,8 +277,10 @@ header {
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
   padding: 16px 24px;
   background: var(--red); color: white;
+  font-family: inherit;
   font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
   text-decoration: none;
+  border: 0; cursor: pointer;
   transition: opacity 0.2s, transform 0.2s;
   position: relative; z-index: 1;
 }
@@ -1064,7 +1066,7 @@ form.addEventListener('submit', (e) => {
 </script>
 
 <!-- ─── WHITEPAPER LEAD-GATE MODAL ──────────────────────────────────────────── -->
-<div class="wp-modal" id="wp-modal" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title" hidden>
+<div class="wp-modal" id="wp-modal" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title">
   <div class="wp-modal-card">
     <button type="button" class="wp-modal-close" aria-label="Cerrar">×</button>
     <div class="wp-modal-eyebrow">Whitepaper · 13 páginas · PDF</div>
