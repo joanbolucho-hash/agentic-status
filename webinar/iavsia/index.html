@@ -198,6 +198,93 @@ header {
 .cobrand-logo.tt img { height: 34px; }
 .cobrand-x { font-size: 16px; color: rgba(0,0,0,0.15); font-weight: 300; }
 
+/* ─── REPLAY + WHITEPAPER ────────────────────────────────────────────────────── */
+.replay {
+  background: var(--near-black);
+  color: white;
+  padding: 100px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.replay::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,25,30,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.replay-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.replay-header { margin-bottom: 48px; max-width: 760px; }
+.replay-header h2 {
+  font-size: clamp(32px, 4.5vw, 52px); font-weight: 900; letter-spacing: -0.03em;
+  color: white; line-height: 1.05; margin-top: 16px;
+}
+.replay-header h2 em { font-style: normal; color: var(--red); }
+.replay-header p {
+  font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.65);
+  margin-top: 18px; max-width: 600px;
+}
+.replay-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: stretch;
+}
+.replay-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.replay-video iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+.replay-paper {
+  background: linear-gradient(160deg, #1A1A1A 0%, #2A1011 100%);
+  border: 1px solid rgba(192,25,30,0.25);
+  padding: 36px 32px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.replay-paper::before {
+  content: ''; position: absolute; bottom: -60px; left: -60px;
+  width: 220px; height: 220px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.replay-paper-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--red); margin-bottom: 14px;
+}
+.replay-paper h3 {
+  font-size: 22px; font-weight: 800; line-height: 1.15; color: white;
+  letter-spacing: -0.02em; margin-bottom: 14px;
+}
+.replay-paper p {
+  font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.62);
+  margin-bottom: 28px;
+}
+.replay-paper-meta {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 28px;
+}
+.replay-paper-meta span::before { content: '•'; margin-right: 8px; color: var(--red); }
+.replay-paper-meta span:first-child::before { display: none; }
+.replay-paper-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 16px 24px;
+  background: var(--red); color: white;
+  font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  position: relative; z-index: 1;
+}
+.replay-paper-cta:hover { opacity: 0.92; transform: translateX(2px); }
+.replay-paper-cta .arrow { font-size: 16px; }
+
 /* ─── ABOUT ──────────────────────────────────────────────────────────────────── */
 .about { background: var(--cream); padding: 100px 48px; }
 .about-inner { max-width: 1100px; margin: 0 auto; }
@@ -394,6 +481,9 @@ footer .footer-links a:hover { color: white; }
   .countdown { gap: 16px; }
   .cd-num { font-size: 28px; }
   .cobranded { flex-direction: column; gap: 16px; padding: 32px 24px; }
+  .replay { padding: 64px 24px; }
+  .replay-grid { grid-template-columns: 1fr; gap: 24px; }
+  .replay-paper { padding: 28px 24px; }
   .about { padding: 80px 24px; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .speakers { padding: 80px 24px; }
@@ -479,6 +569,44 @@ footer .footer-links a:hover { color: white; }
     <span class="cobrand-logo tt"><img src="../assets/logos/teamtailor.png" alt="Teamtailor"></span>
   </div>
 </div>
+
+<!-- ─── REPLAY + WHITEPAPER ─────────────────────────────────────────────────── -->
+<section class="replay" id="replay">
+  <div class="replay-inner">
+    <div class="replay-header reveal">
+      <div class="section-label light">Replay &amp; Whitepaper</div>
+      <h2>Vive el directo. <em>Llévate</em> las conclusiones.</h2>
+      <p>1 hora y 17 minutos de panel con Marc Galanó, Tony Gimeno, Iker Jusué y Joan Boluda. Y un whitepaper que destila lo dicho en el directo en 13 páginas accionables — sin invenciones, con citas literales del panel.</p>
+    </div>
+    <div class="replay-grid">
+      <div class="replay-video reveal d1">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/DTuEL9oeDis?rel=0"
+          title="IA vs IA: La batalla por el talento — Webinar Actual Talent"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+      </div>
+      <div class="replay-paper reveal d2">
+        <div>
+          <div class="replay-paper-eyebrow">Whitepaper N.º 01</div>
+          <h3>IA vs IA — La batalla por el talento</h3>
+          <p>Síntesis del directo: 5 ideas-fuerza, 6 bloques temáticos, 6 citas destacadas literales y un capítulo de implicaciones para departamentos de TA.</p>
+          <div class="replay-paper-meta">
+            <span>13 páginas</span>
+            <span>PDF · 2,6&nbsp;MB</span>
+            <span>Español</span>
+          </div>
+        </div>
+        <a href="whitepaper-ia-vs-ia.pdf" class="replay-paper-cta" download>
+          Descargar whitepaper <span class="arrow">↓</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── ABOUT ──────────────────────────────────────────────────────────────── -->
 <section class="about" id="sobre">
