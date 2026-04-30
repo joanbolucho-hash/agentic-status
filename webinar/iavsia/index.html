@@ -1077,7 +1077,11 @@ form.addEventListener('submit', (e) => {
     <div class="wp-modal-eyebrow">Whitepaper · 13 páginas · PDF</div>
     <h3 class="wp-modal-title" id="wp-modal-title">IA vs IA — La batalla por el talento</h3>
     <p class="wp-modal-lead">Déjanos tu email y te llevamos al PDF. Sin envío manual, descarga inmediata.</p>
-    <form id="whitepaper-form" class="wp-form" data-endpoint="" data-pdf="whitepaper-ia-vs-ia.pdf" autocomplete="on">
+    <form id="whitepaper-form" class="wp-form" data-endpoint="https://api.web3forms.com/submit" data-pdf="whitepaper-ia-vs-ia.pdf" autocomplete="on">
+      <input type="hidden" name="access_key" value="ef61cdaf-5ff7-4e78-a62d-ab85dd876885">
+      <input type="hidden" name="subject" value="Whitepaper IA vs IA — Nueva descarga">
+      <input type="hidden" name="from_name" value="actualtalent.tech · Webinar IA vs IA">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <input type="text" name="name" placeholder="Nombre" required autocomplete="name">
       <input type="email" name="email" placeholder="email@empresa.com" required autocomplete="email">
       <input type="text" name="company" placeholder="Empresa (opcional)" autocomplete="organization">
