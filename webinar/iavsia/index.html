@@ -285,26 +285,51 @@ header {
 .replay-paper-cta:hover { opacity: 0.92; transform: translateX(2px); }
 .replay-paper-cta .arrow { font-size: 16px; }
 
-/* Lead-capture form (replaces direct download CTA) */
-.replay-paper-form { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; position: relative; z-index: 1; }
-.replay-paper-form input {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.15);
+/* Lead-capture MODAL (overlay, not inline) */
+.wp-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+  background: rgba(10,10,10,0.78);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  animation: wpFade 0.18s ease-out;
+}
+.wp-modal.open { display: flex; }
+@keyframes wpFade { from { opacity: 0; } to { opacity: 1; } }
+.wp-modal-card {
+  position: relative;
+  width: 100%; max-width: 460px;
+  background: linear-gradient(160deg, #1A1A1A 0%, #2A1011 100%);
+  border: 1px solid rgba(192,25,30,0.3);
+  padding: 36px 32px 28px;
   color: white;
-  padding: 12px 14px;
-  font-family: inherit;
-  font-size: 13px;
-  outline: none;
-  border-radius: 0;
+  animation: wpSlide 0.22s ease-out;
+}
+@keyframes wpSlide { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.wp-modal-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 36px; height: 36px;
+  background: transparent; border: 0; color: rgba(255,255,255,0.5);
+  font-size: 22px; line-height: 1; cursor: pointer;
+  transition: color 0.15s;
+}
+.wp-modal-close:hover { color: white; }
+.wp-modal-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+.wp-modal-title { font-size: 22px; font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 8px; }
+.wp-modal-lead { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.6); margin-bottom: 22px; }
+.wp-form { display: flex; flex-direction: column; gap: 10px; }
+.wp-form input {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: white;
+  padding: 12px 14px; font-family: inherit; font-size: 13px; outline: none; border-radius: 0;
   transition: border-color 0.2s, background 0.2s;
 }
-.replay-paper-form input:focus { border-color: var(--red); background: rgba(255,255,255,0.08); }
-.replay-paper-form input::placeholder { color: rgba(255,255,255,0.35); }
-.replay-paper-form button { border: 0; cursor: pointer; width: 100%; margin-top: 4px; font-family: inherit; }
-.replay-paper-form button:disabled { opacity: 0.7; cursor: wait; }
-.replay-paper-privacy { font-size: 10.5px; line-height: 1.55; color: rgba(255,255,255,0.4); margin-top: 12px; letter-spacing: 0.1px; }
-.replay-paper-success { font-size: 12px; line-height: 1.55; color: rgba(255,255,255,0.85); margin-top: 12px; padding: 10px 12px; background: rgba(192,25,30,0.15); border-left: 2px solid var(--red); display: none; }
-.replay-paper-form.done .replay-paper-success { display: block; }
+.wp-form input:focus { border-color: var(--red); background: rgba(255,255,255,0.08); }
+.wp-form input::placeholder { color: rgba(255,255,255,0.35); }
+.wp-form button { border: 0; cursor: pointer; width: 100%; margin-top: 6px; padding: 14px 22px; background: var(--red); color: white; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: inherit; transition: opacity 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.wp-form button:hover { opacity: 0.9; }
+.wp-form button:disabled { opacity: 0.6; cursor: wait; }
+.wp-form-privacy { font-size: 10.5px; line-height: 1.55; color: rgba(255,255,255,0.4); margin-top: 14px; letter-spacing: 0.1px; }
+.wp-form-success { font-size: 13px; line-height: 1.6; color: white; padding: 14px 16px; background: rgba(192,25,30,0.18); border-left: 2px solid var(--red); margin-top: 8px; }
 
 /* ─── ABOUT ──────────────────────────────────────────────────────────────────── */
 .about { background: var(--cream); padding: 100px 48px; }
@@ -621,19 +646,9 @@ footer .footer-links a:hover { color: white; }
             <span>Español</span>
           </div>
         </div>
-        <form id="whitepaper-form" class="replay-paper-form"
-              data-endpoint=""
-              data-pdf="whitepaper-ia-vs-ia.pdf"
-              autocomplete="on">
-          <input type="text" name="name" placeholder="Nombre" required autocomplete="name">
-          <input type="email" name="email" placeholder="email@empresa.com" required autocomplete="email">
-          <input type="text" name="company" placeholder="Empresa (opcional)" autocomplete="organization">
-          <button type="submit" class="replay-paper-cta">
-            Descargar whitepaper <span class="arrow">↓</span>
-          </button>
-          <div class="replay-paper-success" role="status">¡Gracias! Tu descarga ha empezado. Si no se abre, <a href="whitepaper-ia-vs-ia.pdf" style="color:#fff;text-decoration:underline" download>haz clic aquí</a>.</div>
-        </form>
-        <p class="replay-paper-privacy">Solo lo usamos para mantenerte al día sobre la serie de webinars y la comunidad. Sin spam, baja en cualquier momento.</p>
+        <button type="button" class="replay-paper-cta" id="wp-open" aria-haspopup="dialog">
+          Descargar whitepaper <span class="arrow">↓</span>
+        </button>
       </div>
     </div>
   </div>
@@ -822,15 +837,32 @@ footer .footer-links a:hover { color: white; }
 
 <!-- ─── JS ──────────────────────────────────────────────────────────────────── -->
 <script>
-// ── Lead-gate whitepaper form ──
-// Endpoint: dejar vacío para descarga directa (sin captura). Configurar en data-endpoint del form
-//   con Formspree (https://formspree.io/f/XXXX), n8n webhook (https://appwebhook.fluxo.consulting/webhook/...),
-//   o Zoho Forms public endpoint. El POST es fire-and-forget — la descarga siempre se inicia.
+// ── Lead-gate whitepaper modal ──
+// data-endpoint en #whitepaper-form: Formspree / n8n webhook / Zoho Forms.
+// Vacío = descarga directa sin captura. POST es fire-and-forget — la descarga siempre arranca.
 (function() {
+  const modal = document.getElementById('wp-modal');
+  const openBtn = document.getElementById('wp-open');
+  const closeBtn = modal && modal.querySelector('.wp-modal-close');
   const form = document.getElementById('whitepaper-form');
-  if (!form) return;
+  if (!modal || !openBtn || !form) return;
   const PDF = form.dataset.pdf || 'whitepaper-ia-vs-ia.pdf';
   const ENDPOINT = (form.dataset.endpoint || '').trim();
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() { const f = form.querySelector('input[name=name]'); if (f) f.focus(); }, 80);
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     const btn = form.querySelector('button[type=submit]');
@@ -842,24 +874,17 @@ footer .footer-links a:hover { color: white; }
     data.append('ts', new Date().toISOString());
     if (ENDPOINT) {
       try {
-        fetch(ENDPOINT, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' },
-          keepalive: true
-        }).catch(function(){});
+        fetch(ENDPOINT, { method: 'POST', body: data, headers: { 'Accept': 'application/json' }, keepalive: true }).catch(function(){});
       } catch (e) {}
     }
     setTimeout(function() {
       const a = document.createElement('a');
-      a.href = PDF;
-      a.download = '';
-      a.rel = 'noopener';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      form.classList.add('done');
-      btn.innerHTML = '✓ Descargando…';
+      a.href = PDF; a.download = ''; a.rel = 'noopener';
+      document.body.appendChild(a); a.click(); a.remove();
+      form.style.display = 'none';
+      const success = document.getElementById('wp-success');
+      if (success) success.style.display = 'block';
+      setTimeout(closeModal, 2400);
     }, 200);
   });
 })();
@@ -1037,6 +1062,24 @@ form.addEventListener('submit', (e) => {
 });
 ── END OLD REGISTRATION ── */
 </script>
+
+<!-- ─── WHITEPAPER LEAD-GATE MODAL ──────────────────────────────────────────── -->
+<div class="wp-modal" id="wp-modal" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title" hidden>
+  <div class="wp-modal-card">
+    <button type="button" class="wp-modal-close" aria-label="Cerrar">×</button>
+    <div class="wp-modal-eyebrow">Whitepaper · 13 páginas · PDF</div>
+    <h3 class="wp-modal-title" id="wp-modal-title">IA vs IA — La batalla por el talento</h3>
+    <p class="wp-modal-lead">Déjanos tu email y te llevamos al PDF. Sin envío manual, descarga inmediata.</p>
+    <form id="whitepaper-form" class="wp-form" data-endpoint="" data-pdf="whitepaper-ia-vs-ia.pdf" autocomplete="on">
+      <input type="text" name="name" placeholder="Nombre" required autocomplete="name">
+      <input type="email" name="email" placeholder="email@empresa.com" required autocomplete="email">
+      <input type="text" name="company" placeholder="Empresa (opcional)" autocomplete="organization">
+      <button type="submit">Descargar whitepaper ↓</button>
+    </form>
+    <div class="wp-form-success" id="wp-success" role="status" style="display:none;">¡Gracias! La descarga ha empezado. Si no se abre, <a href="whitepaper-ia-vs-ia.pdf" style="color:#fff;text-decoration:underline" download>haz clic aquí</a>.</div>
+    <p class="wp-form-privacy">Solo lo usamos para mantenerte al día sobre la serie de webinars. Sin spam, baja en cualquier momento.</p>
+  </div>
+</div>
 
 </body>
 </html>
