@@ -842,7 +842,7 @@ footer .footer-links a:hover { color: white; }
 // ── Lead-gate whitepaper modal ──
 // data-endpoint en #whitepaper-form: Formspree / n8n webhook / Zoho Forms.
 // Vacío = descarga directa sin captura. POST es fire-and-forget — la descarga siempre arranca.
-(function() {
+function initWhitepaperModal() {
   const modal = document.getElementById('wp-modal');
   const openBtn = document.getElementById('wp-open');
   const closeBtn = modal && modal.querySelector('.wp-modal-close');
@@ -889,7 +889,12 @@ footer .footer-links a:hover { color: white; }
       setTimeout(closeModal, 2400);
     }, 200);
   });
-})();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initWhitepaperModal);
+} else {
+  initWhitepaperModal();
+}
 
 // ── Scroll reveal ──
 const io = new IntersectionObserver(entries => {
