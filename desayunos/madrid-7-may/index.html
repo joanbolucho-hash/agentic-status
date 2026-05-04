@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>Desayuno ejecutivo Madrid · 7 mayo 2026 · Actual Talent</title>
+<meta name="description" content="Desayuno ejecutivo en Madrid, jueves 7 mayo 2026. Mesa pequeña, sin slides, conversación de pares de directivos de RRHH sobre el skillset que la IA está exigiendo, productividad y adopción interna.">
+<meta property="og:title" content="Desayuno ejecutivo Madrid · 7 mayo 2026 · Actual Talent">
+<meta property="og:description" content="Mesa pequeña, sin slides. Skillset IA, productividad y adopción interna en RRHH. María de Molina 39, Madrid. 9:00-11:00.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red:        #C0191E;
+  --red-glow:   rgba(192, 25, 30, 0.12);
+  --beige:      #E8E5DC;
+  --cream:      #F0EEEB;
+  --black:      #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); will-change: transform, opacity; }
+.reveal.in { opacity: 1; transform: none; will-change: auto; }
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+
+/* FOCUS */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
+
+/* PARTICLE CANVAS */
+.particle-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+/* MOUSE GLOW */
+.mouse-glow {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,25,30,0.09) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.4s;
+  opacity: 0;
+}
+.mouse-glow.visible { opacity: 1; }
+
+/* HEADER */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.header-wordmark {
+  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: white; line-height: 1;
+}
+.header-wordmark .wm-sep { color: rgba(255,255,255,0.25); margin: 0 8px; font-weight: 400; }
+.header-wordmark .wm-tag { color: rgba(255,255,255,0.6); font-weight: 600; }
+.header-nav { display: flex; align-items: center; gap: 4px; }
+.nav-link { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 7px 14px; border-radius: 4px; transition: color 0.2s; }
+.nav-link:hover { color: rgba(255,255,255,0.9); }
+.nav-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: white; text-decoration: none; padding: 8px 18px;
+  border-radius: 100px; transition: opacity 0.2s; margin-left: 8px;
+}
+.nav-pill:hover { opacity: 0.85; }
+.nav-pill-wa { background: #25D366; }
+.nm-pill-wa { background: #25D366; }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; background: none; border: none; }
+.burger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+.burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.nav-mobile {
+  display: none; position: fixed; top: 60px; left: 0; right: 0;
+  background: rgba(10,10,10,0.98); border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 20px 20px; flex-direction: column; gap: 2px; z-index: 199;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; padding: 14px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+.nav-mobile a:hover { background: rgba(255,255,255,0.05); color: white; }
+.nav-mobile .nm-pill { color: white; text-align: center; margin-top: 8px; border-radius: 8px; }
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red);
+  margin-bottom: 56px; display: flex; align-items: center; gap: 16px;
+}
+.section-label::after { content: ''; width: 32px; height: 1px; background: currentColor; opacity: 0.3; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 20% 0%, rgba(192,25,30,0.1) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+.hero::after {
+  content: 'MADRID'; position: absolute; right: -2vw; bottom: -4vh;
+  font-size: 26vw; font-weight: 900; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.018); line-height: 1; pointer-events: none; user-select: none;
+}
+.hero-inner { max-width: 920px; position: relative; z-index: 2; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 36px; }
+.hero-date-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(192, 25, 30, 0.12); border: 1px solid rgba(192, 25, 30, 0.25);
+  border-radius: 100px; padding: 8px 20px; margin-bottom: 32px;
+}
+.hero-date-badge .badge-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--red);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+.hero-date-badge span { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+.hero-headline {
+  font-size: clamp(36px, 6.4vw, 80px); font-weight: 900; line-height: 1.0;
+  letter-spacing: -0.035em; color: white; margin-bottom: 28px; max-width: 850px;
+}
+.hero-headline em { font-style: normal; color: var(--red); }
+.hero-sub {
+  font-size: clamp(15px, 1.7vw, 18px); font-weight: 300; line-height: 1.85;
+  color: rgba(255,255,255,0.55); max-width: 580px; margin-bottom: 48px;
+}
+.hero-meta { display: flex; flex-wrap: wrap; gap: 28px 36px; margin-bottom: 44px; }
+.hm-row { display: flex; align-items: center; gap: 12px; }
+.hm-icon {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.hm-icon svg { width: 14px; height: 14px; color: rgba(255,255,255,0.55); }
+.hm-text { display: flex; flex-direction: column; gap: 2px; }
+.hm-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.hm-value { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: white; background: var(--red); text-decoration: none;
+  padding: 17px 32px; border-radius: 3px; transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s; white-space: nowrap; cursor: pointer; border: none;
+}
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(192,25,30,0.35); }
+.cta-primary svg { width: 14px; height: 14px; }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); text-decoration: none; padding: 16px 28px;
+  border-radius: 3px; border: 1px solid rgba(255,255,255,0.18);
+  transition: border-color 0.2s, color 0.2s; white-space: nowrap;
+}
+.cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 48px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); z-index: 2;
+}
+.scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,0.15); }
+
+/* ABOUT */
+.about { background: var(--cream); padding: 110px 48px; }
+.about-inner { max-width: 1100px; margin: 0 auto; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-text h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.1; margin-bottom: 24px;
+}
+.about-text h2 em { font-style: normal; color: var(--red); }
+.about-text p { font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); margin-bottom: 16px; }
+.takeaways { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.takeaway {
+  display: flex; gap: 24px; align-items: flex-start; padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.takeaway:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
+.takeaway:hover { transform: translateX(6px); }
+.takeaway-num { font-size: 32px; font-weight: 900; color: var(--red); opacity: 0.2; line-height: 1; min-width: 48px; padding-top: 2px; transition: opacity 0.3s; }
+.takeaway:hover .takeaway-num { opacity: 1; }
+.takeaway h3 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.takeaway p { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.65; }
+
+/* HOST */
+.host { background: var(--white); padding: 110px 48px; }
+.host-inner { max-width: 980px; margin: 0 auto; }
+.host-card {
+  display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: center;
+}
+.host-photo {
+  width: 280px; height: 280px; border-radius: 50%; overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.08);
+  position: relative;
+}
+.host-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.host-meta-tag {
+  display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--red); background: rgba(192,25,30,0.08);
+  padding: 5px 14px; border-radius: 100px; margin-bottom: 18px;
+}
+.host-name { font-size: clamp(28px, 4vw, 40px); font-weight: 900; color: var(--black); letter-spacing: -0.025em; margin-bottom: 8px; }
+.host-org { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 22px; }
+.host-bio { font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); max-width: 540px; }
+
+/* DETAILS */
+.details { background: var(--cream); padding: 110px 48px; }
+.details-inner { max-width: 1100px; margin: 0 auto; }
+.details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.detail-card {
+  background: var(--white); border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 14px; padding: 40px 36px;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+}
+.detail-card:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(0,0,0,0.06); }
+.detail-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(192,25,30,0.08);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+}
+.detail-icon svg { width: 20px; height: 20px; color: var(--red); }
+.detail-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
+.detail-value { font-size: 22px; font-weight: 800; color: var(--black); line-height: 1.25; letter-spacing: -0.015em; margin-bottom: 6px; }
+.detail-aside { font-size: 13px; font-weight: 500; color: var(--gray); line-height: 1.55; }
+
+/* CTA SECTION */
+.cta-section {
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 120px 48px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(192,25,30,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; }
+.cta-section h2 { font-size: clamp(32px, 5vw, 60px); font-weight: 900; color: white; letter-spacing: -0.03em; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+.cta-section h2 em { font-style: normal; color: var(--red); }
+.cta-date-reminder { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4); margin-bottom: 44px; }
+.cta-date-reminder strong { color: rgba(255,255,255,0.7); font-weight: 700; }
+.cta-big {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: white; background: var(--red); text-decoration: none;
+  padding: 22px 48px; border-radius: 4px; cursor: pointer; border: none;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.cta-big::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.cta-big:hover::after { opacity: 1; }
+.cta-big:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(192,25,30,0.35); }
+.cta-big svg { width: 18px; height: 18px; position: relative; z-index: 1; }
+.cta-aside {
+  margin-top: 22px; font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.35); letter-spacing: 0.3px;
+}
+
+/* FOOTER */
+footer { background: var(--red); padding: 48px; text-align: center; }
+footer p { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
+footer p strong { font-weight: 800; color: white; }
+footer .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+footer .footer-links a {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
+  text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;
+}
+footer .footer-links a:hover { color: white; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  .header-nav .nav-link { display: none; }
+  .burger { display: flex; }
+  .hero { padding: 100px 24px 64px; }
+  .hero-scroll { display: none; }
+  .mouse-glow { display: none; }
+  .hero-meta { gap: 20px 24px; }
+  .about { padding: 80px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .host { padding: 80px 24px; }
+  .host-card { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .host-photo { margin: 0 auto; width: 220px; height: 220px; }
+  .host-bio { margin: 0 auto; }
+  .details { padding: 80px 24px; }
+  .details-grid { grid-template-columns: 1fr; gap: 18px; }
+  .detail-card { padding: 32px 28px; }
+  .cta-section { padding: 80px 24px; }
+  .cta-big { padding: 20px 32px; font-size: 12px; }
+  footer { padding: 36px 24px; }
+}
+@media (max-width: 480px) {
+  .hero-headline { font-size: clamp(28px, 8vw, 40px); }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas a, .hero-ctas button { text-align: center; justify-content: center; }
+  footer .footer-links { flex-direction: column; gap: 12px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/" class="header-brand" aria-label="Eventos Actual Talent">
+    <span class="header-wordmark">
+      Actual Talent <span class="wm-sep">·</span><span class="wm-tag">Desayuno</span>
+    </span>
+  </a>
+  <nav class="header-nav">
+    <a href="/" class="nav-link">Eventos</a>
+    <a href="#sobre" class="nav-link">Sobre</a>
+    <a href="#anfitrion" class="nav-link">Anfitrión</a>
+    <a href="#detalles" class="nav-link">Detalles</a>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nav-pill nav-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
+    <button class="burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="/">← Eventos Actual Talent</a>
+    <a href="#sobre">Sobre el desayuno</a>
+    <a href="#anfitrion">Anfitrión</a>
+    <a href="#detalles">Detalles</a>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nm-pill nm-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <canvas class="particle-canvas" id="hero-particles"></canvas>
+  <div class="mouse-glow" id="mouse-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal">Desayuno ejecutivo · Madrid</div>
+    <div class="hero-date-badge reveal d1">
+      <span class="badge-dot"></span>
+      <span>Jueves 7 Mayo 2026 · 9:00h CEST</span>
+    </div>
+    <h1 class="hero-headline reveal d2">
+      El <em>skillset</em> que la IA está exigiendo a RRHH.
+    </h1>
+    <p class="hero-sub reveal d3">
+      Mesa pequeña, sin slides. Una conversación de pares entre directores de RRHH sobre los nuevos perfiles, el cambio de productividad y la adopción interna de la IA en sus equipos.
+    </p>
+    <div class="hero-meta reveal d4">
+      <div class="hm-row">
+        <div class="hm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="10" r="3"/><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z"/></svg>
+        </div>
+        <div class="hm-text">
+          <span class="hm-label">Lugar</span>
+          <span class="hm-value">María de Molina 39, Madrid</span>
+        </div>
+      </div>
+      <div class="hm-row">
+        <div class="hm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="hm-text">
+          <span class="hm-label">Horario</span>
+          <span class="hm-value">9:00 a 11:00h</span>
+        </div>
+      </div>
+      <div class="hm-row">
+        <div class="hm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8c0-1.1.9-2 2-2h11a2 2 0 012 2v6a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><path d="M18 9h1.5a2.5 2.5 0 010 5H18" stroke-linecap="round"/><path d="M7 3v2M11 3v2M15 3v2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="hm-text">
+          <span class="hm-label">Formato</span>
+          <span class="hm-value">Mesa pequeña, sin slides</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-ctas reveal d5">
+      <a href="https://luma.com/5z90p3hr" class="cta-primary" target="_blank" rel="noopener">
+        Reservar plaza
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#sobre" class="cta-secondary">Saber más</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span class="scroll-line"></span> Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="about-inner">
+    <div class="section-label reveal">Sobre el desayuno</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="reveal">Sin slides. <em>Sin pitch.</em> Una conversación entre pares.</h2>
+        <p class="reveal d1">La IA está cambiando lo que las empresas piden a sus equipos. Aparecen nuevos perfiles, otros se redefinen, la productividad se mide distinto y la adopción interna se vuelve un proyecto en sí.</p>
+        <p class="reveal d2">RRHH es de los primeros departamentos que tiene que responder. Y la mejor manera de responder bien es escuchar cómo lo están haciendo otros responsables de RRHH que se están enfrentando a la misma pregunta esta semana.</p>
+        <p class="reveal d3">Por eso este formato: mesa pequeña, dos horas, sin slides ni speakers. Solo directivos de RRHH compartiendo lo que están viendo en sus organizaciones, contrastando criterios y llevándose ideas concretas para el día siguiente.</p>
+      </div>
+      <ul class="takeaways">
+        <li class="takeaway reveal d1">
+          <span class="takeaway-num">01</span>
+          <div><h3>Nuevo skillset</h3><p>Qué está exigiendo la IA a los perfiles que ya tienes y a los que vas a contratar. Dónde se nota primero, qué empresas ya lo están midiendo.</p></div>
+        </li>
+        <li class="takeaway reveal d2">
+          <span class="takeaway-num">02</span>
+          <div><h3>Productividad real</h3><p>Cómo cambia el output de un equipo cuando incorpora IA: más volumen, distintos cuellos de botella, qué dejan de hacer las personas y qué pasa a primer plano.</p></div>
+        </li>
+        <li class="takeaway reveal d3">
+          <span class="takeaway-num">03</span>
+          <div><h3>Adopción interna</h3><p>Por qué las herramientas se compran rápido y se usan despacio. Qué funciona para que los equipos las integren de verdad y no se queden en el piloto.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HOST -->
+<section class="host" id="anfitrion">
+  <div class="host-inner">
+    <div class="section-label reveal">Anfitrión</div>
+    <div class="host-card">
+      <div class="host-photo reveal">
+        <img src="../../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+      </div>
+      <div class="host-info">
+        <span class="host-meta-tag reveal d1">Anfitrión</span>
+        <h3 class="host-name reveal d2">Joan Boluda</h3>
+        <div class="host-org reveal d3">Actual Talent</div>
+        <p class="host-bio reveal d4">Joan abre y modera la conversación. Su trabajo en Actual Talent le sitúa cada semana frente a directores de RRHH que están revisando cómo contratan, cómo miden productividad y cómo introducen IA en sus procesos. La intención no es presentar una tesis, es facilitar que la mesa se haga las preguntas correctas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section class="details" id="detalles">
+  <div class="details-inner">
+    <div class="section-label reveal">Detalles prácticos</div>
+    <div class="details-grid">
+      <div class="detail-card reveal d1">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="10" r="3"/><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z"/></svg>
+        </div>
+        <div class="detail-label">Dónde</div>
+        <div class="detail-value">C/ María de Molina, 39</div>
+        <div class="detail-aside">Chamartín, 28006 Madrid</div>
+      </div>
+      <div class="detail-card reveal d2">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="detail-label">Cuándo</div>
+        <div class="detail-value">Jueves 7 mayo 2026</div>
+        <div class="detail-aside">9:00 a 11:00h. Café y desayuno incluidos.</div>
+      </div>
+      <div class="detail-card reveal d3">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round"/></svg>
+        </div>
+        <div class="detail-label">Quién</div>
+        <div class="detail-value">Directivos de RRHH</div>
+        <div class="detail-aside">Mesa pequeña. Cuidamos el equilibrio sectorial y el nivel de conversación.</div>
+      </div>
+      <div class="detail-card reveal d4">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9" stroke-linecap="round"/></svg>
+        </div>
+        <div class="detail-label">Formato</div>
+        <div class="detail-value">Conversación abierta</div>
+        <div class="detail-aside">Sin slides, sin ponencias. Tres ejes de conversación, todos los asistentes participan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section" id="registro">
+  <canvas class="particle-canvas" id="cta-particles"></canvas>
+  <div class="cta-inner">
+    <h2 class="reveal">Plazas <em>limitadas</em>. Reserva la tuya.</h2>
+    <p class="cta-date-reminder reveal d1">
+      <strong>Jueves 7 mayo 2026</strong> · 9:00 a 11:00h · María de Molina 39, Madrid
+    </p>
+    <a href="https://luma.com/5z90p3hr" class="cta-big reveal d2" target="_blank" rel="noopener">
+      <span style="position:relative;z-index:1">Confirmar asistencia</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <p class="cta-aside reveal d3">El registro se gestiona en Luma. Confirmación inmediata.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Actual Talent</strong> · Desayuno ejecutivo Madrid · 7 mayo 2026</p>
+  <div class="footer-links">
+    <a href="/">Eventos Actual Talent</a>
+    <a href="/webinar/copilotosustituto/">Próximo webinar 26 mayo</a>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" target="_blank" rel="noopener">Comunidad WhatsApp</a>
+    <a href="https://www.actual-talent.com/es" target="_blank" rel="noopener">Actual Talent</a>
+  </div>
+</footer>
+
+<!-- JS -->
+<script>
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+requestAnimationFrame(() => {
+  document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+});
+
+// Hamburger
+const burger = document.querySelector('.burger');
+const mobileNav = document.querySelector('.nav-mobile');
+function closeMenu() { burger.classList.remove('open'); mobileNav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+burger.addEventListener('click', (e) => { e.stopPropagation(); const o = burger.classList.toggle('open'); mobileNav.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); });
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('click', (e) => { if (!burger.contains(e.target) && !mobileNav.contains(e.target)) closeMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+// Mouse glow
+const glow = document.getElementById('mouse-glow');
+const heroEl = document.querySelector('.hero');
+if (window.matchMedia('(pointer:fine)').matches) {
+  heroEl.addEventListener('mousemove', (e) => { const r = heroEl.getBoundingClientRect(); glow.style.left = (e.clientX-r.left)+'px'; glow.style.top = (e.clientY-r.top)+'px'; glow.classList.add('visible'); });
+  heroEl.addEventListener('mouseleave', () => glow.classList.remove('visible'));
+}
+
+// Mouse position for particle interaction
+const mousePos = { x: -1000, y: -1000, active: false };
+if (window.matchMedia('(pointer:fine)').matches) {
+  document.addEventListener('mousemove', (e) => { mousePos.x = e.clientX; mousePos.y = e.clientY; mousePos.active = true; });
+  document.addEventListener('mouseleave', () => { mousePos.active = false; });
+}
+
+// Particle system
+function initParticles(canvasId, count) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  function resize() { const p = canvas.parentElement; w = canvas.width = p.offsetWidth; h = canvas.height = p.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random()*w, y: Math.random()*h,
+      r: Math.random()*3 + 0.8,
+      vx: (Math.random()-0.5)*0.5,
+      vy: (Math.random()-0.5)*0.35 - 0.05,
+      alpha: Math.random()*0.55 + 0.25,
+      isRed: Math.random() < 0.4,
+      pulse: Math.random()*Math.PI*2
+    });
+  }
+  const CONNECT_DIST = 160;
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECT_DIST) {
+          const opacity = (1 - dist/CONNECT_DIST) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = particles[i].isRed || particles[j].isRed
+            ? `rgba(192,25,30,${opacity})`
+            : `rgba(255,255,255,${opacity * 0.7})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+    const canvasRect = canvas.getBoundingClientRect();
+    const mx = mousePos.x - canvasRect.left;
+    const my = mousePos.y - canvasRect.top;
+    const MOUSE_RADIUS = 180;
+    particles.forEach(p => {
+      if (mousePos.active && mx > -50 && mx < w+50 && my > -50 && my < h+50) {
+        const dx = p.x - mx;
+        const dy = p.y - my;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < MOUSE_RADIUS && dist > 0) {
+          const force = (1 - dist/MOUSE_RADIUS) * 2.5;
+          p.vx += (dx/dist) * force * 0.3;
+          p.vy += (dy/dist) * force * 0.3;
+        }
+      }
+      p.vx *= 0.97;
+      p.vy *= 0.97;
+      p.vx += (Math.random()-0.5)*0.04;
+      p.vy += (Math.random()-0.5)*0.03 - 0.005;
+      p.x += p.vx; p.y += p.vy;
+      p.pulse += 0.018;
+      const pAlpha = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+      if (p.x < -10) p.x = w+10; if (p.x > w+10) p.x = -10;
+      if (p.y < -10) p.y = h+10; if (p.y > h+10) p.y = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.isRed ? `rgba(192,25,30,${pAlpha})` : `rgba(255,255,255,${pAlpha*0.8})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+initParticles('hero-particles', 120);
+initParticles('cta-particles', 70);
+</script>
+
+</body>
+</html>

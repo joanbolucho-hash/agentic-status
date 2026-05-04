@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flyer 1080×1080 · Desayuno ejecutivo Madrid · 7 may 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:        #C0191E;
+  --black:      #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+
+.flyer {
+  width: 1080px; height: 1080px;
+  flex-shrink: 0;
+  position: relative; overflow: hidden;
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1.2px, transparent 1.2px);
+  background-size: 32px 32px;
+  color: var(--white);
+  transform-origin: center;
+}
+
+@media (max-width: 1120px), (max-height: 1120px) {
+  body { padding: 0; background: #000; }
+  .flyer { transform: scale(min(calc((100vw) / 1080), calc((100vh) / 1080))); }
+}
+
+/* ATMOSPHERE */
+.flyer::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 65% 60% at 0% 100%, rgba(192,25,30,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 45% at 100% 0%, rgba(192,25,30,0.14) 0%, transparent 55%);
+  pointer-events: none; z-index: 1;
+}
+
+/* WATERMARK */
+.flyer::after {
+  content: 'MADRID';
+  position: absolute; bottom: -2%; right: -3%;
+  font-size: 360px; font-weight: 900; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.025); line-height: 1;
+  pointer-events: none; user-select: none; z-index: 1;
+}
+
+/* TOP BAR */
+.topbar {
+  position: absolute; top: 56px; left: 64px; right: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 10;
+}
+.brand-mark { display: flex; align-items: center; gap: 16px; }
+.at-logo {
+  width: 52px; height: 52px;
+  border-radius: 12px; background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 900; letter-spacing: 1.5px; color: var(--white);
+}
+.brand-text {
+  font-size: 16px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--white);
+}
+.brand-text .sep { color: rgba(255,255,255,0.25); margin: 0 12px; }
+.brand-text .type { color: var(--red); }
+
+.format-tag {
+  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px; padding: 8px 18px;
+}
+
+/* DATE BLOCK */
+.date-block {
+  position: absolute; top: 170px; left: 64px;
+  display: flex; align-items: flex-start; gap: 32px;
+  z-index: 5;
+}
+.date-num {
+  font-size: 320px; font-weight: 900; line-height: 0.85;
+  color: var(--red); letter-spacing: -0.06em;
+}
+.date-side {
+  display: flex; flex-direction: column; padding-top: 26px; gap: 8px;
+}
+.date-month {
+  font-size: 80px; font-weight: 900; line-height: 0.95;
+  color: var(--white); letter-spacing: -0.02em; text-transform: uppercase;
+}
+.date-time {
+  font-size: 46px; font-weight: 700; color: var(--red);
+  letter-spacing: -0.01em; line-height: 1;
+}
+.date-tz {
+  font-size: 17px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-top: 4px;
+}
+
+/* TITLE */
+.title-wrap {
+  position: absolute; top: 510px; left: 64px; right: 64px;
+  z-index: 5;
+}
+.title-eyebrow {
+  font-size: 16px; font-weight: 800; letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 22px;
+}
+.title {
+  font-size: 88px; font-weight: 900; line-height: 0.92;
+  letter-spacing: -0.035em; color: var(--white);
+}
+.title .accent { color: var(--red); font-style: normal; }
+
+/* HOST */
+.host {
+  position: absolute; bottom: 80px; left: 64px;
+  display: flex; align-items: center; gap: 22px;
+  z-index: 5;
+}
+.host-photo {
+  width: 132px; height: 132px; border-radius: 50%;
+  overflow: hidden; position: relative; flex-shrink: 0;
+  border: 3px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 14px 48px rgba(0,0,0,0.45);
+}
+.host-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.host-meta { display: flex; flex-direction: column; gap: 4px; }
+.host-role-tag {
+  display: inline-block; align-self: flex-start;
+  font-size: 11px; font-weight: 800; letter-spacing: 2.4px; text-transform: uppercase;
+  color: var(--red); background: rgba(192,25,30,0.14);
+  padding: 4px 12px; border-radius: 100px; margin-bottom: 6px;
+}
+.host-name {
+  font-size: 26px; font-weight: 800; color: var(--white); line-height: 1.1;
+}
+.host-org {
+  font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-top: 4px;
+}
+
+/* LOCATION (bottom right) */
+.location {
+  position: absolute; bottom: 92px; right: 64px;
+  text-align: right; z-index: 5;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.loc-label {
+  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.loc-line {
+  font-size: 17px; font-weight: 700; color: rgba(255,255,255,0.85);
+  letter-spacing: -0.005em;
+}
+.loc-line.weak { color: rgba(255,255,255,0.5); font-weight: 500; }
+.loc-divider {
+  width: 56px; height: 1px; background: rgba(255,255,255,0.15);
+  align-self: flex-end; margin: 6px 0;
+}
+.loc-cta {
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--red); margin-top: 4px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="flyer">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="brand-mark">
+      <div class="at-logo">AT</div>
+      <div class="brand-text">Actual Talent <span class="sep">·</span><span class="type">Desayuno</span></div>
+    </div>
+    <div class="format-tag">Presencial · Madrid</div>
+  </div>
+
+  <!-- DATE BLOCK -->
+  <div class="date-block">
+    <div class="date-num">7</div>
+    <div class="date-side">
+      <div class="date-month">Mayo</div>
+      <div class="date-time">9:00h</div>
+      <div class="date-tz">Jueves · CEST</div>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <div class="title-wrap">
+    <div class="title-eyebrow">Desayuno ejecutivo</div>
+    <h1 class="title">
+      El <span class="accent">skillset</span><br>
+      que la IA<br>
+      exige a RRHH.
+    </h1>
+  </div>
+
+  <!-- HOST -->
+  <div class="host">
+    <div class="host-photo"><img src="../../../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda"></div>
+    <div class="host-meta">
+      <div class="host-role-tag">Anfitrión</div>
+      <div class="host-name">Joan Boluda</div>
+      <div class="host-org">Actual Talent</div>
+    </div>
+  </div>
+
+  <!-- LOCATION -->
+  <div class="location">
+    <div class="loc-label">Dónde</div>
+    <div class="loc-line">María de Molina, 39</div>
+    <div class="loc-line weak">Chamartín · Madrid</div>
+    <div class="loc-divider"></div>
+    <div class="loc-cta">luma.com/5z90p3hr</div>
+  </div>
+
+</div>
+
+</body>
+</html>
