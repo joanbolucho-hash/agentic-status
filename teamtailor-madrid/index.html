@@ -1485,11 +1485,7 @@ h2.slide-title em { font-style: italic; font-weight: 400; color: var(--red); }
   let current = 0;
 
   function fitScale() {
-    const marginX = 24;
-    const marginY = 64;
-    const availW = window.innerWidth - marginX * 2;
-    const availH = window.innerHeight - marginY * 2;
-    const scale = Math.min(availW / SLIDE_W, availH / SLIDE_H);
+    const scale = Math.min(window.innerWidth / SLIDE_W, window.innerHeight / SLIDE_H);
     slides.forEach(s => { s.style.transform = 'scale(' + scale.toFixed(4) + ')'; });
   }
 
