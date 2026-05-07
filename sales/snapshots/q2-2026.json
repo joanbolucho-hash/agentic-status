@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-05-07T15:05:10+00:00",
+  "generated_at": "2026-05-07T19:19:33+00:00",
   "quarter": {
     "year": 2026,
     "q": 2,
@@ -30,7 +30,7 @@
   "revenue_progress": {
     "status": "ok",
     "source": "soft_finanzas/finanzas.db",
-    "generated_at": "2026-05-07T15:05:10+00:00",
+    "generated_at": "2026-05-07T19:19:33+00:00",
     "quarter_label": "Q2 2026",
     "quarter_start": "2026-04-01",
     "quarter_end": "2026-06-30",
@@ -985,7 +985,7 @@
             "pipeline_name": "Pipeline de ventas",
             "stage_id": "0dac6322-350a-465f-8e1f-0918b361e89e",
             "stage_name": "New",
-            "count_open": 330,
+            "count_open": 329,
             "count_won": 0,
             "count_lost": 0,
             "count_abandoned": 0,
@@ -996,7 +996,7 @@
             "pipeline_name": "Pipeline de ventas",
             "stage_id": "77fdc621-7cd1-4f55-9c08-491817567b57",
             "stage_name": "Contacting",
-            "count_open": 84,
+            "count_open": 85,
             "count_won": 0,
             "count_lost": 0,
             "count_abandoned": 0,
@@ -1080,44 +1080,44 @@
     },
     "velocity": {
       "New": {
-        "count": 330,
-        "avg_days_since_update": 1.9,
-        "max_days_since_update": 76.0
+        "count": 329,
+        "avg_days_since_update": 2.1,
+        "max_days_since_update": 76.2
       },
       "Contacting": {
-        "count": 84,
-        "avg_days_since_update": 2.0,
-        "max_days_since_update": 2.2
+        "count": 85,
+        "avg_days_since_update": 2.2,
+        "max_days_since_update": 2.4
       },
       "Nurturing": {
         "count": 22,
-        "avg_days_since_update": 9.1,
-        "max_days_since_update": 79.0
+        "avg_days_since_update": 9.2,
+        "max_days_since_update": 79.2
       },
       "Engaged": {
         "count": 13,
-        "avg_days_since_update": 1.3,
-        "max_days_since_update": 2.2
+        "avg_days_since_update": 1.4,
+        "max_days_since_update": 2.4
       },
       "Meeting": {
         "count": 27,
-        "avg_days_since_update": 6.8,
-        "max_days_since_update": 71.8
+        "avg_days_since_update": 6.9,
+        "max_days_since_update": 72.0
       },
       "Inactive": {
         "count": 38,
-        "avg_days_since_update": 0.4,
-        "max_days_since_update": 0.4
+        "avg_days_since_update": 0.5,
+        "max_days_since_update": 0.5
       },
       "Lost": {
         "count": 25,
-        "avg_days_since_update": 2.2,
-        "max_days_since_update": 2.2
+        "avg_days_since_update": 2.4,
+        "max_days_since_update": 2.4
       },
       "Prequalified": {
         "count": 3,
-        "avg_days_since_update": 1.1,
-        "max_days_since_update": 1.1
+        "avg_days_since_update": 1.3,
+        "max_days_since_update": 1.3
       }
     }
   },
@@ -1128,22 +1128,22 @@
       {
         "stage_id": "0dac6322-350a-465f-8e1f-0918b361e89e",
         "stage_name": "New",
-        "count_open": 330,
+        "count_open": 329,
         "count_won": 0,
         "count_lost": 0,
         "value_open_eur": 0.0,
         "inactive_count": 1,
-        "pct_of_pipeline": 60.9
+        "pct_of_pipeline": 60.7
       },
       {
         "stage_id": "77fdc621-7cd1-4f55-9c08-491817567b57",
         "stage_name": "Contacting",
-        "count_open": 84,
+        "count_open": 85,
         "count_won": 0,
         "count_lost": 0,
         "value_open_eur": 0.0,
         "inactive_count": 0,
-        "pct_of_pipeline": 15.5
+        "pct_of_pipeline": 15.7
       },
       {
         "stage_id": "faa93c3b-5d07-4da2-bf87-5310cce04b7b",
@@ -1227,9 +1227,9 @@
   },
   "calls": {
     "available": true,
-    "total_calls": 34,
+    "total_calls": 35,
     "connected_min": 16.6,
-    "connect_rate": 26.5,
+    "connect_rate": 25.7,
     "avg_score": 33.2,
     "by_disposition": [
       {
@@ -1246,7 +1246,7 @@
       },
       {
         "name": "No Answer",
-        "count": 23
+        "count": 24
       },
       {
         "name": "Busy",
@@ -1258,6 +1258,27 @@
       }
     ],
     "calls": [
+      {
+        "event_id": "4YEPmYcAoj7Xa9LDJtz0",
+        "call_id": "4YEPmYcAoj7Xa9LDJtz0",
+        "contact_id": "QKnl2pV3jhw98rqD5eos",
+        "contact_email": "agarcia@affinity-petcare.com",
+        "contact_phone": "+34699071162",
+        "contact_name": "Araceli Garcia",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "no-answer",
+        "disposition": "No Answer",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T15:21:45.545Z",
+        "ended_at": "2026-05-07T15:22:08.929Z",
+        "received_at": "2026-05-07T15:33:06+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
       {
         "event_id": "fsphSVzMim7OmgGt7vHG",
         "call_id": "fsphSVzMim7OmgGt7vHG",
@@ -2298,6 +2319,17 @@
     },
     {
       "kind": "inactive_opportunity",
+      "lead": "Meritxell Ferrate",
+      "rep": "kUNvIRGx40pOPBeceD0W",
+      "reason": "Sin actividad 77d en stage \"Nurturing\"",
+      "last_activity_days": 77,
+      "stage": "Nurturing",
+      "value_eur": 0.0,
+      "suggested_next": "Tocar al lead o mover de stage",
+      "link": "https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=aEH647kTzUYjcVqJeZHr"
+    },
+    {
+      "kind": "inactive_opportunity",
       "lead": "Eva Roca - Schneider Electric",
       "rep": "kUNvIRGx40pOPBeceD0W",
       "reason": "Sin actividad 76d en stage \"New\"",
@@ -2306,17 +2338,6 @@
       "value_eur": 0.0,
       "suggested_next": "Tocar al lead o mover de stage",
       "link": "https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=Sh1Q6jGNEzHOZu5IDttR"
-    },
-    {
-      "kind": "inactive_opportunity",
-      "lead": "Meritxell Ferrate",
-      "rep": "kUNvIRGx40pOPBeceD0W",
-      "reason": "Sin actividad 76d en stage \"Nurturing\"",
-      "last_activity_days": 76,
-      "stage": "Nurturing",
-      "value_eur": 0.0,
-      "suggested_next": "Tocar al lead o mover de stage",
-      "link": "https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=aEH647kTzUYjcVqJeZHr"
     },
     {
       "kind": "inactive_opportunity",
@@ -2333,8 +2354,8 @@
       "kind": "inactive_opportunity",
       "lead": "Oscar-Plameca",
       "rep": "nr3iCCp0fiZmZUFNX4cs",
-      "reason": "Sin actividad 55d en stage \"Meeting\"",
-      "last_activity_days": 55,
+      "reason": "Sin actividad 56d en stage \"Meeting\"",
+      "last_activity_days": 56,
       "stage": "Meeting",
       "value_eur": 0.0,
       "suggested_next": "Tocar al lead o mover de stage",
@@ -2445,19 +2466,19 @@
         "contacts": 2
       },
       "kunvirgx40popbeced0w": {
-        "sent": 184,
-        "received": 68,
-        "replies": 27,
-        "contacts": 58
+        "sent": 156,
+        "received": 55,
+        "replies": 22,
+        "contacts": 51
       }
     },
     "totals": {
-      "sent": 187,
-      "received": 71,
-      "replies": 28,
-      "contacts_messaged": 60,
-      "contacts_replied": 28,
-      "reply_rate_pct": 46.7
+      "sent": 159,
+      "received": 58,
+      "replies": 23,
+      "contacts_messaged": 53,
+      "contacts_replied": 23,
+      "reply_rate_pct": 43.4
     },
     "events": [
       {
@@ -2501,16 +2522,6 @@
         "replied": true
       },
       {
-        "conversation_id": "mW1n9U1cAdLvwwcInMGj",
-        "contact": "Xavier Trapero",
-        "company": "BCNVision",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Hola de nuevo Xavier\nSi no es prioridad me dices y lo retomamos más adelante",
-        "direction": "outbound",
-        "date_added": "2026-03-03T16:44:39.735Z",
-        "replied": false
-      },
-      {
         "conversation_id": "U4DGqcJolJHDP3K1KCTg",
         "contact": "Audrey Stanisiere",
         "company": "Mindquest",
@@ -2518,16 +2529,6 @@
         "subject": "Gracias por su llamada y mensaje peron no estamos interesados.\n\nSaludos",
         "direction": "inbound",
         "date_added": "2026-03-02T15:59:01.772Z",
-        "replied": true
-      },
-      {
-        "conversation_id": "QvXygeixfyvBPYLRa1xp",
-        "contact": "Mar Hernandez",
-        "company": "ESTEVE",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Sin problema. Insistí porque me enviaste un sms para hablar más tarde y sé que conoces a Sylvain. De todos modos entiendo que tienes otras p",
-        "direction": "outbound",
-        "date_added": "2026-02-27T11:26:45.000Z",
         "replied": true
       },
       {
@@ -2581,16 +2582,6 @@
         "replied": false
       },
       {
-        "conversation_id": "XX7aqxye8f42V1SyWf8B",
-        "contact": "Sandra Bernard",
-        "company": "MCC label",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Hola Sandra?",
-        "direction": "outbound",
-        "date_added": "2026-02-25T08:10:57.000Z",
-        "replied": true
-      },
-      {
         "conversation_id": "lt2Kf5M9h9lUoIhqJvy6",
         "contact": "Anaïta Dehkordi",
         "company": "DAHER",
@@ -2631,16 +2622,6 @@
         "replied": false
       },
       {
-        "conversation_id": "CBH3VaIU1d19Mabbg6n3",
-        "contact": "Jean-Marc",
-        "company": "Worldsensing",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Jean-Marc?\nLlevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo?\nEn cualquier caso me puedes agendar por aquí",
-        "direction": "outbound",
-        "date_added": "2026-02-21T15:05:49.000Z",
-        "replied": false
-      },
-      {
         "conversation_id": "iwLIFXUJvjtltDyOdwMh",
         "contact": "Olena Kurt",
         "company": "LaFinteca",
@@ -2659,6 +2640,46 @@
         "direction": "outbound",
         "date_added": "2026-02-21T14:16:20.000Z",
         "replied": false
+      },
+      {
+        "conversation_id": "F5yfkTMzInR6d14MAwBU",
+        "contact": "Carla Canales La Serna",
+        "company": "Fundación Carta de la Paz dirigida a la ONU",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Carla?\nLlevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo?\nEn cualquier caso me puedes agendar por aquí",
+        "direction": "outbound",
+        "date_added": "2026-02-21T14:14:57.000Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "lSK17IVvoqQEeVIHa9CK",
+        "contact": "Agathe Tavernier",
+        "company": "Skello",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Agathe!\nSoy Joan, de Actual Talent. Te llamé y te mandé un email por un tema de contratación en Skello. Lo podemos hablar?",
+        "direction": "outbound",
+        "date_added": "2026-02-20T16:18:20.000Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "udC4DpzPqddy30ha0fh7",
+        "contact": "Giorgio Benassi",
+        "company": "SEPHORA",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Giorgio!\nSoy Joan, de Actual Talent. Te llamé y te mandé un email por un tema de contratación en SEPHORA. Lo podemos hablar?",
+        "direction": "outbound",
+        "date_added": "2026-02-20T16:10:16.000Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "uO37Pg0ngPc49DSm6KLu",
+        "contact": "Gemma Caballero",
+        "company": "ALK",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola de nuevo Gemma\nSi no es prioridad me dices y lo retomamos más adelante",
+        "direction": "outbound",
+        "date_added": "2026-02-20T16:04:47.000Z",
+        "replied": false
       }
     ]
   },
@@ -2671,10 +2692,10 @@
     "available_signals": "GHL conversations expose sent/received TYPE_EMAIL. Open/click events not in API.",
     "by_rep": {
       "kunvirgx40popbeced0w": {
-        "sent": 47,
+        "sent": 65,
         "received": 5,
         "replies": 3,
-        "contacts": 123
+        "contacts": 133
       },
       "nr3iccp0fizmzufnx4cs": {
         "sent": 0,
@@ -2690,14 +2711,174 @@
       }
     },
     "totals": {
-      "sent": 47,
+      "sent": 65,
       "received": 5,
       "replies": 3,
-      "contacts_emailed": 126,
+      "contacts_emailed": 136,
       "contacts_replied": 3,
-      "reply_rate_pct": 2.4
+      "reply_rate_pct": 2.2
     },
     "events": [
+      {
+        "conversation_id": "mo3WlqjBuNm4ZzQHT471",
+        "contact": "Meritxell Ferrate",
+        "company": "Towa International",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:36.000Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "CBH3VaIU1d19Mabbg6n3",
+        "contact": "Jean-Marc",
+        "company": "Worldsensing",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:36.000Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "LZ8bhI09Dma4HIDiqIqB",
+        "contact": "Giulia Miazzo",
+        "company": "PayFit",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Giulia,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.492Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "32bhZ5R6cDMSWjX6w5SF",
+        "contact": "Clara Pujadas",
+        "company": "ESTEVE",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Clara,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa ",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.476Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "6cGz4YxPalE4LHb9WmzY",
+        "contact": "Mónica Avilés I Villalón",
+        "company": "Mars Multisales Iberia",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Mónica,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.408Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "QvXygeixfyvBPYLRa1xp",
+        "contact": "Mar Hernandez",
+        "company": "ESTEVE",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Mar,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa se",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.346Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "ZZWtfEpKIolxgiW3fPIO",
+        "contact": "Carmen Rojas",
+        "company": "Verdian",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Carmen,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.331Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "mW1n9U1cAdLvwwcInMGj",
+        "contact": "Xavier Trapero",
+        "company": "BCNVision",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Xavier,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.322Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "T3UT6hYPLDSEeBinXRnh",
+        "contact": "Raquel Carballo",
+        "company": "Danone",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Raquel,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.318Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "XX7aqxye8f42V1SyWf8B",
+        "contact": "Sandra Bernard",
+        "company": "MCC label",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Sandra,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.274Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "EQJ2iuyG07Nura0ppP0T",
+        "contact": "Francisca Jara",
+        "company": "LaFinteca",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Francisca,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.265Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "h6E0s35zM1HVMK61ZdNb",
+        "contact": "Ana Maria Martinez Leon",
+        "company": "MCC Label",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Ana Maria,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.256Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "mx4nmrrrfW8IpQ0XvZAc",
+        "contact": "Andrea Torres Martínez",
+        "company": "SLAPS",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Andrea,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.255Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "FrLGsteJetAHD9j7UHEL",
+        "contact": "Silvia Nogueiras",
+        "company": "Lucta",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Silvia,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.249Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "7kje9Trqkq4C5xa2taTB",
+        "contact": "Beatriz Feijoo",
+        "company": "INCAPTO",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Beatriz,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nL",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.239Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "LKxfCErTTtTAiCVZsYn7",
+        "contact": "Zaira Barrena",
+        "company": "TheFork, a Tripadvisor company",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Zaira,\n\nsoy Joan, de Actual Talent. Hace un tiempo te contacté y quedamos que para eventos futuros te avisaría\n\nLa ",
+        "direction": "outbound",
+        "date_added": "2026-05-07T15:59:35.234Z",
+        "replied": false
+      },
       {
         "conversation_id": "PmquE7vyVidclpdNFlJc",
         "contact": "Marian Dominguez",
@@ -2736,166 +2917,6 @@
         "subject": "Hola Fátima, soy Joan, que te acabo de llamar.\n\n\n\n\nQuería conocerte porque somos consultora de talento. Tenemos presenc",
         "direction": "outbound",
         "date_added": "2026-05-07T12:59:51.995Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "em5jQGkFNjqtFp1ykW3W",
-        "contact": "German",
-        "company": null,
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-05-07T11:25:52.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "wIOmeWOx8vz5yronBenP",
-        "contact": "Jesus Sanchez Diaz",
-        "company": "Grupo Amper",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-05-06T16:12:07.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "uFLHs5zdg20szCSLnFpr",
-        "contact": "Rocío Suárez González",
-        "company": "Mahou San Miguel",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Hola Rocío, acabo de hablar con Mercedes y me ha dicho que tú eres la persona con la que tengo que hablar.\n\n\n\n\nSoy de Ac",
-        "direction": "outbound",
-        "date_added": "2026-05-06T15:56:20.481Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "mP4W6CWudksShy28jDEc",
-        "contact": "Nuria Muñoz Barrio",
-        "company": "Ethypharm",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Hola Nuria,\n\nSoy Joan, Business Development Manager en Actual Talent, especializado en servicios de RPO. Trabajo con equ",
-        "direction": "outbound",
-        "date_added": "2026-05-06T15:53:35.830Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "b5Z8FUebkoGUMsPQqgdd",
-        "contact": "Mercedes Almendro",
-        "company": "Mahou San Miguel",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Hola Mercedes, gracias por la llamada.\n\nTe dejo por aquí el proyecto [https://actualtalent.tech] que hemos lanzado sobre",
-        "direction": "outbound",
-        "date_added": "2026-05-06T15:49:31.717Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "mbaO47mYBK0HHr8eHEON",
-        "contact": "Elisa Perán Cordero",
-        "company": "MasOrange",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "inbound",
-        "date_added": "2026-05-06T15:20:54.000Z",
-        "replied": true
-      },
-      {
-        "conversation_id": "RDDoR8PXlRoY7NWRsvRK",
-        "contact": "Esther Benítez Gutiérrez",
-        "company": "Sonepar España",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Hola Esther, soy Joan de Actual Talent. Somos una consultora de talento especializada en el comercio mayorista.\n\n\n\n\nQuer",
-        "direction": "outbound",
-        "date_added": "2026-05-06T14:57:15.036Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "Sc4ShudATaO11IbrhawH",
-        "contact": "Clémence Vigneron",
-        "company": "papernest",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-05-06T13:32:10.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "T3UT6hYPLDSEeBinXRnh",
-        "contact": "Raquel Carballo",
-        "company": "Danone",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-05-06T12:43:04.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "vJINJHkgBdGhsE6DrFQV",
-        "contact": "Fátima Pestana",
-        "company": "ESTEVE",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-05-05T13:36:35.803Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "OVkqOeJrmQJBnJjxLCEH",
-        "contact": "Ana Martínez",
-        "company": "Hero",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "inbound",
-        "date_added": "2026-05-05T06:08:50.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "Vc5dM2ywkfUl3MjdHyKI",
-        "contact": "Isabel Cardelús",
-        "company": "CUBRO",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-05-04T11:41:52.236Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "FE6Uua2u18cfMliXa0X3",
-        "contact": "Cátia Cunha",
-        "company": "SACYR",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-05-04T10:28:43.514Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "FJtQt1C6rs56mb7TuUaB",
-        "contact": "Rut Sánchez Moral",
-        "company": "ADM VALUE",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-04-30T15:51:57.563Z",
-        "replied": true
-      },
-      {
-        "conversation_id": "Tm0I0RXoeGVgaVIkxxRR",
-        "contact": "Penny Kong",
-        "company": null,
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-04-30T13:11:08.911Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "MYFrJyd7tv8eCB1LzerK",
-        "contact": "Sergio Santabarbara",
-        "company": null,
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-04-29T14:47:26.000Z",
         "replied": false
       }
     ]
