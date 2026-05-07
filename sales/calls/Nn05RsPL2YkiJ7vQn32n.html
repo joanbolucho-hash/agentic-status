@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Call · Lourdes Merino Toledo — Sales Cockpit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08090a; --surface:#111214; --surface-2:#16181b; --surface-hi:#1d1f23;
+  --border:#1d1f23; --border-strong:#26292e;
+  --fg:#e8eaed; --fg-muted:#9ca3af; --fg-subtle:#6b7280;
+  /* Accent + chart palette: Actual Talent code of colors over Fluxo dark shell */
+  --accent:#C0191E; --accent-soft:rgba(192,25,30,.16); --accent-fg:#FCA5A5;
+  --at-red:#C0191E; --at-green:#2D5F3D; --at-amber:#B8851A;
+  --at-cream:#F0EEEB; --at-beige:#E8E5DC; --at-gray:#9A9A9A;
+  --warn:#B8851A; --danger:#C0191E; --info:#4A6FA5;
+  --rule:rgba(255,255,255,.06); --rule-soft:rgba(255,255,255,.03);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 300;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.6;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+
+.shell { max-width: 980px; margin: 0 auto; padding: 32px 28px 80px; }
+@media (max-width: 720px) { .shell { padding: 20px 16px 60px; } }
+
+.masthead {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.masthead .brand {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--fg);
+}
+.masthead .brand::before {
+  content: ''; display: inline-block;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 12px var(--accent);
+}
+.masthead .brand span { color: var(--accent); font-weight: 700; }
+.masthead .crumb {
+  font-size: 11px; color: var(--fg-subtle); letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 500;
+  flex: 1; text-align: right;
+}
+.masthead .crumb a:hover { color: var(--accent); }
+.masthead .crumb .sep { margin: 0 10px; color: var(--fg-subtle); }
+
+.eyebrow {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px solid var(--border);
+  padding-top: 10px; margin: 36px 0 24px;
+}
+.eyebrow .label { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--fg); }
+.eyebrow .meta { font-size: 11px; color: var(--fg-subtle); letter-spacing: .06em; text-transform: uppercase; }
+
+h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  letter-spacing: -.015em;
+  line-height: 1.15;
+  margin-top: 24px;
+  max-width: 36ch;
+  color: var(--fg);
+}
+h1 em { font-style: normal; color: var(--accent); font-weight: 500; }
+.sub {
+  color: var(--fg-muted); font-size: 12px; margin-top: 14px;
+  letter-spacing: .14em; text-transform: uppercase; font-weight: 500;
+}
+
+/* KPI inline row */
+.kpi-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin: 36px 0 32px;
+}
+.kpi { padding: 20px 18px 20px 0; border-right: 1px solid var(--border); }
+.kpi:last-child { border-right: none; padding-right: 0; }
+@media (max-width: 720px) {
+  .kpi { border-right: none; border-bottom: 1px solid var(--border); padding: 16px; }
+  .kpi:last-child { border-bottom: none; }
+}
+.kpi .label { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--fg-subtle); font-weight: 500; margin-bottom: 10px; }
+.kpi .value { font-size: 30px; font-weight: 700; letter-spacing: -.02em; line-height: 1; color: var(--fg); }
+
+/* Tags */
+.tag {
+  display: inline-block; padding: 5px 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  background: var(--surface-hi); color: var(--fg);
+  border-radius: 4px;
+}
+.tag.disp.connected-positive { background: rgba(45,95,61,.20);  color: #86c79a; }  /* AT green */
+.tag.disp.connected-negative { background: rgba(192,25,30,.18); color: #fca5a5; }  /* AT red */
+.tag.disp.connected-busy     { background: rgba(184,133,26,.18); color: #f0c065; } /* AT amber */
+.tag.disp.no-answer          { background: var(--surface-hi); color: var(--at-gray); }
+.tag.disp.busy               { background: rgba(139,90,60,.20); color: #d6a48a; }
+.tag.disp.wrong-number       { background: var(--surface-2); color: var(--fg-subtle); }
+
+/* Score pill */
+.score-pill {
+  display: inline-block; padding: 4px 12px;
+  font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  font-feature-settings: "tnum" 1; line-height: 1;
+  border-radius: 4px;
+}
+.score-pill.hi  { background: rgba(45,95,61,.20);  color: #86c79a; }  /* AT green */
+.score-pill.mid { background: rgba(184,133,26,.18); color: #f0c065; } /* AT amber */
+.score-pill.lo  { background: rgba(192,25,30,.18); color: #fca5a5; }  /* AT red */
+
+/* Calls table */
+table.calls { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+table.calls thead tr th {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 500; color: var(--fg-subtle);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 8px 10px 0; text-align: left;
+}
+table.calls td {
+  padding: 14px 8px 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--fg-muted);
+}
+table.calls td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.calls tbody tr { cursor: pointer; transition: background .15s; }
+table.calls tbody tr:hover { background: var(--surface-2); }
+table.calls tbody tr:hover td.contact { color: var(--accent); }
+table.calls .contact { font-weight: 500; color: var(--fg); }
+table.calls .summary { color: var(--fg-subtle); font-size: 12px; max-width: 360px; }
+
+/* Breakdown bars */
+.breakdown {
+  display: grid; grid-template-columns: 160px 1fr 50px;
+  gap: 14px; align-items: center;
+  padding: 8px 0;
+  font-size: 12px;
+}
+.breakdown .name {
+  font-weight: 500; letter-spacing: .04em; text-transform: uppercase;
+  font-size: 11px; color: var(--fg);
+}
+.breakdown .bar {
+  height: 6px; background: var(--surface-hi); position: relative; border-radius: 3px;
+  overflow: hidden;
+}
+.breakdown .bar > span {
+  display: block; height: 100%; background: var(--accent);
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.breakdown .num { text-align: right; font-feature-settings: "tnum" 1; color: var(--fg-muted); }
+
+/* Transcript box */
+.transcript {
+  white-space: pre-wrap; font-size: 14px; line-height: 1.7;
+  padding: 24px; background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  margin-top: 16px;
+  max-height: 520px; overflow-y: auto;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  color: var(--fg-muted);
+}
+
+.note {
+  font-size: 11px; letter-spacing: .04em; color: var(--fg-muted);
+  padding: 10px 16px; background: var(--surface-2);
+  border-left: 2px solid var(--warn);
+  margin-bottom: 16px;
+}
+.note code {
+  font-family: ui-monospace, monospace; font-size: 10px;
+  background: var(--surface-hi); padding: 1px 6px;
+}
+
+audio.recording {
+  width: 100%;
+  margin: 14px 0 8px;
+  filter: invert(1) hue-rotate(180deg) saturate(.7);
+}
+.recording-meta {
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg-subtle); margin-bottom: 6px;
+}
+
+.summary-quote {
+  font-size: 16px; font-weight: 300; line-height: 1.6;
+  color: var(--fg); padding: 18px 24px;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2); margin: 16px 0 24px;
+  font-style: italic;
+  border-radius: 0 8px 8px 0;
+}
+
+.led-empty { text-align: center; padding: 60px 20px; color: var(--fg-subtle); font-size: 13px; }
+
+.colophon {
+  margin-top: 60px; padding-top: 18px; border-top: 1px solid var(--border);
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--fg-subtle);
+  font-feature-settings: "tnum" 1;
+}
+.colophon code {
+  font-family: ui-monospace, monospace; font-size: 10px;
+  text-transform: none; letter-spacing: .02em;
+  color: var(--fg-muted);
+}
+</style>
+</head><body><div class="shell">
+<div class="masthead">
+  <div class="brand">Sales <span>Cockpit</span></div>
+  <div class="crumb"><a href="../">Sales Briefing</a><span class="sep">/</span><a href="../dispositions/connected_positive.html">Connected Positive</a><span class="sep">/</span><span>Lourdes Merino Toledo</span></div>
+</div>
+
+<div class="eyebrow">
+  <div class="label">Llamada individual</div>
+  <div class="meta">17 Feb 2026 14:26 · 377s · joan.boluda</div>
+</div>
+<h1>Lourdes Merino Toledo</h1>
+<div class="sub">
+  <span class="tag disp connected-positive">Connected Positive</span>
+  &nbsp;·&nbsp; Discovery score <span class="score-pill hi">72</span>
+  &nbsp;·&nbsp; Twilio status: completed
+</div>
+
+<div class="summary-quote">Joan called Lourdes at Swissport, discovered they handle recruitment internally with specialized teams, explored potential RPO needs, and secured agreement to invite prospect to executive networking breakfast events.</div>
+
+<div class="kpi-row">
+<div class="kpi"><div class="label">Duración</div><div class="value">377<span style="font-size:14px;color:var(--gray);font-weight:400;margin-left:4px;">s</span></div></div>
+<div class="kpi"><div class="label">Score</div><div class="value">72</div></div>
+<div class="kpi"><div class="label">Direction</div><div class="value" style="font-size:18px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;">outbound</div></div>
+<div class="kpi"><div class="label">Owner</div><div class="value" style="font-size:18px;font-weight:500;">joan.boluda</div></div>
+</div>
+
+<div class="eyebrow"><div class="label">Breakdown discovery</div><div class="meta">rúbrica v1 · 5 dimensiones × 20 puntos</div></div><div class="breakdown">
+<div class="name">Opening</div>
+<div class="bar"><span style="width:90%"></span></div>
+<div class="num">18/20</div>
+</div><div class="breakdown">
+<div class="name">Situación actual</div>
+<div class="bar"><span style="width:90%"></span></div>
+<div class="num">18/20</div>
+</div><div class="breakdown">
+<div class="name">Listening activo</div>
+<div class="bar"><span style="width:80%"></span></div>
+<div class="num">16/20</div>
+</div><div class="breakdown">
+<div class="name">Discovery dolor</div>
+<div class="bar"><span style="width:60%"></span></div>
+<div class="num">12/20</div>
+</div><div class="breakdown">
+<div class="name">Próximo paso</div>
+<div class="bar"><span style="width:90%"></span></div>
+<div class="num">18/20</div>
+</div>
+
+<div class="eyebrow"><div class="label">Grabación</div><div class="meta">audio · 377s</div></div>
+<div class="recording-meta">Audio servido localmente. NO se publica en GitHub Pages.</div>
+<audio class="recording" controls preload="metadata" src="../audio/Nn05RsPL2YkiJ7vQn32n.mp3">Tu navegador no soporta audio HTML5.</audio>
+
+<div class="eyebrow"><div class="label">Transcript</div><div class="meta">vía Whisper</div></div>
+<div class="transcript">Sí, soy yo. ¿Qué tal? Yo soy Joan Boludar, te llamo de Actual Talent. ¿Me ubicas? Sí. ¿Me ubicas porque has colaborado con nosotros en Madrid? ¿En qué, perdón? ¿Me ubicas porque has estado en contacto con nosotros en Madrid? No, porque acabo de buscar el teléfono y me ha salido este sitio. Mira, mira qué bien. Vale, pues yo te llamo porque, bueno, me han hablado de ti, he visto que acabas de empezar con tu nuevo rol, así que primero que todo, enhorabuena. Gracias. Y, bueno, no sé si sabes un poco de lo que hacemos nosotros. No, o sea, pero antes me gustaría saber quién te ha hablado de mí, o sea, cómo has conseguido mi contacto, por curiosidad, vaya. Mira, me ha hablado mi jefe de ti, porque me han comentado que desde Madrid gestionáis talento adquisition a nivel internacional. Vale. Y tu número lo he conseguido de Lusha, que es una herramienta que utilizamos para conseguir números para contratar a gente. Vale. Eso es porque tú ahora has puesto tu número por internet en algún lado y esta herramienta le ha cogido. Vale, vale. Sí, eso es un poco por curiosidad, porque me, digo, no me suena a hablar con nadie, pero, pero, ok. Sí, no, todavía no hemos hablado nunca, es la primera vez que hablamos. Vale, vale. Pero somos una consultora de talento y quizás por eso te ha salido el vínculo en tu sistema. Vale. Y simplemente quería entender un poco cómo estás llevando reclutamiento en Swissport ahora desde Madrid. Pues lo llevamos nosotros, es decir, no lo tenemos externalizado. Pero entiendo que Swissport es una empresa muy grande y lo lleváis todo, todo internamente, ¿no? ¿No externalizáis nada? No. Algunas veces externalizamos posiciones no cualificadas, como mozos de almacén y demás, pero normalmente lo llevamos todo desde la central. Ya, entiendo. Y tú, bueno, ya veo que llevas varios años trabajando en recursos humanos, bastantes más que yo. Quería preguntarte si alguna vez has trabajado con RPO. No, o sea, sí, sé lo que es, porque es una empresa, sí que tiene compañeros que eran RPO, pero yo como tal no he sido ni, ni he tenido que manejar a nadie RPO. Ya. Y en Swissport, vosotros, bueno, a mí me comentan bastante en el sector naval, pues que hay a veces picos o si hay que abrir algún, algún sector, pues se constata mucho más. ¿Vosotros esto cómo lo solucionáis? Si lo lleváis todo internamente, ¿cómo cubrís estos gaps? O sea, no entiendo. O sea, pues, la publicación de ofertas y demás, o sea, no, o sea, hacemos el proceso nosotros directamente. Tomamos las necesidades del manager, o sea, de nuestro cliente interno y hacemos la búsqueda nosotros. Ya. Vale. Y es como he visto que tenéis posiciones abiertas de varias semanas y quería entender, pues, esto cómo lo estáis gestionando personalmente además. O sea, es, es, tenemos varios equipos de, de talento. Cada equipo especializado en un perfil en concreto. Y ellos, o sea, ahí se va, a ver si en función de las demandas que entren del, del, de Swissport interno, vaya, se asignan a un, a una persona y es la que lleva el proceso. Vale. Súper. Bueno, pues, parece que lo tenéis bastante controlado. Imagino que tendréis como una empresa tan grande como la vuestra, tendréis que idear muy concretos de rotación y todo esto. ¿Cómo lo, cómo lo lleváis? Sí, bien. O sea, sí, o sea, es que también, es que yo creo que para cada cosa tenemos una persona asignada, entonces, es bastante hermético, ¿sabes? O sea, cada persona se encarga un poco de su área y, y ya está. O sea, que no hay una estrategia transversal de empresa como, queremos que la última rotación un tanto por ciento. O sea, es que, o sea, quiero decir, si se lleva, pero yo creo que hay una persona que se encarga de eso, específicamente. Ya. ¿Tú crees que tiene sentido que yo entienda que estas, para estas posiciones que me has dicho, que están analizadas, no las cualificadas, entonces, se hace falta un RPO? No sé si contigo o con otro interlocutor. No, es que, o sea, realmente yo creo que no solemos externalizar y, de momento, no es algo que tengamos en mente. Ni coger un RPO, ni nada. O sea, de momento no, o sea, no nos lo hemos planteado porque, realmente, la necesidad no, nunca ha surgido, ¿sabes? Ya. Vale, o no, ningún problema. Otra cosa que te quería comentar, y ya te dejo, es que nosotros organizamos desayunos con ejecutivos de recursos humanos en Madrid y en Barcelona. Ahora que esto es en tu nuevo rol, pienso que quizás te puede interesar porque se nos gusta mucho, son muy íntimos, solo 27 personas. ¿Te interesaría que te avisara si hacemos uno? Sí, sí, sí, por supuesto, porque siempre está bien tener el contacto y poder compartir con otros profesionales por si, más adelante, es una opción que podamos tener en mente. Así que, sí, sí, sí. Si nos importa avisarme, ahí me gustaría mucho poder asistir. Claro que sí. Pues, me apunto, te pongo en la lista y, nada, tienes mi contacto, mi LinkedIn y todo, por si en algún momento es repeo. Vale. Venga, muchas gracias, Lourdes. Muchas gracias, Manuel. Muy amable por llamar. Igualmente, que vaya muy bien. Igualmente. Adiós. Chao.</div>
+
+<div class="colophon">
+  Contact: Lourdes Merino Toledo · +34693408639
+  &nbsp;|&nbsp; GHL call id: <code>Nn05RsPL2YkiJ7vQn32n</code>
+</div>
+</div></body></html>

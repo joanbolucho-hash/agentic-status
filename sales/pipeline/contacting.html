@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipeline · Contacting — Sales Cockpit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08090a; --surface:#111214; --surface-2:#16181b; --surface-hi:#1d1f23;
+  --border:#1d1f23; --border-strong:#26292e;
+  --fg:#e8eaed; --fg-muted:#9ca3af; --fg-subtle:#6b7280;
+  --accent:#C0191E; --accent-soft:rgba(192,25,30,.16); --accent-fg:#FCA5A5;
+  --at-red:#C0191E; --at-green:#2D5F3D; --at-amber:#B8851A;
+  --warn:#B8851A; --rule:rgba(255,255,255,.06); --rule-soft:rgba(255,255,255,.03);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:'Montserrat',system-ui,sans-serif;font-weight:300;color:var(--fg);background:var(--bg);line-height:1.6;font-feature-settings:"tnum" 1,"lnum" 1}
+a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}
+.shell{max-width:1080px;margin:0 auto;padding:32px 28px 80px}
+.masthead{border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:32px;display:flex;align-items:center;gap:16px}
+.masthead .brand{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--fg)}
+.masthead .brand::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.masthead .brand span{color:var(--accent);font-weight:700}
+.masthead .crumb{font-size:11px;color:var(--fg-subtle);letter-spacing:.12em;text-transform:uppercase;font-weight:500;flex:1;text-align:right}
+.masthead .crumb a:hover{color:var(--accent)}
+.masthead .crumb .sep{margin:0 10px;color:var(--fg-subtle)}
+.eyebrow{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--border);padding-top:10px;margin:36px 0 24px}
+.eyebrow .label{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg)}
+.eyebrow .meta{font-size:11px;color:var(--fg-subtle);letter-spacing:.06em;text-transform:uppercase}
+h1{font-size:clamp(22px,3vw,32px);font-weight:300;letter-spacing:-.015em;line-height:1.2;margin-top:24px;color:var(--fg)}
+h1 em{font-style:normal;color:var(--accent);font-weight:500}
+.sub{color:var(--fg-muted);font-size:12px;margin-top:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:24px 0 28px}
+.kpi{padding:16px 14px 16px 0;border-right:1px solid var(--border)}
+.kpi:last-child{border-right:none;padding-right:0}
+.kpi .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;margin-bottom:8px}
+.kpi .value{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--fg)}
+table.list{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+table.list thead tr th{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--fg-subtle);border-bottom:1px solid var(--border);padding:10px 8px 10px 0;text-align:left}
+table.list td{padding:14px 8px 14px 0;border-bottom:1px solid var(--rule-soft);color:var(--fg-muted)}
+table.list tbody tr{transition:background .15s}
+table.list tbody tr:hover{background:var(--surface-2)}
+table.list .lead{font-weight:500;color:var(--fg)}
+table.list .num{text-align:right;font-variant-numeric:tabular-nums}
+table.list .inactive-flag{color:var(--warn);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:8px}
+.stage-tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;cursor:pointer;transition:border-color .15s,transform .15s}
+.stage-tile:hover{border-color:var(--accent);transform:translateY(-2px)}
+.stage-tile .name{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:600;margin-bottom:8px}
+.stage-tile .count{font-size:32px;font-weight:700;color:var(--fg);letter-spacing:-.02em;line-height:1}
+.stage-tile .meta{margin-top:8px;font-size:11px;color:var(--fg-muted)}
+.stage-tile .meta strong{color:var(--fg);font-weight:500}
+.stage-tile .inactives{margin-top:6px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--warn);font-weight:600}
+.colophon{margin-top:60px;padding-top:18px;border-top:1px solid var(--border);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-subtle)}
+.colophon code{font-family:ui-monospace,monospace;font-size:10px;text-transform:none;letter-spacing:.02em;color:var(--fg-muted)}
+.led-empty{text-align:center;padding:60px 20px;color:var(--fg-subtle);font-size:13px}
+</style>
+</head><body><div class="shell">
+<div class="masthead">
+  <div class="brand">Sales <span>Cockpit</span></div>
+  <div class="crumb"><a href="../">Sales Cockpit</a><span class="sep">/</span><a href="index.html">Pipeline</a><span class="sep">/</span><span>Contacting</span></div>
+</div>
+
+<div class="eyebrow"><div class="label">Stage</div><div class="meta">Pipeline de ventas</div></div>
+<h1>Contacting · <em>84</em> abiertas</h1>
+<div class="sub">— en valor abierto · 0 sin actividad &gt;14d</div>
+<table class="list">
+<thead><tr><th>Lead</th><th>Rep</th><th>Valor</th><th>Última act.</th><th></th></tr></thead>
+<tbody><tr>
+            <td class="lead">Sara-TP</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=IPNe7VqDpcLIHudsmWbe" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Tania-Sanofi</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=ZNsFT9RvQUhBppPY1RMo" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Ana-Back Market</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=0HbGoSy0kshLc6vZura5" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Verona-Atos</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=lgwiZj5IoKEF18BVWaNe" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Paula-Sanofi</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=HHRUf5DO1OBaYwd4ogFM" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Alberto-Elior</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=0Z4By5yPUyz3wBocX4JA" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Olga-Urgo Medical</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=2Gk1ss0tn5W2XOh1iBzz" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Camilo-Groupe SEB</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=b0SMqtkF8a86vPxwPoeQ" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Zaira-TheFork, A Tripadvisor Company</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=367cQbQyW4kkLCwMtSKI" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Laura-Louis Vuitton</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=sMsZjEt7xTFi3UkUfkyp" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Lucie-Extia</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=N37sFXE30iVl4aB2yi36" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Silvia-ELIS</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=gu2v8bCaV2rfVfYv83cF" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Alma-AXA Partners</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=IbREK2sJBRH9Vgy9OWBQ" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Anna-Guerlain</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=cZ077KbrhV72FpjZUkDp" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Fiona-GRAITEC GROUP</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=6zqlxob0WbBqZbD1757P" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Noemy-Pierre Fabre Laboratories</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=89BvHIeWcNqsnPzNA044" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Lourdes-VeryChic</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=siaZ8ZvM5cAf2TGnAKyr" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Claire-Bsport</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=7N5bP5N4ctFtw0vSwDEQ" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Núria-Veolia</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=fb8aBs1d94eWQV1kdUTY" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Ariadna-Danone</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=mgs6MrRISDGRky2WVoSR" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Sabina-Amundi</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=gIa1mTcxfESp4fOteIaf" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Maria-Nutrition &amp; Santé</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=fXcoAy00ZwfKNUb8ONSU" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Adriana-Veepee</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=X5i6ma7RqzaxriUGk3A8" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Esther-Pierre Fabre Laboratories</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=cfWC0TaCHS5NUk3GGntX" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Nuria-Safic-Alcan</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=JZGfAcFibBzS3ZiYCONJ" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Gemma-Lacoste</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=bZ14Namdx2Yeq9q6pAVk" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Sandrine-Malt</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=PXLSdAn3mi2SD7y2Q7JE" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Arantxa-Danone</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=d1D5MDXiWyV4rGYnGW9D" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Jésica-Groupe Atlantic</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=vLBpfcYApUprtAkwd6is" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Gemma-ALK</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=mwlJjLC3laWJc4afewzm" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Marie-Yuma AI (YC W23)</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=6navbhi7E7hNp07gMVjc" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Raúl-ACTECO, Productos Y Servicios S.L.</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=QAvekBVwWiR2C9qSWYNx" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Alicia-Telespazio</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=PV0tWH0rlgT2OOygYsxf" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Cátia-SACYR</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=Byj5TqF34XAmUrJ3utKp" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Lola-ANFACO-CYTMA</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=KoApa7iXGUtVIAlsedqE" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Estelle-Amcor</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=3fdKvN6YKEWTCkuGXxcU" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Silvia-ENTRERRIOS AUTOMATIZACION S.A</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=pwSXboV2PkC9YYPogucz" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Macarena-Clínicas Dental Company</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=aIAeG3MbhZFYsBsXEERd" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Montserrat-En Búsqueda Activa De Empleo</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=JbGS0xeNvEA8hUIwLVvi" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Ana-Hero</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=JX3QxzDpjO4IhG4ND7F9" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Carolina-ARENA. Financial Tech</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=0RoZeObcFNBmgJtOV2zD" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Miguel-Calímaco</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=l4wR2wMOJvd0UeUAqFov" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Cristina-Molgas Energy Group</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=xCb5Ku4VzMZv3Q6q58U2" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Kristofer-OneTrust</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=BQGfnreSjoxRY0X8N01p" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Marta-COSTA BRAVA MEDITERRANEAN FOODS</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=UxB2E6eqve6VgTqRKQke" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Colette-Fotocasa Group</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=lu8mMhQz3hntyPT3AX1e" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Elena-Interhome</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=CJzeDIRZL4WB7XP5nwUa" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Tania-AbbVie</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=w1yaFPqzodTY6g4TI5iH" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Jorge-Mubea</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=NV7jw1fNWYCsDDqbtBEb" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Olga-ESSAE · Escuela Superior De Auxiliares Y Expertos</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=cEuu1YKqfre4MyOGxaa8" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Isabel-Teva Pharmaceuticals</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=AsPetGI3CTBxuFLzkpcx" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Arantza-IDEA - Coeur Du Hainaut</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=5ss8l0h71K5B3Kma1ODO" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Agustina-B2BROKER</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=XDhDBY8UBTDAzUW79lD6" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Alfredo-GRUPO AGA</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=h2cHfYUEsX8jHpyr9WJL" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Ernesto-InDAWS</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=0ASZEHHlls60KZ1qdoPD" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Marga-ISMA 2000 S.L</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=mPDmPdiIQZ9WiNuxt7uG" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Alberto-Globeducate</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=JLg9fmvMuspiRIbo1su2" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Andres- Cold Culture</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=Mchq8WRa6PSVs3dOIBFd" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Diana-Northius</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=yatjJreCiQZKodbLReQP" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Edgar-Ukio</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=cUJjPtcsBWzkvzti8anD" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Anna-Yaba</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=ekiWtimpSSax4EqP8Uck" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Celia-Haddock (YC W22)</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=ppChx9TGImrlAOJHu5zW" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Begoña-VIVLA</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=2F7taWxikRjrWv6dwRNw" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Carlos-ORBIDI</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=sErzI22fbkU4IoeDHsqz" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Susana-Olistic</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=Nn8avGZWXOK6m29U7MwL" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Cristina-ORBIDI</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=9YjgYBPTav5XMC7kU0HE" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Andrea-Embat</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=Iok9rpox4le1zcXbUMa7" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Eva Ramiro - Gifols</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">1d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=aBaK1vILtvwQtl8zo9rA" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Marian-Asitur</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=z7nnFOmcNZoY0rmQQUJ1" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Nuria-Ethypharm</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=gZv4ZEsxIZzdUfAEyvRX" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Eduard Arán Calonja</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=y0yBH3kTpYw0XUZO4xMp" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Charline-Qualitadd</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=9hmiKEIwvqZ8KZnvd9J1" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Audrey-Mindquest</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=w3Od6IjBo9L9jOVYMLr1" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Giulia-PayFit</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=zFVr2zwmeQTA6wHDYg2t" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Amadeo-TheFork, A Tripadvisor Company</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=m4ZzHk9JT1Ek7puO9jTE" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Victoria-Bsport</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=Ib911LhcVhOd8bdPJq4N" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Jennifer-JULES &amp; JENN</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=ZPTskV8ra0LWjW5MIc3y" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Montserrat-Leyton</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=hSCYhnnNVK6EHS48wDpP" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Auriane-Bloomays</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=9jStlVVyDW4RUkmpIYrD" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Lena-Beelix</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=dn19X5RSMp3OsbmhnDqe" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Maria-EssilorLuxottica</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=g916trkTOOcxrUaPc86h" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Andrea-SLAPS</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=TBUXSnoiLObHrz8ItfFK" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Ana-ORSAL</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=xYhEh0iyEhKU7EghzZ7O" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr><tr>
+            <td class="lead">Payxpert-Virginia-Transparencia</td>
+            <td>Joan</td>
+            <td class="num">—</td>
+            <td class="num">0d </td>
+            <td><a href="https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=MDZMT1CRL8bsutRb6eOb" target="_blank" rel="noopener" style="color:var(--accent)">Abrir GHL →</a></td>
+        </tr></tbody>
+</table>
+<div class="colophon">Stage <code>Contacting</code> · 84 opps · ordenado por inactividad descendente</div></div></body></html>

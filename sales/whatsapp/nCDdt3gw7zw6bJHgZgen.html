@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp · Karim Barmose — Sales Cockpit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08090a; --surface:#111214; --surface-2:#16181b; --surface-hi:#1d1f23;
+  --border:#1d1f23; --border-strong:#26292e;
+  --fg:#e8eaed; --fg-muted:#9ca3af; --fg-subtle:#6b7280;
+  --accent:#C0191E; --accent-soft:rgba(192,25,30,.16); --accent-fg:#FCA5A5;
+  --at-red:#C0191E; --at-green:#2D5F3D; --at-amber:#B8851A;
+  --at-cream:#F0EEEB; --at-beige:#E8E5DC; --at-gray:#9A9A9A;
+  --warn:#B8851A; --info:#4A6FA5;
+  --rule:rgba(255,255,255,.06); --rule-soft:rgba(255,255,255,.03);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:'Montserrat',system-ui,sans-serif;font-weight:300;color:var(--fg);background:var(--bg);line-height:1.6;font-feature-settings:"tnum" 1,"lnum" 1}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--accent)}
+.shell{max-width:980px;margin:0 auto;padding:32px 28px 80px}
+.masthead{border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:32px;display:flex;align-items:center;gap:16px}
+.masthead .brand{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--fg)}
+.masthead .brand::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.masthead .brand span{color:var(--accent);font-weight:700}
+.masthead .crumb{font-size:11px;color:var(--fg-subtle);letter-spacing:.12em;text-transform:uppercase;font-weight:500;flex:1;text-align:right}
+.masthead .crumb a:hover{color:var(--accent)}
+.masthead .crumb .sep{margin:0 10px;color:var(--fg-subtle)}
+.eyebrow{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--border);padding-top:10px;margin:36px 0 24px}
+.eyebrow .label{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg)}
+.eyebrow .meta{font-size:11px;color:var(--fg-subtle);letter-spacing:.06em;text-transform:uppercase}
+h1{font-size:clamp(22px,3vw,32px);font-weight:300;letter-spacing:-.015em;line-height:1.2;margin-top:24px;color:var(--fg)}
+h1 em{font-style:normal;color:var(--accent);font-weight:500}
+.sub{color:var(--fg-muted);font-size:12px;margin-top:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+table.list{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+table.list thead tr th{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--fg-subtle);border-bottom:1px solid var(--border);padding:10px 8px 10px 0;text-align:left}
+table.list td{padding:14px 8px 14px 0;border-bottom:1px solid var(--rule-soft);color:var(--fg-muted)}
+table.list tbody tr{cursor:pointer;transition:background .15s}
+table.list tbody tr:hover{background:var(--surface-2)}
+table.list tbody tr:hover td.contact{color:var(--accent)}
+table.list .contact{font-weight:500;color:var(--fg)}
+table.list .preview{color:var(--fg-subtle);font-size:12px;max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{display:inline-block;padding:3px 8px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border-radius:4px}
+.badge.outbound{background:var(--accent-soft);color:var(--accent-fg)}
+.badge.inbound{background:rgba(45,95,61,.20);color:#86c79a}
+.badge.replied{background:rgba(184,133,26,.18);color:#f0c065;margin-left:6px}
+.thread{margin-top:8px;display:flex;flex-direction:column;gap:14px}
+.msg{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.msg.outbound{border-left:3px solid var(--accent)}
+.msg.inbound{border-left:3px solid var(--at-green)}
+.msg-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:11px;letter-spacing:.06em;color:var(--fg-subtle);flex-wrap:wrap;gap:8px}
+.msg-body{white-space:pre-wrap;font-size:14px;line-height:1.65;color:var(--fg-muted);font-family:'Montserrat',system-ui,sans-serif}
+.msg-meta{font-size:10px;color:var(--fg-subtle);letter-spacing:.04em;margin-top:8px}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:24px 0 28px}
+.kpi{padding:16px 14px 16px 0;border-right:1px solid var(--border)}
+.kpi:last-child{border-right:none;padding-right:0}
+.kpi .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;margin-bottom:8px}
+.kpi .value{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--fg)}
+.colophon{margin-top:60px;padding-top:18px;border-top:1px solid var(--border);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-subtle)}
+.colophon code{font-family:ui-monospace,monospace;font-size:10px;text-transform:none;letter-spacing:.02em;color:var(--fg-muted)}
+.led-empty{text-align:center;padding:60px 20px;color:var(--fg-subtle);font-size:13px}
+</style>
+</head><body><div class="shell">
+<div class="masthead">
+  <div class="brand">Sales <span>Cockpit</span></div>
+  <div class="crumb"><a href="../">Sales Cockpit</a><span class="sep">/</span><a href="index.html">WhatsApp</a><span class="sep">/</span><span>Karim Barmose</span></div>
+</div>
+
+<div class="eyebrow">
+  <div class="label">Hilo WhatsApp</div>
+  <div class="meta"></div>
+</div>
+<h1>Karim Barmose</h1>
+<div class="sub">Joan · última actividad 05 Mar 2026 10:38</div>
+<div class="kpi-row">
+  <div class="kpi"><div class="label">Outbound</div><div class="value">23</div></div>
+  <div class="kpi"><div class="label">Inbound</div><div class="value">27</div></div>
+  <div class="kpi"><div class="label">Total</div><div class="value">50</div></div>
+</div>
+<div class="thread">
+<div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 21 Jan 2026 11:01</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">PZnfpzUhGFli</code></span>
+  </div>
+  <div class="msg-body">Contact
+Carmen Repsol
+Phone Number: +34 618 16 46 62 | Móvil</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 23 Jan 2026 15:44</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">b93T89pU4lvt</code></span>
+  </div>
+  <div class="msg-body">Aquí estoy</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 23 Jan 2026 15:52</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">DJCy2zOYflsu</code></span>
+  </div>
+  <div class="msg-body">2 min</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 29 Jan 2026 08:17</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">lVfrR6a7slum</code></span>
+  </div>
+  <div class="msg-body">Agenda: 
+10:30h - Llegada de los asistentes y acreditación
+11:00h - Introducción a la ponencia a cargo de César Aparicio, Director Comercial de InfoJobs 
+11:10h - Ponencia de Jon Hernández sobre la IA y su impacto en los Recursos Humanos.
+13:00h - Finger lunch y networking</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 29 Jan 2026 08:17</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">J7xc7OPHg7tV</code></span>
+  </div>
+  <div class="msg-body">Perfe, nos vemos ahí. Gracias!</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 29 Jan 2026 09:18</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">lyrR320NbQew</code></span>
+  </div>
+  <div class="msg-body">Estoy en el parque tomando el solecito</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 10 Feb 2026 19:42</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">d4omFdExoSnM</code></span>
+  </div>
+  <div class="msg-body">más vale tarde</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 10 Feb 2026 19:42</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">0EgMHYvy3li9</code></span>
+  </div>
+  <div class="msg-body">pocos cambios, sólo mostrarle un poco la propuesta de valor con más detalle</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 10 Feb 2026 19:43</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">55WYhG7vE50p</code></span>
+  </div>
+  <div class="msg-body">a ver si mañana le gusta, te cuento. Bona nit y pordón por las horas</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 07:25</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">5cZwwiqU9KEf</code></span>
+  </div>
+  <div class="msg-body">Buenos días Joan, que ta</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 07:26</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">DdszCoN4atVq</code></span>
+  </div>
+  <div class="msg-body">Sorry estaba con la niña a esa hora</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 07:26</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">hSW5ZmG3vB1g</code></span>
+  </div>
+  <div class="msg-body">Si quieres pasame el canva y te ayudo hacer unos retoques</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 07:26</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">t6EryPvqDNEp</code></span>
+  </div>
+  <div class="msg-body">Buenos dias</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 07:26</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">eGoSwy4VvBgl</code></span>
+  </div>
+  <div class="msg-body">Está perfecta</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 07:27</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">SztkTOfWZuXN</code></span>
+  </div>
+  <div class="msg-body">Simplemente algunos datos y también sale el logo de Fourthline en las publicaciones</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 07:27</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">bzYEg1uhcE50</code></span>
+  </div>
+  <div class="msg-body">En lo que pone lo que te gastarías tú, Linkedin es mucho más caro</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 07:27</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">CjpdhuNSeZTq</code></span>
+  </div>
+  <div class="msg-body">Si quieres le doy una vuelta</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 07:29</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">E18KspdopuY3</code></span>
+  </div>
+  <div class="msg-body">Ya te lo compartí</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 07:31</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">TtLawsQYViON</code></span>
+  </div>
+  <div class="msg-body"><em style="color:var(--fg-subtle)">(cuerpo vacío en API GHL — puede tener attachment o ser solo subject)</em></div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 07:32</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">ysEm7CEJuNwo</code></span>
+  </div>
+  <div class="msg-body">Pao de queijo hecho</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 08:05</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">CVaScPBITtoz</code></span>
+  </div>
+  <div class="msg-body">ya puse lo del logo</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 08:06</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">isCUvgaQloS8</code></span>
+  </div>
+  <div class="msg-body">cdo esten los numeros me dices</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 08:08</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">n8nMW7rTdG7W</code></span>
+  </div>
+  <div class="msg-body">Toma ya</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 08:08</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">GAFMMvnkNPJX</code></span>
+  </div>
+  <div class="msg-body">Que pintaza</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 08:08</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">mWIqwg4QHTcx</code></span>
+  </div>
+  <div class="msg-body">Dame unos mins</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 08:20</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">YKp14xyUDEl1</code></span>
+  </div>
+  <div class="msg-body">Sin prisa !</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 08:29</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">qrdn6QwCwYIW</code></span>
+  </div>
+  <div class="msg-body">Lo que he hecho ha sido quitar directamente lo que ponía lo que te costaría a ti</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 08:30</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">FYhQrUf5cO90</code></span>
+  </div>
+  <div class="msg-body">Lo que me faltaría quizás es la parte de todo lo que incluye</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 08:30</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">uoGEwkZBKyUR</code></span>
+  </div>
+  <div class="msg-body">Pero bueno, si quieres lo dejamos así y se lo muestras a ver qué dice</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 08:34</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">ZfE0v2G6v1Jv</code></span>
+  </div>
+  <div class="msg-body">Todo lo q incluye tipo las herramientas exactas??</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 08:35</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">aLXujtiTip6r</code></span>
+  </div>
+  <div class="msg-body">Si exacto, habitualmente yo pongo un slide que pone.
+
+Incluye consultor senior
+Linkedin Recruiter
+Job slots bla bla bla</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 09:47</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">Ej63tXu3qTVH</code></span>
+  </div>
+  <div class="msg-body">Sii eso lo intenté definir en lo q te costaría por deparado</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 09:47</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">k4fc4EmDKb4R</code></span>
+  </div>
+  <div class="msg-body">Pero claro es una estructura diferente</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 11:52</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">jEmRZOKt438V</code></span>
+  </div>
+  <div class="msg-body">ya hice algunos cambios para añadir lo que has dicho, ya se la mando. Quedó contento con el pan y el evento</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 12:49</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">434CtfB5cWDN</code></span>
+  </div>
+  <div class="msg-body">Ostia, que bien</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 12:49</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">i80Qxhytcarr</code></span>
+  </div>
+  <div class="msg-body">Me alegro que haya ido</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 12:50</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">PFkOkdfrZnBX</code></span>
+  </div>
+  <div class="msg-body">Llévame mañana a mi a la ofi un poco de ese pan</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 12:50</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">cTPqOtsxUHNA</code></span>
+  </div>
+  <div class="msg-body">Hahaha</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 11 Feb 2026 13:05</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">WaQ2OWmXO24H</code></span>
+  </div>
+  <div class="msg-body">Jajaja se llevaron el q sobro</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 11 Feb 2026 14:40</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">O1SYoTBMDSmb</code></span>
+  </div>
+  <div class="msg-body">Vaya que pena</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 05 Mar 2026 10:29</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">vjTOjSkU8jCQ</code></span>
+  </div>
+  <div class="msg-body">Estoy en la entrada</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 05 Mar 2026 10:30</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">ioxse03iCD8o</code></span>
+  </div>
+  <div class="msg-body">Entra coge tú badge y todo eso y me veras</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 05 Mar 2026 10:36</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">8lssNolbfGga</code></span>
+  </div>
+  <div class="msg-body">Perfe</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 05 Mar 2026 10:36</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">lqPeSVZmmXyu</code></span>
+  </div>
+  <div class="msg-body">He pillado una manifestación jajaja</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 05 Mar 2026 10:38</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">nnbDLDXvevTt</code></span>
+  </div>
+  <div class="msg-body">Vaya</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 05 Mar 2026 10:38</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">F9iUSb36SMkm</code></span>
+  </div>
+  <div class="msg-body">No sé si es norte o sur la entrada</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 05 Mar 2026 10:38</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">b1Xrl2NecQJ8</code></span>
+  </div>
+  <div class="msg-body">Es sur</div>
+</div><div class="msg inbound">
+  <div class="msg-head">
+    <span><span class="badge inbound">inbound</span> Joan · 05 Mar 2026 10:38</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">3LRdu33tIqWn</code></span>
+  </div>
+  <div class="msg-body">Pero es la entrada principal</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 05 Mar 2026 10:38</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">aOI6DHMVLPhB</code></span>
+  </div>
+  <div class="msg-body">La del hotel</div>
+</div><div class="msg outbound">
+  <div class="msg-head">
+    <span><span class="badge outbound">outbound</span> Joan · 05 Mar 2026 10:38</span>
+    <span>id <code style="color:var(--fg-subtle);font-family:ui-monospace,monospace;font-size:10px">tgoT9WfgXNBG</code></span>
+  </div>
+  <div class="msg-body">Sisi</div>
+</div>
+</div>
+<div class="colophon">conversation id <code>nCDdt3gw7zw6bJHgZgen</code></div></div></body></html>

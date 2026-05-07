@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connected Busy — Sales Cockpit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08090a; --surface:#111214; --surface-2:#16181b; --surface-hi:#1d1f23;
+  --border:#1d1f23; --border-strong:#26292e;
+  --fg:#e8eaed; --fg-muted:#9ca3af; --fg-subtle:#6b7280;
+  /* Accent + chart palette: Actual Talent code of colors over Fluxo dark shell */
+  --accent:#C0191E; --accent-soft:rgba(192,25,30,.16); --accent-fg:#FCA5A5;
+  --at-red:#C0191E; --at-green:#2D5F3D; --at-amber:#B8851A;
+  --at-cream:#F0EEEB; --at-beige:#E8E5DC; --at-gray:#9A9A9A;
+  --warn:#B8851A; --danger:#C0191E; --info:#4A6FA5;
+  --rule:rgba(255,255,255,.06); --rule-soft:rgba(255,255,255,.03);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 300;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.6;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+
+.shell { max-width: 980px; margin: 0 auto; padding: 32px 28px 80px; }
+@media (max-width: 720px) { .shell { padding: 20px 16px 60px; } }
+
+.masthead {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.masthead .brand {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--fg);
+}
+.masthead .brand::before {
+  content: ''; display: inline-block;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 12px var(--accent);
+}
+.masthead .brand span { color: var(--accent); font-weight: 700; }
+.masthead .crumb {
+  font-size: 11px; color: var(--fg-subtle); letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 500;
+  flex: 1; text-align: right;
+}
+.masthead .crumb a:hover { color: var(--accent); }
+.masthead .crumb .sep { margin: 0 10px; color: var(--fg-subtle); }
+
+.eyebrow {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px solid var(--border);
+  padding-top: 10px; margin: 36px 0 24px;
+}
+.eyebrow .label { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--fg); }
+.eyebrow .meta { font-size: 11px; color: var(--fg-subtle); letter-spacing: .06em; text-transform: uppercase; }
+
+h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  letter-spacing: -.015em;
+  line-height: 1.15;
+  margin-top: 24px;
+  max-width: 36ch;
+  color: var(--fg);
+}
+h1 em { font-style: normal; color: var(--accent); font-weight: 500; }
+.sub {
+  color: var(--fg-muted); font-size: 12px; margin-top: 14px;
+  letter-spacing: .14em; text-transform: uppercase; font-weight: 500;
+}
+
+/* KPI inline row */
+.kpi-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin: 36px 0 32px;
+}
+.kpi { padding: 20px 18px 20px 0; border-right: 1px solid var(--border); }
+.kpi:last-child { border-right: none; padding-right: 0; }
+@media (max-width: 720px) {
+  .kpi { border-right: none; border-bottom: 1px solid var(--border); padding: 16px; }
+  .kpi:last-child { border-bottom: none; }
+}
+.kpi .label { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--fg-subtle); font-weight: 500; margin-bottom: 10px; }
+.kpi .value { font-size: 30px; font-weight: 700; letter-spacing: -.02em; line-height: 1; color: var(--fg); }
+
+/* Tags */
+.tag {
+  display: inline-block; padding: 5px 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  background: var(--surface-hi); color: var(--fg);
+  border-radius: 4px;
+}
+.tag.disp.connected-positive { background: rgba(45,95,61,.20);  color: #86c79a; }  /* AT green */
+.tag.disp.connected-negative { background: rgba(192,25,30,.18); color: #fca5a5; }  /* AT red */
+.tag.disp.connected-busy     { background: rgba(184,133,26,.18); color: #f0c065; } /* AT amber */
+.tag.disp.no-answer          { background: var(--surface-hi); color: var(--at-gray); }
+.tag.disp.busy               { background: rgba(139,90,60,.20); color: #d6a48a; }
+.tag.disp.wrong-number       { background: var(--surface-2); color: var(--fg-subtle); }
+
+/* Score pill */
+.score-pill {
+  display: inline-block; padding: 4px 12px;
+  font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  font-feature-settings: "tnum" 1; line-height: 1;
+  border-radius: 4px;
+}
+.score-pill.hi  { background: rgba(45,95,61,.20);  color: #86c79a; }  /* AT green */
+.score-pill.mid { background: rgba(184,133,26,.18); color: #f0c065; } /* AT amber */
+.score-pill.lo  { background: rgba(192,25,30,.18); color: #fca5a5; }  /* AT red */
+
+/* Calls table */
+table.calls { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+table.calls thead tr th {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 500; color: var(--fg-subtle);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 8px 10px 0; text-align: left;
+}
+table.calls td {
+  padding: 14px 8px 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--fg-muted);
+}
+table.calls td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.calls tbody tr { cursor: pointer; transition: background .15s; }
+table.calls tbody tr:hover { background: var(--surface-2); }
+table.calls tbody tr:hover td.contact { color: var(--accent); }
+table.calls .contact { font-weight: 500; color: var(--fg); }
+table.calls .summary { color: var(--fg-subtle); font-size: 12px; max-width: 360px; }
+
+/* Breakdown bars */
+.breakdown {
+  display: grid; grid-template-columns: 160px 1fr 50px;
+  gap: 14px; align-items: center;
+  padding: 8px 0;
+  font-size: 12px;
+}
+.breakdown .name {
+  font-weight: 500; letter-spacing: .04em; text-transform: uppercase;
+  font-size: 11px; color: var(--fg);
+}
+.breakdown .bar {
+  height: 6px; background: var(--surface-hi); position: relative; border-radius: 3px;
+  overflow: hidden;
+}
+.breakdown .bar > span {
+  display: block; height: 100%; background: var(--accent);
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.breakdown .num { text-align: right; font-feature-settings: "tnum" 1; color: var(--fg-muted); }
+
+/* Transcript box */
+.transcript {
+  white-space: pre-wrap; font-size: 14px; line-height: 1.7;
+  padding: 24px; background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  margin-top: 16px;
+  max-height: 520px; overflow-y: auto;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  color: var(--fg-muted);
+}
+
+.note {
+  font-size: 11px; letter-spacing: .04em; color: var(--fg-muted);
+  padding: 10px 16px; background: var(--surface-2);
+  border-left: 2px solid var(--warn);
+  margin-bottom: 16px;
+}
+.note code {
+  font-family: ui-monospace, monospace; font-size: 10px;
+  background: var(--surface-hi); padding: 1px 6px;
+}
+
+audio.recording {
+  width: 100%;
+  margin: 14px 0 8px;
+  filter: invert(1) hue-rotate(180deg) saturate(.7);
+}
+.recording-meta {
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg-subtle); margin-bottom: 6px;
+}
+
+.summary-quote {
+  font-size: 16px; font-weight: 300; line-height: 1.6;
+  color: var(--fg); padding: 18px 24px;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2); margin: 16px 0 24px;
+  font-style: italic;
+  border-radius: 0 8px 8px 0;
+}
+
+.led-empty { text-align: center; padding: 60px 20px; color: var(--fg-subtle); font-size: 13px; }
+
+.colophon {
+  margin-top: 60px; padding-top: 18px; border-top: 1px solid var(--border);
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--fg-subtle);
+  font-feature-settings: "tnum" 1;
+}
+.colophon code {
+  font-family: ui-monospace, monospace; font-size: 10px;
+  text-transform: none; letter-spacing: .02em;
+  color: var(--fg-muted);
+}
+</style>
+</head><body><div class="shell">
+<div class="masthead">
+  <div class="brand">Sales <span>Cockpit</span></div>
+  <div class="crumb"><a href="../">Sales Briefing</a><span class="sep">/</span><span>Connected Busy</span></div>
+</div>
+
+<div class="eyebrow">
+  <div class="label">Categoría</div>
+  <div class="meta">22 calls · 5.5% del total</div>
+</div>
+<h1>Connected Busy</h1>
+<div class="sub">22 llamadas clasificadas · clic en una fila para ver detalle</div>
+<table class="calls">
+<thead><tr><th>Fecha</th><th>Contacto</th><th>Duración</th><th>Score</th><th>Resumen LLM</th></tr></thead>
+<tbody><tr onclick="location.href='../calls/hUDvSqGbtKFed0sDtF7N.html'">
+            <td>06 May 2026 16:08</td>
+            <td class="contact">Jesus Sanchez Diaz</td>
+            <td class="num">15s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Joan introduced herself and Actual Talent, but the prospect immediately declined the call, stating he couldn&#x27;t speak now.</td>
+        </tr><tr onclick="location.href='../calls/GQ0C2oItRrXyRgW2zo2P.html'">
+            <td>06 May 2026 14:54</td>
+            <td class="contact">Esther Benítez Gutiérrez</td>
+            <td class="num">35s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Joan called Esther who was traveling and unable to talk; prospect agreed to receive an email follow-up instead of engaging in conversation.</td>
+        </tr><tr onclick="location.href='../calls/pvG6PQbpZZ1hpYu3shAv.html'">
+            <td>06 May 2026 14:45</td>
+            <td class="contact">Miguel Ángel Martínez Chacón</td>
+            <td class="num">81s</td>
+            <td><span class="score-pill lo">35</span></td>
+            <td class="summary">Joan introduced herself and Actual Talent, mentioned seeing open engineer/analyst positions, but Miguel Ángel immediately requested a callba</td>
+        </tr><tr onclick="location.href='../calls/cHJdtz0kAe9zjRgxFp3z.html'">
+            <td>30 Mar 2026 08:14</td>
+            <td class="contact">Paula Ponticorvo</td>
+            <td class="num">5s</td>
+            <td><span class="score-pill lo">0</span></td>
+            <td class="summary">Prospect immediately indicated they are unavailable and cannot talk now.</td>
+        </tr><tr onclick="location.href='../calls/Jdjtf150JiwCR7Etf8Jn.html'">
+            <td>20 Mar 2026 16:16</td>
+            <td class="contact">Olga Figuerola</td>
+            <td class="num">18s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Joan introduced herself and Actual Talent but the prospect (Olga) immediately cut the call short, indicating she was busy and asked to call </td>
+        </tr><tr onclick="location.href='../calls/sSbn5JF1GaY8zIM39BN2.html'">
+            <td>17 Mar 2026 16:14</td>
+            <td class="contact">Neus Llistosella</td>
+            <td class="num">31s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Joan reached Neus but the prospect was on a train with poor coverage and asked to be called back tomorrow; no discovery occurred due to conn</td>
+        </tr><tr onclick="location.href='../calls/SAelZAbGcWbuiHLsBmQc.html'">
+            <td>16 Mar 2026 15:07</td>
+            <td class="contact">Luis Beña</td>
+            <td class="num">5s</td>
+            <td><span class="score-pill lo">0</span></td>
+            <td class="summary">Prospect answered but immediately indicated unavailability; no discovery conversation took place.</td>
+        </tr><tr onclick="location.href='../calls/4IAqOyrIXKCckyd0lymY.html'">
+            <td>26 Feb 2026 15:57</td>
+            <td class="contact">Noemí Puche</td>
+            <td class="num">101s</td>
+            <td><span class="score-pill lo">35</span></td>
+            <td class="summary">Prospect was busy and unable to talk; Joan secured a callback for tomorrow at 12pm but conducted minimal discovery given the time constraint</td>
+        </tr><tr onclick="location.href='../calls/WNAF4BasrCk9qaP4cPLu.html'">
+            <td>26 Feb 2026 13:54</td>
+            <td class="contact">Neus Llistosella</td>
+            <td class="num">23s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Prospect was in a meeting and immediately asked Joan to call back in 10 minutes; no discovery conversation took place.</td>
+        </tr><tr onclick="location.href='../calls/5rO9qODy9aS4lfSrm0gq.html'">
+            <td>25 Feb 2026 10:56</td>
+            <td class="contact">Sabina Griño</td>
+            <td class="num">22s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Joan called Sabina, introduced herself and Actual Talent, but Sabina was in a meeting and unable to talk; Joan offered to call back later an</td>
+        </tr><tr onclick="location.href='../calls/Zb2vPch6RxcB6L1GMHA7.html'">
+            <td>24 Feb 2026 16:04</td>
+            <td class="contact">Jordi Suárez</td>
+            <td class="num">36s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Prospect answered but immediately indicated they were busy and asked Joan to call back in 5 minutes, with no discovery conversation occurrin</td>
+        </tr><tr onclick="location.href='../calls/l2tXGn0Kql6uth4AFeeO.html'">
+            <td>24 Feb 2026 14:02</td>
+            <td class="contact">Jordi Suárez</td>
+            <td class="num">33s</td>
+            <td><span class="score-pill lo">15</span></td>
+            <td class="summary">Joan reached out to a prospect she knew from a prior event, but the prospect was entering a meeting and requested a callback later; a follow</td>
+        </tr><tr onclick="location.href='../calls/S0E4bXuuDpxQqLJLyHaS.html'">
+            <td>23 Feb 2026 16:50</td>
+            <td class="contact">Esteban Konyay Cidi</td>
+            <td class="num">41s</td>
+            <td><span class="score-pill lo">15</span></td>
+            <td class="summary">Prospect answered but immediately stated they were unavailable due to workload, though Joan successfully scheduled a follow-up call for Thur</td>
+        </tr><tr onclick="location.href='../calls/h8MaskJ9Kf579l01x47I.html'">
+            <td>20 Feb 2026 10:19</td>
+            <td class="contact">Elena Ramos</td>
+            <td class="num">8s</td>
+            <td><span class="score-pill lo">0</span></td>
+            <td class="summary">Call connected but prospect&#x27;s line was busy; no conversation took place.</td>
+        </tr><tr onclick="location.href='../calls/EgzLsMvBSQCaXG21TZPO.html'">
+            <td>18 Feb 2026 11:18</td>
+            <td class="contact">Virginia Gómez Florido</td>
+            <td class="num">39s</td>
+            <td><span class="score-pill lo">15</span></td>
+            <td class="summary">Prospect was engaged in a video call and unable to talk; recruiter acknowledged the constraint and successfully rescheduled for Friday at th</td>
+        </tr><tr onclick="location.href='../calls/VdVA4BjbRyyz5fJvFRs1.html'">
+            <td>17 Feb 2026 10:42</td>
+            <td class="contact">Gabriel Ortiz Remon</td>
+            <td class="num">24s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Prospect answered but immediately stated unavailability and requested a callback at 5 PM; no discovery of hiring needs or situation occurred</td>
+        </tr><tr onclick="location.href='../calls/l2RJ3x8m5MaO7QooA8Wn.html'">
+            <td>05 Feb 2026 16:34</td>
+            <td class="contact">Carlos Liévano</td>
+            <td class="num">60s</td>
+            <td><span class="score-pill lo">25</span></td>
+            <td class="summary">Joan called Carlos, introduced herself and Actual Talent, mentioned his recent role at Foundever, but Carlos immediately stated he was in a </td>
+        </tr><tr onclick="location.href='../calls/J5VNQqbwg0muU83mP5TU.html'">
+            <td>04 Feb 2026 11:56</td>
+            <td class="contact">Angels Pique</td>
+            <td class="num">29s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Joan called Ángels who was in a meeting and requested a callback at 6 PM; no discovery was possible due to prospect&#x27;s unavailability.</td>
+        </tr><tr onclick="location.href='../calls/lAVTtHvvkeV67g4jO0NT.html'">
+            <td>02 Feb 2026 10:21</td>
+            <td class="contact">Tania Usieto</td>
+            <td class="num">38s</td>
+            <td><span class="score-pill lo">15</span></td>
+            <td class="summary">Joan called Tania who was in a meeting; prospect asked to talk later, and Joan offered to send information or have Tania email about her nee</td>
+        </tr><tr onclick="location.href='../calls/QE8JOX49N4oVW7VC0TZV.html'">
+            <td>30 Jan 2026 16:50</td>
+            <td class="contact">Renata Prosci</td>
+            <td class="num">62s</td>
+            <td><span class="score-pill lo">15</span></td>
+            <td class="summary">Joan called Renata at RHI, introduced herself and Actual Talent, but Renata was in a meeting and unable to talk; they scheduled a callback f</td>
+        </tr><tr onclick="location.href='../calls/sysLKIkTkjqpgBh63gXF.html'">
+            <td>26 Jan 2026 08:27</td>
+            <td class="contact">Virginia Gómez Florido</td>
+            <td class="num">22s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Joan reached out to Virginia who had apparently requested a call, but Virginia was unavailable and asked to be called back later; a callback</td>
+        </tr><tr onclick="location.href='../calls/MUq1qSSu77neUh7GQel5.html'">
+            <td>21 Jan 2026 13:41</td>
+            <td class="contact">Andrea Weber</td>
+            <td class="num">30s</td>
+            <td><span class="score-pill lo">5</span></td>
+            <td class="summary">Joan called Andrea who was on sick leave and unable to take the call; prospect provided an alternative contact method (careers email) but no</td>
+        </tr></tbody>
+</table>
+<div class="colophon">22 de 398 calls totales · clasificación Whisper + Claude Haiku</div>
+</div></body></html>

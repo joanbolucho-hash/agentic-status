@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp — Sales Cockpit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08090a; --surface:#111214; --surface-2:#16181b; --surface-hi:#1d1f23;
+  --border:#1d1f23; --border-strong:#26292e;
+  --fg:#e8eaed; --fg-muted:#9ca3af; --fg-subtle:#6b7280;
+  --accent:#C0191E; --accent-soft:rgba(192,25,30,.16); --accent-fg:#FCA5A5;
+  --at-red:#C0191E; --at-green:#2D5F3D; --at-amber:#B8851A;
+  --at-cream:#F0EEEB; --at-beige:#E8E5DC; --at-gray:#9A9A9A;
+  --warn:#B8851A; --info:#4A6FA5;
+  --rule:rgba(255,255,255,.06); --rule-soft:rgba(255,255,255,.03);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:'Montserrat',system-ui,sans-serif;font-weight:300;color:var(--fg);background:var(--bg);line-height:1.6;font-feature-settings:"tnum" 1,"lnum" 1}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--accent)}
+.shell{max-width:980px;margin:0 auto;padding:32px 28px 80px}
+.masthead{border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:32px;display:flex;align-items:center;gap:16px}
+.masthead .brand{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--fg)}
+.masthead .brand::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.masthead .brand span{color:var(--accent);font-weight:700}
+.masthead .crumb{font-size:11px;color:var(--fg-subtle);letter-spacing:.12em;text-transform:uppercase;font-weight:500;flex:1;text-align:right}
+.masthead .crumb a:hover{color:var(--accent)}
+.masthead .crumb .sep{margin:0 10px;color:var(--fg-subtle)}
+.eyebrow{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--border);padding-top:10px;margin:36px 0 24px}
+.eyebrow .label{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg)}
+.eyebrow .meta{font-size:11px;color:var(--fg-subtle);letter-spacing:.06em;text-transform:uppercase}
+h1{font-size:clamp(22px,3vw,32px);font-weight:300;letter-spacing:-.015em;line-height:1.2;margin-top:24px;color:var(--fg)}
+h1 em{font-style:normal;color:var(--accent);font-weight:500}
+.sub{color:var(--fg-muted);font-size:12px;margin-top:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+table.list{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+table.list thead tr th{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--fg-subtle);border-bottom:1px solid var(--border);padding:10px 8px 10px 0;text-align:left}
+table.list td{padding:14px 8px 14px 0;border-bottom:1px solid var(--rule-soft);color:var(--fg-muted)}
+table.list tbody tr{cursor:pointer;transition:background .15s}
+table.list tbody tr:hover{background:var(--surface-2)}
+table.list tbody tr:hover td.contact{color:var(--accent)}
+table.list .contact{font-weight:500;color:var(--fg)}
+table.list .preview{color:var(--fg-subtle);font-size:12px;max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{display:inline-block;padding:3px 8px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border-radius:4px}
+.badge.outbound{background:var(--accent-soft);color:var(--accent-fg)}
+.badge.inbound{background:rgba(45,95,61,.20);color:#86c79a}
+.badge.replied{background:rgba(184,133,26,.18);color:#f0c065;margin-left:6px}
+.thread{margin-top:8px;display:flex;flex-direction:column;gap:14px}
+.msg{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.msg.outbound{border-left:3px solid var(--accent)}
+.msg.inbound{border-left:3px solid var(--at-green)}
+.msg-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:11px;letter-spacing:.06em;color:var(--fg-subtle);flex-wrap:wrap;gap:8px}
+.msg-body{white-space:pre-wrap;font-size:14px;line-height:1.65;color:var(--fg-muted);font-family:'Montserrat',system-ui,sans-serif}
+.msg-meta{font-size:10px;color:var(--fg-subtle);letter-spacing:.04em;margin-top:8px}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:24px 0 28px}
+.kpi{padding:16px 14px 16px 0;border-right:1px solid var(--border)}
+.kpi:last-child{border-right:none;padding-right:0}
+.kpi .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;margin-bottom:8px}
+.kpi .value{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--fg)}
+.colophon{margin-top:60px;padding-top:18px;border-top:1px solid var(--border);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-subtle)}
+.colophon code{font-family:ui-monospace,monospace;font-size:10px;text-transform:none;letter-spacing:.02em;color:var(--fg-muted)}
+.led-empty{text-align:center;padding:60px 20px;color:var(--fg-subtle);font-size:13px}
+</style>
+</head><body><div class="shell">
+<div class="masthead">
+  <div class="brand">Sales <span>Cockpit</span></div>
+  <div class="crumb"><a href="../">Sales Cockpit</a><span class="sep">/</span><span>WhatsApp</span></div>
+</div>
+
+<div class="eyebrow"><div class="label">WhatsApp</div><div class="meta">102 conversaciones</div></div>
+<h1>Conversaciones por WhatsApp</h1>
+<div class="sub">102 threads WhatsApp · clic en una fila para ver el hilo completo</div>
+<table class="list">
+<thead><tr><th>Última actividad</th><th>Contacto</th><th>Rep</th><th>Msgs</th><th>Preview</th></tr></thead>
+<tbody><tr onclick="location.href='0qEMxkelhY0MbuzCrg2t.html'">
+            <td>11 Mar 2026 21:12</td>
+            <td class="contact">07710 173736</td>
+            <td>—</td>
+            <td>0↑ 1↓</td>
+            <td class="preview">77569 es tu código de confirmación de Facebook</td>
+        </tr><tr onclick="location.href='DpQRm8KCjSPLv65qIU8w.html'">
+            <td>11 Mar 2026 14:59</td>
+            <td class="contact">Olga Figuerola · Urgo Medical</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Olga? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agend</td>
+        </tr><tr onclick="location.href='Xs2f0Vxqt9iIY43lI4ps.html'">
+            <td>11 Mar 2026 14:58</td>
+            <td class="contact">Montse Costa · ARaymond</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Montse? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes age</td>
+        </tr><tr onclick="location.href='Pdh48xnhkFa3j4H88ULv.html'">
+            <td>11 Mar 2026 14:57</td>
+            <td class="contact">Sara Bacarisas · Capgemini</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Sara? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agend</td>
+        </tr><tr onclick="location.href='6Iga7fQMAaaxzwE3lfTk.html'">
+            <td>11 Mar 2026 14:25</td>
+            <td class="contact">Virginia Gómez Florido · Coremsa Formación</td>
+            <td>Joan</td>
+            <td>8↑ 2↓</td>
+            <td class="preview">Cuando podemos retomar?</td>
+        </tr><tr onclick="location.href='cJHmbxi7kVV8ENInTuh8.html'">
+            <td>10 Mar 2026 16:56</td>
+            <td class="contact">Laura Escuder · Louis Vuitton</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Laura? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='LKxfCErTTtTAiCVZsYn7.html'">
+            <td>10 Mar 2026 16:56</td>
+            <td class="contact">Zaira Barrena · TheFork, a Tripadvisor company</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Zaira? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='6bD8BRf1GqUsarnKudYJ.html'">
+            <td>10 Mar 2026 16:54</td>
+            <td class="contact">Lidia Fernández García · Veolia</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Lidia? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='xXr96yk3Gs3pBiJoV8Ks.html'">
+            <td>10 Mar 2026 16:52</td>
+            <td class="contact">Lucie Le Boucher · Extia</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Lucie? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='hmjMb3WcaW2IIIjN4MGz.html'">
+            <td>10 Mar 2026 16:42</td>
+            <td class="contact">Amadeo Durán Moreno · TheFork, a Tripadvisor company</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Amadeo? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes age</td>
+        </tr><tr onclick="location.href='JNbpl3pdK6crpV7KYWGL.html'">
+            <td>10 Mar 2026 16:39</td>
+            <td class="contact">Jennifer Cabasson · JULES &amp; JENN</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Jennifer? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes a</td>
+        </tr><tr onclick="location.href='72ArD9JrTPESG145WNz7.html'">
+            <td>10 Mar 2026 16:38</td>
+            <td class="contact">Anna Korkus · Criteo</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Anna? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agend</td>
+        </tr><tr onclick="location.href='oKviRimsjo3DokoTJzuJ.html'">
+            <td>10 Mar 2026 14:05</td>
+            <td class="contact">Ana Sancho · ORSAL</td>
+            <td>Joan</td>
+            <td>9↑ 2↓</td>
+            <td class="preview">Te lo he puesto para la semana que viene</td>
+        </tr><tr onclick="location.href='hbhfP7qJfEIqEsdXpji3.html'">
+            <td>09 Mar 2026 19:19</td>
+            <td class="contact">Silvia Oliva · ELIS</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Silvia? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes age</td>
+        </tr><tr onclick="location.href='hM42Xd7uemJN1fz3hHxK.html'">
+            <td>09 Mar 2026 19:17</td>
+            <td class="contact">Anna Wojas · Guerlain</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Anna? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agend</td>
+        </tr><tr onclick="location.href='FXUigBkOpKwRIUCozHZH.html'">
+            <td>09 Mar 2026 19:17</td>
+            <td class="contact">Fiona Party · GRAITEC GROUP</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Fiona? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='xCIP8n7hbqmHUzKQZ7LD.html'">
+            <td>09 Mar 2026 17:21</td>
+            <td class="contact">Xavier Mercader · Imerys</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Xavier? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes age</td>
+        </tr><tr onclick="location.href='gE3lmgGuKo81kVokYWXB.html'">
+            <td>09 Mar 2026 17:16</td>
+            <td class="contact">Mathilde Pannier · Extia</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Mathilde? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes a</td>
+        </tr><tr onclick="location.href='l2Jnh4ozCsDlA3huBdfk.html'">
+            <td>09 Mar 2026 16:50</td>
+            <td class="contact">Ariadna Roura · Danone</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Ariadna? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes ag</td>
+        </tr><tr onclick="location.href='ZY0RLailqzmHULW2nGcd.html'">
+            <td>09 Mar 2026 13:57</td>
+            <td class="contact">Inma Rodriguez · ELIS</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Inma? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agend</td>
+        </tr><tr onclick="location.href='KtXOZPgmjrdBD2mQbgjS.html'">
+            <td>09 Mar 2026 11:30</td>
+            <td class="contact">Hernán Spika · Sanofi</td>
+            <td>Joan</td>
+            <td>8↑ 0↓</td>
+            <td class="preview">Tenemos reunión hoy Hola Hernán, te recuerdo que en un rato tenemos reunión. Nos vemos!</td>
+        </tr><tr onclick="location.href='Am0ZchIqqq0tGo9QhsOO.html'">
+            <td>09 Mar 2026 11:06</td>
+            <td class="contact">Neus Llistosella · Arkema</td>
+            <td>Joan</td>
+            <td>4↑ 1↓</td>
+            <td class="preview">Et conectes?</td>
+        </tr><tr onclick="location.href='4XXxmOI6bevmGz4UVvDz.html'">
+            <td>09 Mar 2026 09:55</td>
+            <td class="contact">Lourdes Moreno · VeryChic</td>
+            <td>Joan</td>
+            <td>5↑ 2↓</td>
+            <td class="preview">Hola Joan lo llevamos desde HR, pero vamos muy liados con otros proyectos!</td>
+        </tr><tr onclick="location.href='1j7jHAkB0SKe6NVQaAnU.html'">
+            <td>09 Mar 2026 08:59</td>
+            <td class="contact">Javier Papernest</td>
+            <td>—</td>
+            <td>3↑ 2↓</td>
+            <td class="preview">Perfe gracias!</td>
+        </tr><tr onclick="location.href='CihGdvbRVn7vkZ5PI4EA.html'">
+            <td>09 Mar 2026 08:38</td>
+            <td class="contact">Noemy Fernandes · Pierre Fabre Laboratories</td>
+            <td>Joan</td>
+            <td>5↑ 1↓</td>
+            <td class="preview">Hola Joan, entiendo vuestra posición pero ya los mensajes por whatsaap son demasiado invasivos. Gracias pero ahora mismo</td>
+        </tr><tr onclick="location.href='RiafhKDEvIUkQ5ev9g6R.html'">
+            <td>08 Mar 2026 17:58</td>
+            <td class="contact">Marc Nicola · Tradebe</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Marc? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agend</td>
+        </tr><tr onclick="location.href='IU9BRytt65Odmjq3ukiE.html'">
+            <td>08 Mar 2026 15:20</td>
+            <td class="contact">Silvia Giuliano</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Silvia? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes age</td>
+        </tr><tr onclick="location.href='XvzFQogVkCBMBcizuj8S.html'">
+            <td>08 Mar 2026 15:20</td>
+            <td class="contact">Nadia H.</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Nadia? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='gHuNpThpSUPf6KSQ5viq.html'">
+            <td>08 Mar 2026 14:29</td>
+            <td class="contact">María Lima Fernández</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">María? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='WookKwv1upxo9rvLHFvQ.html'">
+            <td>08 Mar 2026 14:28</td>
+            <td class="contact">Javier Real · Louis Vuitton</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Javier? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes age</td>
+        </tr><tr onclick="location.href='nfGeuxR6n0SiIfJ5Kio0.html'">
+            <td>08 Mar 2026 14:03</td>
+            <td class="contact">Maria De Lara · EssilorLuxottica</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Maria? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='Fpp2HdATM4ahd8m7eFOE.html'">
+            <td>08 Mar 2026 13:31</td>
+            <td class="contact">Luis Beña · Louis Vuitton</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Luis? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agend</td>
+        </tr><tr onclick="location.href='dTvGPqgBNwhxQxmyiHxU.html'">
+            <td>07 Mar 2026 19:31</td>
+            <td class="contact">Alejandro Fresneda</td>
+            <td>—</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Alejandro? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes </td>
+        </tr><tr onclick="location.href='ekaqvXTJic9kZbaYRUAH.html'">
+            <td>07 Mar 2026 19:20</td>
+            <td class="contact">Carlotta Ghelardini</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Carlotta? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes a</td>
+        </tr><tr onclick="location.href='vDXPB1k4OFDbNjP1FQTL.html'">
+            <td>07 Mar 2026 19:05</td>
+            <td class="contact">Diego García Solano</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Diego? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='Hlf9ZIDZTSLpUxKuDLZW.html'">
+            <td>07 Mar 2026 18:56</td>
+            <td class="contact">Jose Barco</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Jose? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agend</td>
+        </tr><tr onclick="location.href='cxWmK5doeBHfqy4GxbFX.html'">
+            <td>07 Mar 2026 17:44</td>
+            <td class="contact">Sandrine Dupuy · Malt</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Sandrine? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes a</td>
+        </tr><tr onclick="location.href='6v7FAxo4sI73oPQBiNRd.html'">
+            <td>07 Mar 2026 13:17</td>
+            <td class="contact">Arantxa Fernandez · Danone</td>
+            <td>Joan</td>
+            <td>6↑ 0↓</td>
+            <td class="preview">Arantxa? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes ag</td>
+        </tr><tr onclick="location.href='cJQmvpA81IxwibmayMNI.html'">
+            <td>06 Mar 2026 08:00</td>
+            <td class="contact">Nuria Segura · Safic-Alcan</td>
+            <td>Joan</td>
+            <td>2↑ 0↓</td>
+            <td class="preview">Tenemos reunión hoy Hola Nuria, te recuerdo que en un rato tenemos reunión. Nos vemos!</td>
+        </tr><tr onclick="location.href='F1OLYQq6XFWxA8zkfc0e.html'">
+            <td>05 Mar 2026 14:51</td>
+            <td class="contact">Ivanna Di Pietro · Forvis Mazars Group</td>
+            <td>Joan</td>
+            <td>4↑ 1↓</td>
+            <td class="preview">Perdona, de que se trata ?</td>
+        </tr><tr onclick="location.href='nCDdt3gw7zw6bJHgZgen.html'">
+            <td>05 Mar 2026 10:38</td>
+            <td class="contact">Karim Barmose</td>
+            <td>Joan</td>
+            <td>23↑ 27↓</td>
+            <td class="preview">Sisi</td>
+        </tr><tr onclick="location.href='5qoLMkDaWtrCmgATd4jX.html'">
+            <td>05 Mar 2026 07:00</td>
+            <td class="contact">Sara Castro · Danone</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Tenemos reunión hoy Hola Sara, te recuerdo que en un rato tenemos reunión. Nos vemos!</td>
+        </tr><tr onclick="location.href='1MLZqhZrRgomi5lkAaqN.html'">
+            <td>04 Mar 2026 16:26</td>
+            <td class="contact">Sylvain Boy 🍀😃💫</td>
+            <td>Joan</td>
+            <td>8↑ 7↓</td>
+            <td class="preview">Mañana lo verás 🙌</td>
+        </tr><tr onclick="location.href='mwxGS35pAC0UnmGxbQB6.html'">
+            <td>04 Mar 2026 15:39</td>
+            <td class="contact">Jésica Sánchez Antolín · Groupe Atlantic</td>
+            <td>Joan</td>
+            <td>5↑ 2↓</td>
+            <td class="preview">Saludos</td>
+        </tr><tr onclick="location.href='mW1n9U1cAdLvwwcInMGj.html'">
+            <td>03 Mar 2026 16:44</td>
+            <td class="contact">Xavier Trapero · BCNVision</td>
+            <td>Joan</td>
+            <td>4↑ 0↓</td>
+            <td class="preview">Hola de nuevo Xavier Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='QxYLWO6e86XPM9qQsEKE.html'">
+            <td>03 Mar 2026 16:15</td>
+            <td class="contact">Adriana Fernandez · Veepee</td>
+            <td>Joan</td>
+            <td>5↑ 1↓</td>
+            <td class="preview">Hola, te mandé un correo también. Dejo anotado que no te contactemos por aquí. Por donde podríamos hablar sobre la posic</td>
+        </tr><tr onclick="location.href='iZALGqHfcF1aYddVxaw1.html'">
+            <td>03 Mar 2026 08:59</td>
+            <td class="contact">Olivier Nourrain · papernest</td>
+            <td>Joan</td>
+            <td>2↑ 1↓</td>
+            <td class="preview">Gracias, te deseo un buen martes a tí también y que trabajes por tus sueños! - Joan Boluda</td>
+        </tr><tr onclick="location.href='U4DGqcJolJHDP3K1KCTg.html'">
+            <td>02 Mar 2026 15:59</td>
+            <td class="contact">Audrey Stanisiere · Mindquest</td>
+            <td>Joan</td>
+            <td>3↑ 1↓</td>
+            <td class="preview">Gracias por su llamada y mensaje peron no estamos interesados.  Saludos</td>
+        </tr><tr onclick="location.href='2qTSuY0t5Hcn4T2mKRMx.html'">
+            <td>02 Mar 2026 13:01</td>
+            <td class="contact">Esteban Konyay Cidi</td>
+            <td>Joan</td>
+            <td>5↑ 4↓</td>
+            <td class="preview">Tenemos reunión hoy Hola Esteban, te recuerdo que en un rato tenemos reunión. Nos vemos!</td>
+        </tr><tr onclick="location.href='9FhZW4SKQpiNn1X5Hhdb.html'">
+            <td>02 Mar 2026 12:05</td>
+            <td class="contact">Gabriel Novas · Carrefour</td>
+            <td>Joan</td>
+            <td>2↑ 1↓</td>
+            <td class="preview">Hola, no no gestiono actualmente nada de selección y/o talento. Gracias</td>
+        </tr><tr onclick="location.href='DT0cr8GaJIS2GmbJeNAg.html'">
+            <td>02 Mar 2026 06:30</td>
+            <td class="contact">Chloé Vendrand · Pricing HUB</td>
+            <td>Joan</td>
+            <td>2↑ 1↓</td>
+            <td class="preview">Tenemos reunión hoy Hola Chloé, te recuerdo que en un rato tenemos reunión. Nos vemos!</td>
+        </tr><tr onclick="location.href='GGhSeEXOFYTyoZ5Oj7eI.html'">
+            <td>01 Mar 2026 13:54</td>
+            <td class="contact">Camilo Ubeira · Groupe SEB</td>
+            <td>Joan</td>
+            <td>2↑ 1↓</td>
+            <td class="preview">hola, si</td>
+        </tr><tr onclick="location.href='plqHq88W1Y8quDEBN8Lk.html'">
+            <td>28 Feb 2026 11:02</td>
+            <td class="contact">Rosa Pintado · B. Braun Group</td>
+            <td>Joan</td>
+            <td>2↑ 2↓</td>
+            <td class="preview">Podeu esborrar aquest número? Merci!</td>
+        </tr><tr onclick="location.href='QvXygeixfyvBPYLRa1xp.html'">
+            <td>27 Feb 2026 11:26</td>
+            <td class="contact">Mar Hernandez · ESTEVE</td>
+            <td>Joan</td>
+            <td>3↑ 1↓</td>
+            <td class="preview">Sin problema. Insistí porque me enviaste un sms para hablar más tarde y sé que conoces a Sylvain. De todos modos entiend</td>
+        </tr><tr onclick="location.href='eJB1g2Z1C5ItUO5ylX7v.html'">
+            <td>27 Feb 2026 08:57</td>
+            <td class="contact">Maria Lemonidou · BIC</td>
+            <td>Joan</td>
+            <td>3↑ 2↓</td>
+            <td class="preview">hola Joan, soy Marta, no Maria. puedes hablar ahora?</td>
+        </tr><tr onclick="location.href='mx4nmrrrfW8IpQ0XvZAc.html'">
+            <td>26 Feb 2026 17:06</td>
+            <td class="contact">Andrea Torres Martínez · SLAPS</td>
+            <td>Joan</td>
+            <td>2↑ 0↓</td>
+            <td class="preview"></td>
+        </tr><tr onclick="location.href='uZLSHLQt95zGB9H7teTZ.html'">
+            <td>26 Feb 2026 16:53</td>
+            <td class="contact">Alma Netzel · AXA Partners</td>
+            <td>Joan</td>
+            <td>2↑ 1↓</td>
+            <td class="preview"></td>
+        </tr><tr onclick="location.href='bCMKboo0MxNHzYbl3z5t.html'">
+            <td>26 Feb 2026 13:46</td>
+            <td class="contact">Enrique Parellada Y Basté · SQLI</td>
+            <td>Joan</td>
+            <td>2↑ 2↓</td>
+            <td class="preview">Como has conseguido mi número personal ?</td>
+        </tr><tr onclick="location.href='HCAbSMmQa5UNKfd5h2WQ.html'">
+            <td>25 Feb 2026 22:08</td>
+            <td class="contact">Magdalena Calvo · CEVA SANTE ANIMALE</td>
+            <td>Joan</td>
+            <td>1↑ 2↓</td>
+            <td class="preview">Y con quién quiere hablar?</td>
+        </tr><tr onclick="location.href='jYkUheoag0YqU0Sjx0gG.html'">
+            <td>25 Feb 2026 15:32</td>
+            <td class="contact">Lena Sarty · Beelix</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Hola Lena! Soy Joan, de Actual Talent. Te llamé y te mandé un email por un tema de contratación en Beelix. Lo podemos ha</td>
+        </tr><tr onclick="location.href='Cc8qlEpi68qZselHhkrR.html'">
+            <td>25 Feb 2026 15:06</td>
+            <td class="contact">Julie Bats · Click&amp;Boat</td>
+            <td>Joan</td>
+            <td>2↑ 1↓</td>
+            <td class="preview">gracias!</td>
+        </tr><tr onclick="location.href='ZI5ZYcRUrjKn4Lx3CON9.html'">
+            <td>25 Feb 2026 13:49</td>
+            <td class="contact">Núria Cartanyà · Veolia</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Hola Núria! Soy Joan, de Actual Talent. Te llamé y te mandé un email por un tema de contratación en Veolia. Lo podemos </td>
+        </tr><tr onclick="location.href='lzVuAnjnTk57ZAlHQ6lX.html'">
+            <td>24 Feb 2026 13:30</td>
+            <td class="contact">Susana Chaveinte García · COLD CULTURE</td>
+            <td>Joan</td>
+            <td>2↑ 0↓</td>
+            <td class="preview">Tenemos reunión hoy Hola Susana, te recuerdo que en un rato tenemos reunión. Nos vemos!</td>
+        </tr><tr onclick="location.href='lt2Kf5M9h9lUoIhqJvy6.html'">
+            <td>24 Feb 2026 11:48</td>
+            <td class="contact">Anaïta Dehkordi · DAHER</td>
+            <td>Joan</td>
+            <td>3↑ 1↓</td>
+            <td class="preview">en cualquier caso quería invitarte a un desayuno ejecutivo con directivos de rrhh</td>
+        </tr><tr onclick="location.href='bPqePWck2KzzkScLVYip.html'">
+            <td>24 Feb 2026 10:28</td>
+            <td class="contact">Bruno Martins · Livo Health</td>
+            <td>Joan</td>
+            <td>26↑ 21↓</td>
+            <td class="preview">Joan, que tal? - No he podid aprobar la propuesta. Creo que antes de la ronda las decisiones están más lentas. Te dejo s</td>
+        </tr><tr onclick="location.href='NaerrBGS6EPcJhiacVww.html'">
+            <td>24 Feb 2026 10:02</td>
+            <td class="contact">Charlotte Parmentelot · bsport</td>
+            <td>Joan</td>
+            <td>3↑ 1↓</td>
+            <td class="preview">Me dices si te gusta la idea!</td>
+        </tr><tr onclick="location.href='cax2UYZF21O2aqqRFOx5.html'">
+            <td>24 Feb 2026 06:37</td>
+            <td class="contact">Estefania Estrada Vilchez · Deloitte</td>
+            <td>Joan</td>
+            <td>5↑ 4↓</td>
+            <td class="preview">sin problema</td>
+        </tr><tr onclick="location.href='VVFRVjahKxfjvGKSqHfm.html'">
+            <td>23 Feb 2026 14:29</td>
+            <td class="contact">Pilar Cáceres · Veritas</td>
+            <td>Joan</td>
+            <td>11↑ 3↓</td>
+            <td class="preview">Hola Pilar, prefieres que te agende yo?</td>
+        </tr><tr onclick="location.href='y1kj9aF8mo3EOwjY4xG3.html'">
+            <td>23 Feb 2026 14:18</td>
+            <td class="contact">Esther Farreny · Pierre Fabre Laboratories</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Hola Esther! Soy Joan, de Actual Talent. Te llamé y te mandé un email por un tema de contratación en Pierre Fabre Labora</td>
+        </tr><tr onclick="location.href='paTXojHnVPi0bMdNcXB8.html'">
+            <td>23 Feb 2026 14:18</td>
+            <td class="contact">Gemma Siles · Lacoste</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Hola Gemma! Soy Joan, de Actual Talent. Te llamé y te mandé un email por un tema de contratación en Lacoste. Lo podemos </td>
+        </tr><tr onclick="location.href='CBH3VaIU1d19Mabbg6n3.html'">
+            <td>21 Feb 2026 15:05</td>
+            <td class="contact">Jean-Marc · Worldsensing</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Jean-Marc? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes </td>
+        </tr><tr onclick="location.href='UC5yn3kYGXYguhS4ytoA.html'">
+            <td>21 Feb 2026 14:53</td>
+            <td class="contact">Isidora Lopez Ugalde · Roca Sanitario SA</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Isidora? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes ag</td>
+        </tr><tr onclick="location.href='iwLIFXUJvjtltDyOdwMh.html'">
+            <td>21 Feb 2026 14:52</td>
+            <td class="contact">Olena Kurt · LaFinteca</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Olena? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='2kJlCIM8mdET6weGpjp3.html'">
+            <td>21 Feb 2026 14:46</td>
+            <td class="contact">Gabriela Fernandez · Essity</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Gabriela? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes a</td>
+        </tr><tr onclick="location.href='JXTHCFSZAasKjO8rQMCF.html'">
+            <td>21 Feb 2026 14:16</td>
+            <td class="contact">Raquel Moreno · Grupo aFinance</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Raquel? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes age</td>
+        </tr><tr onclick="location.href='F5yfkTMzInR6d14MAwBU.html'">
+            <td>21 Feb 2026 14:14</td>
+            <td class="contact">Carla Canales La Serna · Fundación Carta de la Paz dirigida a la ONU</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Carla? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes agen</td>
+        </tr><tr onclick="location.href='lbWhIwpd3x1JjvpCWYxR.html'">
+            <td>21 Feb 2026 14:12</td>
+            <td class="contact">Miriam Bonillo López · Cinesa</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Miriam? Llevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo? En cualquier caso me puedes age</td>
+        </tr><tr onclick="location.href='lSK17IVvoqQEeVIHa9CK.html'">
+            <td>20 Feb 2026 16:18</td>
+            <td class="contact">Agathe Tavernier · Skello</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Hola Agathe! Soy Joan, de Actual Talent. Te llamé y te mandé un email por un tema de contratación en Skello. Lo podemos </td>
+        </tr><tr onclick="location.href='udC4DpzPqddy30ha0fh7.html'">
+            <td>20 Feb 2026 16:10</td>
+            <td class="contact">Giorgio Benassi · SEPHORA</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Hola Giorgio! Soy Joan, de Actual Talent. Te llamé y te mandé un email por un tema de contratación en SEPHORA. Lo podemo</td>
+        </tr><tr onclick="location.href='uO37Pg0ngPc49DSm6KLu.html'">
+            <td>20 Feb 2026 16:04</td>
+            <td class="contact">Gemma Caballero · ALK</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Hola de nuevo Gemma Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='SoYKXRshbkpMDmCTKk1e.html'">
+            <td>20 Feb 2026 16:04</td>
+            <td class="contact">Lola Alonso · ANFACO-CYTMA</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Hola de nuevo Lola Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='m7TrxrCN2xncCpDPuBv0.html'">
+            <td>20 Feb 2026 15:58</td>
+            <td class="contact">Estelle Dethu · Amcor</td>
+            <td>Joan</td>
+            <td>4↑ 0↓</td>
+            <td class="preview">Hola de nuevo Estelle Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='cLXRfvpykxDlybeE32bq.html'">
+            <td>20 Feb 2026 15:58</td>
+            <td class="contact">Silvia García · ENTRERRIOS AUTOMATIZACION S.A</td>
+            <td>Joan</td>
+            <td>4↑ 0↓</td>
+            <td class="preview">Hola de nuevo Silvia Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='rTMP2oBWdr5KE7ahIQwD.html'">
+            <td>20 Feb 2026 15:56</td>
+            <td class="contact">Kristofer Karsten · OneTrust</td>
+            <td>Joan</td>
+            <td>4↑ 0↓</td>
+            <td class="preview">Hola de nuevo Kristofer Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='Vs8dLEZ9KlU1IHOMtYMq.html'">
+            <td>20 Feb 2026 15:56</td>
+            <td class="contact">Cristina Merino · Molgas Energy Group</td>
+            <td>Joan</td>
+            <td>4↑ 0↓</td>
+            <td class="preview">Hola de nuevo Cristina Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='F5rDuMzbNkBR3PoXOzcO.html'">
+            <td>20 Feb 2026 15:56</td>
+            <td class="contact">Susana Ramos · Olistic</td>
+            <td>Joan</td>
+            <td>5↑ 0↓</td>
+            <td class="preview">Hola de nuevo Susana última duda rápida: en Olistic este tema lo lleva más People/Talent o alguien de dirección? Si me d</td>
+        </tr><tr onclick="location.href='Z9BQMjkMLdeT4bAp9osD.html'">
+            <td>20 Feb 2026 15:55</td>
+            <td class="contact">Cristina Del Puerto Quinteiro · ORBIDI</td>
+            <td>Joan</td>
+            <td>5↑ 0↓</td>
+            <td class="preview">Hola de nuevo Cristina última duda rápida: en ORBIDI este tema lo lleva más People/Talent o alguien de dirección? Si me </td>
+        </tr><tr onclick="location.href='1ONR405eiCH3PfQX6CfI.html'">
+            <td>20 Feb 2026 15:55</td>
+            <td class="contact">Jon Junquera · Vitrinor</td>
+            <td>Joan</td>
+            <td>4↑ 0↓</td>
+            <td class="preview">Hola de nuevo Jon Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='vGAhjolaA5dcNHN7OZtj.html'">
+            <td>20 Feb 2026 15:54</td>
+            <td class="contact">Raquel Pulido · PWACS (PW Advisory &amp; Capital Services)</td>
+            <td>Joan</td>
+            <td>4↑ 0↓</td>
+            <td class="preview">Hola de nuevo Raquel Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='DGqUMyJA22mHUPGBY8Xl.html'">
+            <td>20 Feb 2026 11:26</td>
+            <td class="contact">Angels Pique · 4586</td>
+            <td>Joan</td>
+            <td>2↑ 0↓</td>
+            <td class="preview">Hola Angels, me dices si lo recibiste porfa</td>
+        </tr><tr onclick="location.href='tBY4S09W4nqa2EVk91Fc.html'">
+            <td>20 Feb 2026 11:25</td>
+            <td class="contact">Marta Navarro Bartoli · Lyreco Iberia</td>
+            <td>Joan</td>
+            <td>5↑ 5↓</td>
+            <td class="preview">Hecho</td>
+        </tr><tr onclick="location.href='hmkY9sDZfTslRvXTzwaP.html'">
+            <td>20 Feb 2026 11:03</td>
+            <td class="contact">Anna Wohlrab · yaba</td>
+            <td>Joan</td>
+            <td>5↑ 0↓</td>
+            <td class="preview"></td>
+        </tr><tr onclick="location.href='FePKFHl3loKMp59SkBKw.html'">
+            <td>19 Feb 2026 13:02</td>
+            <td class="contact">Yasmina Carmona · COLD CULTURE</td>
+            <td>Joan</td>
+            <td>2↑ 0↓</td>
+            <td class="preview"></td>
+        </tr><tr onclick="location.href='miNKC9h9vYos95ETzzpo.html'">
+            <td>18 Feb 2026 15:18</td>
+            <td class="contact">Isabel Viñas · Teva Pharmaceuticals</td>
+            <td>Joan</td>
+            <td>4↑ 0↓</td>
+            <td class="preview">Hola de nuevo Isabel Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='QaBGrgsj0BAmaB9ef8yq.html'">
+            <td>18 Feb 2026 15:09</td>
+            <td class="contact">Carmen Gómez De La Barrera</td>
+            <td>Joan</td>
+            <td>5↑ 0↓</td>
+            <td class="preview">Hola de nuevo Carmen Si no es prioridad me dices y lo retomamos más adelante</td>
+        </tr><tr onclick="location.href='efOhbCmasrcGnaAiQKIe.html'">
+            <td>17 Feb 2026 12:22</td>
+            <td class="contact">Radosław Świętoń · EPAM Systems</td>
+            <td>Joan</td>
+            <td>3↑ 0↓</td>
+            <td class="preview">Te dejo por aquí un video de mi compi Jessica. Creo que estamos alineados con lo que buscáis en EPAM Systems. Me dices q</td>
+        </tr><tr onclick="location.href='FE6Uua2u18cfMliXa0X3.html'">
+            <td>17 Feb 2026 10:19</td>
+            <td class="contact">Cátia Cunha · SACYR</td>
+            <td>Joan</td>
+            <td>3↑ 1↓</td>
+            <td class="preview">vale, recibido! te mando la info por email :D</td>
+        </tr><tr onclick="location.href='Vc5dM2ywkfUl3MjdHyKI.html'">
+            <td>13 Feb 2026 11:58</td>
+            <td class="contact">Isabel Cardelús · CUBRO</td>
+            <td>Joan</td>
+            <td>1↑ 1↓</td>
+            <td class="preview">Hola Isabel! Alguna novedad sobre esa posición?</td>
+        </tr><tr onclick="location.href='52fGtsLIugnDZYRlen6g.html'">
+            <td>13 Feb 2026 05:30</td>
+            <td class="contact">Ana Santiago </td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Tenemos reunión hoy Hola Ana, te recuerdo que en un rato tenemos reunión. Nos vemos!</td>
+        </tr><tr onclick="location.href='OVkqOeJrmQJBnJjxLCEH.html'">
+            <td>12 Feb 2026 14:20</td>
+            <td class="contact">Ana Martínez · Hero</td>
+            <td>Joan</td>
+            <td>4↑ 1↓</td>
+            <td class="preview">te pongo una llamada para mediados de Marzo</td>
+        </tr><tr onclick="location.href='BnHUQ7Uw12Fiz32UDdMo.html'">
+            <td>02 Feb 2026 09:05</td>
+            <td class="contact">Renata Prosci · RHI Magnesita</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview"></td>
+        </tr><tr onclick="location.href='1Hu4pd3oYLtcZxZo4xZO.html'">
+            <td>26 Jan 2026 09:34</td>
+            <td class="contact">Colette Lupo · Luzia</td>
+            <td>Joan</td>
+            <td>1↑ 0↓</td>
+            <td class="preview">Hola?  Te volví a contactar. Eres tú la persona en Luzia que se encarga de esto?</td>
+        </tr></tbody>
+</table>
+<div class="colophon">Source: GHL conversations TYPE_WHATSAPP · delivered/read receipts no disponibles vía API</div></div></body></html>

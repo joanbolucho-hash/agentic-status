@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Cockpit — Fluxo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:           #08090a;
+  --surface:      #111214;
+  --surface-2:    #16181b;
+  --surface-hi:   #1d1f23;
+  --border:       #1d1f23;
+  --border-strong:#26292e;
+  --fg:           #e8eaed;
+  --fg-muted:     #9ca3af;
+  --fg-subtle:    #6b7280;
+  /* Accent + chart palette: Actual Talent code of colors over Fluxo dark shell */
+  --accent:       #C0191E;
+  --accent-hover: #A01418;
+  --accent-soft:  rgba(192,25,30,.16);
+  --accent-fg:    #FCA5A5;
+  --at-red:       #C0191E;
+  --at-green:     #2D5F3D;
+  --at-amber:     #B8851A;
+  --at-cream:     #F0EEEB;
+  --at-beige:     #E8E5DC;
+  --at-gray:      #9A9A9A;
+  --warn:         #B8851A;
+  --warn-soft:    rgba(184,133,26,.16);
+  --danger:       #C0191E;
+  --info:         #4A6FA5;
+  --rule:         rgba(255,255,255,.06);
+  --rule-soft:    rgba(255,255,255,.03);
+  --tabular:      "tnum" 1, "lnum" 1;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 300;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.5;
+  font-feature-settings: var(--tabular);
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+button { font-family: inherit; }
+
+/* ─────────────────────────────────────────  Layout ─ */
+
+.shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 32px 80px;
+}
+@media (max-width: 720px) { .shell { padding: 20px 16px 60px; } }
+
+/* ─────────────────────────────────────────  Topbar ─ */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-mark .dot {
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 18px var(--accent);
+}
+.brand-mark .name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+.brand-mark .name span { color: var(--accent); font-weight: 700; }
+.topbar-meta {
+  display: flex; gap: 18px; align-items: center;
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+.topbar-meta strong { color: var(--fg); font-weight: 500; }
+.q-tabs {
+  display: flex; gap: 0; align-items: center;
+}
+.q-tabs button {
+  background: none; border: none;
+  padding: 6px 14px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg-subtle); cursor: pointer;
+  transition: color .15s, background .15s;
+  border-radius: 6px;
+}
+.q-tabs button:hover { color: var(--fg); background: var(--surface); }
+.q-tabs button.active { color: var(--accent); background: var(--accent-soft); }
+
+/* ─────────────────────────────────────────  Gauges row ─ */
+
+.gauges-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 880px) { .gauges-row { grid-template-columns: 1fr; } }
+
+.gauge-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+@media (max-width: 720px) { .gauge-card { grid-template-columns: 1fr; padding: 20px; } }
+.gauge-card .label {
+  font-size: 11px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--fg-subtle);
+  font-weight: 500; margin-bottom: 8px;
+}
+.gauge-card .meta {
+  font-size: 12px; color: var(--fg-muted); line-height: 1.5;
+  margin-top: 12px;
+}
+.gauge-card .meta strong { color: var(--fg); font-weight: 500; }
+.gauge-card .pill {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; font-weight: 600;
+  border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent-fg);
+  margin-top: 4px;
+}
+.gauge-card .pill.warn { background: var(--warn-soft); color: var(--warn); }
+.gauge-card .pill.muted { background: var(--surface-hi); color: var(--fg-subtle); }
+
+.gauge-svg {
+  width: 220px; height: 130px;
+  display: block; margin: 0 auto;
+}
+.gauge-track { fill: none; stroke: var(--surface-hi); stroke-width: 16; stroke-linecap: round; }
+.gauge-fill  { fill: none; stroke: var(--at-red);     stroke-width: 16; stroke-linecap: round;
+               transition: stroke-dashoffset 1.4s cubic-bezier(.16,1,.3,1); }
+.gauge-fill.low   { stroke: var(--at-red); }
+.gauge-fill.mid   { stroke: var(--at-amber); }
+.gauge-fill.high  { stroke: var(--at-green); }
+.gauge-text-num {
+  font-size: 30px; font-weight: 700; fill: var(--fg);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-feature-settings: var(--tabular);
+  letter-spacing: -.02em;
+}
+.gauge-text-pct {
+  font-size: 13px; font-weight: 500; fill: var(--at-cream);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────  Cards grid ─ */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 1100px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px)  { .cards-grid { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.card-title {
+  font-size: 11px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--fg);
+  font-weight: 600;
+}
+.card-rate {
+  text-align: right;
+  font-size: 22px; font-weight: 600; color: var(--accent);
+  letter-spacing: -.02em; line-height: 1;
+}
+.card-rate .unit {
+  font-size: 11px; color: var(--fg-subtle);
+  margin-left: 2px; font-weight: 400;
+}
+.card-rate-label {
+  font-size: 9px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--fg-subtle);
+  margin-top: 4px; font-weight: 500;
+}
+.card-rate-secondary {
+  font-size: 11px; color: var(--fg-muted);
+  margin-top: 2px;
+}
+.card-rate-secondary strong { color: var(--fg); font-weight: 500; }
+
+/* HubSpot-style dropdown filter */
+.range-dropdown {
+  position: relative;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+.range-trigger {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--fg); cursor: pointer;
+  border-radius: 6px;
+  transition: border-color .15s, background .15s;
+  min-width: 160px;
+  justify-content: space-between;
+}
+.range-trigger:hover { border-color: var(--border-strong); background: var(--surface-hi); }
+.range-trigger.open { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-fg); }
+.range-trigger .chev { font-size: 9px; opacity: .6; transition: transform .15s; }
+.range-trigger.open .chev { transform: rotate(180deg); }
+.range-trigger .icon-cal { font-size: 11px; opacity: .7; }
+
+.range-menu {
+  position: absolute;
+  top: calc(100% + 4px); left: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.45);
+  min-width: 240px;
+  padding: 6px;
+  z-index: 50;
+  display: none;
+}
+.range-menu.open { display: block; }
+.range-menu-section {
+  padding: 4px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.range-menu-section:last-child { border-bottom: none; }
+.range-menu-label {
+  padding: 6px 10px 4px;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+.range-menu button {
+  display: block; width: 100%; text-align: left;
+  background: none; border: none;
+  padding: 7px 10px;
+  font-size: 12px; font-weight: 400;
+  color: var(--fg-muted); cursor: pointer;
+  border-radius: 4px;
+  transition: background .12s, color .12s;
+}
+.range-menu button:hover { background: var(--surface-hi); color: var(--fg); }
+.range-menu button.active {
+  background: var(--accent-soft); color: var(--accent-fg); font-weight: 500;
+}
+.range-menu .custom-range {
+  padding: 8px 10px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.range-menu .custom-range label {
+  font-size: 10px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--fg-subtle);
+}
+.range-menu .custom-range input[type="date"] {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 5px 8px; border-radius: 4px;
+  font-family: inherit; font-size: 12px;
+  color-scheme: dark;
+}
+.range-menu .custom-range button.apply {
+  background: var(--accent); color: var(--bg);
+  font-weight: 600; padding: 6px 10px;
+  text-align: center; margin-top: 4px;
+  border-radius: 4px;
+}
+.range-menu .custom-range button.apply:hover { background: var(--accent-hover); color: var(--at-cream); }
+
+.chart-slot {
+  flex: 1;
+  min-height: 200px;
+  position: relative;
+}
+.chart-slot canvas { max-width: 100%; }
+
+.card-footer {
+  margin-top: 12px;
+  font-size: 11px; color: var(--fg-subtle);
+  letter-spacing: .04em;
+}
+
+.card[data-status="unavailable"] .chart-slot {
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 8px;
+  color: var(--fg-subtle);
+  background: var(--surface-2);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+}
+.card[data-status="unavailable"] .chart-slot .ico {
+  font-size: 22px; opacity: .5;
+}
+.card[data-status="unavailable"] .chart-slot .msg {
+  font-size: 11px; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 600;
+  color: var(--warn);
+}
+.card[data-status="unavailable"] .chart-slot .reason {
+  font-size: 11px; color: var(--fg-muted);
+  letter-spacing: 0; text-transform: none;
+  max-width: 32ch; line-height: 1.5;
+}
+.partial-badge {
+  display: inline-block;
+  background: var(--warn-soft); color: var(--warn);
+  font-size: 9px; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 2px 6px; border-radius: 4px;
+  margin-left: 8px;
+}
+
+/* ─────────────────────────────────────────  Pipeline card stages ─ */
+
+.pipeline-stages {
+  display: flex; flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.pipeline-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  padding: 8px 0;
+  align-items: center;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 12px;
+}
+.pipeline-row:last-child { border-bottom: none; }
+.pipeline-row .stage {
+  font-weight: 500; letter-spacing: .04em;
+  text-transform: uppercase; font-size: 10px;
+  color: var(--fg);
+}
+.pipeline-row .bar {
+  grid-column: 1 / -1;
+  height: 4px; background: var(--surface-hi);
+  border-radius: 2px;
+  margin-top: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.pipeline-row .bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+  border-radius: 2px;
+}
+.pipeline-row .count { font-weight: 600; color: var(--fg); }
+.pipeline-row .count .pct { font-size: 10px; color: var(--fg-subtle); margin-left: 4px; font-weight: 400; }
+.pipeline-row .inactive {
+  font-size: 9px; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 600;
+  color: var(--warn);
+}
+
+/* ─────────────────────────────────────────  Sections (required actions, relevant calls) ─ */
+
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.section-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 16px;
+  flex-wrap: wrap; gap: 8px;
+}
+.section-title {
+  font-size: 12px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--fg);
+  font-weight: 600;
+}
+.section-meta {
+  font-size: 11px; color: var(--fg-subtle);
+  letter-spacing: .06em; text-transform: uppercase;
+}
+
+.actions-list {
+  display: flex; flex-direction: column;
+  gap: 1px;
+  background: var(--rule);
+  border-radius: 8px; overflow: hidden;
+}
+.action-item {
+  display: grid;
+  grid-template-columns: 1fr 110px 90px 110px;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--surface);
+  align-items: center;
+  font-size: 12px;
+}
+@media (max-width: 760px) {
+  .action-item { grid-template-columns: 1fr 90px; gap: 8px; padding: 12px; }
+  .action-item .a-rep, .action-item .a-link { display: none; }
+}
+.action-item .a-lead {
+  font-weight: 500; color: var(--fg);
+}
+.action-item .a-reason {
+  display: block; font-size: 11px; color: var(--fg-muted);
+  margin-top: 2px; font-weight: 300;
+}
+.action-item .a-rep {
+  font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--fg-subtle);
+}
+.action-item .a-days {
+  text-align: right;
+  font-feature-settings: var(--tabular);
+  font-weight: 600; color: var(--warn);
+  font-size: 13px;
+}
+.action-item .a-days .label {
+  display: block; font-size: 9px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg-subtle); font-weight: 500;
+  margin-top: 2px;
+}
+.action-item .a-link a {
+  display: inline-block;
+  background: var(--accent-soft); color: var(--accent-fg);
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 600;
+}
+.action-item .a-link a:hover { background: var(--accent); color: var(--bg); }
+
+.calls-list {
+  display: flex; flex-direction: column;
+  gap: 12px;
+}
+.call-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+@media (max-width: 720px) {
+  .call-card { grid-template-columns: 1fr; }
+}
+.call-card .score {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--accent-soft); color: var(--accent-fg);
+  padding: 10px 14px; border-radius: 8px;
+  min-width: 64px;
+}
+.call-card .score .num { font-size: 22px; font-weight: 700; line-height: 1; }
+.call-card .score .label { font-size: 9px; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
+.call-card .body .name { font-weight: 500; color: var(--fg); }
+.call-card .body .meta { font-size: 11px; color: var(--fg-subtle); margin-top: 2px; letter-spacing: .04em; }
+.call-card .body .summary { font-size: 12px; color: var(--fg-muted); margin-top: 8px; line-height: 1.5; }
+.call-card .actions {
+  display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+}
+.call-card .actions audio {
+  width: 200px; height: 32px;
+  filter: invert(1) hue-rotate(180deg) saturate(.7);
+}
+.call-card .actions a {
+  font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 600;
+  color: var(--accent);
+}
+.call-card .actions a:hover { color: var(--accent-fg); }
+
+/* ─────────────────────────────────────────  Empty / loading ─ */
+
+.empty {
+  text-align: center; padding: 32px 20px;
+  color: var(--fg-subtle); font-size: 12px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.loading {
+  text-align: center; padding: 60px 20px;
+  color: var(--fg-subtle); font-size: 12px;
+  letter-spacing: .12em; text-transform: uppercase;
+}
+.loading::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%; margin-right: 10px;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: .3; transform: scale(.9); }
+  50%      { opacity: 1;  transform: scale(1.1); }
+}
+
+/* Page-load reveal */
+.gauges-row, .cards-grid > .card, .section {
+  opacity: 0; transform: translateY(8px);
+  animation: rise .6s cubic-bezier(.16,1,.3,1) forwards;
+}
+.gauges-row              { animation-delay: .04s; }
+.cards-grid > .card:nth-child(1) { animation-delay: .10s; }
+.cards-grid > .card:nth-child(2) { animation-delay: .14s; }
+.cards-grid > .card:nth-child(3) { animation-delay: .18s; }
+.cards-grid > .card:nth-child(4) { animation-delay: .22s; }
+.cards-grid > .card:nth-child(5) { animation-delay: .26s; }
+.cards-grid > .card:nth-child(6) { animation-delay: .30s; }
+.section:nth-of-type(1)  { animation-delay: .36s; }
+.section:nth-of-type(2)  { animation-delay: .42s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* ─────────────────────────────────────────  Footer ─ */
+
+.colophon {
+  margin-top: 60px; padding-top: 18px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--fg-subtle);
+}
+.colophon code {
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .04em;
+  text-transform: none; color: var(--fg-muted);
+}
+.colophon a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ─────────────────────────────────  TOPBAR  ───────── -->
+<div class="topbar">
+  <div class="brand-mark">
+    <span class="dot"></span>
+    <span class="name">Sales <span>Cockpit</span></span>
+  </div>
+  <nav class="q-tabs" id="quarter-tabs"></nav>
+  <div class="topbar-meta">
+    <span>Q <strong id="topbar-quarter">—</strong></span>
+    <span>Sync <strong id="topbar-updated">—</strong></span>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────  GAUGES (TOP)  ───────── -->
+<div class="gauges-row">
+  <div class="gauge-card">
+    <div>
+      <svg class="gauge-svg" id="gauge-revenue" viewBox="0 0 220 130"></svg>
+    </div>
+    <div>
+      <div class="label">Revenue progress</div>
+      <div id="revenue-figure" style="font-size:24px;font-weight:600;color:var(--fg);letter-spacing:-.02em;">—</div>
+      <div class="meta" id="revenue-meta">—</div>
+      <div id="revenue-pill" class="pill muted">—</div>
+    </div>
+  </div>
+  <div class="gauge-card">
+    <div>
+      <svg class="gauge-svg" id="gauge-meetings" viewBox="0 0 220 130"></svg>
+    </div>
+    <div>
+      <div class="label">Q-Meetings progress</div>
+      <div id="meetings-figure" style="font-size:24px;font-weight:600;color:var(--fg);letter-spacing:-.02em;">—</div>
+      <div class="meta" id="meetings-meta">—</div>
+      <div id="meetings-pill" class="pill muted">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────  CARDS GRID 2x3  ───────── -->
+<div class="cards-grid">
+
+  <!-- CARD 1: CALLS -->
+  <section class="card" data-card="calls">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Calls</div>
+        <div class="card-rate-label" id="calls-rate-label">CONNECT RATE</div>
+      </div>
+      <div>
+        <div class="card-rate"><span id="calls-rate">—</span><span class="unit">%</span></div>
+        <div class="card-rate-secondary"><strong id="calls-total">—</strong> calls</div>
+      </div>
+    </div>
+    <div class="range-dropdown" data-card-key="calls"></div>
+    <div class="chart-slot"><canvas id="chart-calls"></canvas></div>
+    <div class="card-footer" id="calls-footer">—</div>
+  </section>
+
+  <!-- CARD 2: EMAILS -->
+  <section class="card" data-card="emails" style="cursor:pointer" onclick="if(!event.target.closest('.range-dropdown')) location.href='emails/index.html'">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Emails <span class="partial-badge" id="emails-badge" style="display:none">UNAVAILABLE</span> <span style="font-size:9px;color:var(--fg-subtle);letter-spacing:.1em;margin-left:6px">VER TODOS →</span></div>
+        <div class="card-rate-label">REPLY · OPEN</div>
+      </div>
+      <div>
+        <div class="card-rate"><span id="emails-reply">—</span><span class="unit">%</span></div>
+        <div class="card-rate-secondary"><strong id="emails-open">—</strong>% open</div>
+      </div>
+    </div>
+    <div class="range-dropdown" data-card-key="emails"></div>
+    <div class="chart-slot" id="chart-emails-slot"><canvas id="chart-emails"></canvas></div>
+    <div class="card-footer" id="emails-footer">—</div>
+  </section>
+
+  <!-- CARD 3: MEETINGS -->
+  <section class="card" data-card="meetings">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Meetings</div>
+        <div class="card-rate-label">CONVERSION</div>
+      </div>
+      <div>
+        <div class="card-rate"><span id="meetings-conv">—</span><span class="unit">%</span></div>
+        <div class="card-rate-secondary"><strong id="meetings-held">—</strong> de <span id="meetings-booked">—</span></div>
+      </div>
+    </div>
+    <div class="range-dropdown" data-card-key="meetings"></div>
+    <div class="chart-slot"><canvas id="chart-meetings"></canvas></div>
+    <div class="card-footer" id="meetings-footer">—</div>
+  </section>
+
+  <!-- CARD 4: PIPELINE -->
+  <section class="card" data-card="pipeline" style="cursor:pointer" onclick="if(!event.target.closest('.range-dropdown,.pipeline-row')) location.href='pipeline/index.html'">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Pipeline <span style="font-size:9px;color:var(--fg-subtle);letter-spacing:.1em;margin-left:6px">VER STAGES →</span></div>
+        <div class="card-rate-label" id="pipeline-rate-label">VALOR ABIERTO · INACTIVOS</div>
+      </div>
+      <div>
+        <div class="card-rate"><span id="pipeline-value">—</span><span class="unit">€</span></div>
+        <div class="card-rate-secondary"><strong id="pipeline-inactive">—</strong> inactivos · <span id="pipeline-threshold">14</span>d</div>
+      </div>
+    </div>
+    <div class="pipeline-stages" id="pipeline-stages"></div>
+    <div class="card-footer" id="pipeline-footer">—</div>
+  </section>
+
+  <!-- CARD 5: WHATSAPP -->
+  <section class="card" data-card="whatsapp" style="cursor:pointer" onclick="if(!event.target.closest('.range-dropdown')) location.href='whatsapp/index.html'">
+    <div class="card-header">
+      <div>
+        <div class="card-title">WhatsApp <span class="partial-badge" id="whatsapp-badge" style="display:none">UNAVAILABLE</span> <span style="font-size:9px;color:var(--fg-subtle);letter-spacing:.1em;margin-left:6px">VER →</span></div>
+        <div class="card-rate-label">REPLY RATE</div>
+      </div>
+      <div>
+        <div class="card-rate"><span id="whatsapp-reply">—</span><span class="unit">%</span></div>
+        <div class="card-rate-secondary"><strong id="whatsapp-sent">—</strong> enviados</div>
+      </div>
+    </div>
+    <div class="range-dropdown" data-card-key="whatsapp"></div>
+    <div class="chart-slot" id="chart-whatsapp-slot"><canvas id="chart-whatsapp"></canvas></div>
+    <div class="card-footer" id="whatsapp-footer">—</div>
+  </section>
+
+  <!-- CARD 6: SEQUENCES -->
+  <section class="card" data-card="sequences">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Sequences <span class="partial-badge" id="sequences-badge" style="display:none">UNAVAILABLE</span></div>
+        <div class="card-rate-label">CONTACTOS ENROLLED</div>
+      </div>
+      <div>
+        <div class="card-rate"><span id="sequences-total">—</span></div>
+        <div class="card-rate-secondary"><strong id="sequences-stuck">—</strong> stuck</div>
+      </div>
+    </div>
+    <div class="chart-slot" id="chart-sequences-slot"><canvas id="chart-sequences"></canvas></div>
+    <div class="card-footer" id="sequences-footer">—</div>
+  </section>
+
+</div>
+
+<!-- ─────────────────────────────────  REQUIRED ACTIONS  ───────── -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title">Acciones requeridas</div>
+    <div class="section-meta" id="actions-meta">—</div>
+  </div>
+  <div class="actions-list" id="actions-list">
+    <div class="empty">Cargando…</div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────  RELEVANT CALLS  ───────── -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title">Calls relevantes</div>
+    <div class="section-meta" id="calls-relevant-meta">—</div>
+  </div>
+  <div class="calls-list" id="calls-relevant-list">
+    <div class="empty">Cargando…</div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────  RECENT EMAILS  ───────── -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title">Emails recientes</div>
+    <div class="section-meta"><a href="emails/index.html" style="color:var(--accent)">Ver todos →</a></div>
+  </div>
+  <div id="emails-recent-list">
+    <div class="empty">Cargando…</div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────  COLOPHON  ───────── -->
+<div class="colophon">
+  <span><code>snapshot.json</code> · <span id="colo-counts">—</span></span>
+  <span><a href="../">← agentic status</a></span>
+</div>
+
+</div>
+
+<script>
+// ─────────────────────────────────────────  Config & utils ─
+
+// AT code of colors for charts (Fluxo dark shell stays)
+const DISPOSITION_COLORS = {
+  'Connected Positive': '#2D5F3D',  // AT green
+  'Connected Negative': '#C0191E',  // AT red
+  'Connected Busy':     '#B8851A',  // AT amber
+  'No Answer':          '#9A9A9A',  // AT gray
+  'Busy':               '#8B5A3C',
+  'Wrong Number':       '#4A4A4A',
+  'Unknown':            '#6B6B6B',
+};
+
+const CHART_BAR_COLORS = ['#C0191E', '#2D5F3D', '#B8851A', '#E8E5DC', '#8B5A3C', '#9A9A9A'];
+
+function slugify(s) {
+  return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+}
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function fmtNum(n, opts = {}) {
+  if (n == null || isNaN(n)) return '—';
+  return new Intl.NumberFormat('es-ES', opts).format(n);
+}
+function fmtEur(n) {
+  if (n == null || isNaN(n)) return '—';
+  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+}
+
+// ─────────────────────────────────────────  Loaders ─
+
+async function loadData(snapshotPath) {
+  try {
+    const r = await fetch((snapshotPath || 'snapshot.json') + '?_=' + Date.now());
+    if (!r.ok) throw new Error(snapshotPath + ' fetch failed: ' + r.status);
+    return await r.json();
+  } catch (e) {
+    console.error(e);
+    document.body.innerHTML = '<div class="loading" style="color:var(--danger)">Error: ' + e.message + '</div>';
+    throw e;
+  }
+}
+
+async function discoverQuarters() {
+  const found = [];
+  const today = new Date();
+  const yr = today.getFullYear();
+  const candidates = [];
+  for (const y of [yr - 1, yr]) {
+    for (const q of [1, 2, 3, 4]) {
+      candidates.push({ y, q, label: `Q${q} ${y}`, path: `snapshots/q${q}-${y}.json` });
+    }
+  }
+  candidates.push({ y: 0, q: 0, label: 'All time', path: 'snapshots/all.json' });
+  for (const c of candidates) {
+    try {
+      const r = await fetch(c.path, { method: 'HEAD' });
+      if (r.ok) found.push(c);
+    } catch {}
+  }
+  return found;
+}
+
+// ─────────────────────────────────────────  State ─
+
+let _snapshot = null;
+const _ranges = {
+  calls:    { preset: 'this_month',    custom: null },
+  emails:   { preset: 'this_month',    custom: null },
+  meetings: { preset: 'this_quarter',  custom: null },
+  whatsapp: { preset: 'this_month',    custom: null },
+};
+
+// ─────────────────────────────────────────  Date filter (HubSpot-style dropdown) ─
+
+const RANGE_PRESETS = [
+  { group: 'Recientes', items: [
+    { key: 'today',         label: 'Hoy' },
+    { key: 'yesterday',     label: 'Ayer' },
+    { key: 'last_7d',       label: 'Últimos 7 días' },
+    { key: 'last_30d',      label: 'Últimos 30 días' },
+    { key: 'last_90d',      label: 'Últimos 90 días' },
+  ]},
+  { group: 'Periodo natural', items: [
+    { key: 'this_week',     label: 'Esta semana' },
+    { key: 'last_week',     label: 'Semana pasada' },
+    { key: 'this_month',    label: 'Este mes' },
+    { key: 'last_month',    label: 'Mes pasado' },
+    { key: 'this_quarter',  label: 'Este trimestre' },
+    { key: 'last_quarter',  label: 'Trimestre pasado' },
+    { key: 'this_year',     label: 'Este año' },
+    { key: 'ytd',           label: 'YTD (año hasta hoy)' },
+  ]},
+  { group: 'Otros', items: [
+    { key: 'all',           label: 'Todo el periodo' },
+    { key: 'custom',        label: 'Rango personalizado…' },
+  ]},
+];
+
+function presetLabel(preset, custom) {
+  if (preset === 'custom' && custom) {
+    return `${custom.from} → ${custom.to}`;
+  }
+  for (const g of RANGE_PRESETS) {
+    const m = g.items.find(i => i.key === preset);
+    if (m) return m.label;
+  }
+  return preset;
+}
+
+function rangeBounds(state, snapshot) {
+  // Returns {start, end}. End is exclusive (start of next day) when relevant.
+  const now = new Date();
+  const startOfDay = (d) => { const x = new Date(d); x.setHours(0,0,0,0); return x; };
+  const startOfWeek = (d) => {
+    const x = startOfDay(d);
+    const dow = x.getDay() || 7;  // Mon=1..Sun=7
+    x.setDate(x.getDate() - (dow - 1));
+    return x;
+  };
+  const startOfMonth = (d) => new Date(d.getFullYear(), d.getMonth(), 1);
+  const startOfQuarter = (d) => {
+    const q = Math.floor(d.getMonth() / 3);
+    return new Date(d.getFullYear(), q * 3, 1);
+  };
+  const startOfYear = (d) => new Date(d.getFullYear(), 0, 1);
+  const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const addMonths = (d, n) => new Date(d.getFullYear(), d.getMonth() + n, 1);
+
+  const p = state.preset;
+  if (p === 'today')         return { start: startOfDay(now), end: addDays(startOfDay(now), 1) };
+  if (p === 'yesterday')     return { start: addDays(startOfDay(now), -1), end: startOfDay(now) };
+  if (p === 'last_7d')       return { start: addDays(startOfDay(now), -7), end: addDays(startOfDay(now), 1) };
+  if (p === 'last_30d')      return { start: addDays(startOfDay(now), -30), end: addDays(startOfDay(now), 1) };
+  if (p === 'last_90d')      return { start: addDays(startOfDay(now), -90), end: addDays(startOfDay(now), 1) };
+  if (p === 'this_week')     return { start: startOfWeek(now), end: addDays(startOfWeek(now), 7) };
+  if (p === 'last_week')     return { start: addDays(startOfWeek(now), -7), end: startOfWeek(now) };
+  if (p === 'this_month')    return { start: startOfMonth(now), end: addMonths(startOfMonth(now), 1) };
+  if (p === 'last_month')    return { start: addMonths(startOfMonth(now), -1), end: startOfMonth(now) };
+  if (p === 'this_quarter')  return { start: startOfQuarter(now), end: new Date(startOfQuarter(now).getFullYear(), startOfQuarter(now).getMonth() + 3, 1) };
+  if (p === 'last_quarter')  { const sq = startOfQuarter(now); return { start: new Date(sq.getFullYear(), sq.getMonth() - 3, 1), end: sq }; }
+  if (p === 'this_year')     return { start: startOfYear(now), end: new Date(now.getFullYear() + 1, 0, 1) };
+  if (p === 'ytd')           return { start: startOfYear(now), end: addDays(startOfDay(now), 1) };
+  if (p === 'custom' && state.custom) {
+    return { start: new Date(state.custom.from), end: addDays(new Date(state.custom.to), 1) };
+  }
+  return { start: new Date(0), end: new Date('2099-12-31') };
+}
+
+// Backward compat: some renderers still use rangeStart(range, snapshot) — adapt
+function rangeStart(rangeKey, snapshot, cardKey) {
+  const state = (typeof rangeKey === 'string') ? { preset: rangeKey } : rangeKey;
+  return rangeBounds(state, snapshot).start;
+}
+
+function setupRangeDropdowns() {
+  document.querySelectorAll('.range-dropdown').forEach(wrap => {
+    const cardKey = wrap.dataset.cardKey;
+    wrap.innerHTML = `
+      <button class="range-trigger" type="button">
+        <span><span class="icon-cal">▦</span> <span class="trigger-label">—</span></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="range-menu">
+        ${RANGE_PRESETS.map(group => `
+          <div class="range-menu-section">
+            <div class="range-menu-label">${group.group}</div>
+            ${group.items.map(it => `<button data-preset="${it.key}">${it.label}</button>`).join('')}
+          </div>`).join('')}
+        <div class="range-menu-section custom-range" style="display:none">
+          <label>Desde</label><input type="date" class="from">
+          <label>Hasta</label><input type="date" class="to">
+          <button class="apply" type="button">Aplicar</button>
+        </div>
+      </div>`;
+
+    const trigger = wrap.querySelector('.range-trigger');
+    const menu    = wrap.querySelector('.range-menu');
+    const customSec = wrap.querySelector('.custom-range');
+    const triggerLabel = wrap.querySelector('.trigger-label');
+
+    const updateLabel = () => {
+      const s = _ranges[cardKey];
+      triggerLabel.textContent = presetLabel(s.preset, s.custom);
+      // Highlight active preset
+      menu.querySelectorAll('button[data-preset]').forEach(b => {
+        b.classList.toggle('active', b.dataset.preset === s.preset);
+      });
+    };
+    updateLabel();
+
+    trigger.onclick = (e) => {
+      e.stopPropagation();
+      const isOpen = menu.classList.toggle('open');
+      trigger.classList.toggle('open', isOpen);
+    };
+
+    menu.querySelectorAll('button[data-preset]').forEach(btn => {
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        const preset = btn.dataset.preset;
+        if (preset === 'custom') {
+          customSec.style.display = 'flex';
+          return;
+        }
+        _ranges[cardKey] = { preset, custom: null };
+        customSec.style.display = 'none';
+        menu.classList.remove('open');
+        trigger.classList.remove('open');
+        updateLabel();
+        renderCard(cardKey);
+      };
+    });
+
+    wrap.querySelector('.apply').onclick = (e) => {
+      e.stopPropagation();
+      const from = wrap.querySelector('.from').value;
+      const to   = wrap.querySelector('.to').value;
+      if (!from || !to) return;
+      _ranges[cardKey] = { preset: 'custom', custom: { from, to } };
+      menu.classList.remove('open');
+      trigger.classList.remove('open');
+      customSec.style.display = 'none';
+      updateLabel();
+      renderCard(cardKey);
+    };
+  });
+
+  // Click outside closes any open menu
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.range-menu.open').forEach(m => m.classList.remove('open'));
+    document.querySelectorAll('.range-trigger.open').forEach(t => t.classList.remove('open'));
+  });
+}
+
+// ─────────────────────────────────────────  Gauge SVG renderer ─
+
+function renderGauge(elemId, opts) {
+  const { achieved, target, mode } = opts;  // mode: 'eur' | 'count'
+  const svg = document.getElementById(elemId);
+  if (!svg) return;
+  // Arc: semicircle from 180° to 360° (left-to-right, top half)
+  const cx = 110, cy = 110, r = 86;
+  const startAngle = 180, endAngle = 360;
+  const totalArc = Math.PI * r;  // length of half-circle
+  const pct = (achieved != null && target) ? Math.max(0, achieved / target) : 0;
+  const fillPct = Math.min(1, pct);
+  const dashOffset = totalArc * (1 - fillPct);
+
+  // Clear existing
+  svg.innerHTML = '';
+  const ns = 'http://www.w3.org/2000/svg';
+
+  // Track arc
+  const track = document.createElementNS(ns, 'path');
+  track.setAttribute('class', 'gauge-track');
+  track.setAttribute('d', describeArc(cx, cy, r, startAngle, endAngle));
+  svg.appendChild(track);
+
+  // Fill arc — semantic color over Fluxo dark shell using AT palette
+  const fill = document.createElementNS(ns, 'path');
+  let fillClass = 'gauge-fill';
+  if (pct >= 1.0)      fillClass += ' high';   // AT green
+  else if (pct >= 0.5) fillClass += ' mid';    // AT amber
+  else                 fillClass += ' low';    // AT red
+  fill.setAttribute('class', fillClass);
+  fill.setAttribute('d', describeArc(cx, cy, r, startAngle, endAngle));
+  fill.setAttribute('stroke-dasharray', String(totalArc));
+  fill.setAttribute('stroke-dashoffset', String(totalArc));  // start hidden
+  svg.appendChild(fill);
+  // Animate
+  setTimeout(() => fill.setAttribute('stroke-dashoffset', String(dashOffset)), 80);
+
+  // Center text — number
+  const numText = document.createElementNS(ns, 'text');
+  numText.setAttribute('class', 'gauge-text-num');
+  numText.setAttribute('x', String(cx));
+  numText.setAttribute('y', '95');
+  numText.setAttribute('text-anchor', 'middle');
+  const display = (achieved == null) ? '—'
+    : mode === 'eur' ? fmtEur(achieved)
+    : fmtNum(achieved);
+  numText.textContent = display;
+  svg.appendChild(numText);
+
+  // Center text — pct below
+  const pctText = document.createElementNS(ns, 'text');
+  pctText.setAttribute('class', 'gauge-text-pct');
+  pctText.setAttribute('x', String(cx));
+  pctText.setAttribute('y', '115');
+  pctText.setAttribute('text-anchor', 'middle');
+  pctText.textContent = (achieved == null || !target) ? '—' : Math.round(pct * 100) + '%';
+  svg.appendChild(pctText);
+}
+
+function describeArc(cx, cy, r, startDeg, endDeg) {
+  const start = polarToCartesian(cx, cy, r, endDeg);
+  const end   = polarToCartesian(cx, cy, r, startDeg);
+  const largeArc = endDeg - startDeg <= 180 ? '0' : '1';
+  return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 0 ${end.x} ${end.y}`;
+}
+function polarToCartesian(cx, cy, r, angleDeg) {
+  const rad = (angleDeg - 90) * Math.PI / 180.0;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+// ─────────────────────────────────────────  Top gauges (Revenue + Q-Meetings) ─
+
+function renderRevenueGauge(d) {
+  const rp = d.revenue_progress || {};
+  if (rp.status !== 'ok' || !rp.at) {
+    renderGauge('gauge-revenue', { achieved: null, target: null, mode: 'eur' });
+    document.getElementById('revenue-figure').textContent = '—';
+    document.getElementById('revenue-meta').textContent = rp.reason || 'Sin datos de revenue';
+    setPill('revenue-pill', 'Pendiente integración', 'muted');
+    return;
+  }
+  // Default: AT variable YTD vs YTD-prorated target. Honest comparison.
+  const at = rp.at;
+  const achieved = at.achieved_ytd_eur;
+  const target = at.target_ytd_eur;
+  renderGauge('gauge-revenue', { achieved, target, mode: 'eur' });
+  document.getElementById('revenue-figure').textContent = `${fmtEur(achieved)} / ${fmtEur(target)}`;
+  document.getElementById('revenue-meta').innerHTML = `
+    <strong>${at.label_achieved}</strong> · YTD vs target prorrateado<br>
+    Target anual: <strong>${fmtEur(at.target_annual_eur)}</strong> · Q-target: ${fmtEur(at.target_quarterly_eur)}
+  `;
+  const pctVal = target ? (achieved / target * 100) : 0;
+  let pillTone = 'muted';
+  let pillTxt = `${pctVal.toFixed(0)}% del paso`;
+  if (pctVal >= 100) { pillTone = ''; pillTxt = `+${(pctVal - 100).toFixed(0)}% sobre paso`; }
+  else if (pctVal < 70) { pillTone = 'warn'; pillTxt = `${(100 - pctVal).toFixed(0)}% bajo paso`; }
+  setPill('revenue-pill', pillTxt, pillTone);
+}
+
+function renderMeetingsGauge(d) {
+  const m = d.meetings || {};
+  const achieved = m.progress_count;
+  const target = m.target;
+  renderGauge('gauge-meetings', { achieved, target, mode: 'count' });
+  document.getElementById('meetings-figure').textContent = `${fmtNum(achieved)} / ${fmtNum(target)} reuniones`;
+  const days = d.quarter?.days_left ?? 0;
+  const remaining = Math.max(0, (target || 0) - (achieved || 0));
+  const pace = days > 0 ? (remaining / days).toFixed(1) : null;
+  let metaParts = [`Joan + Karim, este trimestre`];
+  if (days > 0 && pace !== null) metaParts.push(`<strong>${pace}/día</strong> para llegar · ${days}d restantes`);
+  if (days === 0) metaParts.push(`Trimestre cerrado`);
+  document.getElementById('meetings-meta').innerHTML = metaParts.join('<br>');
+  const pctVal = target ? (achieved / target * 100) : 0;
+  let pillTone = 'muted', pillTxt = `${pctVal.toFixed(0)}% completado`;
+  if (pctVal >= 100) { pillTone = ''; pillTxt = `Objetivo logrado`; }
+  else if (pctVal < 50) { pillTone = 'warn'; pillTxt = `${(100 - pctVal).toFixed(0)}% pendiente`; }
+  setPill('meetings-pill', pillTxt, pillTone);
+}
+
+function setPill(id, text, tone) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'pill' + (tone ? ' ' + tone : '');
+}
+
+// ─────────────────────────────────────────  Cards ─
+
+function renderCard(key) {
+  if (!_snapshot) return;
+  switch (key) {
+    case 'calls':     renderCallsCard();     break;
+    case 'emails':    renderEmailsCard();    break;
+    case 'meetings':  renderMeetingsCard();  break;
+    case 'pipeline':  renderPipelineCard();  break;
+    case 'whatsapp':  renderWhatsappCard();  break;
+    case 'sequences': renderSequencesCard(); break;
+  }
+}
+
+// CARD 1 — Calls
+function filterCallsByRange(callsBlock, rangeState) {
+  if (!callsBlock?.available || !Array.isArray(callsBlock.calls)) return null;
+  const { start, end } = rangeBounds(rangeState, _snapshot);
+  return callsBlock.calls.filter(c => {
+    const t = c.started_at ? new Date(c.started_at) : null;
+    return t && t >= start && t < end;
+  });
+}
+
+function renderCallsCard() {
+  const card = document.querySelector('.card[data-card="calls"]');
+  const callsBlock = _snapshot.calls || {};
+  if (!callsBlock.available) {
+    setUnavailable(card, 'Sin calls procesados', callsBlock.phase || 'Pipeline Whisper+Haiku no ha generado outcomes para esta ventana.');
+    document.getElementById('calls-rate').textContent = '—';
+    document.getElementById('calls-total').textContent = '—';
+    document.getElementById('calls-footer').textContent = '';
+    destroyChart('chart-calls');
+    return;
+  }
+  card.removeAttribute('data-status');
+  const range = _ranges.calls;
+  const filtered = filterCallsByRange(callsBlock, range) ?? [];
+  const total = filtered.length;
+  const connectedSet = new Set(['Connected Positive', 'Connected Negative', 'Connected Busy']);
+  const connected = filtered.filter(c => connectedSet.has(c.disposition));
+  const positive = filtered.filter(c => c.disposition === 'Connected Positive');
+  const connRate = total ? Math.round(connected.length / total * 1000) / 10 : 0;
+  document.getElementById('calls-rate').textContent = fmtNum(connRate, { maximumFractionDigits: 1 });
+  document.getElementById('calls-total').textContent = fmtNum(total);
+
+  // Group by rep (owner_email or assigned_user_id)
+  const byRep = {};
+  for (const c of filtered) {
+    const ownerKey = (c.owner_email || c.user_id || 'unknown').toLowerCase();
+    if (!byRep[ownerKey]) byRep[ownerKey] = { total: 0, byDisp: {} };
+    byRep[ownerKey].total += 1;
+    const d = c.disposition || 'Unknown';
+    byRep[ownerKey].byDisp[d] = (byRep[ownerKey].byDisp[d] || 0) + 1;
+  }
+  const reps = _snapshot.reps || {};
+  const labels = Object.keys(byRep).map(k => (reps[k]?.display_name) || k.split('@')[0] || k.slice(-6));
+  const dispOrder = ['Connected Positive', 'Connected Negative', 'Connected Busy', 'No Answer', 'Busy', 'Wrong Number'];
+  const datasets = dispOrder.map(d => ({
+    label: d,
+    data:  Object.values(byRep).map(v => v.byDisp[d] || 0),
+    backgroundColor: DISPOSITION_COLORS[d] || '#4b5563',
+    stack: 'calls',
+    borderWidth: 0,
+  }));
+  destroyChart('chart-calls');
+  if (total === 0) {
+    document.getElementById('calls-footer').textContent = 'Sin calls en este rango.';
+    return;
+  }
+  new Chart(document.getElementById('chart-calls'), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: chartBarOptions({ stacked: true, onClickFn: (rep, disp) => {
+      if (disp) window.location.href = 'dispositions/' + slugify(disp) + '.html';
+    }}),
+  });
+  document.getElementById('calls-footer').innerHTML = `
+    <strong>${connected.length}</strong> conectadas · <strong>${positive.length}</strong> positivas · clic en barra para ver disposition
+  `;
+}
+
+// CARD 2 — Emails (real GHL data, no open tracking)
+function renderEmailsCard() {
+  const card = document.querySelector('.card[data-card="emails"]');
+  const emails = _snapshot.emails || {};
+  const badge = document.getElementById('emails-badge');
+
+  if (emails.status === 'unavailable') {
+    setUnavailable(card, 'Pendiente integración',
+      emails.reason ? `${emails.reason}. ${emails.available_signals || ''}` : 'No hay tracking de email events.');
+    badge.style.display = 'inline-block';
+    badge.textContent = 'UNAVAILABLE';
+    document.getElementById('emails-reply').textContent = '—';
+    document.getElementById('emails-open').textContent = '—';
+    document.getElementById('emails-footer').textContent = 'Sin email data en GHL conversations.';
+    destroyChart('chart-emails');
+    return;
+  }
+
+  // status === 'partial' or 'ok' → render real data
+  card.removeAttribute('data-status');
+  // Restore canvas if previously replaced by unavailable state
+  const slot = document.getElementById('chart-emails-slot');
+  if (!slot.querySelector('canvas')) {
+    slot.innerHTML = '<canvas id="chart-emails"></canvas>';
+  }
+  badge.style.display = emails.status === 'partial' ? 'inline-block' : 'none';
+  badge.textContent = 'PARTIAL · sin opens';
+
+  const totals = emails.totals || {};
+  document.getElementById('emails-reply').textContent = fmtNum(totals.reply_rate_pct ?? 0, { maximumFractionDigits: 1 });
+  document.getElementById('emails-open').textContent = '—';
+
+  // Bar chart by rep
+  const reps = _snapshot.reps || {};
+  const byRep = emails.by_rep || {};
+  const repIds = Object.keys(byRep).filter(id => byRep[id].sent + byRep[id].received > 0);
+  const labels = repIds.map(id => (reps[id]?.display_name) || (id ? id.slice(-6) : 'unassigned'));
+  const datasets = [
+    { label: 'Sent',     data: repIds.map(id => byRep[id].sent),     backgroundColor: '#C0191E', borderWidth: 0 },
+    { label: 'Received', data: repIds.map(id => byRep[id].received), backgroundColor: '#2D5F3D', borderWidth: 0 },
+    { label: 'Replies',  data: repIds.map(id => byRep[id].replies),  backgroundColor: '#B8851A', borderWidth: 0 },
+  ];
+  destroyChart('chart-emails');
+  if (repIds.length === 0) {
+    document.getElementById('emails-footer').textContent = 'Sin emails en este periodo.';
+    return;
+  }
+  new Chart(document.getElementById('chart-emails'), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: chartBarOptions({ stacked: false }),
+  });
+  document.getElementById('emails-footer').innerHTML = `
+    <strong>${totals.sent || 0}</strong> enviados · <strong>${totals.received || 0}</strong> recibidos · <strong>${totals.contacts_emailed || 0}</strong> contactos · GHL no expone opens
+  `;
+}
+
+// CARD 3 — Meetings
+function renderMeetingsCard() {
+  const card = document.querySelector('.card[data-card="meetings"]');
+  card.removeAttribute('data-status');
+  const m = _snapshot.meetings || {};
+  const tb = m.target_breakdown || {};
+  const items = tb.items || [];
+  const { start, end } = rangeBounds(_ranges.meetings, _snapshot);
+  const filtered = items.filter(it => {
+    const t = it.start_at ? new Date(it.start_at) : null;
+    return t && t >= start && t < end;
+  });
+  const today = new Date(); today.setHours(0,0,0,0);
+  const held = filtered.filter(it => new Date(it.start_at) < today).length;
+  const booked = filtered.length;
+  const conv = booked ? Math.round(held / booked * 1000) / 10 : 0;
+  document.getElementById('meetings-conv').textContent = fmtNum(conv, { maximumFractionDigits: 1 });
+  document.getElementById('meetings-held').textContent = held;
+  document.getElementById('meetings-booked').textContent = booked;
+
+  // By rep (owner email)
+  const byRep = {};
+  for (const it of filtered) {
+    const owner = it.owner || 'unknown';
+    if (!byRep[owner]) byRep[owner] = { booked: 0, held: 0 };
+    byRep[owner].booked += 1;
+    if (new Date(it.start_at) < today) byRep[owner].held += 1;
+  }
+  const reps = _snapshot.reps || {};
+  const labels = Object.keys(byRep).map(k => (reps[k]?.display_name) || k.split('@')[0] || k);
+  const datasets = [
+    { label: 'Held',      data: Object.values(byRep).map(v => v.held), backgroundColor: '#2D5F3D', borderWidth: 0 },
+    { label: 'Pendiente', data: Object.values(byRep).map(v => v.booked - v.held), backgroundColor: '#B8851A', borderWidth: 0 },
+  ];
+  destroyChart('chart-meetings');
+  if (booked === 0) {
+    document.getElementById('meetings-footer').textContent = 'Sin reuniones en este rango.';
+    return;
+  }
+  new Chart(document.getElementById('chart-meetings'), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: chartBarOptions({ stacked: true }),
+  });
+  document.getElementById('meetings-footer').textContent =
+    `Held vs booked. "Qualified" pendiente — requiere campo en Zoho event ó stage post-meeting.`;
+}
+
+// CARD 4 — Pipeline
+function renderPipelineCard() {
+  const card = document.querySelector('.card[data-card="pipeline"]');
+  const pc = _snapshot.pipeline_card || {};
+  if (pc.status !== 'ok') {
+    setUnavailable(card, 'Sin pipeline data', pc.reason || 'GHL opportunities no disponibles.');
+    return;
+  }
+  card.removeAttribute('data-status');
+  const stages = pc.stages || [];
+  const totalValue = stages.reduce((s, x) => s + (x.value_open_eur || 0), 0);
+  const totalInactive = stages.reduce((s, x) => s + (x.inactive_count || 0), 0);
+  document.getElementById('pipeline-value').textContent = fmtNum(totalValue, { maximumFractionDigits: 0 });
+  document.getElementById('pipeline-inactive').textContent = totalInactive;
+  document.getElementById('pipeline-threshold').textContent = pc.threshold_days || 14;
+  const wrap = document.getElementById('pipeline-stages');
+  wrap.innerHTML = '';
+  for (const s of stages) {
+    const row = document.createElement('div');
+    row.className = 'pipeline-row';
+    row.style.cursor = 'pointer';
+    const slug = (s.stage_name || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    row.onclick = (e) => { e.stopPropagation(); location.href = `pipeline/${slug}.html`; };
+    row.innerHTML = `
+      <div class="stage">${escapeHtml(s.stage_name)}</div>
+      <div class="count">${s.count_open}<span class="pct"> ${s.pct_of_pipeline}%</span></div>
+      <div class="inactive">${s.inactive_count > 0 ? s.inactive_count + ' inactivos' : ''}</div>
+      <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+    `;
+    wrap.appendChild(row);
+    setTimeout(() => {
+      const fill = row.querySelector('.bar-fill');
+      if (fill) fill.style.width = (s.pct_of_pipeline || 0) + '%';
+    }, 100);
+  }
+  document.getElementById('pipeline-footer').textContent =
+    `${pc.pipeline_name || ''} · ${stages.length} stages · inactivos = sin update >${pc.threshold_days}d`;
+}
+
+// CARD 5 — WhatsApp (real GHL data, no delivered/read receipts)
+function renderWhatsappCard() {
+  const card = document.querySelector('.card[data-card="whatsapp"]');
+  const wa = _snapshot.whatsapp || {};
+  const badge = document.getElementById('whatsapp-badge');
+
+  if (wa.status === 'unavailable') {
+    setUnavailable(card, 'Sin WhatsApp activo',
+      wa.reason ? `${wa.reason}. ${wa.available_signals || ''}` : 'GHL no expone TYPE_WHATSAPP messages en este periodo.');
+    badge.style.display = 'inline-block';
+    badge.textContent = 'UNAVAILABLE';
+    document.getElementById('whatsapp-reply').textContent = '—';
+    document.getElementById('whatsapp-sent').textContent = '—';
+    document.getElementById('whatsapp-footer').textContent = 'Sin mensajes TYPE_WHATSAPP encontrados.';
+    destroyChart('chart-whatsapp');
+    return;
+  }
+
+  card.removeAttribute('data-status');
+  const slot = document.getElementById('chart-whatsapp-slot');
+  if (!slot.querySelector('canvas')) slot.innerHTML = '<canvas id="chart-whatsapp"></canvas>';
+  badge.style.display = wa.status === 'partial' ? 'inline-block' : 'none';
+  badge.textContent = 'PARTIAL · sin receipts';
+
+  const totals = wa.totals || {};
+  document.getElementById('whatsapp-reply').textContent = fmtNum(totals.reply_rate_pct ?? 0, { maximumFractionDigits: 1 });
+  document.getElementById('whatsapp-sent').textContent = fmtNum(totals.sent || 0);
+
+  const reps = _snapshot.reps || {};
+  const byRep = wa.by_rep || {};
+  const repIds = Object.keys(byRep).filter(id => byRep[id].sent + byRep[id].received > 0);
+  const labels = repIds.map(id => (reps[id]?.display_name) || (id ? id.slice(-6) : 'unassigned'));
+  const datasets = [
+    { label: 'Sent',     data: repIds.map(id => byRep[id].sent),     backgroundColor: '#C0191E', borderWidth: 0 },
+    { label: 'Received', data: repIds.map(id => byRep[id].received), backgroundColor: '#2D5F3D', borderWidth: 0 },
+    { label: 'Replies',  data: repIds.map(id => byRep[id].replies),  backgroundColor: '#B8851A', borderWidth: 0 },
+  ];
+  destroyChart('chart-whatsapp');
+  if (repIds.length === 0) {
+    document.getElementById('whatsapp-footer').textContent = 'Sin actividad WhatsApp en este periodo.';
+    return;
+  }
+  new Chart(document.getElementById('chart-whatsapp'), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: chartBarOptions({ stacked: false }),
+  });
+  document.getElementById('whatsapp-footer').innerHTML = `
+    <strong>${totals.sent || 0}</strong> enviados · <strong>${totals.received || 0}</strong> recibidos · <strong>${totals.contacts_messaged || 0}</strong> contactos · GHL no expone delivered/read
+  `;
+}
+
+// CARD 6 — Sequences
+function renderSequencesCard() {
+  const card = document.querySelector('.card[data-card="sequences"]');
+  const seq = _snapshot.sequences || {};
+  if (seq.status !== 'ok') {
+    setUnavailable(card, seq.status === 'partial' ? 'Datos parciales' : 'Pendiente integración',
+      seq.reason ? `${seq.reason}. ${seq.available_signals || ''}` : 'GHL workflows / Zoho Cadences no sincronizados.');
+    document.getElementById('sequences-badge').style.display = 'inline-block';
+    document.getElementById('sequences-badge').textContent = (seq.status || 'unavailable').toUpperCase();
+    document.getElementById('sequences-total').textContent = '—';
+    document.getElementById('sequences-stuck').textContent = '—';
+    document.getElementById('sequences-footer').textContent = 'Sincronizar GHL workflows o Zoho Cadences enrollments.';
+    destroyChart('chart-sequences');
+    return;
+  }
+  card.removeAttribute('data-status');
+  document.getElementById('sequences-badge').style.display = 'none';
+}
+
+// ─────────────────────────────────────────  Sections (actions + relevant calls) ─
+
+function renderRequiredActions(d) {
+  const actions = d.required_actions || [];
+  document.getElementById('actions-meta').textContent = `${actions.length} items · ordenados por urgencia`;
+  const list = document.getElementById('actions-list');
+  if (!actions.length) {
+    list.innerHTML = '<div class="empty">Sin acciones requeridas — pipeline al día</div>';
+    return;
+  }
+  const reps = d.reps || {};
+  list.innerHTML = '';
+  for (const a of actions) {
+    const item = document.createElement('div');
+    item.className = 'action-item';
+    const repKey = (a.rep || '').toLowerCase();
+    const repName = reps[repKey]?.display_name || (a.rep ? a.rep.split('@')[0] : '—');
+    const valueStr = a.value_eur ? ` · ${fmtEur(a.value_eur)}` : '';
+    item.innerHTML = `
+      <div>
+        <div class="a-lead">${escapeHtml(a.lead)}${valueStr}</div>
+        <div class="a-reason">${escapeHtml(a.reason)} · sugerido: ${escapeHtml(a.suggested_next || '')}</div>
+      </div>
+      <div class="a-rep">${escapeHtml(repName)}</div>
+      <div class="a-days">${a.last_activity_days}<span class="label">días</span></div>
+      <div class="a-link">${a.link ? `<a href="${escapeHtml(a.link)}" target="_blank" rel="noopener">Abrir</a>` : ''}</div>
+    `;
+    list.appendChild(item);
+  }
+}
+
+function renderRecentEmails(d) {
+  const events = (d.emails?.events) || [];
+  const list = document.getElementById('emails-recent-list');
+  if (!events.length) {
+    list.innerHTML = '<div class="empty">Sin eventos email recientes</div>';
+    return;
+  }
+  const reps = d.reps || {};
+  // Build a map conversation_id → preview from snapshot.emails.events shape
+  const html = events.slice(0, 12).map(ev => {
+    const repName = reps[(ev.rep_id || '').toLowerCase()]?.display_name || (ev.rep_id ? ev.rep_id.slice(-6) : '—');
+    const dirBadge = ev.direction === 'outbound' ? 'OUT' : 'IN';
+    const dirColor = ev.direction === 'outbound' ? 'var(--accent-soft)' : 'rgba(45,95,61,.20)';
+    const dirFg    = ev.direction === 'outbound' ? 'var(--accent-fg)'  : '#86c79a';
+    const repliedBadge = ev.replied ? '<span class="partial-badge" style="background:rgba(184,133,26,.18);color:#f0c065;margin-left:6px">REPLIED</span>' : '';
+    const date = (ev.date_added || '').slice(0, 10);
+    const contact = escapeHtml(ev.contact || '?');
+    const subj = escapeHtml((ev.subject || '').replace(/\n/g, ' ')).slice(0, 120);
+    const convId = ev.conversation_id || '';
+    const linkAttr = convId ? `onclick="location.href='emails/${convId}.html'"` : '';
+    return `<div class="action-item" style="cursor:${convId ? 'pointer' : 'default'}" ${linkAttr}>
+      <div>
+        <div class="a-lead">${contact} <span style="background:${dirColor};color:${dirFg};font-size:9px;letter-spacing:.12em;padding:2px 6px;border-radius:4px;margin-left:6px">${dirBadge}</span>${repliedBadge}</div>
+        <div class="a-reason">${subj || '<em style="color:var(--fg-subtle)">(sin preview)</em>'}</div>
+      </div>
+      <div class="a-rep">${escapeHtml(repName)}</div>
+      <div class="a-days" style="color:var(--fg-subtle);font-size:11px">${date}<span class="label">fecha</span></div>
+      <div class="a-link">${convId ? '<a>Ver hilo →</a>' : ''}</div>
+    </div>`;
+  }).join('');
+  list.innerHTML = `<div class="actions-list">${html}</div>`;
+}
+
+function renderRelevantCalls(d) {
+  const calls = d.relevant_calls || [];
+  document.getElementById('calls-relevant-meta').textContent = `${calls.length} calls · top score`;
+  const list = document.getElementById('calls-relevant-list');
+  if (!calls.length) {
+    list.innerHTML = '<div class="empty">Sin calls procesadas en esta ventana</div>';
+    return;
+  }
+  const reps = d.reps || {};
+  list.innerHTML = '';
+  for (const c of calls) {
+    const card = document.createElement('div');
+    card.className = 'call-card';
+    const repName = reps[(c.rep || '').toLowerCase()]?.display_name || c.rep || '—';
+    const scoreCls = c.score >= 70 ? 'hi' : (c.score >= 40 ? 'mid' : 'lo');
+    card.innerHTML = `
+      <div class="score">
+        <div class="num">${c.score ?? '—'}</div>
+        <div class="label">${escapeHtml(c.disposition || '')}</div>
+      </div>
+      <div class="body">
+        <div class="name">${escapeHtml(c.contact_name)}${c.company ? ' · ' + escapeHtml(c.company) : ''}</div>
+        <div class="meta">${escapeHtml(repName)} · ${c.duration_sec || 0}s · ${escapeHtml((c.started_at || '').slice(0, 10))}</div>
+        <div class="summary">${escapeHtml(c.summary || '')}</div>
+      </div>
+      <div class="actions">
+        ${c.audio_path ? `<audio controls preload="none" src="${escapeHtml(c.audio_path)}"></audio>` : ''}
+        ${c.detail_path ? `<a href="${escapeHtml(c.detail_path)}">Ver detalle →</a>` : ''}
+      </div>
+    `;
+    list.appendChild(card);
+  }
+}
+
+// ─────────────────────────────────────────  Chart.js helpers ─
+
+function chartBarOptions({ stacked = false, onClickFn = null } = {}) {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: 'x',
+    plugins: {
+      legend: { display: true, position: 'bottom', labels: { color: '#9ca3af', font: { size: 10, family: 'Montserrat' }, boxWidth: 8, boxHeight: 8, padding: 8 } },
+      tooltip: { backgroundColor: '#16181b', borderColor: '#26292e', borderWidth: 1, titleColor: '#e8eaed', bodyColor: '#9ca3af' },
+    },
+    scales: {
+      x: { stacked, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
+      y: { stacked, beginAtZero: true, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,.04)' } },
+    },
+    onClick: onClickFn ? (evt, els, chart) => {
+      if (!els || !els.length) return;
+      const i = els[0].index;
+      const datasetIdx = els[0].datasetIndex;
+      const label = chart.data.labels[i];
+      const dispLabel = chart.data.datasets[datasetIdx]?.label;
+      onClickFn(label, dispLabel);
+    } : undefined,
+  };
+}
+
+function destroyChart(id) {
+  const c = Chart.getChart(id);
+  if (c) c.destroy();
+}
+
+function setUnavailable(card, msg, reason) {
+  card.setAttribute('data-status', 'unavailable');
+  const slot = card.querySelector('.chart-slot');
+  if (slot) {
+    slot.innerHTML = `<div class="ico">○</div><div class="msg">${escapeHtml(msg)}</div><div class="reason">${escapeHtml(reason)}</div>`;
+  }
+}
+
+// ─────────────────────────────────────────  Topbar + colophon ─
+
+function renderTopbar(d) {
+  const dt = new Date(d.generated_at);
+  const fmt = dt.toLocaleString('es-ES', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+  document.getElementById('topbar-updated').textContent = fmt;
+  document.getElementById('topbar-quarter').textContent = d.quarter?.label || '—';
+}
+function renderColophon(d) {
+  const calls = d.calls?.available ? d.calls.total_calls + ' calls' : 'calls pendientes';
+  const opps = (d.opportunities?.summary?.total ?? 0) + ' oportunidades';
+  const meets = (d.meetings?.all?.total ?? 0) + ' reuniones';
+  document.getElementById('colo-counts').textContent = `${calls} · ${opps} · ${meets}`;
+}
+
+// ─────────────────────────────────────────  Tabs ─
+
+async function activateTab(snapshotPath) {
+  const d = await loadData(snapshotPath);
+  _snapshot = d;
+  document.querySelectorAll('.q-tabs button').forEach(b => {
+    b.classList.toggle('active', b.dataset.path === snapshotPath);
+  });
+  // Destroy any existing charts before re-render
+  ['chart-calls', 'chart-emails', 'chart-meetings', 'chart-whatsapp', 'chart-sequences'].forEach(destroyChart);
+
+  renderTopbar(d);
+  renderRevenueGauge(d);
+  renderMeetingsGauge(d);
+  ['calls', 'emails', 'meetings', 'pipeline', 'whatsapp', 'sequences'].forEach(renderCard);
+  renderRequiredActions(d);
+  renderRelevantCalls(d);
+  renderRecentEmails(d);
+  renderColophon(d);
+}
+
+async function setupTabs() {
+  const tabs = await discoverQuarters();
+  const container = document.getElementById('quarter-tabs');
+  if (!tabs.length) return activateTab('snapshot.json');
+  for (const t of tabs) {
+    const btn = document.createElement('button');
+    btn.textContent = t.label;
+    btn.dataset.path = t.path;
+    btn.onclick = () => activateTab(t.path);
+    container.appendChild(btn);
+  }
+  // Default to current Q if available, else All time
+  const today = new Date();
+  const cq = Math.floor(today.getMonth() / 3) + 1;
+  const cy = today.getFullYear();
+  const currentTab = tabs.find(t => t.q === cq && t.y === cy);
+  const allTab = tabs.find(t => t.q === 0);
+  const target = currentTab || allTab || tabs.slice(-1)[0] || tabs[0];
+  await activateTab(target.path);
+}
+
+(async () => {
+  setupRangeDropdowns();
+  await setupTabs();
+  // Auto-refresh: re-fetch active snapshot every 30s. The LaunchAgent
+  // com.actualtalent.sales-sync runs every 120s and updates snapshot.json
+  // on disk; this loop picks up changes without full page reload.
+  setInterval(async () => {
+    const active = document.querySelector('.q-tabs button.active');
+    const path = active?.dataset?.path || 'snapshot.json';
+    try {
+      await activateTab(path);
+      const ts = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const meta = document.getElementById('topbar-updated');
+      if (meta && meta.dataset) meta.title = 'auto-refresh ' + ts;
+    } catch (e) { console.warn('auto-refresh failed', e); }
+  }, 30 * 1000);
+})();
+</script>
+</body>
+</html>

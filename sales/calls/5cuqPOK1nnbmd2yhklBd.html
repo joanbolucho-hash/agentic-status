@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Call · Montse Costa — Sales Cockpit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08090a; --surface:#111214; --surface-2:#16181b; --surface-hi:#1d1f23;
+  --border:#1d1f23; --border-strong:#26292e;
+  --fg:#e8eaed; --fg-muted:#9ca3af; --fg-subtle:#6b7280;
+  /* Accent + chart palette: Actual Talent code of colors over Fluxo dark shell */
+  --accent:#C0191E; --accent-soft:rgba(192,25,30,.16); --accent-fg:#FCA5A5;
+  --at-red:#C0191E; --at-green:#2D5F3D; --at-amber:#B8851A;
+  --at-cream:#F0EEEB; --at-beige:#E8E5DC; --at-gray:#9A9A9A;
+  --warn:#B8851A; --danger:#C0191E; --info:#4A6FA5;
+  --rule:rgba(255,255,255,.06); --rule-soft:rgba(255,255,255,.03);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 300;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.6;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+
+.shell { max-width: 980px; margin: 0 auto; padding: 32px 28px 80px; }
+@media (max-width: 720px) { .shell { padding: 20px 16px 60px; } }
+
+.masthead {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.masthead .brand {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--fg);
+}
+.masthead .brand::before {
+  content: ''; display: inline-block;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 12px var(--accent);
+}
+.masthead .brand span { color: var(--accent); font-weight: 700; }
+.masthead .crumb {
+  font-size: 11px; color: var(--fg-subtle); letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 500;
+  flex: 1; text-align: right;
+}
+.masthead .crumb a:hover { color: var(--accent); }
+.masthead .crumb .sep { margin: 0 10px; color: var(--fg-subtle); }
+
+.eyebrow {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px solid var(--border);
+  padding-top: 10px; margin: 36px 0 24px;
+}
+.eyebrow .label { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--fg); }
+.eyebrow .meta { font-size: 11px; color: var(--fg-subtle); letter-spacing: .06em; text-transform: uppercase; }
+
+h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  letter-spacing: -.015em;
+  line-height: 1.15;
+  margin-top: 24px;
+  max-width: 36ch;
+  color: var(--fg);
+}
+h1 em { font-style: normal; color: var(--accent); font-weight: 500; }
+.sub {
+  color: var(--fg-muted); font-size: 12px; margin-top: 14px;
+  letter-spacing: .14em; text-transform: uppercase; font-weight: 500;
+}
+
+/* KPI inline row */
+.kpi-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin: 36px 0 32px;
+}
+.kpi { padding: 20px 18px 20px 0; border-right: 1px solid var(--border); }
+.kpi:last-child { border-right: none; padding-right: 0; }
+@media (max-width: 720px) {
+  .kpi { border-right: none; border-bottom: 1px solid var(--border); padding: 16px; }
+  .kpi:last-child { border-bottom: none; }
+}
+.kpi .label { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--fg-subtle); font-weight: 500; margin-bottom: 10px; }
+.kpi .value { font-size: 30px; font-weight: 700; letter-spacing: -.02em; line-height: 1; color: var(--fg); }
+
+/* Tags */
+.tag {
+  display: inline-block; padding: 5px 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  background: var(--surface-hi); color: var(--fg);
+  border-radius: 4px;
+}
+.tag.disp.connected-positive { background: rgba(45,95,61,.20);  color: #86c79a; }  /* AT green */
+.tag.disp.connected-negative { background: rgba(192,25,30,.18); color: #fca5a5; }  /* AT red */
+.tag.disp.connected-busy     { background: rgba(184,133,26,.18); color: #f0c065; } /* AT amber */
+.tag.disp.no-answer          { background: var(--surface-hi); color: var(--at-gray); }
+.tag.disp.busy               { background: rgba(139,90,60,.20); color: #d6a48a; }
+.tag.disp.wrong-number       { background: var(--surface-2); color: var(--fg-subtle); }
+
+/* Score pill */
+.score-pill {
+  display: inline-block; padding: 4px 12px;
+  font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  font-feature-settings: "tnum" 1; line-height: 1;
+  border-radius: 4px;
+}
+.score-pill.hi  { background: rgba(45,95,61,.20);  color: #86c79a; }  /* AT green */
+.score-pill.mid { background: rgba(184,133,26,.18); color: #f0c065; } /* AT amber */
+.score-pill.lo  { background: rgba(192,25,30,.18); color: #fca5a5; }  /* AT red */
+
+/* Calls table */
+table.calls { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+table.calls thead tr th {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 500; color: var(--fg-subtle);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 8px 10px 0; text-align: left;
+}
+table.calls td {
+  padding: 14px 8px 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--fg-muted);
+}
+table.calls td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.calls tbody tr { cursor: pointer; transition: background .15s; }
+table.calls tbody tr:hover { background: var(--surface-2); }
+table.calls tbody tr:hover td.contact { color: var(--accent); }
+table.calls .contact { font-weight: 500; color: var(--fg); }
+table.calls .summary { color: var(--fg-subtle); font-size: 12px; max-width: 360px; }
+
+/* Breakdown bars */
+.breakdown {
+  display: grid; grid-template-columns: 160px 1fr 50px;
+  gap: 14px; align-items: center;
+  padding: 8px 0;
+  font-size: 12px;
+}
+.breakdown .name {
+  font-weight: 500; letter-spacing: .04em; text-transform: uppercase;
+  font-size: 11px; color: var(--fg);
+}
+.breakdown .bar {
+  height: 6px; background: var(--surface-hi); position: relative; border-radius: 3px;
+  overflow: hidden;
+}
+.breakdown .bar > span {
+  display: block; height: 100%; background: var(--accent);
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.breakdown .num { text-align: right; font-feature-settings: "tnum" 1; color: var(--fg-muted); }
+
+/* Transcript box */
+.transcript {
+  white-space: pre-wrap; font-size: 14px; line-height: 1.7;
+  padding: 24px; background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  margin-top: 16px;
+  max-height: 520px; overflow-y: auto;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  color: var(--fg-muted);
+}
+
+.note {
+  font-size: 11px; letter-spacing: .04em; color: var(--fg-muted);
+  padding: 10px 16px; background: var(--surface-2);
+  border-left: 2px solid var(--warn);
+  margin-bottom: 16px;
+}
+.note code {
+  font-family: ui-monospace, monospace; font-size: 10px;
+  background: var(--surface-hi); padding: 1px 6px;
+}
+
+audio.recording {
+  width: 100%;
+  margin: 14px 0 8px;
+  filter: invert(1) hue-rotate(180deg) saturate(.7);
+}
+.recording-meta {
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg-subtle); margin-bottom: 6px;
+}
+
+.summary-quote {
+  font-size: 16px; font-weight: 300; line-height: 1.6;
+  color: var(--fg); padding: 18px 24px;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2); margin: 16px 0 24px;
+  font-style: italic;
+  border-radius: 0 8px 8px 0;
+}
+
+.led-empty { text-align: center; padding: 60px 20px; color: var(--fg-subtle); font-size: 13px; }
+
+.colophon {
+  margin-top: 60px; padding-top: 18px; border-top: 1px solid var(--border);
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--fg-subtle);
+  font-feature-settings: "tnum" 1;
+}
+.colophon code {
+  font-family: ui-monospace, monospace; font-size: 10px;
+  text-transform: none; letter-spacing: .02em;
+  color: var(--fg-muted);
+}
+</style>
+</head><body><div class="shell">
+<div class="masthead">
+  <div class="brand">Sales <span>Cockpit</span></div>
+  <div class="crumb"><a href="../">Sales Briefing</a><span class="sep">/</span><a href="../dispositions/connected_negative.html">Connected Negative</a><span class="sep">/</span><span>Montse Costa</span></div>
+</div>
+
+<div class="eyebrow">
+  <div class="label">Llamada individual</div>
+  <div class="meta">16 Mar 2026 15:31 · 534s · joan.boluda</div>
+</div>
+<h1>Montse Costa</h1>
+<div class="sub">
+  <span class="tag disp connected-negative">Connected Negative</span>
+  &nbsp;·&nbsp; Discovery score <span class="score-pill mid">45</span>
+  &nbsp;·&nbsp; Twilio status: completed
+</div>
+
+<div class="summary-quote">Joan reached Montse after multiple call attempts (which annoyed her), discovered she uses external vendors and has low turnover but struggles finding experienced profiles in engineering and trades; however, Montse explicitly rejected taking on a new vendor at this time and asked Joan to send info for future consideration only.</div>
+
+<div class="kpi-row">
+<div class="kpi"><div class="label">Duración</div><div class="value">534<span style="font-size:14px;color:var(--gray);font-weight:400;margin-left:4px;">s</span></div></div>
+<div class="kpi"><div class="label">Score</div><div class="value">45</div></div>
+<div class="kpi"><div class="label">Direction</div><div class="value" style="font-size:18px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;">outbound</div></div>
+<div class="kpi"><div class="label">Owner</div><div class="value" style="font-size:18px;font-weight:500;">joan.boluda</div></div>
+</div>
+
+<div class="eyebrow"><div class="label">Breakdown discovery</div><div class="meta">rúbrica v1 · 5 dimensiones × 20 puntos</div></div><div class="breakdown">
+<div class="name">Opening</div>
+<div class="bar"><span style="width:75%"></span></div>
+<div class="num">15/20</div>
+</div><div class="breakdown">
+<div class="name">Situación actual</div>
+<div class="bar"><span style="width:75%"></span></div>
+<div class="num">15/20</div>
+</div><div class="breakdown">
+<div class="name">Listening activo</div>
+<div class="bar"><span style="width:60%"></span></div>
+<div class="num">12/20</div>
+</div><div class="breakdown">
+<div class="name">Discovery dolor</div>
+<div class="bar"><span style="width:90%"></span></div>
+<div class="num">18/20</div>
+</div><div class="breakdown">
+<div class="name">Próximo paso</div>
+<div class="bar"><span style="width:60%"></span></div>
+<div class="num">12/20</div>
+</div>
+
+<div class="eyebrow"><div class="label">Grabación</div><div class="meta">audio · 534s</div></div>
+<div class="recording-meta">Audio servido localmente. NO se publica en GitHub Pages.</div>
+<audio class="recording" controls preload="metadata" src="../audio/5cuqPOK1nnbmd2yhklBd.mp3">Tu navegador no soporta audio HTML5.</audio>
+
+<div class="eyebrow"><div class="label">Transcript</div><div class="meta">vía Whisper</div></div>
+<div class="transcript">¿Digui? Hola, Montse. Hola. ¿Qué tal? ¿Cómo estem? Soy Joan Boluda, de Actual Talent. Te he gritado y después me has gritado tú. Bueno, me has gritado tres veces, creo. Sí. ¿Puede ser? Te he gritado primero a un número y después a otro. Ya, es que, para empezar, no sé cómo tienes mi segundo número, porque es el teléfono personal, no es el teléfono de empresa. Por lo tanto, por favor, y si me llamas una vez y no te lo agarro es porque estoy reunida. Es que me has llamado tres veces seguidas y he pensado, bueno, tal vez sí que pasa una cosa súper urgente que tienes que salir de la reunión, pero si no, déjame un mensaje, envíame un mail y cuando termine la reunión te contesto, porque es que me puedes llamar treinta veces que si no, si no te lo puedo agarrar, no te lo puedo agarrar. Vale, disculpa. ¿Este es el teléfono profesional o es el A3? El que me estás trucando es el que toca que me truques, el profesional. Sí, por favor. Y, por favor, si no te lo agarro, pónme un mensaje, pónme un WhatsApp, pónme un mail, pónme un mensaje, porque es que si estoy en medio de una reunión y me llamas tres veces, entenderé que es una cosa tan urgente que tengo que salir de la reunión. Puede ser, puede ser. Vale, vale. Vale, vale. ¿Qué vuelves a decir que no tenéis capa en España? No, no, no. Nosotros sí que tenemos posiciones, pero las estamos gestionando a través de nuestros proveedores. Entonces, tenemos empresas con las que estamos trabajando a nivel de headhunting y otras empresas con las que estamos trabajando a nivel de selección temporal. A veces compartimos los anuncios en LinkedIn, a veces no lo hacemos, pero nosotros la selección la hacemos con empresas intermediarias que nos agilizan un poco el proceso. De acuerdo, de acuerdo. Perfecto. Mi intención era contarte un poco cómo hacemos nosotros y presentarte la propuesta de valor. De todas maneras, nosotros no tenemos 50 procesos de selección, en tenemos pocos. Entonces, lo que hacemos es trabajar con unas cuantas empresas, pero no nos abrimos normalmente a muchos proveedores a no ser que haya una posición muy crítica que nos interese ir muy rápido, que sea muy complicada. Entonces, enviamos vuestra información, pero, de entrada, nosotros estamos contentos con nuestros proveedores. Entonces, de momento, yo no tengo una necesidad inmediata de abrir uno de los procesos de selección con otro proveedor diferente. Claro, no hay problema. En cuanto a la información que nos envían, ¿hay algo en concreto que queréis decir? Bueno, sí. Un poco de información de vosotros, de cuál es vuestro perfil, a dónde más os dediquéis, cuál es el sector en el que más os movéis, cuál es el porcentaje que cobráis por proceso de selección, para que os hagáis una idea de lo que exactamente hacéis. Vosotros tenéis... Yo he hablado en empresas del sector industrial y muchas veces me comentan que el tema de la rotación es un problema. ¿Cómo solucionáis eso vosotros? Para nosotros, realmente, nuestra rotación es muy baja, teniendo en cuenta que nos movemos en el sector de la automoción, que el sector de la automoción es muy alto. Por el tipo de política de empresa, por la tipología de empresa y por nuestros valores, realmente no tenemos un problema para la retención del talento. ¡Qué bien! ¡Eso es un buen señal, Montse! ¡Eso es buena feina! Sí, no, no. Nosotros nos sentimos muy conscientes y, además, sabiendo que el sector se está moviendo en un 7% y nosotros estamos en un 3%. ¡Qué bien! Sí, sí. Nos sentimos conscientes y, bueno, significa que alguna cosa estamos haciendo bien. Sí, sí. Entonces, nuestra dificultad es más buscar perfiles, a veces, que vengan del sector, que tengan experiencia, que puedan ser más «plug and play» y no tengamos que hacer toda la formación interna porque, a veces, pues cuesta. Es un sector en el que la gente está trabajando, en el que la gente no está en atraso, con muchos perfiles de ingeniería. Entonces, nos sentimos más encallados, a veces, en trobar perfiles que ya tengan esta experiencia y, por ejemplo, cuando estamos hablando de oficios, oficios no hay. Entonces, realmente, estamos haciendo escuela. Lo último que has dicho me he perdido. ¿Qué es lo que no hay? Oficios. Oficios. En cuanto a irte a buscar ingeniería, cuando vas de abajo al taller y necesitas matrices, pues no hay matrices. Ah, ya, ya. Pues mira, en estas cosas que me comentas estamos bien especializados, hemos trabajado en empresas como SEAD, por ejemplo, y tenemos una base de datos bien desarrollada en este tipo de perfiles. Yo, personalmente, hace poco que estoy en esta industria, pero, bueno, sí que me gustaría enseñarte este tema, el tema de la base de datos, junto con mi jefe, que ya lleva mucho tiempo en eso y te puede explicar bien cómo podemos solventarlo, por si podemos ofrecer... Vale, pero yo ahora mismo no os voy a perder el tiempo porque yo ahora mismo no me estoy planteando la entrada de un nuevo proveedor. Por lo tanto, antes de que me llegue la información, para que yo la pueda tener y cuando realmente yo necesite ampliar esta parte de proveedores, pues tenga vuestro email y de una forma muy clara el vuestro email diga con qué sois muy buenos. Cuando digas ¿qué quieres que te añade? ¿Con qué sois muy buenos? ¿Con qué tipo de perfil sois muy buenos a nivel de selección y cuál es vuestra tarifa? Nosotros somos expertos en temas de fixación y trabajamos principalmente en el sector de automoción, pero también trabajamos por energías y agricultura. España. Entonces, tenemos estas tres unidades de negocio y siempre en torno a la fixación y a buscar soluciones innovadoras que hacen los sistemas de montaje más eficientes. Eso es a lo que nosotros nos dedicamos. Sí, pero normalmente son perfiles de ingeniería. Si te parece, hacemos esto. Enviamos este correo. De momento no concertamos reunión y en el caso que yo me plantee esta apertura os contacto yo directamente. ¿Tú cómo crees que me puedes dar algún comentario de si lo has recibido, qué te ha parecido? Prefiero seguir yo, ¿eh? Porque como no me estaba llegando... Perfecto, Montse. Entonces, quedemos así. Por último, quiero comentarte una última cosa rápida y es que hacemos estos eventos en Barcelona con gente de Recursos Humanos y empresas del sector industrial. Y van muy bien. Son un pequeño comité, 20-30 personas como máximo. El networking funciona muy bien y la gente queda muy contenta. No sé si quieres que te avise para el próximo y que tenga el tuyo correo. Me puedes enviar información. Sí, sí, me puedes enviar en el mismo correo. Perfecto, Montse. Estupendo. Entonces, muchísimas gracias. Que vaya muy bien. Adiós.</div>
+
+<div class="colophon">
+  Contact: Montse Costa · +34669486205
+  &nbsp;|&nbsp; GHL call id: <code>5cuqPOK1nnbmd2yhklBd</code>
+</div>
+</div></body></html>
