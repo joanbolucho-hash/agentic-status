@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-05-07T08:55:13+00:00",
+  "generated_at": "2026-05-07T14:37:50+00:00",
   "quarter": {
     "year": 0,
     "q": 0,
@@ -30,7 +30,7 @@
   "revenue_progress": {
     "status": "ok",
     "source": "soft_finanzas/finanzas.db",
-    "generated_at": "2026-05-07T08:55:13+00:00",
+    "generated_at": "2026-05-07T14:37:50+00:00",
     "quarter_label": "Q2 2026",
     "quarter_start": "2026-04-01",
     "quarter_end": "2026-06-30",
@@ -2130,7 +2130,7 @@
             "pipeline_name": "Pipeline de ventas",
             "stage_id": "0dac6322-350a-465f-8e1f-0918b361e89e",
             "stage_name": "New",
-            "count_open": 331,
+            "count_open": 330,
             "count_won": 0,
             "count_lost": 0,
             "count_abandoned": 0,
@@ -2174,7 +2174,7 @@
             "pipeline_name": "Pipeline de ventas",
             "stage_id": "a5a89571-34e8-472e-b842-397b5f0583c5",
             "stage_name": "Engaged",
-            "count_open": 12,
+            "count_open": 13,
             "count_won": 0,
             "count_lost": 0,
             "count_abandoned": 0,
@@ -2225,44 +2225,44 @@
     },
     "velocity": {
       "New": {
-        "count": 331,
-        "avg_days_since_update": 1.7,
-        "max_days_since_update": 75.8
+        "count": 330,
+        "avg_days_since_update": 1.9,
+        "max_days_since_update": 76.0
       },
       "Contacting": {
         "count": 84,
-        "avg_days_since_update": 1.8,
-        "max_days_since_update": 2.0
+        "avg_days_since_update": 2.0,
+        "max_days_since_update": 2.2
       },
       "Nurturing": {
         "count": 22,
-        "avg_days_since_update": 8.8,
-        "max_days_since_update": 78.7
+        "avg_days_since_update": 9.0,
+        "max_days_since_update": 79.0
       },
       "Engaged": {
-        "count": 12,
-        "avg_days_since_update": 1.1,
-        "max_days_since_update": 2.0
+        "count": 13,
+        "avg_days_since_update": 1.2,
+        "max_days_since_update": 2.2
       },
       "Meeting": {
         "count": 27,
-        "avg_days_since_update": 6.5,
-        "max_days_since_update": 71.5
+        "avg_days_since_update": 6.7,
+        "max_days_since_update": 71.8
       },
       "Inactive": {
         "count": 38,
-        "avg_days_since_update": 0.1,
-        "max_days_since_update": 0.1
+        "avg_days_since_update": 0.4,
+        "max_days_since_update": 0.4
       },
       "Lost": {
         "count": 25,
-        "avg_days_since_update": 2.0,
-        "max_days_since_update": 2.0
+        "avg_days_since_update": 2.2,
+        "max_days_since_update": 2.2
       },
       "Prequalified": {
         "count": 3,
-        "avg_days_since_update": 0.8,
-        "max_days_since_update": 0.8
+        "avg_days_since_update": 1.1,
+        "max_days_since_update": 1.1
       }
     }
   },
@@ -2273,12 +2273,12 @@
       {
         "stage_id": "0dac6322-350a-465f-8e1f-0918b361e89e",
         "stage_name": "New",
-        "count_open": 331,
+        "count_open": 330,
         "count_won": 0,
         "count_lost": 0,
         "value_open_eur": 0.0,
         "inactive_count": 1,
-        "pct_of_pipeline": 61.1
+        "pct_of_pipeline": 60.9
       },
       {
         "stage_id": "77fdc621-7cd1-4f55-9c08-491817567b57",
@@ -2313,12 +2313,12 @@
       {
         "stage_id": "a5a89571-34e8-472e-b842-397b5f0583c5",
         "stage_name": "Engaged",
-        "count_open": 12,
+        "count_open": 13,
         "count_won": 0,
         "count_lost": 0,
         "value_open_eur": 0.0,
         "inactive_count": 0,
-        "pct_of_pipeline": 2.2
+        "pct_of_pipeline": 2.4
       },
       {
         "stage_id": "9d6a9d85-be37-4d9f-9cb0-8aef86f1862b",
@@ -2372,14 +2372,14 @@
   },
   "calls": {
     "available": true,
-    "total_calls": 401,
-    "connected_min": 117.8,
-    "connect_rate": 15.7,
+    "total_calls": 410,
+    "connected_min": 122.0,
+    "connect_rate": 15.9,
     "avg_score": 31.2,
     "by_disposition": [
       {
         "name": "Connected Positive",
-        "count": 16
+        "count": 17
       },
       {
         "name": "Connected Negative",
@@ -2387,11 +2387,11 @@
       },
       {
         "name": "Connected Busy",
-        "count": 22
+        "count": 23
       },
       {
         "name": "No Answer",
-        "count": 282
+        "count": 288
       },
       {
         "name": "Busy",
@@ -2399,10 +2399,227 @@
       },
       {
         "name": "Wrong Number",
-        "count": 38
+        "count": 39
       }
     ],
     "calls": [
+      {
+        "event_id": "fsphSVzMim7OmgGt7vHG",
+        "call_id": "fsphSVzMim7OmgGt7vHG",
+        "contact_id": "mbUARmpIEuEPI37DgpUY",
+        "contact_email": "jesus.manzanares@asitur.es",
+        "contact_phone": "+34683649416",
+        "contact_name": "Marian Dominguez",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "completed",
+        "disposition": "Connected Positive",
+        "duration_sec": 189,
+        "talk_time_sec": 189,
+        "recording_url": null,
+        "transcript": "Hola, Marián. ¿Qué tal? Soy Joan. Te estoy llamando de Actual Talent en Barcelona. ¿Me ubicas? No. No te preocupes. Somos una consultora de talento. Estamos también en Madrid y quería hablar contigo porque he visto que tenéis dos posiciones abiertas de ventas y administración y son perfiles que tenemos muy trabajados. Quería entender cómo los estás llevando. ¿Qué ventas y qué administración? ¿Qué puestos son esos? Estoy viendo ahora mismo especialista de planificación call center. Sí, ese no es de venta. Vale, ¿qué sería? Es de call center. Es una persona que planifica turmas. Vale, entendido. Igualmente, quería presentarte el proyecto. Entender un poco también cómo lo estáis trabajando vosotros si tenéis partners. Sí. Sí. Hola. Hola, ¿me escuchas? Sí. Yo te estaba comentando. Hablo con muchas empresas del sector en finanzas y me comentan que el tema de la rotación es algo que está pasando bastante y quería entender cómo lo estáis solucionando vosotros. Pues malamente. Sufriendo. Sufriendo. Es que no te puedo decir otra cosa. Pero ¿tenéis algún mecanismo? ¿Estáis contratando más? ¿Reforzando talent acquisition? ¿Tenéis partners? De todo lo que podemos tenemos partners. Contratamos más. Intentamos avanzar entradas. Bueno, poco de todo. Ya. ¿Y hay algún proceso en concreto o alguna posición que se esté dando más problemas en cuanto a la rotación? Bueno, todas un poco. Oye, te voy a tener que dejar porque tengo una reunión a las tres y media y tengo que preparar una documentación que no tengo preparada. Así que, si no te importa, mándame si quieres un correo y ya con lo que sea ya vamos hablando, ¿vale? Pero es que ahora mismo me pidas como súper más, ¿vale? Sí, sin problema, María. Lo que pasa es que por lo que me cuentas creo que vale la pena que nos sentemos, que cuente un poco el proyecto y nos conozcamos. La semana que viene, al final de semana, ¿te parecería? Mándame si quieres un correo y yo lo miro, ¿vale? Porque ahora mismo como estamos precisamente con un pico de incorporaciones y demás tengo que verlo todo, ¿vale? Estoy un poco liadilla, ¿vale? Te lo voy a mandar ahora. ¿Cuándo crees que me podrás activar? Pues, eso no lo sé. Te lo pregunto, María, porque muchas veces me piden correo y luego pasan de mí y quería comprometerme contigo. Yo solo voy a estar a todos. Tarde o temprano, ¿vale? Genial. Te lo agradezco, ¿eh? Vale, gracias. Venga, hasta ahora. Chao, chao.",
+        "started_at": "2026-05-07T13:20:14.598Z",
+        "ended_at": "2026-05-07T13:23:40.962Z",
+        "received_at": "2026-05-07T13:31:04+00:00",
+        "overall_score": 62,
+        "score_summary": "Joan called Marián about open positions, discovered rotation pain in the call center/finance sector, and secured an email follow-up with a vague commitment to review and potentially meet next week.",
+        "breakdown": {
+          "opening": 18,
+          "current_situation": 16,
+          "active_listening": 14,
+          "pain_discovery": 16,
+          "next_step": 18
+        }
+      },
+      {
+        "event_id": "OPdGgYCj9i6etGzRYgsu",
+        "call_id": "OPdGgYCj9i6etGzRYgsu",
+        "contact_id": "SRDyprfIs0rm5utXsv7H",
+        "contact_email": "joseignacio.gomez@natra.com",
+        "contact_phone": "+34680228230",
+        "contact_name": "Jose Ignacio Gomez Zavala",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "completed",
+        "disposition": "No Answer",
+        "duration_sec": 4,
+        "talk_time_sec": 4,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T13:17:10.592Z",
+        "ended_at": "2026-05-07T13:17:49.547Z",
+        "received_at": "2026-05-07T13:30:48+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "QNVNacNWSaHMq2Mxlc38",
+        "call_id": "QNVNacNWSaHMq2Mxlc38",
+        "contact_id": "SRDyprfIs0rm5utXsv7H",
+        "contact_email": "joseignacio.gomez@natra.com",
+        "contact_phone": "+34680228230",
+        "contact_name": "Jose Ignacio Gomez Zavala",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "completed",
+        "disposition": "No Answer",
+        "duration_sec": 7,
+        "talk_time_sec": 7,
+        "recording_url": null,
+        "transcript": "Le atiende el contestador Vodafone. Deje su mensaje después de oír la señal. Si desea volver a grabar su mensaje...",
+        "started_at": "2026-05-07T13:16:01.613Z",
+        "ended_at": "2026-05-07T13:16:44.347Z",
+        "received_at": "2026-05-07T13:30:52+00:00",
+        "overall_score": 0,
+        "score_summary": "Call reached Vodafone voicemail automated system; no prospect engagement occurred.",
+        "breakdown": {
+          "opening": 0,
+          "current_situation": 0,
+          "active_listening": 0,
+          "pain_discovery": 0,
+          "next_step": 0
+        }
+      },
+      {
+        "event_id": "N0G4N1KSJJJqRz9c8SI9",
+        "call_id": "N0G4N1KSJJJqRz9c8SI9",
+        "contact_id": "WaodOqdtz013Z68tmmBL",
+        "contact_email": "guillaumev@tool4staffing.com",
+        "contact_phone": "+33785829117",
+        "contact_name": "Guillaume Velly",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "failed",
+        "disposition": "Wrong Number",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T13:11:52.321Z",
+        "ended_at": "2026-05-07T13:12:13.244Z",
+        "received_at": "2026-05-07T13:31:09+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "Ode1CM5pcrX0vTXIm2wS",
+        "call_id": "Ode1CM5pcrX0vTXIm2wS",
+        "contact_id": "eZDJQ6W3ORmUlts1HLc2",
+        "contact_email": null,
+        "contact_phone": "+34655306795",
+        "contact_name": "Tania Torres",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "no-answer",
+        "disposition": "No Answer",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T13:11:17.729Z",
+        "ended_at": "2026-05-07T13:11:43.234Z",
+        "received_at": "2026-05-07T13:31:09+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "dZtcC9bmc9gLvBQaHuYq",
+        "call_id": "dZtcC9bmc9gLvBQaHuYq",
+        "contact_id": "udmqeKIFihaxmeeSMPtD",
+        "contact_email": "sara.sanchezllaveria@teleperformance.com",
+        "contact_phone": "+34654049034",
+        "contact_name": "Sara Llavería",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "completed",
+        "disposition": "No Answer",
+        "duration_sec": 7,
+        "talk_time_sec": 7,
+        "recording_url": null,
+        "transcript": "UZON, la persona a la que llama no está disponible. Por favor, deje su mensaje después.",
+        "started_at": "2026-05-07T13:10:06.378Z",
+        "ended_at": "2026-05-07T13:10:58.106Z",
+        "received_at": "2026-05-07T13:31:09+00:00",
+        "overall_score": 0,
+        "score_summary": "Call reached voicemail; no prospect engagement occurred.",
+        "breakdown": {
+          "opening": 0,
+          "current_situation": 0,
+          "active_listening": 0,
+          "pain_discovery": 0,
+          "next_step": 0
+        }
+      },
+      {
+        "event_id": "hsTPf0AKD8dC5DLTxflW",
+        "call_id": "hsTPf0AKD8dC5DLTxflW",
+        "contact_id": "K4hS9quTSwznEaqW4biH",
+        "contact_email": null,
+        "contact_phone": "+34699322931",
+        "contact_name": "Ana Calleja",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "completed",
+        "disposition": "No Answer",
+        "duration_sec": 4,
+        "talk_time_sec": 4,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T13:08:32.521Z",
+        "ended_at": "2026-05-07T13:09:35.073Z",
+        "received_at": "2026-05-07T13:31:09+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "gmKCVPgzS0yyNetThBS7",
+        "call_id": "gmKCVPgzS0yyNetThBS7",
+        "contact_id": "NVvPo6bR7Chnitm45mn3",
+        "contact_email": null,
+        "contact_phone": "+34628547585",
+        "contact_name": "Paula Ponticorvo",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "completed",
+        "disposition": "No Answer",
+        "duration_sec": 2,
+        "talk_time_sec": 2,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T13:05:22.358Z",
+        "ended_at": "2026-05-07T13:05:55.828Z",
+        "received_at": "2026-05-07T13:31:09+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "EO2H2lm60VXWKaujkR7e",
+        "call_id": "EO2H2lm60VXWKaujkR7e",
+        "contact_id": "AbGHBFFvizrFqhyLKOQt",
+        "contact_email": "fcharro@lechepascual.com",
+        "contact_phone": "+34675779782",
+        "contact_name": "Fátima Charro González",
+        "owner_email": "joan.boluda@actualgroup.com",
+        "direction": "outbound",
+        "status": "completed",
+        "disposition": "Connected Busy",
+        "duration_sec": 64,
+        "talk_time_sec": 64,
+        "recording_url": null,
+        "transcript": "Hola. ¿Hola, Fátima? Sí. ¿Qué tal? Soy... en Madrid. Hola, ¿quién eres? ¿Perdona? Jovan, ¿me escuchas bien? Ah, hola, Jovan. ¿Qué tal? Muy bien, ¿y tú? ¿Cómo estás? Bien, bien. Te llamo de Actual Talent, consultora de talento, y quería hablar contigo un ratito, lo que pasa es que escucho bastante ruido. Mira, me pillas... Sí, no, es que no me pillas bien. Hablamos en otro momento, ¿vale? Vale. ¿Te puedo poner... te puedo poner... No, porque estoy con mucho lío. Si te parece, mándame... te dejo mi... mi mail y me mandas un correo, ¿vale? Vale, déjame ver si lo tengo... si lo tengo aquí. Es fcharro... Fcharro, sí. Sí, sí. Vale, perfecto. Ahí te dejo mi mail y cuadramos para aquí un par de semanas, si te parece. Venga, fenomenal. Gracias. Adiós. Gracias. Chau, chau.",
+        "started_at": "2026-05-07T12:51:13.276Z",
+        "ended_at": "2026-05-07T12:52:36.247Z",
+        "received_at": "2026-05-07T13:00:56+00:00",
+        "overall_score": 5,
+        "score_summary": "Prospect (Fátima) picked up but immediately indicated she was busy and unable to talk, redirecting to email contact instead of engaging in conversation.",
+        "breakdown": {
+          "opening": 10,
+          "current_situation": 0,
+          "active_listening": 5,
+          "pain_discovery": 0,
+          "next_step": 5
+        }
+      },
       {
         "event_id": "YsTkf7XYRX4KqujZKpe6",
         "call_id": "YsTkf7XYRX4KqujZKpe6",
@@ -12151,6 +12368,20 @@
       "suggested_followup": ""
     },
     {
+      "call_id": "fsphSVzMim7OmgGt7vHG",
+      "contact_name": "Marian Dominguez",
+      "company": "",
+      "rep": "joan.boluda",
+      "score": 62,
+      "summary": "Joan called Marián about open positions, discovered rotation pain in the call center/finance sector, and secured an email follow-up with a vague commitment to review and potentially meet next week.",
+      "disposition": "Connected Positive",
+      "started_at": "2026-05-07T13:20:14.598Z",
+      "duration_sec": 189,
+      "audio_path": "audio/fsphSVzMim7OmgGt7vHG.mp3",
+      "detail_path": "calls/fsphSVzMim7OmgGt7vHG.html",
+      "suggested_followup": "Revisar transcript y agendar próximo paso"
+    },
+    {
       "call_id": "pXBfinSb2ucLxPSHE5JF",
       "contact_name": "Bruno Martins",
       "company": "",
@@ -12162,20 +12393,6 @@
       "duration_sec": 162,
       "audio_path": "audio/pXBfinSb2ucLxPSHE5JF.mp3",
       "detail_path": "calls/pXBfinSb2ucLxPSHE5JF.html",
-      "suggested_followup": "Revisar transcript y agendar próximo paso"
-    },
-    {
-      "call_id": "Qn686kTVx0lGt4ydHcPj",
-      "contact_name": "Andrea Torres Martínez",
-      "company": "",
-      "rep": "joan.boluda",
-      "score": 62,
-      "summary": "Joan successfully introduced Actual Talent and secured Andrea's agreement to receive information about an executive breakfast event, but discovery was shallow—asking about hiring needs but not exploring pain points, timeline, or vendor chal",
-      "disposition": "Connected Positive",
-      "started_at": "2026-02-19T15:15:09.650Z",
-      "duration_sec": 121,
-      "audio_path": "audio/Qn686kTVx0lGt4ydHcPj.mp3",
-      "detail_path": "calls/Qn686kTVx0lGt4ydHcPj.html",
       "suggested_followup": "Revisar transcript y agendar próximo paso"
     }
   ],
@@ -12239,8 +12456,8 @@
       "kind": "post_meeting_followup",
       "lead": "Anna de Criteo",
       "rep": "joan.boluda",
-      "reason": "Reunión hace 29d — verificar follow-up",
-      "last_activity_days": 29,
+      "reason": "Reunión hace 30d — verificar follow-up",
+      "last_activity_days": 30,
       "stage": "post_meeting",
       "value_eur": 0,
       "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
@@ -12250,8 +12467,8 @@
       "kind": "post_meeting_followup",
       "lead": "Danone | Actual Group",
       "rep": "joan.boluda",
-      "reason": "Reunión hace 28d — verificar follow-up",
-      "last_activity_days": 28,
+      "reason": "Reunión hace 29d — verificar follow-up",
+      "last_activity_days": 29,
       "stage": "post_meeting",
       "value_eur": 0,
       "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
@@ -12261,8 +12478,8 @@
       "kind": "post_meeting_followup",
       "lead": "Esteve | Actual Talent",
       "rep": "joan.boluda",
-      "reason": "Reunión hace 28d — verificar follow-up",
-      "last_activity_days": 28,
+      "reason": "Reunión hace 29d — verificar follow-up",
+      "last_activity_days": 29,
       "stage": "post_meeting",
       "value_eur": 0,
       "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
@@ -12272,8 +12489,8 @@
       "kind": "post_meeting_followup",
       "lead": "Osapiens- Actual Talent",
       "rep": "karim.barmose",
-      "reason": "Reunión hace 28d — verificar follow-up",
-      "last_activity_days": 28,
+      "reason": "Reunión hace 29d — verificar follow-up",
+      "last_activity_days": 29,
       "stage": "post_meeting",
       "value_eur": 0,
       "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
@@ -12283,8 +12500,8 @@
       "kind": "post_meeting_followup",
       "lead": "Inetum | Actual Talent (Compras)",
       "rep": "joan.boluda",
-      "reason": "Reunión hace 7d — verificar follow-up",
-      "last_activity_days": 7,
+      "reason": "Reunión hace 8d — verificar follow-up",
+      "last_activity_days": 8,
       "stage": "post_meeting",
       "value_eur": 0,
       "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
@@ -12296,6 +12513,28 @@
       "rep": "joan.boluda",
       "reason": "Reunión hace 7d — verificar follow-up",
       "last_activity_days": 7,
+      "stage": "post_meeting",
+      "value_eur": 0,
+      "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
+      "link": ""
+    },
+    {
+      "kind": "post_meeting_followup",
+      "lead": "Insud & Actual Talent: Karim & Almu",
+      "rep": "karim.barmose",
+      "reason": "Reunión hace 1d — verificar follow-up",
+      "last_activity_days": 1,
+      "stage": "post_meeting",
+      "value_eur": 0,
+      "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
+      "link": ""
+    },
+    {
+      "kind": "post_meeting_followup",
+      "lead": "Actual Talent & XPO",
+      "rep": "karim.barmose",
+      "reason": "Reunión hace 1d — verificar follow-up",
+      "last_activity_days": 1,
       "stage": "post_meeting",
       "value_eur": 0,
       "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
@@ -12544,10 +12783,10 @@
     "available_signals": "GHL conversations expose sent/received TYPE_EMAIL. Open/click events not in API.",
     "by_rep": {
       "kunvirgx40popbeced0w": {
-        "sent": 40,
-        "received": 4,
-        "replies": 2,
-        "contacts": 120
+        "sent": 47,
+        "received": 5,
+        "replies": 3,
+        "contacts": 123
       },
       "nr3iccp0fizmzufnx4cs": {
         "sent": 0,
@@ -12563,14 +12802,54 @@
       }
     },
     "totals": {
-      "sent": 40,
-      "received": 4,
-      "replies": 2,
-      "contacts_emailed": 123,
-      "contacts_replied": 2,
-      "reply_rate_pct": 1.6
+      "sent": 47,
+      "received": 5,
+      "replies": 3,
+      "contacts_emailed": 126,
+      "contacts_replied": 3,
+      "reply_rate_pct": 2.4
     },
     "events": [
+      {
+        "conversation_id": "PmquE7vyVidclpdNFlJc",
+        "contact": "Marian Dominguez",
+        "company": "Asitur",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "\n\n\nJoan Boluda Chova\n\nBsuiness Development Manager - RPO\n\n+34 689 798 398\n\nGroupe Actual [https://www.groupeactual.eu/si",
+        "direction": "outbound",
+        "date_added": "2026-05-07T14:34:26.378Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "v3uYZBJiAuOF1As8gcOd",
+        "contact": "Jose Ignacio Gomez Zavala",
+        "company": "Natra",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "",
+        "direction": "inbound",
+        "date_added": "2026-05-07T13:21:06.000Z",
+        "replied": true
+      },
+      {
+        "conversation_id": "NGhFVv9lMFNDlVEAN57h",
+        "contact": "Sara Llavería",
+        "company": "TP",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Sara,\n\nSoy Joan, Business Development Manager en Actual Talent, especializado en servicios de RPO. Trabajo con equi",
+        "direction": "outbound",
+        "date_added": "2026-05-07T13:15:33.891Z",
+        "replied": false
+      },
+      {
+        "conversation_id": "mJohV9TZ8lD5K5oqovvu",
+        "contact": "Fátima Charro González",
+        "company": "Pascual",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Hola Fátima, soy Joan, que te acabo de llamar.\n\n\n\n\nQuería conocerte porque somos consultora de talento. Tenemos presenc",
+        "direction": "outbound",
+        "date_added": "2026-05-07T12:59:51.995Z",
+        "replied": false
+      },
       {
         "conversation_id": "em5jQGkFNjqtFp1ykW3W",
         "contact": "German",
@@ -12578,7 +12857,7 @@
         "rep_id": "kunvirgx40popbeced0w",
         "subject": "",
         "direction": "outbound",
-        "date_added": "2026-05-07T07:57:52.000Z",
+        "date_added": "2026-05-07T11:25:52.000Z",
         "replied": false
       },
       {
@@ -12589,16 +12868,6 @@
         "subject": "",
         "direction": "outbound",
         "date_added": "2026-05-06T16:12:07.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "PmquE7vyVidclpdNFlJc",
-        "contact": "Marian Dominguez",
-        "company": "Asitur",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Hola Marian,\n\nSoy Joan, Business Development Manager en Actual Talent, especializado en servicios de RPO. Trabajo con eq",
-        "direction": "outbound",
-        "date_added": "2026-05-06T16:07:48.956Z",
         "replied": false
       },
       {
@@ -12739,36 +13008,6 @@
         "subject": "",
         "direction": "outbound",
         "date_added": "2026-04-29T14:47:26.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "iZALGqHfcF1aYddVxaw1",
-        "contact": "Olivier Nourrain",
-        "company": "papernest",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-04-29T12:52:15.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "WookKwv1upxo9rvLHFvQ",
-        "contact": "Javier Real",
-        "company": "Louis Vuitton",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-04-28T12:43:17.069Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "o3j6pABp1TumZ9ucQtpv",
-        "contact": "Laura Vicente",
-        "company": "Inibsa",
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-04-27T10:48:03.000Z",
         "replied": false
       }
     ]
