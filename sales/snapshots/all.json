@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-05-07T14:37:50+00:00",
+  "generated_at": "2026-05-07T15:07:54+00:00",
   "quarter": {
     "year": 0,
     "q": 0,
@@ -30,7 +30,7 @@
   "revenue_progress": {
     "status": "ok",
     "source": "soft_finanzas/finanzas.db",
-    "generated_at": "2026-05-07T14:37:50+00:00",
+    "generated_at": "2026-05-07T15:07:54+00:00",
     "quarter_label": "Q2 2026",
     "quarter_start": "2026-04-01",
     "quarter_end": "2026-06-30",
@@ -2232,21 +2232,21 @@
       "Contacting": {
         "count": 84,
         "avg_days_since_update": 2.0,
-        "max_days_since_update": 2.2
+        "max_days_since_update": 2.3
       },
       "Nurturing": {
         "count": 22,
-        "avg_days_since_update": 9.0,
+        "avg_days_since_update": 9.1,
         "max_days_since_update": 79.0
       },
       "Engaged": {
         "count": 13,
-        "avg_days_since_update": 1.2,
-        "max_days_since_update": 2.2
+        "avg_days_since_update": 1.3,
+        "max_days_since_update": 2.3
       },
       "Meeting": {
         "count": 27,
-        "avg_days_since_update": 6.7,
+        "avg_days_since_update": 6.8,
         "max_days_since_update": 71.8
       },
       "Inactive": {
@@ -12401,12 +12401,23 @@
       "kind": "inactive_opportunity",
       "lead": "Florencia - Swissport",
       "rep": "kUNvIRGx40pOPBeceD0W",
-      "reason": "Sin actividad 78d en stage \"Nurturing\"",
-      "last_activity_days": 78,
+      "reason": "Sin actividad 79d en stage \"Nurturing\"",
+      "last_activity_days": 79,
       "stage": "Nurturing",
       "value_eur": 0.0,
       "suggested_next": "Tocar al lead o mover de stage",
       "link": "https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=RsUUCnvDiO9YoPpmPjNC"
+    },
+    {
+      "kind": "inactive_opportunity",
+      "lead": "Eva Roca - Schneider Electric",
+      "rep": "kUNvIRGx40pOPBeceD0W",
+      "reason": "Sin actividad 76d en stage \"New\"",
+      "last_activity_days": 76,
+      "stage": "New",
+      "value_eur": 0.0,
+      "suggested_next": "Tocar al lead o mover de stage",
+      "link": "https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=Sh1Q6jGNEzHOZu5IDttR"
     },
     {
       "kind": "inactive_opportunity",
@@ -12418,17 +12429,6 @@
       "value_eur": 0.0,
       "suggested_next": "Tocar al lead o mover de stage",
       "link": "https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=aEH647kTzUYjcVqJeZHr"
-    },
-    {
-      "kind": "inactive_opportunity",
-      "lead": "Eva Roca - Schneider Electric",
-      "rep": "kUNvIRGx40pOPBeceD0W",
-      "reason": "Sin actividad 75d en stage \"New\"",
-      "last_activity_days": 75,
-      "stage": "New",
-      "value_eur": 0.0,
-      "suggested_next": "Tocar al lead o mover de stage",
-      "link": "https://app.gohighlevel.com/v2/location/-/opportunities/list?opportunity=Sh1Q6jGNEzHOZu5IDttR"
     },
     {
       "kind": "inactive_opportunity",
