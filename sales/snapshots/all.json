@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-05-07T07:16:45+00:00",
+  "generated_at": "2026-05-07T07:57:57+00:00",
   "quarter": {
     "year": 0,
     "q": 0,
@@ -30,7 +30,7 @@
   "revenue_progress": {
     "status": "ok",
     "source": "soft_finanzas/finanzas.db",
-    "generated_at": "2026-05-07T07:16:45+00:00",
+    "generated_at": "2026-05-07T07:57:57+00:00",
     "quarter_label": "Q2 2026",
     "quarter_start": "2026-04-01",
     "quarter_end": "2026-06-30",
@@ -2232,32 +2232,32 @@
       "Contacting": {
         "count": 84,
         "avg_days_since_update": 1.7,
-        "max_days_since_update": 1.9
+        "max_days_since_update": 2.0
       },
       "Nurturing": {
         "count": 22,
-        "avg_days_since_update": 8.7,
+        "avg_days_since_update": 8.8,
         "max_days_since_update": 78.7
       },
       "Engaged": {
         "count": 12,
-        "avg_days_since_update": 1.0,
-        "max_days_since_update": 1.9
+        "avg_days_since_update": 1.1,
+        "max_days_since_update": 2.0
       },
       "Meeting": {
         "count": 27,
-        "avg_days_since_update": 6.4,
+        "avg_days_since_update": 6.5,
         "max_days_since_update": 71.5
       },
       "Inactive": {
         "count": 38,
-        "avg_days_since_update": 0.0,
-        "max_days_since_update": 0.0
+        "avg_days_since_update": 0.1,
+        "max_days_since_update": 0.1
       },
       "Lost": {
         "count": 25,
-        "avg_days_since_update": 1.9,
-        "max_days_since_update": 1.9
+        "avg_days_since_update": 2.0,
+        "max_days_since_update": 2.0
       },
       "Prequalified": {
         "count": 3,
