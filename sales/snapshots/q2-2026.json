@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-05-07T08:16:55+00:00",
+  "generated_at": "2026-05-07T08:52:46+00:00",
   "quarter": {
     "year": 2026,
     "q": 2,
@@ -30,7 +30,7 @@
   "revenue_progress": {
     "status": "ok",
     "source": "soft_finanzas/finanzas.db",
-    "generated_at": "2026-05-07T08:16:55+00:00",
+    "generated_at": "2026-05-07T08:52:46+00:00",
     "quarter_label": "Q2 2026",
     "quarter_start": "2026-04-01",
     "quarter_end": "2026-06-30",
@@ -157,11 +157,12 @@
       ]
     },
     "all": {
-      "total": 87,
-      "completed": 82,
+      "total": 88,
+      "completed": 83,
       "scheduled": 5,
       "future": 4,
       "by_owner": {
+        "leonardo.beecher@actualgroup.com": 2,
         "karim.barmose@actualgroup.com": 3,
         "francoispierre.puech@actualgroup.com": 17,
         "a.garcia@winid.eu": 24,
@@ -170,8 +171,7 @@
         "lucia.sagarraga@actualgroup.com": 11,
         "jessica.hernandez@actualgroup.com": 12,
         "sara.fernandez@actualgroup.com": 3,
-        "alexander.graham@actualgroup.com": 2,
-        "leonardo.beecher@actualgroup.com": 1
+        "alexander.graham@actualgroup.com": 2
       }
     },
     "all_items": [
@@ -887,6 +887,15 @@
         "account": "Institut Assistència Sanitària"
       },
       {
+        "id": "154081000020534007",
+        "title": "Presentación Actual Talent & Amavir",
+        "start_at": "2026-05-06T10:30:00+02:00",
+        "end_at": "2026-05-06T11:00:00+02:00",
+        "owner": "leonardo.beecher@actualgroup.com",
+        "contact": null,
+        "account": "Amavir"
+      },
+      {
         "id": "154081000020542001",
         "title": "Insud & Actual Talent: Karim & Almu",
         "start_at": "2026-05-06T15:00:00+02:00",
@@ -1073,11 +1082,11 @@
       "New": {
         "count": 331,
         "avg_days_since_update": 1.7,
-        "max_days_since_update": 75.7
+        "max_days_since_update": 75.8
       },
       "Contacting": {
         "count": 84,
-        "avg_days_since_update": 1.7,
+        "avg_days_since_update": 1.8,
         "max_days_since_update": 2.0
       },
       "Nurturing": {
@@ -1218,9 +1227,9 @@
   },
   "calls": {
     "available": true,
-    "total_calls": 22,
+    "total_calls": 25,
     "connected_min": 12.4,
-    "connect_rate": 31.8,
+    "connect_rate": 28.0,
     "avg_score": 33.1,
     "by_disposition": [
       {
@@ -1237,7 +1246,7 @@
       },
       {
         "name": "No Answer",
-        "count": 14
+        "count": 17
       },
       {
         "name": "Busy",
@@ -1249,6 +1258,69 @@
       }
     ],
     "calls": [
+      {
+        "event_id": "YsTkf7XYRX4KqujZKpe6",
+        "call_id": "YsTkf7XYRX4KqujZKpe6",
+        "contact_id": "ebOjJoJ28U3sqB9Jkjl4",
+        "contact_email": null,
+        "contact_phone": "+34645194846",
+        "contact_name": "Johny",
+        "owner_email": "karim.barmose@actualgroup.com",
+        "direction": "outbound",
+        "status": "no-answer",
+        "disposition": "No Answer",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T07:59:13.141Z",
+        "ended_at": "2026-05-07T07:59:29.016Z",
+        "received_at": "2026-05-07T08:21:39+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "w1xgpblerxTgno1VTAC2",
+        "call_id": "w1xgpblerxTgno1VTAC2",
+        "contact_id": "pfckZBC2uKD4koIEskt7",
+        "contact_email": null,
+        "contact_phone": "+34673625780",
+        "contact_name": "Karim Barmose",
+        "owner_email": null,
+        "direction": "outbound",
+        "status": "no-answer",
+        "disposition": "No Answer",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T07:57:51.413Z",
+        "ended_at": "2026-05-07T07:57:56.788Z",
+        "received_at": "2026-05-07T08:21:39+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "WRmHonlr3TKRkBJ8PKPJ",
+        "call_id": "WRmHonlr3TKRkBJ8PKPJ",
+        "contact_id": "9pa6vi0loWE22V6a0yJp",
+        "contact_email": "gonzalezmonica@bancsabadell.com",
+        "contact_phone": "+34687907087",
+        "contact_name": "Mónica González Sánchez",
+        "owner_email": null,
+        "direction": "outbound",
+        "status": "no-answer",
+        "disposition": "No Answer",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T07:53:44.862Z",
+        "ended_at": "2026-05-07T07:53:47.226Z",
+        "received_at": "2026-05-07T08:21:39+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
       {
         "event_id": "hUDvSqGbtKFed0sDtF7N",
         "call_id": "hUDvSqGbtKFed0sDtF7N",

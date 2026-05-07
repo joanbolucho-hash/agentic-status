@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-05-07T07:57:57+00:00",
+  "generated_at": "2026-05-07T08:55:13+00:00",
   "quarter": {
     "year": 0,
     "q": 0,
@@ -30,7 +30,7 @@
   "revenue_progress": {
     "status": "ok",
     "source": "soft_finanzas/finanzas.db",
-    "generated_at": "2026-05-07T07:57:57+00:00",
+    "generated_at": "2026-05-07T08:55:13+00:00",
     "quarter_label": "Q2 2026",
     "quarter_start": "2026-04-01",
     "quarter_end": "2026-06-30",
@@ -297,6 +297,7 @@
       "scheduled": 5,
       "future": 4,
       "by_owner": {
+        "leonardo.beecher@actualgroup.com": 2,
         "karim.barmose@actualgroup.com": 10,
         "francoispierre.puech@actualgroup.com": 31,
         "a.garcia@winid.eu": 28,
@@ -306,8 +307,7 @@
         "jessica.hernandez@actualgroup.com": 66,
         "sara.fernandez@actualgroup.com": 4,
         "alexander.graham@actualgroup.com": 13,
-        "leonardo.beecher@actualgroup.com": 1,
-        "sylvain.boy@actualgroup.com": 3,
+        "sylvain.boy@actualgroup.com": 2,
         "david.martinez@actualgroup.com": 2
       }
     },
@@ -1186,15 +1186,6 @@
         "account": "Adam Foods"
       },
       {
-        "id": "154081000019063506",
-        "title": "Café en Alimentaria",
-        "start_at": "2026-03-25T16:00:00+01:00",
-        "end_at": "2026-03-25T17:00:00+01:00",
-        "owner": "sylvain.boy@actualgroup.com",
-        "contact": "Xavi Mon",
-        "account": "TAURUS GROUP"
-      },
-      {
         "id": "154081000019253795",
         "title": "snp baleares & Actual Talent",
         "start_at": "2026-03-26T09:30:00+01:00",
@@ -2041,6 +2032,15 @@
         "account": "Institut Assistència Sanitària"
       },
       {
+        "id": "154081000020534007",
+        "title": "Presentación Actual Talent & Amavir",
+        "start_at": "2026-05-06T10:30:00+02:00",
+        "end_at": "2026-05-06T11:00:00+02:00",
+        "owner": "leonardo.beecher@actualgroup.com",
+        "contact": null,
+        "account": "Amavir"
+      },
+      {
         "id": "154081000020542001",
         "title": "Insud & Actual Talent: Karim & Almu",
         "start_at": "2026-05-06T15:00:00+02:00",
@@ -2226,12 +2226,12 @@
     "velocity": {
       "New": {
         "count": 331,
-        "avg_days_since_update": 1.6,
-        "max_days_since_update": 75.7
+        "avg_days_since_update": 1.7,
+        "max_days_since_update": 75.8
       },
       "Contacting": {
         "count": 84,
-        "avg_days_since_update": 1.7,
+        "avg_days_since_update": 1.8,
         "max_days_since_update": 2.0
       },
       "Nurturing": {
@@ -2372,9 +2372,9 @@
   },
   "calls": {
     "available": true,
-    "total_calls": 398,
+    "total_calls": 401,
     "connected_min": 117.8,
-    "connect_rate": 15.8,
+    "connect_rate": 15.7,
     "avg_score": 31.2,
     "by_disposition": [
       {
@@ -2391,7 +2391,7 @@
       },
       {
         "name": "No Answer",
-        "count": 279
+        "count": 282
       },
       {
         "name": "Busy",
@@ -2403,6 +2403,69 @@
       }
     ],
     "calls": [
+      {
+        "event_id": "YsTkf7XYRX4KqujZKpe6",
+        "call_id": "YsTkf7XYRX4KqujZKpe6",
+        "contact_id": "ebOjJoJ28U3sqB9Jkjl4",
+        "contact_email": null,
+        "contact_phone": "+34645194846",
+        "contact_name": "Johny",
+        "owner_email": "karim.barmose@actualgroup.com",
+        "direction": "outbound",
+        "status": "no-answer",
+        "disposition": "No Answer",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T07:59:13.141Z",
+        "ended_at": "2026-05-07T07:59:29.016Z",
+        "received_at": "2026-05-07T08:21:39+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "w1xgpblerxTgno1VTAC2",
+        "call_id": "w1xgpblerxTgno1VTAC2",
+        "contact_id": "pfckZBC2uKD4koIEskt7",
+        "contact_email": null,
+        "contact_phone": "+34673625780",
+        "contact_name": "Karim Barmose",
+        "owner_email": null,
+        "direction": "outbound",
+        "status": "no-answer",
+        "disposition": "No Answer",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T07:57:51.413Z",
+        "ended_at": "2026-05-07T07:57:56.788Z",
+        "received_at": "2026-05-07T08:21:39+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
+      {
+        "event_id": "WRmHonlr3TKRkBJ8PKPJ",
+        "call_id": "WRmHonlr3TKRkBJ8PKPJ",
+        "contact_id": "9pa6vi0loWE22V6a0yJp",
+        "contact_email": "gonzalezmonica@bancsabadell.com",
+        "contact_phone": "+34687907087",
+        "contact_name": "Mónica González Sánchez",
+        "owner_email": null,
+        "direction": "outbound",
+        "status": "no-answer",
+        "disposition": "No Answer",
+        "duration_sec": null,
+        "talk_time_sec": null,
+        "recording_url": null,
+        "transcript": null,
+        "started_at": "2026-05-07T07:53:44.862Z",
+        "ended_at": "2026-05-07T07:53:47.226Z",
+        "received_at": "2026-05-07T08:21:39+00:00",
+        "overall_score": null,
+        "score_summary": null
+      },
       {
         "event_id": "hUDvSqGbtKFed0sDtF7N",
         "call_id": "hUDvSqGbtKFed0sDtF7N",
@@ -12231,8 +12294,8 @@
       "kind": "post_meeting_followup",
       "lead": "ADM | Actual Talent",
       "rep": "joan.boluda",
-      "reason": "Reunión hace 6d — verificar follow-up",
-      "last_activity_days": 6,
+      "reason": "Reunión hace 7d — verificar follow-up",
+      "last_activity_days": 7,
       "stage": "post_meeting",
       "value_eur": 0,
       "suggested_next": "Revisar transcript Granola y enviar materiales prometidos",
@@ -12255,19 +12318,19 @@
         "contacts": 2
       },
       "kunvirgx40popbeced0w": {
-        "sent": 207,
-        "received": 94,
-        "replies": 28,
-        "contacts": 59
+        "sent": 184,
+        "received": 68,
+        "replies": 27,
+        "contacts": 58
       }
     },
     "totals": {
-      "sent": 210,
-      "received": 97,
-      "replies": 29,
-      "contacts_messaged": 61,
-      "contacts_replied": 29,
-      "reply_rate_pct": 47.5
+      "sent": 187,
+      "received": 71,
+      "replies": 28,
+      "contacts_messaged": 60,
+      "contacts_replied": 28,
+      "reply_rate_pct": 46.7
     },
     "events": [
       {
@@ -12288,16 +12351,6 @@
         "subject": "Perfe gracias!",
         "direction": "outbound",
         "date_added": "2026-03-09T08:59:35.000Z",
-        "replied": true
-      },
-      {
-        "conversation_id": "nCDdt3gw7zw6bJHgZgen",
-        "contact": "Karim Barmose",
-        "company": null,
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "Sisi",
-        "direction": "outbound",
-        "date_added": "2026-03-05T10:38:36.000Z",
         "replied": true
       },
       {
@@ -12469,6 +12522,16 @@
         "direction": "outbound",
         "date_added": "2026-02-21T14:52:35.000Z",
         "replied": false
+      },
+      {
+        "conversation_id": "JXTHCFSZAasKjO8rQMCF",
+        "contact": "Raquel Moreno",
+        "company": "Grupo aFinance",
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "Raquel?\nLlevo días intentando contactar y me dejaste algo preocupado. Pudiste revisarlo?\nEn cualquier caso me puedes agendar por aquí",
+        "direction": "outbound",
+        "date_added": "2026-02-21T14:16:20.000Z",
+        "replied": false
       }
     ]
   },
@@ -12481,7 +12544,7 @@
     "available_signals": "GHL conversations expose sent/received TYPE_EMAIL. Open/click events not in API.",
     "by_rep": {
       "kunvirgx40popbeced0w": {
-        "sent": 39,
+        "sent": 40,
         "received": 4,
         "replies": 2,
         "contacts": 120
@@ -12500,7 +12563,7 @@
       }
     },
     "totals": {
-      "sent": 39,
+      "sent": 40,
       "received": 4,
       "replies": 2,
       "contacts_emailed": 123,
@@ -12508,6 +12571,16 @@
       "reply_rate_pct": 1.6
     },
     "events": [
+      {
+        "conversation_id": "em5jQGkFNjqtFp1ykW3W",
+        "contact": "German",
+        "company": null,
+        "rep_id": "kunvirgx40popbeced0w",
+        "subject": "",
+        "direction": "outbound",
+        "date_added": "2026-05-07T07:57:52.000Z",
+        "replied": false
+      },
       {
         "conversation_id": "wIOmeWOx8vz5yronBenP",
         "contact": "Jesus Sanchez Diaz",
@@ -12616,16 +12689,6 @@
         "subject": "",
         "direction": "inbound",
         "date_added": "2026-05-05T06:08:50.000Z",
-        "replied": false
-      },
-      {
-        "conversation_id": "em5jQGkFNjqtFp1ykW3W",
-        "contact": "German",
-        "company": null,
-        "rep_id": "kunvirgx40popbeced0w",
-        "subject": "",
-        "direction": "outbound",
-        "date_added": "2026-05-04T16:12:47.000Z",
         "replied": false
       },
       {
