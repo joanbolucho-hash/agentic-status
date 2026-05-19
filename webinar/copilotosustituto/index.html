@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0A0A0A">
-<title>¿La IA como copiloto o sustituto del humano? — Webinar Actual Talent</title>
-<meta name="description" content="Webinar 26 de mayo 2026, 12:00h CEST. ¿Dónde acaba la asistencia y empieza la sustitución? Con Bruno Pincolini (SAP) y dos ponentes por confirmar. Modera Karim Barmose.">
-<meta property="og:title" content="¿La IA como copiloto o sustituto del humano? — Webinar Actual Talent">
-<meta property="og:description" content="26 de mayo 2026, 12:00h CEST. Con Bruno Pincolini (SAP) y dos ponentes por confirmar. Modera Karim Barmose. Online y gratuito.">
+<title>¿La IA como copiloto o sustituto del humano? - Webinar Actual Talent</title>
+<meta name="description" content="Webinar 26 de mayo 2026, 12:00h CEST. ¿Dónde acaba la asistencia y empieza la sustitución? Con Bruno Pincolini (SAP), Jamal Ibrahim (Universidad Europea + EAE), Edgar Quero (Orquesty) y Beatriz Rodríguez (Roca Junyent). Modera Karim Barmose.">
+<meta property="og:title" content="¿La IA como copiloto o sustituto del humano? - Webinar Actual Talent">
+<meta property="og:description" content="26 de mayo 2026, 12:00h CEST. Con Bruno Pincolini (SAP), Jamal Ibrahim (Universidad Europea), Edgar Quero (Orquesty) y Beatriz Rodríguez (Roca Junyent). Modera Karim Barmose. Online y gratuito.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -223,7 +223,7 @@ header {
 /* ─── SPEAKERS ───────────────────────────────────────────────────────────────── */
 .speakers { background: var(--white); padding: 100px 48px; }
 .speakers-inner { max-width: 1100px; margin: 0 auto; }
-.speakers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.speakers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; }
 .speaker-card.tbd { opacity: 0.55; }
 .speaker-card.tbd .speaker-photo { background: rgba(0,0,0,0.04); color: var(--gray); border: 1px dashed rgba(0,0,0,0.18); font-size: 28px; }
 .speaker-card.tbd .speaker-role-badge { background: rgba(107,107,107,0.1); color: var(--gray); }
@@ -246,6 +246,9 @@ a.speaker-card { text-decoration: none; color: inherit; display: block; }
 .speaker-photo.ij { background: #2C3E50; }
 .speaker-photo.kb { background: var(--near-black); }
 .speaker-photo.bp { background: #0FAAFF; }   /* SAP blue fallback */
+.speaker-photo.ji { background: #6366F1; }   /* Jamal violet fallback */
+.speaker-photo.eq { background: #14B8A6; }   /* Edgar teal fallback */
+.speaker-photo.br { background: #C0191E; }   /* Beatriz red fallback */
 .speaker-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .speaker-role-badge {
   display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 2px;
@@ -540,23 +543,30 @@ footer .footer-links a:hover { color: white; }
         <div class="speaker-photo bp"><img src="../assets/speakers/bruno-pincolini.jpg" alt="Bruno Pincolini"></div>
         <span class="speaker-role-badge">Ponente</span>
         <div class="speaker-name">Bruno Pincolini</div>
-        <div class="speaker-title">Global Lead · SAP Business AI for Utilities ｜ Business Development</div>
+        <div class="speaker-title">Global Lead · SAP Business AI for Utilities</div>
         <div class="speaker-company">SAP</div>
       </a>
-      <div class="speaker-card tbd reveal d3">
-        <div class="speaker-photo">?</div>
-        <span class="speaker-role-badge">Por confirmar</span>
-        <div class="speaker-name">Ponente</div>
-        <div class="speaker-title">&nbsp;</div>
-        <div class="speaker-company">Confirmación próxima</div>
-      </div>
-      <div class="speaker-card tbd reveal d4">
-        <div class="speaker-photo">?</div>
-        <span class="speaker-role-badge">Por confirmar</span>
-        <div class="speaker-name">Ponente</div>
-        <div class="speaker-title">&nbsp;</div>
-        <div class="speaker-company">Confirmación próxima</div>
-      </div>
+      <a href="https://www.linkedin.com/in/jamal-ahmad-ibrahim/" target="_blank" rel="noopener" class="speaker-card reveal d3">
+        <div class="speaker-photo ji"><img src="../assets/speakers/jamal-ibrahim.jpg" alt="Jamal Ibrahim"></div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Jamal Ibrahim</div>
+        <div class="speaker-title">Technical Lead GenAI &amp; ML · Lecturer en Master AI for HR</div>
+        <div class="speaker-company">Universidad Europea · EAE Business School</div>
+      </a>
+      <a href="https://www.linkedin.com/in/edquero/" target="_blank" rel="noopener" class="speaker-card reveal d4">
+        <div class="speaker-photo eq"><img src="../assets/speakers/edgar-quero.jpg" alt="Edgar Quero"></div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Edgar Quero</div>
+        <div class="speaker-title">Co-Founder · Strategy &amp; Operations</div>
+        <div class="speaker-company">Orquesty</div>
+      </a>
+      <a href="https://www.linkedin.com/in/abrodgom/" target="_blank" rel="noopener" class="speaker-card reveal d5">
+        <div class="speaker-photo br"><img src="../assets/speakers/beatriz-rodriguez.jpg" alt="Beatriz Rodríguez Gómez"></div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Beatriz Rodríguez</div>
+        <div class="speaker-title">Partner · Privacy, Cybersecurity &amp; Technology</div>
+        <div class="speaker-company">Roca Junyent</div>
+      </a>
     </div>
   </div>
 </section>

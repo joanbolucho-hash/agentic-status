@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flyer 1080×1080 — ¿Copiloto o sustituto? · 26 may 2026</title>
+<title>Flyer 1080x1080 - ¿Copiloto o sustituto? · 26 may 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -54,7 +54,7 @@ body {
 /* ── TOP BAR ── */
 .topbar {
   position: absolute; top: 56px; left: 64px; right: 64px;
-  display: flex; align-items: center; justify-content: flex-start;
+  display: flex; align-items: center; justify-content: space-between;
   z-index: 10;
 }
 .brand-mark { display: flex; align-items: center; gap: 16px; }
@@ -70,77 +70,110 @@ body {
 }
 .brand-text .sep { color: rgba(255,255,255,0.25); margin: 0 12px; }
 .brand-text .type { color: var(--red); }
+.topbar-right {
+  font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.topbar-right .live-dot {
+  display: inline-block; width: 9px; height: 9px;
+  background: var(--red); border-radius: 50%; margin-right: 9px;
+  vertical-align: middle;
+  box-shadow: 0 0 14px var(--red);
+}
 
 /* ── DATE BLOCK ── */
 .date-block {
-  position: absolute; top: 170px; left: 64px;
+  position: absolute; top: 160px; left: 64px;
   display: flex; align-items: flex-start; gap: 32px;
   z-index: 5;
 }
 .date-num {
-  font-size: 320px; font-weight: 900; line-height: 0.85;
+  font-size: 280px; font-weight: 900; line-height: 0.85;
   color: var(--red); letter-spacing: -0.06em;
 }
 .date-side {
-  display: flex; flex-direction: column; padding-top: 26px; gap: 8px;
+  display: flex; flex-direction: column; padding-top: 22px; gap: 6px;
 }
 .date-month {
-  font-size: 80px; font-weight: 900; line-height: 0.95;
+  font-size: 72px; font-weight: 900; line-height: 0.95;
   color: var(--white); letter-spacing: -0.02em; text-transform: uppercase;
 }
 .date-time {
-  font-size: 46px; font-weight: 700; color: var(--red);
+  font-size: 42px; font-weight: 700; color: var(--red);
   letter-spacing: -0.01em; line-height: 1;
 }
 .date-tz {
-  font-size: 17px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase;
+  font-size: 16px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase;
   color: rgba(255,255,255,0.45); margin-top: 4px;
 }
 
-/* ── TITLE ── */
+/* ── EYEBROW + TITLE ── */
 .title-wrap {
-  position: absolute; top: 530px; left: 64px; right: 64px;
+  position: absolute; top: 510px; left: 64px; right: 64px;
   z-index: 5;
 }
+.eyebrow {
+  font-size: 16px; font-weight: 800; letter-spacing: 4.5px; text-transform: uppercase;
+  color: var(--red); margin-bottom: 22px;
+}
 .title {
-  font-size: 92px; font-weight: 900; line-height: 0.96;
+  font-size: 84px; font-weight: 900; line-height: 0.96;
   letter-spacing: -0.035em; color: var(--white);
 }
 .title .accent { color: var(--red); font-style: normal; }
 .title .q { color: var(--red); }
 
-/* ── SPEAKERS (single row, bottom) ── */
-.speakers {
-  position: absolute; bottom: 80px; left: 64px;
-  display: flex; gap: 56px;
+/* ── SPEAKERS ROW (5 cards, bottom) ── */
+.speakers-row {
+  position: absolute; bottom: 122px; left: 36px; right: 36px;
+  display: flex; justify-content: space-between; align-items: flex-start;
   z-index: 5;
 }
 .speaker {
-  display: flex; align-items: center; gap: 22px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  width: 196px;
 }
 .sp-photo {
-  width: 132px; height: 132px; border-radius: 50%;
-  overflow: hidden; position: relative; flex-shrink: 0;
-  border: 3px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.04);
-  box-shadow: 0 14px 48px rgba(0,0,0,0.45);
+  width: 124px; height: 124px; border-radius: 50%;
+  overflow: hidden; position: relative;
+  border: 3px solid rgba(255,255,255,0.12);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+}
+.sp-photo.modera {
+  border-color: var(--red);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5), 0 0 0 4px rgba(192,25,30,0.18);
 }
 .sp-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.sp-meta { display: flex; flex-direction: column; gap: 4px; }
-.sp-role-tag {
-  display: inline-block; align-self: flex-start;
-  font-size: 11px; font-weight: 800; letter-spacing: 2.4px; text-transform: uppercase;
-  color: var(--red); background: rgba(192,25,30,0.14);
-  padding: 4px 12px; border-radius: 100px; margin-bottom: 6px;
+.sp-meta { text-align: center; }
+.sp-role {
+  display: inline-block;
+  font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 6px;
 }
+.sp-role.modera { color: var(--red); }
 .sp-name {
-  font-size: 22px; font-weight: 800; color: var(--white); line-height: 1.15;
+  font-size: 16px; font-weight: 800; color: var(--white); line-height: 1.15;
+  margin-bottom: 3px;
 }
 .sp-org {
-  font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
-  color: rgba(255,255,255,0.55); margin-top: 3px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); line-height: 1.3;
 }
+
+/* ── URL FOOTER ── */
+.url-footer {
+  position: absolute; bottom: 50px; left: 0; right: 0;
+  text-align: center;
+  z-index: 6;
+}
+.url-text {
+  font-size: 15px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.url-text .url-link { color: var(--red); }
+.url-text .sep { color: rgba(255,255,255,0.2); margin: 0 14px; }
 
 </style>
 </head>
@@ -154,6 +187,7 @@ body {
       <div class="at-logo">AT</div>
       <div class="brand-text">Actual Talent <span class="sep">·</span><span class="type">Webinar 02</span></div>
     </div>
+    <div class="topbar-right"><span class="live-dot"></span>Online · Gratis</div>
   </div>
 
   <!-- DATE BLOCK -->
@@ -168,6 +202,7 @@ body {
 
   <!-- TITLE -->
   <div class="title-wrap">
+    <div class="eyebrow">Mesa redonda</div>
     <h1 class="title">
       <span class="q">¿</span>La IA como <span class="accent">copiloto</span><br>
       o <span class="accent">sustituto</span><br>
@@ -175,12 +210,12 @@ body {
     </h1>
   </div>
 
-  <!-- SPEAKERS -->
-  <div class="speakers">
+  <!-- SPEAKERS ROW: Karim + 4 ponentes -->
+  <div class="speakers-row">
     <div class="speaker">
-      <div class="sp-photo"><img src="../../assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
+      <div class="sp-photo modera"><img src="../../assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
       <div class="sp-meta">
-        <div class="sp-role-tag">Modera</div>
+        <div class="sp-role modera">Modera</div>
         <div class="sp-name">Karim Barmose</div>
         <div class="sp-org">Actual Talent</div>
       </div>
@@ -188,10 +223,41 @@ body {
     <div class="speaker">
       <div class="sp-photo"><img src="../../assets/speakers/bruno-pincolini.jpg" alt="Bruno Pincolini"></div>
       <div class="sp-meta">
-        <div class="sp-role-tag">Ponente</div>
+        <div class="sp-role">Ponente</div>
         <div class="sp-name">Bruno Pincolini</div>
         <div class="sp-org">SAP</div>
       </div>
+    </div>
+    <div class="speaker">
+      <div class="sp-photo"><img src="../../assets/speakers/jamal-ibrahim.jpg" alt="Jamal Ibrahim"></div>
+      <div class="sp-meta">
+        <div class="sp-role">Ponente</div>
+        <div class="sp-name">Jamal Ibrahim</div>
+        <div class="sp-org">Univ. Europea · EAE</div>
+      </div>
+    </div>
+    <div class="speaker">
+      <div class="sp-photo"><img src="../../assets/speakers/edgar-quero.jpg" alt="Edgar Quero"></div>
+      <div class="sp-meta">
+        <div class="sp-role">Ponente</div>
+        <div class="sp-name">Edgar Quero</div>
+        <div class="sp-org">Orquesty</div>
+      </div>
+    </div>
+    <div class="speaker">
+      <div class="sp-photo"><img src="../../assets/speakers/beatriz-rodriguez.jpg" alt="Beatriz Rodríguez"></div>
+      <div class="sp-meta">
+        <div class="sp-role">Ponente</div>
+        <div class="sp-name">Beatriz Rodríguez</div>
+        <div class="sp-org">Roca Junyent</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- URL FOOTER -->
+  <div class="url-footer">
+    <div class="url-text">
+      <span class="url-link">actualtalent.tech/webinar/copilotosustituto</span>
     </div>
   </div>
 
