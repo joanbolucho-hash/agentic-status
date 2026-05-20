@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>Evento flagship Barcelona · 17 junio 2026 · Actual Talent</title>
+<meta name="description" content="Evento presencial 17 junio 2026 en Aticco Diagrame (22@ Barcelona). 200 directivos de RRHH. Iolanda Triviño (Future of Work Foundation) + Xavi Sáez (KPI) + Karim Barmose y Joan Boluda (Actual Talent). Cómo cambia el trabajo de RRHH en la era de la IA.">
+<meta property="og:title" content="Evento flagship Barcelona · 17 junio 2026 · Actual Talent">
+<meta property="og:description" content="200 directivos de RRHH en Aticco Diagrame (22@). Cómo cambia el rol de quien recluta, lidera y desarrolla el talento cuando entra la IA.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red:        #C0191E;
+  --red-glow:   rgba(192, 25, 30, 0.12);
+  --beige:      #E8E5DC;
+  --cream:      #F0EEEB;
+  --black:      #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); will-change: transform, opacity; }
+.reveal.in { opacity: 1; transform: none; will-change: auto; }
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+
+/* FOCUS */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
+
+/* PARTICLE CANVAS */
+.particle-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+/* MOUSE GLOW */
+.mouse-glow {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,25,30,0.09) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.4s;
+  opacity: 0;
+}
+.mouse-glow.visible { opacity: 1; }
+
+/* HEADER */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.header-wordmark {
+  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: white; line-height: 1;
+}
+.header-wordmark .wm-sep { color: rgba(255,255,255,0.25); margin: 0 8px; font-weight: 400; }
+.header-wordmark .wm-tag { color: rgba(255,255,255,0.6); font-weight: 600; }
+.header-nav { display: flex; align-items: center; gap: 4px; }
+.nav-link { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 7px 14px; border-radius: 4px; transition: color 0.2s; }
+.nav-link:hover { color: rgba(255,255,255,0.9); }
+.nav-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: white; text-decoration: none; padding: 8px 18px;
+  border-radius: 100px; transition: opacity 0.2s; margin-left: 8px;
+}
+.nav-pill:hover { opacity: 0.85; }
+.nav-pill-wa { background: #25D366; }
+.nm-pill-wa { background: #25D366; }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; background: none; border: none; }
+.burger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+.burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.nav-mobile {
+  display: none; position: fixed; top: 60px; left: 0; right: 0;
+  background: rgba(10,10,10,0.98); border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 20px 20px; flex-direction: column; gap: 2px; z-index: 199;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; padding: 14px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+.nav-mobile a:hover { background: rgba(255,255,255,0.05); color: white; }
+.nav-mobile .nm-pill { color: white; text-align: center; margin-top: 8px; border-radius: 8px; }
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red);
+  margin-bottom: 56px; display: flex; align-items: center; gap: 16px;
+}
+.section-label::after { content: ''; width: 32px; height: 1px; background: currentColor; opacity: 0.3; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 20% 0%, rgba(192,25,30,0.1) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+.hero::after {
+  content: 'BARCELONA'; position: absolute; right: -2vw; bottom: -4vh;
+  font-size: 20vw; font-weight: 900; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.018); line-height: 1; pointer-events: none; user-select: none;
+}
+.hero-inner { max-width: 980px; position: relative; z-index: 2; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 36px; }
+.hero-date-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(192, 25, 30, 0.12); border: 1px solid rgba(192, 25, 30, 0.25);
+  border-radius: 100px; padding: 8px 20px; margin-bottom: 32px;
+}
+.hero-date-badge .badge-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--red);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+.hero-date-badge span { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+.hero-headline {
+  font-size: clamp(36px, 6.4vw, 80px); font-weight: 900; line-height: 1.0;
+  letter-spacing: -0.035em; color: white; margin-bottom: 28px; max-width: 900px;
+}
+.hero-headline em { font-style: normal; color: var(--red); }
+.hero-sub {
+  font-size: clamp(15px, 1.7vw, 18px); font-weight: 300; line-height: 1.85;
+  color: rgba(255,255,255,0.55); max-width: 640px; margin-bottom: 48px;
+}
+.hero-meta { display: flex; flex-wrap: wrap; gap: 28px 36px; margin-bottom: 44px; }
+.hm-row { display: flex; align-items: center; gap: 12px; }
+.hm-icon {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.hm-icon svg { width: 14px; height: 14px; color: rgba(255,255,255,0.55); }
+.hm-text { display: flex; flex-direction: column; gap: 2px; }
+.hm-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.hm-value { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: white; background: var(--red); text-decoration: none;
+  padding: 17px 32px; border-radius: 3px; transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s; white-space: nowrap; cursor: pointer; border: none;
+}
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(192,25,30,0.35); }
+.cta-primary svg { width: 14px; height: 14px; }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); text-decoration: none; padding: 16px 28px;
+  border-radius: 3px; border: 1px solid rgba(255,255,255,0.18);
+  transition: border-color 0.2s, color 0.2s; white-space: nowrap;
+}
+.cta-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 48px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); z-index: 2;
+}
+.scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,0.15); }
+
+/* ABOUT */
+.about { background: var(--cream); padding: 110px 48px; }
+.about-inner { max-width: 1100px; margin: 0 auto; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-text h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.1; margin-bottom: 24px;
+}
+.about-text h2 em { font-style: normal; color: var(--red); }
+.about-text p { font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); margin-bottom: 16px; }
+.takeaways { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.takeaway {
+  display: flex; gap: 24px; align-items: flex-start; padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.takeaway:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
+.takeaway:hover { transform: translateX(6px); }
+.takeaway-num { font-size: 32px; font-weight: 900; color: var(--red); opacity: 0.2; line-height: 1; min-width: 48px; padding-top: 2px; transition: opacity 0.3s; }
+.takeaway:hover .takeaway-num { opacity: 1; }
+.takeaway h3 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.takeaway p { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.65; }
+
+/* SPEAKERS */
+.speakers { background: var(--white); padding: 110px 48px; }
+.speakers-inner { max-width: 1200px; margin: 0 auto; }
+.speakers-head { margin-bottom: 64px; max-width: 720px; }
+.speakers-head h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.1; margin-bottom: 16px;
+}
+.speakers-head h2 em { font-style: normal; color: var(--red); }
+.speakers-head p { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--gray); }
+.speakers-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+}
+.speaker-card {
+  background: var(--cream); border-radius: 16px; padding: 32px 28px;
+  display: flex; flex-direction: column; align-items: flex-start;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+  position: relative; overflow: hidden;
+}
+.speaker-card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(0,0,0,0.08); }
+.speaker-photo {
+  width: 96px; height: 96px; border-radius: 50%; overflow: hidden;
+  border: 3px solid var(--white); box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  margin-bottom: 22px;
+}
+.speaker-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.speaker-role-tag {
+  display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--red);
+  background: rgba(192,25,30,0.08);
+  padding: 5px 11px; border-radius: 100px; margin-bottom: 16px;
+}
+.speaker-name { font-size: 20px; font-weight: 800; color: var(--black); letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 4px; }
+.speaker-org { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+.speaker-bio { font-size: 13px; font-weight: 400; line-height: 1.65; color: var(--gray); margin-bottom: 18px; flex: 1; }
+.speaker-link {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--red); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  transition: gap 0.25s;
+}
+.speaker-link:hover { gap: 10px; }
+.speaker-link svg { width: 11px; height: 11px; }
+
+/* AGENDA */
+.agenda { background: var(--cream); padding: 110px 48px; }
+.agenda-inner { max-width: 980px; margin: 0 auto; }
+.agenda-head { margin-bottom: 56px; max-width: 720px; }
+.agenda-head h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.1; margin-bottom: 16px;
+}
+.agenda-head h2 em { font-style: normal; color: var(--red); }
+.agenda-head p { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--gray); }
+.agenda-list { list-style: none; position: relative; padding-left: 24px; }
+.agenda-list::before {
+  content: ''; position: absolute; left: 4px; top: 8px; bottom: 8px;
+  width: 1px; background: rgba(192,25,30,0.18);
+}
+.agenda-item {
+  position: relative; padding: 22px 0 22px 36px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  display: grid; grid-template-columns: 110px 1fr; gap: 28px; align-items: start;
+}
+.agenda-item:last-child { border-bottom: none; }
+.agenda-item::before {
+  content: ''; position: absolute; left: -24px; top: 30px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--white); border: 2px solid var(--red);
+}
+.agenda-item.is-key::before { background: var(--red); }
+.agenda-time { font-size: 14px; font-weight: 800; color: var(--red); letter-spacing: -0.01em; }
+.agenda-body h3 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.agenda-body p { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.65; }
+.agenda-body .agenda-by { display: block; margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gray); }
+.agenda-body .agenda-by strong { color: var(--black); font-weight: 800; }
+
+/* VENUE */
+.venue { background: var(--near-black); padding: 110px 48px; color: white; position: relative; overflow: hidden; }
+.venue::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 80% 0%, rgba(192,25,30,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.venue-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.venue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.venue-text .section-label { color: rgba(255,255,255,0.4); }
+.venue-text .section-label::after { background: currentColor; }
+.venue-text h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
+  color: white; line-height: 1.1; margin-bottom: 24px;
+}
+.venue-text h2 em { font-style: normal; color: var(--red); }
+.venue-text p { font-size: 15px; font-weight: 400; line-height: 1.85; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+.venue-text a.venue-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--red); text-decoration: none;
+}
+.venue-text a.venue-link:hover { color: white; }
+.venue-text a.venue-link svg { width: 11px; height: 11px; }
+.venue-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.venue-stat {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 24px;
+}
+.venue-stat .vs-num { font-size: 32px; font-weight: 900; color: white; letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
+.venue-stat .vs-num em { font-style: normal; color: var(--red); font-size: 20px; vertical-align: top; }
+.venue-stat .vs-label { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+
+/* DETAILS */
+.details { background: var(--cream); padding: 110px 48px; }
+.details-inner { max-width: 1100px; margin: 0 auto; }
+.details-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.detail-card {
+  background: var(--white); border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 14px; padding: 32px 28px;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+}
+.detail-card:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(0,0,0,0.06); }
+.detail-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(192,25,30,0.08);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+}
+.detail-icon svg { width: 20px; height: 20px; color: var(--red); }
+.detail-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
+.detail-value { font-size: 19px; font-weight: 800; color: var(--black); line-height: 1.25; letter-spacing: -0.015em; margin-bottom: 6px; }
+.detail-aside { font-size: 13px; font-weight: 500; color: var(--gray); line-height: 1.55; }
+
+/* CTA SECTION */
+.cta-section {
+  background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 120px 48px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(192,25,30,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
+.cta-section h2 { font-size: clamp(32px, 5vw, 60px); font-weight: 900; color: white; letter-spacing: -0.03em; margin-bottom: 20px; }
+.cta-section h2 em { font-style: normal; color: var(--red); }
+.cta-date-reminder { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4); margin-bottom: 44px; }
+.cta-date-reminder strong { color: rgba(255,255,255,0.7); font-weight: 700; }
+.cta-big {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: white; background: var(--red); text-decoration: none;
+  padding: 22px 48px; border-radius: 4px; cursor: pointer; border: none;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.cta-big::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.cta-big:hover::after { opacity: 1; }
+.cta-big:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(192,25,30,0.35); }
+.cta-big svg { width: 18px; height: 18px; position: relative; z-index: 1; }
+.cta-aside {
+  margin-top: 22px; font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.35); letter-spacing: 0.3px;
+}
+.cta-community {
+  margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08);
+}
+.cta-community p { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.4); margin-bottom: 18px; line-height: 1.7; }
+.cta-community-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: white; text-decoration: none;
+  padding: 12px 22px; border: 1px solid rgba(255,255,255,0.18); border-radius: 100px;
+  background: rgba(37,211,102,0.12); transition: background 0.2s, border-color 0.2s;
+}
+.cta-community-link:hover { background: rgba(37,211,102,0.22); border-color: rgba(37,211,102,0.5); }
+
+/* FOOTER */
+footer { background: var(--red); padding: 48px; text-align: center; }
+footer p { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
+footer p strong { font-weight: 800; color: white; }
+footer .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+footer .footer-links a {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
+  text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;
+}
+footer .footer-links a:hover { color: white; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+  .details-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  .header-nav .nav-link { display: none; }
+  .burger { display: flex; }
+  .hero { padding: 100px 24px 64px; }
+  .hero-scroll { display: none; }
+  .mouse-glow { display: none; }
+  .hero-meta { gap: 20px 24px; }
+  .about { padding: 80px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .speakers { padding: 80px 24px; }
+  .agenda { padding: 80px 24px; }
+  .agenda-item { grid-template-columns: 90px 1fr; gap: 18px; }
+  .venue { padding: 80px 24px; }
+  .venue-grid { grid-template-columns: 1fr; gap: 48px; }
+  .details { padding: 80px 24px; }
+  .details-grid { grid-template-columns: 1fr; gap: 18px; }
+  .detail-card { padding: 28px 26px; }
+  .cta-section { padding: 80px 24px; }
+  .cta-big { padding: 20px 32px; font-size: 12px; }
+  footer { padding: 36px 24px; }
+}
+@media (max-width: 540px) {
+  .speakers-grid { grid-template-columns: 1fr; }
+  .agenda-item { grid-template-columns: 1fr; gap: 8px; padding-left: 24px; }
+  .agenda-item::before { left: -22px; top: 28px; }
+  .venue-stats { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .venue-stat { padding: 18px; }
+  .venue-stat .vs-num { font-size: 26px; }
+}
+@media (max-width: 480px) {
+  .hero-headline { font-size: clamp(28px, 8vw, 40px); }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas a, .hero-ctas button { text-align: center; justify-content: center; }
+  footer .footer-links { flex-direction: column; gap: 12px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/" class="header-brand" aria-label="Eventos Actual Talent">
+    <span class="header-wordmark">
+      Actual Talent <span class="wm-sep">·</span><span class="wm-tag">Flagship · BCN</span>
+    </span>
+  </a>
+  <nav class="header-nav">
+    <a href="/" class="nav-link">Eventos</a>
+    <a href="#sobre" class="nav-link">Sobre</a>
+    <a href="#speakers" class="nav-link">Speakers</a>
+    <a href="#agenda" class="nav-link">Programa</a>
+    <a href="#venue" class="nav-link">Venue</a>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nav-pill nav-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
+    <button class="burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="/">← Eventos Actual Talent</a>
+    <a href="#sobre">Sobre el evento</a>
+    <a href="#speakers">Speakers</a>
+    <a href="#agenda">Programa</a>
+    <a href="#venue">Venue</a>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nm-pill nm-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <canvas class="particle-canvas" id="hero-particles"></canvas>
+  <div class="mouse-glow" id="mouse-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal">Evento flagship presencial · Barcelona</div>
+    <div class="hero-date-badge reveal d1">
+      <span class="badge-dot"></span>
+      <span>Miércoles 17 Junio 2026 · 9:30h CEST</span>
+    </div>
+    <h1 class="hero-headline reveal d2">
+      Cómo cambia el trabajo de <em>quien recluta, lidera y desarrolla</em> el talento.
+    </h1>
+    <p class="hero-sub reveal d3">
+      200 directivos de RRHH, una mañana en Barcelona y una conversación honesta sobre la era de la IA. Sin discurso vacío: cómo se transforman los perfiles, qué habilidades suben de valor, qué deja de tener sentido contratar y cómo se lidera todo esto sin perder a las personas por el camino.
+    </p>
+    <div class="hero-meta reveal d4">
+      <div class="hm-row">
+        <div class="hm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="10" r="3"/><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z"/></svg>
+        </div>
+        <div class="hm-text">
+          <span class="hm-label">Venue</span>
+          <span class="hm-value">Aticco Diagrame · 22@ Barcelona</span>
+        </div>
+      </div>
+      <div class="hm-row">
+        <div class="hm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="hm-text">
+          <span class="hm-label">Horario</span>
+          <span class="hm-value">9:30 a 13:00h · brunch incluido</span>
+        </div>
+      </div>
+      <div class="hm-row">
+        <div class="hm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round"/></svg>
+        </div>
+        <div class="hm-text">
+          <span class="hm-label">Aforo</span>
+          <span class="hm-value">200 directivos de RRHH</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-ctas reveal d5">
+      <!-- TODO: Sustituir href="#TODO-LUMA-URL" por la URL real de Luma antes de difundir el evento -->
+      <a href="#TODO-LUMA-URL" class="cta-primary" target="_blank" rel="noopener" data-todo="luma-url">
+        Reservar plaza
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#agenda" class="cta-secondary">Ver programa</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span class="scroll-line"></span> Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="about-inner">
+    <div class="section-label reveal">Sobre el evento</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="reveal">Una conversación <em>honesta</em> sobre el futuro del trabajo en RRHH.</h2>
+        <p class="reveal d1">La IA está cambiando lo que las empresas piden a sus equipos, cómo se mide la productividad y qué hace falta para liderar bien en este contexto. RRHH es de los primeros departamentos que tiene que responder, y muchas veces lo hace sin un mapa claro.</p>
+        <p class="reveal d2">No queremos otro evento de inspiración genérica. Queremos una mañana en la que directivos de RRHH se reconozcan en las preocupaciones de los demás, salgan con ideas accionables y se vayan con un par de contactos útiles.</p>
+        <p class="reveal d3">Por eso este formato: una ponencia con peso, una mesa redonda con voces de empresas que están dentro del cambio, una dinámica que activa la sala, un cierre breve y un brunch para alargar la conversación con quien te interese. Sin pitch, sin productos. Una mañana entera en el corazón del 22@ de Barcelona.</p>
+      </div>
+      <ul class="takeaways">
+        <li class="takeaway reveal d1">
+          <span class="takeaway-num">01</span>
+          <div><h3>Qué cambia de verdad</h3><p>Perfiles que crecen y perfiles que se contraen. Habilidades humanas que suben de valor. Casos concretos, no titulares.</p></div>
+        </li>
+        <li class="takeaway reveal d2">
+          <span class="takeaway-num">02</span>
+          <div><h3>El recruiter del futuro</h3><p>De gestor de procesos a consultor de talento. Lo que esto exige en criterio, herramientas y conversación con negocio.</p></div>
+        </li>
+        <li class="takeaway reveal d3">
+          <span class="takeaway-num">03</span>
+          <div><h3>No quedarse fuera</h3><p>Cómo no obsolecerse como profesional ni como organización. Qué están haciendo las empresas que mejor se están adaptando.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers" id="speakers">
+  <div class="speakers-inner">
+    <div class="section-label reveal">Speakers</div>
+    <div class="speakers-head">
+      <h2 class="reveal">Voces con <em>autoridad</em> en futuro del trabajo, liderazgo y talento.</h2>
+      <p class="reveal d1">Una ponencia principal, una mesa redonda con directivos de empresas referentes y una dinámica que pone a la sala a pensar en alto. Modera Karim Barmose.</p>
+    </div>
+    <div class="speakers-grid">
+
+      <div class="speaker-card reveal d1">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/iolanda-trivino.jpg" alt="Iolanda Triviño"></div>
+        <span class="speaker-role-tag">Ponencia principal</span>
+        <h3 class="speaker-name">Iolanda Triviño</h3>
+        <div class="speaker-org">22@ Network · Future of Work Foundation</div>
+        <p class="speaker-bio">Presidenta de la Comisión de Talento de 22@ Network y Co-Founder de la Global Future of Work Foundation. Coautora del libro <em>Rompiendo el juego: Liderar en la Era de la disrupción</em> (McGraw-Hill, 2026) junto a Dave Ulrich, Simon L. Dolan y otros. +25 años trabajando sobre cómo cambia el trabajo.</p>
+        <a href="https://www.linkedin.com/in/iolandatrivino/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d2">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
+        <span class="speaker-role-tag">Apertura · Modera mesa</span>
+        <h3 class="speaker-name">Karim Barmose</h3>
+        <div class="speaker-org">Actual Talent</div>
+        <p class="speaker-bio">Co-lidera Actual Talent. Trabaja cada semana con directivos de RRHH revisando cómo contratan y cómo introducen IA en sus procesos. Abre el evento junto a Joan y modera la mesa redonda con criterio editorial: que la conversación no se quede en lo evidente.</p>
+        <a href="https://www.linkedin.com/in/karimbarmose/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d3">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/xavi-saez.jpg" alt="Xavi Sáez"></div>
+        <span class="speaker-role-tag">Dinámica · Liderazgo humano</span>
+        <h3 class="speaker-name">Xavi Sáez</h3>
+        <div class="speaker-org">Key People Improving (KPI)</div>
+        <p class="speaker-bio">Co-founder y CEO de KPI, consultora de liderazgo. Coach en Excelencia Emocional. +20 años dirigiendo equipos en multinacionales antes de dedicarse a acompañar la transformación de directivos. Activa la sala con una dinámica sobre conversaciones difíciles, dilemas éticos y qué no puede hacer la IA.</p>
+        <a href="https://www.linkedin.com/in/xavi-s%C3%A1ez-59320744/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d4">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda"></div>
+        <span class="speaker-role-tag">Apertura · Wrap-up</span>
+        <h3 class="speaker-name">Joan Boluda</h3>
+        <div class="speaker-org">Actual Talent</div>
+        <p class="speaker-bio">Fundador de Actual Talent. Abre el evento junto a Karim y cierra con tres ideas que estamos viendo desde dentro: qué empresas se adaptan mejor, cómo cambia el rol del recruiter y por qué la edad pesa menos cuando entra la IA.</p>
+        <a href="https://www.linkedin.com/in/joanboluda/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="agenda" id="agenda">
+  <div class="agenda-inner">
+    <div class="section-label reveal">Programa</div>
+    <div class="agenda-head">
+      <h2 class="reveal">Una mañana <em>diseñada</em> con ritmo.</h2>
+      <p class="reveal d1">Networking, ponencia, mesa redonda, dinámica y cierre. Dos horas y media en las que pasa algo cada bloque y nadie se queda mirando un PowerPoint.</p>
+    </div>
+    <ol class="agenda-list">
+      <li class="agenda-item reveal d1">
+        <span class="agenda-time">09:30</span>
+        <div class="agenda-body">
+          <h3>Networking + cafés de empresa</h3>
+          <p>Llegada. Conversaciones de pasillo entre directivos de RRHH de Barcelona y alrededores. Sin badges absurdos ni dinámicas forzadas.</p>
+        </div>
+      </li>
+      <li class="agenda-item reveal d2 is-key">
+        <span class="agenda-time">10:00</span>
+        <div class="agenda-body">
+          <h3>Apertura</h3>
+          <p>Cinco minutos para contextualizar la mañana, marcar tono y elevar la conversación. Queremos honestidad, no humo.</p>
+          <span class="agenda-by">Por <strong>Joan Boluda</strong> y <strong>Karim Barmose</strong> · Actual Talent</span>
+        </div>
+      </li>
+      <li class="agenda-item reveal d3 is-key">
+        <span class="agenda-time">10:10</span>
+        <div class="agenda-body">
+          <h3>Ponencia: el futuro del trabajo en la era de la IA</h3>
+          <p>Casos reales, perfiles que crecen y perfiles que se contraen, habilidades humanas que suben de valor, cambios concretos en grandes organizaciones. Conexión con las ideas del libro <em>Rompiendo el juego</em>.</p>
+          <span class="agenda-by">Por <strong>Iolanda Triviño</strong> · 22@ Network · Future of Work Foundation</span>
+        </div>
+      </li>
+      <li class="agenda-item reveal d4 is-key">
+        <span class="agenda-time">~10:45</span>
+        <div class="agenda-body">
+          <h3>Mesa redonda: cómo cambia el rol de RRHH</h3>
+          <p>Iolanda Triviño y directivos de RRHH de empresas referentes en Barcelona conversan sobre lo que están viendo de verdad: contratación, productividad, liderazgo, adopción interna de IA. <em>Panelistas por confirmar.</em></p>
+          <span class="agenda-by">Modera <strong>Karim Barmose</strong> · Actual Talent</span>
+        </div>
+      </li>
+      <li class="agenda-item reveal d5 is-key">
+        <span class="agenda-time">11:25</span>
+        <div class="agenda-body">
+          <h3>Dinámica: liderazgo humano en la era de la IA</h3>
+          <p>Por grupos: conversaciones difíciles, dilemas éticos, qué no puede hacer la IA. Ligera, participativa, accionable. No coaching intenso, sí material para reflexionar al volver al despacho.</p>
+          <span class="agenda-by">Por <strong>Xavi Sáez</strong> · KPI · Key People Improving</span>
+        </div>
+      </li>
+      <li class="agenda-item reveal d6 is-key">
+        <span class="agenda-time">11:55</span>
+        <div class="agenda-body">
+          <h3>Wrap-up: tres cosas que estamos viendo desde dentro</h3>
+          <p>Cierre breve con tres ideas que vemos cada semana en Actual Talent: cómo se adaptan mejor las empresas más rápidas, por qué el recruiter del futuro es más consultor que administrativo, y por qué la edad pesa menos cuando entra la IA.</p>
+          <span class="agenda-by">Por <strong>Joan Boluda</strong> · Actual Talent</span>
+        </div>
+      </li>
+      <li class="agenda-item reveal d6">
+        <span class="agenda-time">12:00</span>
+        <div class="agenda-body">
+          <h3>Cierre + comunidad</h3>
+          <p>Invitación a unirse a la comunidad de profesionales de RRHH con la que estamos creando espacios para hablar de todo esto entre quienes lo están viviendo en primera línea.</p>
+        </div>
+      </li>
+      <li class="agenda-item reveal d6">
+        <span class="agenda-time">12:20 – 13:00</span>
+        <div class="agenda-body">
+          <h3>Brunch + networking</h3>
+          <p>Pequeño brunch para cerrar la mañana en mesa, sin agenda fija. Tiempo para retomar conversaciones de pasillo, contrastar ideas y poner nombre a las preocupaciones que han salido en la sala.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="venue" id="venue">
+  <div class="venue-inner">
+    <div class="venue-grid">
+      <div class="venue-text">
+        <div class="section-label reveal">Venue</div>
+        <h2 class="reveal">Aticco Diagrame, en pleno <em>22@</em>.</h2>
+        <p class="reveal d1">El evento se celebra en Aticco Diagrame, el coworking más grande de España y del sur de Europa: 20.000 m² en el corazón del distrito tecnológico de Barcelona, certificación LEED Platinum y espacios diseñados para eventos profesionales.</p>
+        <p class="reveal d2">Carrer de Pere IV, 105-109. Bien conectado, terrazas amplias y una atmósfera que conecta con el tipo de conversación que queremos tener: empresas que están construyendo el trabajo del futuro, ya hoy.</p>
+        <a href="https://aticco.com/en/coworking-glories/" target="_blank" rel="noopener" class="venue-link reveal d3">
+          Ver el espacio en aticco.com
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="venue-stats">
+        <div class="venue-stat reveal d1">
+          <div class="vs-num">20.000<em> m²</em></div>
+          <div class="vs-label">Superficie del coworking</div>
+        </div>
+        <div class="venue-stat reveal d2">
+          <div class="vs-num">200</div>
+          <div class="vs-label">Asistentes al evento</div>
+        </div>
+        <div class="venue-stat reveal d3">
+          <div class="vs-num">22@</div>
+          <div class="vs-label">Distrito tecnológico BCN</div>
+        </div>
+        <div class="venue-stat reveal d4">
+          <div class="vs-num">LEED<em> Platinum</em></div>
+          <div class="vs-label">Certificación sostenibilidad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section class="details" id="detalles">
+  <div class="details-inner">
+    <div class="section-label reveal">Detalles prácticos</div>
+    <div class="details-grid">
+      <div class="detail-card reveal d1">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="10" r="3"/><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z"/></svg>
+        </div>
+        <div class="detail-label">Dónde</div>
+        <div class="detail-value">Aticco Diagrame</div>
+        <div class="detail-aside">C/ Pere IV, 105-109 · Sant Martí · 08018 Barcelona · 22@</div>
+      </div>
+      <div class="detail-card reveal d2">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="detail-label">Cuándo</div>
+        <div class="detail-value">Miércoles 17 junio 2026</div>
+        <div class="detail-aside">9:30 a 13:00h. Café de bienvenida + brunch ligero al cierre.</div>
+      </div>
+      <div class="detail-card reveal d3">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round"/></svg>
+        </div>
+        <div class="detail-label">Quién</div>
+        <div class="detail-value">200 directivos de RRHH</div>
+        <div class="detail-aside">Decision-makers y responsables de talento. Cuidamos el equilibrio sectorial.</div>
+      </div>
+      <div class="detail-card reveal d4">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9" stroke-linecap="round"/></svg>
+        </div>
+        <div class="detail-label">Formato</div>
+        <div class="detail-value">Presencial · 2,5 horas</div>
+        <div class="detail-aside">Ponencia, mesa redonda, dinámica y wrap-up. Sin pitch comercial.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section" id="registro">
+  <canvas class="particle-canvas" id="cta-particles"></canvas>
+  <div class="cta-inner">
+    <h2 class="reveal">200 plazas. <em>Únete al evento ancla</em> de la serie.</h2>
+    <p class="cta-date-reminder reveal d1">
+      <strong>Miércoles 17 junio 2026</strong> · 9:30 a 13:00h · Brunch al cierre · Aticco Diagrame · Pere IV 105-109, Barcelona
+    </p>
+    <!-- TODO: Sustituir href="#TODO-LUMA-URL" por la URL real de Luma antes de difundir el evento -->
+    <a href="#TODO-LUMA-URL" class="cta-big reveal d2" target="_blank" rel="noopener" data-todo="luma-url">
+      <span style="position:relative;z-index:1">Reservar plaza</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <p class="cta-aside reveal d3">El registro se gestiona en Luma. Confirmación inmediata.</p>
+
+    <div class="cta-community reveal d4">
+      <p>¿No puedes venir el 17 o quieres seguir la conversación entre evento y evento? Estamos construyendo una comunidad de profesionales de RRHH con la que pensamos en alto sobre todo esto.</p>
+      <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" target="_blank" rel="noopener" class="cta-community-link">
+        Unirme a la comunidad WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Actual Talent</strong> · Evento flagship Barcelona · 17 junio 2026 · Aticco Diagrame</p>
+  <div class="footer-links">
+    <a href="/">Eventos Actual Talent</a>
+    <a href="/webinar/copilotosustituto/">Webinar 26 mayo</a>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" target="_blank" rel="noopener">Comunidad WhatsApp</a>
+    <a href="https://www.actual-talent.com/es" target="_blank" rel="noopener">Actual Talent</a>
+  </div>
+</footer>
+
+<!-- JS -->
+<script>
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+requestAnimationFrame(() => {
+  document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+});
+
+// Hamburger
+const burger = document.querySelector('.burger');
+const mobileNav = document.querySelector('.nav-mobile');
+function closeMenu() { burger.classList.remove('open'); mobileNav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+burger.addEventListener('click', (e) => { e.stopPropagation(); const o = burger.classList.toggle('open'); mobileNav.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); });
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('click', (e) => { if (!burger.contains(e.target) && !mobileNav.contains(e.target)) closeMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+// Mouse glow
+const glow = document.getElementById('mouse-glow');
+const heroEl = document.querySelector('.hero');
+if (window.matchMedia('(pointer:fine)').matches) {
+  heroEl.addEventListener('mousemove', (e) => { const r = heroEl.getBoundingClientRect(); glow.style.left = (e.clientX-r.left)+'px'; glow.style.top = (e.clientY-r.top)+'px'; glow.classList.add('visible'); });
+  heroEl.addEventListener('mouseleave', () => glow.classList.remove('visible'));
+}
+
+// Mouse position for particle interaction
+const mousePos = { x: -1000, y: -1000, active: false };
+if (window.matchMedia('(pointer:fine)').matches) {
+  document.addEventListener('mousemove', (e) => { mousePos.x = e.clientX; mousePos.y = e.clientY; mousePos.active = true; });
+  document.addEventListener('mouseleave', () => { mousePos.active = false; });
+}
+
+// Particle system
+function initParticles(canvasId, count) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  function resize() { const p = canvas.parentElement; w = canvas.width = p.offsetWidth; h = canvas.height = p.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random()*w, y: Math.random()*h,
+      r: Math.random()*3 + 0.8,
+      vx: (Math.random()-0.5)*0.5,
+      vy: (Math.random()-0.5)*0.35 - 0.05,
+      alpha: Math.random()*0.55 + 0.25,
+      isRed: Math.random() < 0.4,
+      pulse: Math.random()*Math.PI*2
+    });
+  }
+  const CONNECT_DIST = 160;
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECT_DIST) {
+          const opacity = (1 - dist/CONNECT_DIST) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = particles[i].isRed || particles[j].isRed
+            ? `rgba(192,25,30,${opacity})`
+            : `rgba(255,255,255,${opacity * 0.7})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+    const canvasRect = canvas.getBoundingClientRect();
+    const mx = mousePos.x - canvasRect.left;
+    const my = mousePos.y - canvasRect.top;
+    const MOUSE_RADIUS = 180;
+    particles.forEach(p => {
+      if (mousePos.active && mx > -50 && mx < w+50 && my > -50 && my < h+50) {
+        const dx = p.x - mx;
+        const dy = p.y - my;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < MOUSE_RADIUS && dist > 0) {
+          const force = (1 - dist/MOUSE_RADIUS) * 2.5;
+          p.vx += (dx/dist) * force * 0.3;
+          p.vy += (dy/dist) * force * 0.3;
+        }
+      }
+      p.vx *= 0.97;
+      p.vy *= 0.97;
+      p.vx += (Math.random()-0.5)*0.04;
+      p.vy += (Math.random()-0.5)*0.03 - 0.005;
+      p.x += p.vx; p.y += p.vy;
+      p.pulse += 0.018;
+      const pAlpha = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+      if (p.x < -10) p.x = w+10; if (p.x > w+10) p.x = -10;
+      if (p.y < -10) p.y = h+10; if (p.y > h+10) p.y = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.isRed ? `rgba(192,25,30,${pAlpha})` : `rgba(255,255,255,${pAlpha*0.8})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+initParticles('hero-particles', 120);
+initParticles('cta-particles', 70);
+</script>
+
+</body>
+</html>
