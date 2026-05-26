@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0A0A0A">
-<title>¿La IA como copiloto o sustituto del humano? - Webinar Actual Talent</title>
-<meta name="description" content="Webinar 26 de mayo 2026, 12:00h CEST. ¿Dónde acaba la asistencia y empieza la sustitución? Con Bruno Pincolini (SAP), Jamal Ibrahim (Universidad Europea + EAE), Edgar Quero (Orquesty) y Delia Rodríguez (Roca Junyent). Modera Karim Barmose.">
-<meta property="og:title" content="¿La IA como copiloto o sustituto del humano? - Webinar Actual Talent">
-<meta property="og:description" content="26 de mayo 2026, 12:00h CEST. Con Bruno Pincolini (SAP), Jamal Ibrahim (Universidad Europea), Edgar Quero (Orquesty) y Delia Rodríguez (Roca Junyent). Modera Karim Barmose. Online y gratuito.">
+<title>¿Copiloto o sustituto? — Webinar (recap) · Actual Talent</title>
+<meta name="description" content="Webinar celebrado el 26 de mayo 2026. Mesa redonda sobre IA como copiloto o sustituto del humano con Bruno Pincolini (SAP), Delia Rodríguez (Roca Junyent), Jamal Ibrahim (Universidad Europea / EAE) y Edgar Quero (Orquesty). Modera Karim Barmose. Replay + whitepaper.">
+<meta property="og:title" content="¿Copiloto o sustituto? — Webinar (recap) · Actual Talent">
+<meta property="og:description" content="Webinar celebrado el 26 de mayo 2026. Cuatro expertos debaten dónde acaba la asistencia y empieza la sustitución. Replay completo y whitepaper de 13 páginas.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -72,8 +72,6 @@ header {
 .header-wordmark {
   font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: white; line-height: 1;
 }
-.header-wordmark .wm-sep { color: rgba(255,255,255,0.25); margin: 0 6px; font-weight: 400; }
-.header-wordmark .wm-tt { color: rgba(255,255,255,0.6); font-weight: 600; }
 .header-nav { display: flex; align-items: center; gap: 4px; }
 .nav-link { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 7px 14px; border-radius: 4px; transition: color 0.2s; }
 .nav-link:hover { color: rgba(255,255,255,0.9); }
@@ -124,7 +122,7 @@ header {
   pointer-events: none; z-index: 0;
 }
 .hero::after {
-  content: 'VS'; position: absolute; right: -3vw; bottom: -6vh;
+  content: 'IA'; position: absolute; right: -3vw; bottom: -6vh;
   font-size: 38vw; font-weight: 900; letter-spacing: -0.06em;
   color: rgba(255,255,255,0.015); line-height: 1; pointer-events: none; user-select: none;
 }
@@ -151,7 +149,7 @@ header {
 .hero-headline em { font-style: normal; color: var(--red); }
 .hero-sub {
   font-size: clamp(15px, 1.7vw, 18px); font-weight: 300; line-height: 1.85;
-  color: rgba(255,255,255,0.5); max-width: 520px; margin-bottom: 48px;
+  color: rgba(255,255,255,0.5); max-width: 560px; margin-bottom: 48px;
 }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 .cta-primary {
@@ -177,26 +175,142 @@ header {
 }
 .scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,0.15); }
 
-/* ─── COUNTDOWN ──────────────────────────────────────────────────────────────── */
-.countdown { display: flex; gap: 24px; margin-top: 32px; }
-.cd-block { text-align: center; }
-.cd-num { font-size: 36px; font-weight: 900; color: white; line-height: 1; letter-spacing: -0.03em; min-width: 56px; display: block; }
-.cd-label { font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 6px; }
-.cd-sep { font-size: 28px; font-weight: 300; color: rgba(255,255,255,0.15); align-self: flex-start; padding-top: 4px; }
+/* ─── REPLAY + WHITEPAPER ────────────────────────────────────────────────────── */
+.replay {
+  background: var(--near-black);
+  color: white;
+  padding: 100px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.replay::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,25,30,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.replay-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.replay-header { margin-bottom: 48px; max-width: 760px; }
+.replay-header h2 {
+  font-size: clamp(32px, 4.5vw, 52px); font-weight: 900; letter-spacing: -0.03em;
+  color: white; line-height: 1.05; margin-top: 16px;
+}
+.replay-header h2 em { font-style: normal; color: var(--red); }
+.replay-header p {
+  font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.65);
+  margin-top: 18px; max-width: 600px;
+}
+.replay-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: stretch;
+}
+.replay-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  background: #000;
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.replay-video iframe {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+.replay-paper {
+  background: linear-gradient(160deg, #1A1A1A 0%, #2A1011 100%);
+  border: 1px solid rgba(192,25,30,0.25);
+  padding: 36px 32px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.replay-paper::before {
+  content: ''; position: absolute; bottom: -60px; left: -60px;
+  width: 220px; height: 220px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.replay-paper-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--red); margin-bottom: 14px;
+}
+.replay-paper h3 {
+  font-size: 22px; font-weight: 800; line-height: 1.15; color: white;
+  letter-spacing: -0.02em; margin-bottom: 14px;
+}
+.replay-paper p {
+  font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.62);
+  margin-bottom: 28px;
+}
+.replay-paper-meta {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 28px;
+}
+.replay-paper-meta span::before { content: '•'; margin-right: 8px; color: var(--red); }
+.replay-paper-meta span:first-child::before { display: none; }
+.replay-paper-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 16px 24px;
+  background: var(--red); color: white;
+  font-family: inherit;
+  font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  text-decoration: none;
+  border: 0; cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  position: relative; z-index: 1;
+}
+.replay-paper-cta:hover { opacity: 0.92; transform: translateX(2px); }
+.replay-paper-cta .arrow { font-size: 16px; }
 
-/* ─── CO-BRANDED STRIP ───────────────────────────────────────────────────────── */
-.cobranded {
-  background: var(--white); padding: 36px 48px;
-  display: flex; align-items: center; justify-content: center; gap: 40px;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+/* Lead-capture MODAL */
+.wp-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+  background: rgba(10,10,10,0.78);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  animation: wpFade 0.18s ease-out;
 }
-.cobrand-label {
-  font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
+.wp-modal.open { display: flex; }
+@keyframes wpFade { from { opacity: 0; } to { opacity: 1; } }
+.wp-modal-card {
+  position: relative;
+  width: 100%; max-width: 460px;
+  background: linear-gradient(160deg, #1A1A1A 0%, #2A1011 100%);
+  border: 1px solid rgba(192,25,30,0.3);
+  padding: 36px 32px 28px;
+  color: white;
+  animation: wpSlide 0.22s ease-out;
 }
-.cobrand-logos { display: flex; align-items: center; gap: 28px; }
-.cobrand-logo img { height: 30px; width: auto; display: block; }
-.cobrand-logo.tt img { height: 34px; }
-.cobrand-x { font-size: 16px; color: rgba(0,0,0,0.15); font-weight: 300; }
+@keyframes wpSlide { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.wp-modal-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 36px; height: 36px;
+  background: transparent; border: 0; color: rgba(255,255,255,0.5);
+  font-size: 22px; line-height: 1; cursor: pointer;
+  transition: color 0.15s;
+}
+.wp-modal-close:hover { color: white; }
+.wp-modal-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+.wp-modal-title { font-size: 22px; font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 8px; }
+.wp-modal-lead { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.6); margin-bottom: 22px; }
+.wp-form { display: flex; flex-direction: column; gap: 10px; }
+.wp-form input {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: white;
+  padding: 12px 14px; font-family: inherit; font-size: 13px; outline: none; border-radius: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+.wp-form input:focus { border-color: var(--red); background: rgba(255,255,255,0.08); }
+.wp-form input::placeholder { color: rgba(255,255,255,0.35); }
+.wp-form button { border: 0; cursor: pointer; width: 100%; margin-top: 6px; padding: 14px 22px; background: var(--red); color: white; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: inherit; transition: opacity 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.wp-form button:hover { opacity: 0.9; }
+.wp-form button:disabled { opacity: 0.6; cursor: wait; }
+.wp-form-privacy { font-size: 10.5px; line-height: 1.55; color: rgba(255,255,255,0.4); margin-top: 14px; letter-spacing: 0.1px; }
+.wp-form-success { font-size: 13px; line-height: 1.6; color: white; padding: 14px 16px; background: rgba(192,25,30,0.18); border-left: 2px solid var(--red); margin-top: 8px; }
 
 /* ─── ABOUT ──────────────────────────────────────────────────────────────────── */
 .about { background: var(--cream); padding: 100px 48px; }
@@ -222,42 +336,33 @@ header {
 
 /* ─── SPEAKERS ───────────────────────────────────────────────────────────────── */
 .speakers { background: var(--white); padding: 100px 48px; }
-.speakers-inner { max-width: 1100px; margin: 0 auto; }
+.speakers-inner { max-width: 1180px; margin: 0 auto; }
 .speakers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; }
-.speaker-card.tbd { opacity: 0.55; }
-.speaker-card.tbd .speaker-photo { background: rgba(0,0,0,0.04); color: var(--gray); border: 1px dashed rgba(0,0,0,0.18); font-size: 28px; }
-.speaker-card.tbd .speaker-role-badge { background: rgba(107,107,107,0.1); color: var(--gray); }
-.speaker-card.tbd .speaker-name { color: var(--gray); }
-.speaker-card.tbd .speaker-company { color: var(--gray); }
 a.speaker-card { text-decoration: none; color: inherit; display: block; }
 .speaker-card {
-  text-align: center; padding: 36px 20px; border-radius: 12px;
+  text-align: center; padding: 36px 18px; border-radius: 12px;
   transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
 }
 .speaker-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
 .speaker-photo {
-  width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 24px;
+  width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 24px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 36px; font-weight: 800; color: white; position: relative; overflow: hidden;
+  font-size: 32px; font-weight: 800; color: white; position: relative; overflow: hidden;
 }
-.speaker-photo.jb { background: var(--red); }
-.speaker-photo.mg { background: var(--near-black); }
-.speaker-photo.tg { background: var(--gray); }
-.speaker-photo.ij { background: #2C3E50; }
 .speaker-photo.kb { background: var(--near-black); }
-.speaker-photo.bp { background: #0FAAFF; }   /* SAP blue fallback */
-.speaker-photo.ji { background: #6366F1; }   /* Jamal violet fallback */
-.speaker-photo.eq { background: #14B8A6; }   /* Edgar teal fallback */
-.speaker-photo.dr { background: #C0191E; }   /* Delia red fallback */
+.speaker-photo.bp { background: #0FAAFF; }
+.speaker-photo.ji { background: #6366F1; }
+.speaker-photo.eq { background: #14B8A6; }
+.speaker-photo.dr { background: var(--red); }
 .speaker-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .speaker-role-badge {
   display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; color: var(--red); background: rgba(192,25,30,0.08);
   padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
 }
-.speaker-name { font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px; }
-.speaker-title { font-size: 13px; font-weight: 500; color: var(--gray); margin-bottom: 6px; }
-.speaker-company { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); }
+.speaker-name { font-size: 17px; font-weight: 800; color: var(--black); margin-bottom: 4px; }
+.speaker-title { font-size: 12px; font-weight: 500; color: var(--gray); margin-bottom: 6px; line-height: 1.45; }
+.speaker-company { font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); }
 
 /* ─── AGENDA ─────────────────────────────────────────────────────────────────── */
 .agenda { background: var(--cream); padding: 100px 48px; }
@@ -316,77 +421,11 @@ a.speaker-card { text-decoration: none; color: inherit; display: block; }
 .cta-big:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(192,25,30,0.35); }
 .cta-big svg { width: 18px; height: 18px; position: relative; z-index: 1; }
 
-/* ─── REGISTRATION MODAL ─────────────────────────────────────────────────────── */
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 300;
-  background: rgba(10,10,10,0.85);
-  backdrop-filter: blur(12px);
-  display: none; align-items: center; justify-content: center;
-  padding: 24px;
-  opacity: 0; transition: opacity 0.3s;
-}
-.modal-overlay.open { display: flex; opacity: 1; }
-.modal {
-  background: var(--white); border-radius: 16px; padding: 48px;
-  max-width: 480px; width: 100%; position: relative;
-  transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-  box-shadow: 0 32px 80px rgba(0,0,0,0.3);
-}
-.modal-overlay.open .modal { transform: none; }
-.modal-close {
-  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
-  background: none; border: none; cursor: pointer; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--gray); transition: background 0.2s, color 0.2s;
-}
-.modal-close:hover { background: var(--cream); color: var(--black); }
-.modal-close svg { width: 20px; height: 20px; }
-.modal h3 {
-  font-size: 24px; font-weight: 900; color: var(--black); margin-bottom: 4px; letter-spacing: -0.02em;
-}
-.modal .modal-sub {
-  font-size: 13px; color: var(--gray); margin-bottom: 32px; font-weight: 400;
-}
-.form-group { margin-bottom: 20px; }
-.form-group label {
-  display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
-}
-.form-group input, .form-group select {
-  width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 14px;
-  font-weight: 500; color: var(--black); background: var(--cream);
-  transition: border-color 0.2s, box-shadow 0.2s; outline: none;
-}
-.form-group select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
-.form-group input:focus, .form-group select:focus {
-  border-color: var(--red); box-shadow: 0 0 0 3px rgba(192,25,30,0.1);
-}
-.form-group input::placeholder { color: rgba(0,0,0,0.25); }
-.form-submit {
-  width: 100%; padding: 16px; border: none; border-radius: 8px; cursor: pointer;
-  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase; color: white; background: var(--red);
-  transition: opacity 0.2s, transform 0.2s;
-}
-.form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
-.form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.form-success {
-  text-align: center; padding: 24px 0;
-}
-.form-success .check-icon {
-  width: 56px; height: 56px; border-radius: 50%; background: rgba(192,25,30,0.08);
-  display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
-}
-.form-success .check-icon svg { width: 28px; height: 28px; color: var(--red); }
-.form-success h4 { font-size: 20px; font-weight: 900; color: var(--black); margin-bottom: 8px; }
-.form-success p { font-size: 14px; color: var(--gray); line-height: 1.6; }
-
 /* ─── FOOTER ─────────────────────────────────────────────────────────────────── */
 footer { background: var(--red); padding: 48px; text-align: center; }
 footer p { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
 footer p strong { font-weight: 800; color: white; }
-footer .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 24px; }
+footer .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
 footer .footer-links a {
   font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
   text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;
@@ -394,6 +433,9 @@ footer .footer-links a {
 footer .footer-links a:hover { color: white; }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .speakers-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 900px) {
   header { padding: 0 20px; }
   .header-nav .nav-link { display: none; }
@@ -401,9 +443,9 @@ footer .footer-links a:hover { color: white; }
   .hero { padding: 100px 24px 64px; }
   .hero-scroll { display: none; }
   .mouse-glow { display: none; }
-  .countdown { gap: 16px; }
-  .cd-num { font-size: 28px; }
-  .cobranded { flex-direction: column; gap: 16px; padding: 32px 24px; }
+  .replay { padding: 64px 24px; }
+  .replay-grid { grid-template-columns: 1fr; gap: 24px; }
+  .replay-paper { padding: 28px 24px; }
   .about { padding: 80px 24px; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .speakers { padding: 80px 24px; }
@@ -411,18 +453,13 @@ footer .footer-links a:hover { color: white; }
   .agenda { padding: 80px 24px; }
   .cta-section { padding: 80px 24px; }
   footer { padding: 36px 24px; }
-  .modal { padding: 32px 24px; }
 }
 @media (max-width: 480px) {
   .hero-headline { font-size: clamp(28px, 8vw, 40px); }
   .hero-ctas { flex-direction: column; }
   .hero-ctas a, .hero-ctas button { text-align: center; justify-content: center; }
-  .countdown { gap: 12px; }
-  .cd-num { font-size: 24px; min-width: 40px; }
-  .cd-sep { font-size: 20px; }
   .speakers-grid { grid-template-columns: 1fr; gap: 16px; }
   .speaker-card { padding: 28px 16px; }
-  .cobrand-logos { flex-direction: column; gap: 16px; }
   footer .footer-links { flex-direction: column; gap: 12px; }
 }
 
@@ -433,9 +470,7 @@ footer .footer-links a:hover { color: white; }
 <!-- ─── HEADER ──────────────────────────────────────────────────────────────── -->
 <header>
   <a href="/" class="header-brand" aria-label="Eventos Actual Talent">
-    <span class="header-wordmark">
-      Actual Talent
-    </span>
+    <span class="header-wordmark">Actual Talent</span>
   </a>
   <nav class="header-nav">
     <a href="/" class="nav-link">Serie</a>
@@ -461,40 +496,62 @@ footer .footer-links a:hover { color: white; }
   <canvas class="particle-canvas" id="hero-particles"></canvas>
   <div class="mouse-glow" id="mouse-glow"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow reveal">Webinar · Mesa Redonda</div>
+    <div class="hero-eyebrow reveal">Webinar · Recap</div>
     <div class="hero-date-badge reveal d1">
       <span class="badge-dot"></span>
-      <span>26 Mayo 2026 · 12:00h CEST</span>
+      <span>Evento celebrado · 26 Mayo 2026</span>
     </div>
     <h1 class="hero-headline reveal d2">
       ¿La IA como <em>copiloto</em> o <em>sustituto</em> del humano?
     </h1>
     <p class="hero-sub reveal d3">
-      La IA escribe código, redacta informes, atiende clientes. ¿Dónde acaba la asistencia y empieza la sustitución? Una mesa redonda con voces de la IA empresarial, moderada desde la primera línea del talento.
+      Cuatro ángulos sobre la misma pregunta: dónde acaba la asistencia y empieza la sustitución. Enterprise, regulación europea, mercado mid-market y academia, en 1 hora y 8 minutos de mesa redonda.
     </p>
     <div class="hero-ctas reveal d4">
-      <a href="https://www.linkedin.com/events/7462814883517198337?viewAsMember=true" class="cta-primary" target="_blank" rel="noopener">Registrarse en LinkedIn <span>→</span></a>
-    </div>
-    <div class="countdown reveal d5" id="countdown" style="margin-top:32px">
-      <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Días</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Horas</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Seg</span></div>
+      <a href="../../presencial/17-jun-bcn/" class="cta-primary">Próximo evento — 17 jun BCN <span>→</span></a>
+      <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="cta-secondary" target="_blank" rel="noopener">Comunidad WhatsApp</a>
     </div>
   </div>
   <div class="hero-scroll"><span class="scroll-line"></span> Scroll</div>
 </section>
 
-<!-- ─── CO-BRANDED STRIP ───────────────────────────────────────────────────── -->
-<div class="cobranded reveal">
-  <span class="cobrand-label">Organizado por</span>
-  <div class="cobrand-logos">
-    <span class="cobrand-logo"><img src="../assets/logos/actual-talent.png" alt="Actual Talent"></span>
+<!-- ─── REPLAY + WHITEPAPER ─────────────────────────────────────────────────── -->
+<section class="replay" id="replay">
+  <div class="replay-inner">
+    <div class="replay-header reveal">
+      <div class="section-label light">Replay &amp; Whitepaper</div>
+      <h2>Vive el directo. <em>Llévate</em> las conclusiones.</h2>
+      <p>1 hora y 8 minutos de mesa redonda con Bruno Pincolini (SAP), Delia Rodríguez (Roca Junyent), Jamal Ibrahim (Universidad Europea / EAE) y Edgar Quero (Orquesty). Modera Karim Barmose. Y un whitepaper que destila lo dicho en 13 páginas accionables, con citas literales del panel.</p>
+    </div>
+    <div class="replay-grid">
+      <div class="replay-video reveal d1">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/SMV-UVLFT6s?rel=0"
+          title="¿La IA como copiloto o sustituto del humano? — Webinar Actual Talent"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+      </div>
+      <div class="replay-paper reveal d2">
+        <div>
+          <div class="replay-paper-eyebrow">Whitepaper N.º 02</div>
+          <h3>¿Copiloto o sustituto? — Cuatro ángulos sobre la IA en el trabajo</h3>
+          <p>Síntesis del directo: 5 ideas-fuerza, 5 bloques temáticos (enterprise, regulación, agentic, productividad, RRHH), 6 citas destacadas literales y un capítulo de implicaciones para líderes.</p>
+          <div class="replay-paper-meta">
+            <span>13 páginas</span>
+            <span>PDF</span>
+            <span>Español</span>
+          </div>
+        </div>
+        <button type="button" class="replay-paper-cta" id="wp-open" aria-haspopup="dialog">
+          Descargar whitepaper <span class="arrow">↓</span>
+        </button>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ─── ABOUT ──────────────────────────────────────────────────────────────── -->
 <section class="about" id="sobre">
@@ -502,23 +559,23 @@ footer .footer-links a:hover { color: white; }
     <div class="section-label reveal">Sobre el webinar</div>
     <div class="about-grid">
       <div class="about-text">
-        <h2 class="reveal">¿Asistente o <em>reemplazo</em>?</h2>
-        <p class="reveal d1">La IA ya escribe código, redacta informes, atiende llamadas y resuelve incidencias. La pregunta de fondo no es si llega — es dónde acaba la asistencia y empieza la sustitución.</p>
-        <p class="reveal d2">Y la respuesta cambia el negocio: los roles que entran en la nómina, los procesos que se automatizan por completo, las decisiones que sigue tomando un humano.</p>
-        <p class="reveal d3">Una conversación entre IA empresarial, consultoría estratégica y la primera línea de la selección de talento, para separar lo que ya está pasando de lo que aún es promesa.</p>
+        <h2 class="reveal">La IA no llega sola. Llega con <em>marco regulatorio</em>, <em>expectativas</em> y una pregunta para los líderes.</h2>
+        <p class="reveal d1">El 57% de las horas trabajadas en entornos corporativos son ya técnicamente automatizables. Pero la realidad sobre el terreno es más compleja: industrias reguladas, datos sucios, sesgos en la toma de decisiones, expectativas mal gestionadas y un reglamento europeo que ya aplica por hitos.</p>
+        <p class="reveal d2">Cuatro voces se sentaron a debatir la misma pregunta desde lados muy distintos. Bruno desde SAP y la energía, con casos en producción y consorcios industriales. Delia desde el derecho, aterrizando el reglamento de IA que entró en vigor en 2024. Jamal desde la academia y la ingeniería, con una hipótesis incómoda sobre el futuro del SaaS. Edgar desde el mid market y LATAM, donde el e-commerce ya pide automatizar antes de tener procesos limpios.</p>
+        <p class="reveal d3">No hay consenso. Hay matices, datos y casos. Y un acuerdo de fondo: esto no es un hype, esto se queda. Lo que cambia es qué se delega, qué se supervisa, y qué se reserva para el juicio humano.</p>
       </div>
       <ul class="takeaways">
         <li class="takeaway reveal d1">
           <span class="takeaway-num">01</span>
-          <div><h3>Copiloto: asistencia real</h3><p>Dónde la IA acelera el trabajo humano sin reemplazarlo — y por qué seguir necesitando a la persona detrás cambia cómo se contrata.</p></div>
+          <div><h3>Asistencia vs autonomía</h3><p>Una cosa es automatizar procesos mecánicos. Otra muy distinta es dar autonomía a la herramienta para decidir como decide un humano. Hoy, en industrias reguladas, la IA da soporte y ordena información. Las decisiones críticas siguen siendo humanas. Esa es la línea.</p></div>
         </li>
         <li class="takeaway reveal d2">
           <span class="takeaway-num">02</span>
-          <div><h3>Sustituto: el límite real</h3><p>Qué procesos completos están desapareciendo, en qué sectores, y cómo lo viven los equipos que conviven con esa transición.</p></div>
+          <div><h3>Reglamento IA: ya aplica</h3><p>El AI Act entró en vigor en 2024 y aplica por hitos. Hay obligaciones que ya están vigentes: alfabetización de empleados y comité directivo, prohibición de inferencia de emociones en el ámbito laboral, y categorización de selección de candidatos como alto riesgo. El Digital Omnibus de mayo suaviza, pero no anula.</p></div>
         </li>
         <li class="takeaway reveal d3">
           <span class="takeaway-num">03</span>
-          <div><h3>Implicaciones para el talento</h3><p>Qué perfiles ganan peso, cuáles desaparecen y cómo recolocar a los que quedan en medio. Decisiones de plantilla, no titulares.</p></div>
+          <div><h3>Productividad sin agobio</h3><p>El reto del líder no es exprimir más al equipo porque ahora "puede". Es integrar la IA en la dinámica del equipo para que automatice tareas de bajo valor y libere tiempo para tareas de alto valor. La realización del empleado depende de sentir que aporta, no de producir más por producir.</p></div>
         </li>
       </ul>
     </div>
@@ -544,26 +601,26 @@ footer .footer-links a:hover { color: white; }
         <div class="speaker-title">Global Lead · SAP Business AI for Utilities</div>
         <div class="speaker-company">SAP</div>
       </a>
-      <a href="https://www.linkedin.com/in/jamal-ahmad-ibrahim/" target="_blank" rel="noopener" class="speaker-card reveal d3">
-        <div class="speaker-photo ji"><img src="../assets/speakers/jamal-ibrahim.jpg" alt="Jamal Ibrahim"></div>
-        <span class="speaker-role-badge">Ponente</span>
-        <div class="speaker-name">Jamal Ibrahim</div>
-        <div class="speaker-title">Technical Lead GenAI &amp; ML · Lecturer en Master AI for HR</div>
-        <div class="speaker-company">Universidad Europea · EAE Business School</div>
-      </a>
-      <a href="https://www.linkedin.com/in/edquero/" target="_blank" rel="noopener" class="speaker-card reveal d4">
-        <div class="speaker-photo eq"><img src="../assets/speakers/edgar-quero.jpg" alt="Edgar Quero"></div>
-        <span class="speaker-role-badge">Ponente</span>
-        <div class="speaker-name">Edgar Quero</div>
-        <div class="speaker-title">Co-Founder · Strategy &amp; Operations</div>
-        <div class="speaker-company">Orquesty</div>
-      </a>
-      <a href="https://www.linkedin.com/in/delia-rodr%C3%ADguez-fern%C3%A1ndez-719a1b224/" target="_blank" rel="noopener" class="speaker-card reveal d5">
+      <a href="https://www.linkedin.com/in/delia-rodr%C3%ADguez-fern%C3%A1ndez-719a1b224/" target="_blank" rel="noopener" class="speaker-card reveal d3">
         <div class="speaker-photo dr"><img src="../assets/speakers/delia-rodriguez.jpg" alt="Delia Rodríguez Fernández"></div>
         <span class="speaker-role-badge">Ponente</span>
         <div class="speaker-name">Delia Rodríguez</div>
         <div class="speaker-title">Abogada · Tecnología y Privacidad</div>
         <div class="speaker-company">Roca Junyent</div>
+      </a>
+      <a href="https://www.linkedin.com/in/jamal-ahmad-ibrahim/" target="_blank" rel="noopener" class="speaker-card reveal d4">
+        <div class="speaker-photo ji"><img src="../assets/speakers/jamal-ibrahim.jpg" alt="Jamal Ibrahim"></div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Jamal Ibrahim</div>
+        <div class="speaker-title">Technical Lead GenAI &amp; ML · Lecturer Master AI for HR</div>
+        <div class="speaker-company">Universidad Europea · EAE</div>
+      </a>
+      <a href="https://www.linkedin.com/in/edquero/" target="_blank" rel="noopener" class="speaker-card reveal d5">
+        <div class="speaker-photo eq"><img src="../assets/speakers/edgar-quero.jpg" alt="Edgar Quero"></div>
+        <span class="speaker-role-badge">Ponente</span>
+        <div class="speaker-name">Edgar Quero</div>
+        <div class="speaker-title">Co-Founder · Strategy &amp; Operations</div>
+        <div class="speaker-company">Orquesty</div>
       </a>
     </div>
   </div>
@@ -572,121 +629,175 @@ footer .footer-links a:hover { color: white; }
 <!-- ─── AGENDA ──────────────────────────────────────────────────────────────── -->
 <section class="agenda" id="agenda">
   <div class="agenda-inner">
-    <div class="section-label reveal">Agenda</div>
+    <div class="section-label reveal">Cómo se desarrolló el directo</div>
     <div class="agenda-track">
       <div class="agenda-item reveal">
         <div class="agenda-dot"></div>
-        <div class="agenda-time">12:00h</div>
-        <div class="agenda-title">Introducción y contexto</div>
-        <div class="agenda-desc">Bienvenida, presentación de los ponentes y marco del debate: dónde está la IA hoy en el trabajo del conocimiento.</div>
+        <div class="agenda-time">Bloque 1</div>
+        <div class="agenda-title">Bienvenida y marco del debate</div>
+        <div class="agenda-desc">Karim Barmose abre el segundo webinar de la serie. Presenta a los cuatro ponentes y plantea la pregunta incómoda: ¿la IA llega como copiloto y nos da superpoderes, o llega directamente a sustituirnos? Datos de McKinsey, Klarna, Duolingo.</div>
         <span class="agenda-duration">5 min</span>
       </div>
       <div class="agenda-item reveal d1">
         <div class="agenda-dot"></div>
-        <div class="agenda-time">12:05h</div>
-        <div class="agenda-title">Mesa redonda</div>
-        <div class="agenda-desc">Debate entre los ponentes: copiloto vs sustituto en empresas reales. Casos donde la IA acelera al humano y casos donde ya lo reemplaza. Cómo se decide el reparto de tareas. Implicaciones para la plantilla y el talento que entra.</div>
-        <span class="agenda-duration">40 min</span>
+        <div class="agenda-time">Bloque 2</div>
+        <div class="agenda-title">Asistencia vs automatización en empresas reguladas</div>
+        <div class="agenda-desc">Bruno (SAP) sobre parques eólicos offshore y casos en producción del SAP Sapphire Madrid. Edgar (Orquesty) sobre por qué muchos proyectos de automatización fallan: datos sucios y procesos sin SLA.</div>
+        <span class="agenda-duration">15 min</span>
       </div>
       <div class="agenda-item reveal d2">
         <div class="agenda-dot"></div>
-        <div class="agenda-time">12:45h</div>
-        <div class="agenda-title">Preguntas y respuestas</div>
-        <div class="agenda-desc">Espacio abierto para preguntas de los asistentes. Los ponentes responden en directo a las cuestiones del público.</div>
+        <div class="agenda-time">Bloque 3</div>
+        <div class="agenda-title">Agentic, SaaS y la nueva capacidad de programar</div>
+        <div class="agenda-desc">Jamal sostiene que la IA agentic ya no es una "herramienta" porque percibe, razona y actúa. Hipótesis del SaaS clásico: cambio de modelo de negocio, no muerte. Code agents, datos compartidos y la barrera real para migrar.</div>
+        <span class="agenda-duration">10 min</span>
+      </div>
+      <div class="agenda-item reveal d3">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">Bloque 4</div>
+        <div class="agenda-title">Reglamento IA: lo que ya aplica</div>
+        <div class="agenda-desc">Delia (Roca Junyent) aterriza el AI Act: cuatro categorías de riesgo, Digital Omnibus del 13 de mayo, alfabetización obligatoria desde 2024, inferencia de emociones prohibida en el ámbito laboral, selección de candidatos como alto riesgo. Caso real de despido sesgado por reducción de jornada.</div>
         <span class="agenda-duration">15 min</span>
+      </div>
+      <div class="agenda-item reveal d4">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">Bloque 5</div>
+        <div class="agenda-title">Hype, expectativas y el factor humano</div>
+        <div class="agenda-desc">Bruno sobre Gartner (40% de proyectos Agentic se cancelarán antes de 2027) y por qué: buscar un problema, no una solución. Jamal sobre el approximation theorem: tolerancia emocional al error humano vs error máquina. Edgar sobre cómo no convertir la productividad en agobio.</div>
+        <span class="agenda-duration">15 min</span>
+      </div>
+      <div class="agenda-item reveal d5">
+        <div class="agenda-dot"></div>
+        <div class="agenda-time">Bloque 6</div>
+        <div class="agenda-title">Q&amp;A, docentes y cierre</div>
+        <div class="agenda-desc">Métricas de productividad real (Bruno). Cómo SAP protege datos de cliente con partners OpenAI, Mistral y Anthropic. Cómo los docentes pueden seguir el ritmo: conceptos sobre información, aplicabilidad sobre teoría. Cierre.</div>
+        <span class="agenda-duration">8 min</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ─── CTA SECTION ────────────────────────────────────────────────────────── -->
-<section class="cta-section" id="registro">
+<section class="cta-section" id="siguiente">
   <canvas class="particle-canvas" id="cta-particles"></canvas>
   <div class="cta-inner">
-    <h2 class="reveal">¿Te lo vas a <em>perder</em>?</h2>
+    <h2 class="reveal">La conversación <em>continúa</em></h2>
     <p class="cta-date-reminder reveal d1">
-      <strong>26 de mayo de 2026</strong> · 12:00h CEST · Online y gratuito
+      Próximo evento presencial: <strong>17 de junio de 2026</strong> · Barcelona · Aticco Diagrame 22@
     </p>
-    <a href="https://www.linkedin.com/events/7462814883517198337?viewAsMember=true" class="cta-big reveal d2" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:12px">
-      <span style="position:relative;z-index:1">Registrarse en LinkedIn</span>
+    <a href="../../presencial/17-jun-bcn/" class="cta-big reveal d2" style="text-decoration:none;display:inline-flex;align-items:center;gap:12px">
+      <span style="position:relative;z-index:1">Reservar plaza · evento flagship</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
+    <p class="reveal d3" style="margin-top:16px">
+      <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.4);font-size:13px;font-weight:500;text-decoration:underline;text-underline-offset:3px">Únete a la comunidad WhatsApp para enterarte primero</a>
+    </p>
   </div>
 </section>
 
-<!-- ─── LUMA CHECKOUT SCRIPT ────────────────────────────────────────────────── -->
-<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
-
-<!-- ─── REGISTRATION MODAL (commented out — Luma handles registration now) ───
-<div class="modal-overlay" id="reg-modal">
-  <div class="modal">
-    <button class="modal-close" id="modal-close" aria-label="Cerrar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div id="reg-form-container">
-      <h3>Reserva tu plaza</h3>
-      <p class="modal-sub">28 de abril 2026 · 12:00h CEST · Online y gratuito</p>
-      <form id="reg-form">
-        <div class="form-group">
-          <label for="reg-name">Nombre completo</label>
-          <input type="text" id="reg-name" name="nombre" required placeholder="Tu nombre">
-        </div>
-        <div class="form-group">
-          <label for="reg-email">Email</label>
-          <input type="email" id="reg-email" name="email" required placeholder="tu@empresa.com">
-        </div>
-        <div class="form-group">
-          <label for="reg-company">Empresa</label>
-          <input type="text" id="reg-company" name="empresa" placeholder="Tu empresa (opcional)">
-        </div>
-        <div class="form-group">
-          <label for="reg-role">Cargo</label>
-          <input type="text" id="reg-role" name="cargo" placeholder="Tu cargo (opcional)">
-        </div>
-        <div class="form-group">
-          <label for="reg-phone">Teléfono móvil</label>
-          <input type="tel" id="reg-phone" name="telefono" placeholder="+34 600 000 000" pattern="[\+]?[\d\s\-]{6,15}">
-        </div>
-        <div class="form-group">
-          <label for="reg-size">Tamaño de empresa</label>
-          <select id="reg-size" name="tamano_empresa">
-            <option value="" disabled selected>Selecciona un rango</option>
-            <option value="1-10">1–10 empleados</option>
-            <option value="11-50">11–50 empleados</option>
-            <option value="51-200">51–200 empleados</option>
-            <option value="201-500">201–500 empleados</option>
-            <option value="501-1000">501–1.000 empleados</option>
-            <option value="1001+">+1.000 empleados</option>
-          </select>
-        </div>
-        <button type="submit" class="form-submit" id="reg-submit">Confirmar registro →</button>
-      </form>
-    </div>
-    <div id="reg-success" class="form-success" style="display:none">
-      <div class="check-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <h4>¡Estás dentro!</h4>
-      <p>Te hemos registrado para el webinar del 28 de abril. Recibirás un recordatorio antes del evento.</p>
-    </div>
-  </div>
-</div>
-
-<iframe name="hidden-iframe" id="hidden-iframe" style="display:none"></iframe>
-─── END COMMENTED MODAL ──────────────────────────────────────────────────── -->
-
 <!-- ─── FOOTER ──────────────────────────────────────────────────────────────── -->
 <footer>
-  <p><strong>Actual Talent</strong> · Webinar 26 mayo 2026</p>
+  <p><strong>Actual Talent</strong> · Webinar 26 mayo 2026 · ¿Copiloto o sustituto?</p>
   <div class="footer-links">
     <a href="/">Serie de eventos</a>
-    <a href="../iavsia/">Recap 28 abril</a>
+    <a href="../iavsia/">Webinar anterior</a>
+    <a href="../../presencial/17-jun-bcn/">Evento 17 jun BCN</a>
     <a href="https://www.actual-talent.com/es" target="_blank" rel="noopener">Actual Talent</a>
   </div>
 </footer>
 
+<!-- ─── WHITEPAPER LEAD-GATE MODAL ──────────────────────────────────────────── -->
+<div class="wp-modal" id="wp-modal" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title">
+  <div class="wp-modal-card">
+    <button type="button" class="wp-modal-close" aria-label="Cerrar">×</button>
+    <div class="wp-modal-eyebrow">Whitepaper · 13 páginas · PDF</div>
+    <h3 class="wp-modal-title" id="wp-modal-title">¿Copiloto o sustituto? — Cuatro ángulos sobre la IA en el trabajo</h3>
+    <p class="wp-modal-lead">Déjanos tu email y te llevamos al PDF. Sin envío manual, descarga inmediata.</p>
+    <form id="whitepaper-form" class="wp-form" data-endpoint="https://api.web3forms.com/submit" data-pdf="whitepaper-copiloto-sustituto-2026-05-26.pdf" autocomplete="on">
+      <input type="hidden" name="access_key" value="ef61cdaf-5ff7-4e78-a62d-ab85dd876885">
+      <input type="hidden" name="subject" value="Whitepaper Copiloto vs Sustituto — Nueva descarga">
+      <input type="hidden" name="from_name" value="actualtalent.tech · Webinar Copiloto vs Sustituto">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="text" name="name" placeholder="Nombre" required autocomplete="name">
+      <input type="email" name="email" placeholder="email@empresa.com" required autocomplete="email">
+      <input type="text" name="company" placeholder="Empresa (opcional)" autocomplete="organization">
+      <button type="submit">Descargar whitepaper ↓</button>
+    </form>
+    <div class="wp-form-success" id="wp-success" role="status" style="display:none;">¡Gracias! La descarga ha empezado. Si no se abre, <a href="whitepaper-copiloto-sustituto-2026-05-26.pdf" style="color:#fff;text-decoration:underline" download>haz clic aquí</a>.</div>
+    <p class="wp-form-privacy">Solo lo usamos para mantenerte al día sobre la serie de webinars. Sin spam, baja en cualquier momento.</p>
+  </div>
+</div>
+
 <!-- ─── JS ──────────────────────────────────────────────────────────────────── -->
 <script>
+// ── Lead-gate whitepaper modal ──
+function initWhitepaperModal() {
+  const modal = document.getElementById('wp-modal');
+  const openBtn = document.getElementById('wp-open');
+  const closeBtn = modal && modal.querySelector('.wp-modal-close');
+  const form = document.getElementById('whitepaper-form');
+  if (!modal || !openBtn || !form) return;
+  const PDF = form.dataset.pdf || 'whitepaper-copiloto-sustituto-2026-05-26.pdf';
+  const ENDPOINT = (form.dataset.endpoint || '').trim();
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() { const f = form.querySelector('input[name=name]'); if (f) f.focus(); }, 80);
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  function triggerDownload() {
+    const a = document.createElement('a');
+    a.href = PDF; a.download = ''; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    form.style.display = 'none';
+    const success = document.getElementById('wp-success');
+    if (success) success.style.display = 'block';
+    setTimeout(closeModal, 2400);
+  }
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.innerHTML = 'Preparando descarga…';
+    const payload = {};
+    new FormData(form).forEach(function(v, k) { payload[k] = v; });
+    payload.source = 'whitepaper-copiloto-sustituto';
+    payload.event = 'Copiloto o Sustituto — Webinar 26-05-2026';
+    payload.ts = new Date().toISOString();
+    if (ENDPOINT) {
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json().catch(function(){ return {}; });
+        console.log('[whitepaper-form] response', res.status, json);
+        if (!res.ok || json.success === false) {
+          console.warn('[whitepaper-form] submission rejected', json);
+        }
+      } catch (err) {
+        console.error('[whitepaper-form] fetch error', err);
+      }
+    }
+    triggerDownload();
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initWhitepaperModal);
+} else {
+  initWhitepaperModal();
+}
+
 // ── Scroll reveal ──
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -703,22 +814,7 @@ function closeMenu() { burger.classList.remove('open'); mobileNav.classList.remo
 burger.addEventListener('click', (e) => { e.stopPropagation(); const o = burger.classList.toggle('open'); mobileNav.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); });
 mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 document.addEventListener('click', (e) => { if (!burger.contains(e.target) && !mobileNav.contains(e.target)) closeMenu(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeModal(); } });
-
-// ── Countdown ──
-const eventDate = new Date('2026-05-26T12:00:00+02:00');
-function updateCountdown() {
-  const cd = document.getElementById('countdown');
-  if (!cd) return;
-  const diff = eventDate - new Date();
-  if (diff <= 0) { cd.innerHTML = '<span style="font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)">En directo ahora</span>'; return; }
-  const d = Math.floor(diff/864e5), h = Math.floor((diff%864e5)/36e5), m = Math.floor((diff%36e5)/6e4), s = Math.floor((diff%6e4)/1e3);
-  document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
-  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-  document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
-  document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
-}
-updateCountdown(); setInterval(updateCountdown, 1000);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); } });
 
 // ── Mouse glow ──
 const glow = document.getElementById('mouse-glow');
@@ -735,7 +831,7 @@ if (window.matchMedia('(pointer:fine)').matches) {
   document.addEventListener('mouseleave', () => { mousePos.active = false; });
 }
 
-// ── Particle system (enhanced) ──
+// ── Particle system ──
 function initParticles(canvasId, count) {
   const canvas = document.getElementById(canvasId);
   if (!canvas || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
@@ -760,7 +856,6 @@ function initParticles(canvasId, count) {
   const CONNECT_DIST = 160;
   function draw() {
     ctx.clearRect(0, 0, w, h);
-    // Connection lines between nearby particles
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -779,14 +874,12 @@ function initParticles(canvasId, count) {
         }
       }
     }
-    // Draw particles with mouse interaction
     const canvasRect = canvas.getBoundingClientRect();
     const mx = mousePos.x - canvasRect.left;
     const my = mousePos.y - canvasRect.top;
     const MOUSE_RADIUS = 180;
 
     particles.forEach(p => {
-      // Mouse repulsion
       if (mousePos.active && mx > -50 && mx < w+50 && my > -50 && my < h+50) {
         const dx = p.x - mx;
         const dy = p.y - my;
@@ -797,7 +890,6 @@ function initParticles(canvasId, count) {
           p.vy += (dy/dist) * force * 0.3;
         }
       }
-      // Dampen velocity back to base
       p.vx *= 0.97;
       p.vy *= 0.97;
       p.vx += (Math.random()-0.5)*0.04;
@@ -819,61 +911,6 @@ function initParticles(canvasId, count) {
 }
 initParticles('hero-particles', 140);
 initParticles('cta-particles', 80);
-
-// ── Registration — now handled by Luma checkout overlay ──
-// All .luma-checkout--button elements are automatically handled by embed.lu.ma/checkout-button.js
-
-// Luma checkout buttons handled automatically by embed.lu.ma/checkout-button.js
-// LinkedIn Event is the primary registration channel
-// Old modal + Google Sheet form code commented out below for easy revert.
-
-/* ── OLD REGISTRATION MODAL (commented out) ──
-const modal = document.getElementById('reg-modal');
-const form = document.getElementById('reg-form');
-function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
-function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
-document.querySelectorAll('.js-open-modal').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(); }));
-document.getElementById('modal-close').addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbylRAWg84q4-7XJCC3voTzgE_YA6WFQhxt3i6go_gERxEjNBeqcfOeKP6lvI55aw1rF/exec';
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const btn = document.getElementById('reg-submit');
-  btn.disabled = true; btn.textContent = 'Registrando...';
-  const data = {
-    nombre: document.getElementById('reg-name').value,
-    email: document.getElementById('reg-email').value,
-    empresa: document.getElementById('reg-company').value,
-    cargo: document.getElementById('reg-role').value,
-    telefono: document.getElementById('reg-phone').value,
-    tamano_empresa: document.getElementById('reg-size').value,
-    fecha: new Date().toISOString()
-  };
-  const regs = JSON.parse(localStorage.getItem('webinar-regs') || '[]');
-  regs.push(data);
-  localStorage.setItem('webinar-regs', JSON.stringify(regs));
-  if (SHEET_URL) {
-    try {
-      const tempForm = document.createElement('form');
-      tempForm.method = 'POST'; tempForm.action = SHEET_URL;
-      tempForm.target = 'hidden-iframe'; tempForm.style.display = 'none';
-      Object.entries(data).forEach(([k, v]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden'; input.name = k; input.value = v;
-        tempForm.appendChild(input);
-      });
-      document.body.appendChild(tempForm);
-      tempForm.submit();
-      document.body.removeChild(tempForm);
-    } catch(err) {}
-  }
-  document.getElementById('reg-form-container').style.display = 'none';
-  document.getElementById('reg-success').style.display = 'block';
-  btn.disabled = false; btn.textContent = 'Confirmar registro →';
-});
-── END OLD REGISTRATION ── */
 </script>
 
 </body>
