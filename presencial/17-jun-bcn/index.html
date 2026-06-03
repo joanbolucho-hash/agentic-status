@@ -280,7 +280,35 @@ header {
 }
 .panel-head h2 em { font-style: normal; color: var(--red); }
 .panel-head p { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--gray); }
-.panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1000px; }
+.panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.panel-moderator { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 40px; padding: 12px 24px 12px 12px; background: var(--cream); border-radius: 100px; }
+.panel-moderator img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+.panel-moderator .pm-label { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 2px; }
+.panel-moderator .pm-name { font-size: 15px; font-weight: 800; color: var(--black); }
+
+/* KEYNOTE / PONENCIA */
+.keynote { background: var(--cream); padding: 110px 48px; }
+.keynote-inner { max-width: 1100px; margin: 0 auto; }
+.keynote-head { max-width: 780px; margin-bottom: 48px; }
+.keynote-head h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 900; letter-spacing: -0.03em; color: var(--black); line-height: 1.12; margin-bottom: 18px; }
+.keynote-head h2 em { font-style: normal; color: var(--red); }
+.keynote-head p { font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); }
+.keynote-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 28px; align-items: stretch; }
+.keynote-speaker { background: var(--white); border-radius: 16px; padding: 36px 34px; display: flex; flex-direction: column; align-items: flex-start; }
+.keynote-photo { width: 116px; height: 116px; border-radius: 50%; overflow: hidden; border: 3px solid var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.12); margin-bottom: 22px; }
+.keynote-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.keynote-name { font-size: 24px; font-weight: 800; color: var(--black); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 4px; }
+.keynote-org { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+.keynote-bio { font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--gray); margin-bottom: 18px; flex: 1; }
+.book-card { background: var(--near-black); color: #fff; border-radius: 16px; padding: 42px 38px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+.book-card::before { content: ''; position: absolute; top: -40%; right: -25%; width: 380px; height: 380px; background: radial-gradient(circle, rgba(192,25,30,0.38), transparent 70%); }
+.book-card > * { position: relative; }
+.book-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+.book-title { font-size: 30px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 10px; }
+.book-sub { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+.book-desc { font-size: 14px; font-weight: 400; line-height: 1.75; color: rgba(255,255,255,0.78); margin-bottom: 20px; }
+.book-meta { font-size: 11px; font-weight: 600; letter-spacing: 0.4px; color: rgba(255,255,255,0.5); }
+.book-meta strong { color: #fff; font-weight: 800; }
 
 /* AGENDA */
 .agenda { background: var(--cream); padding: 110px 48px; }
@@ -448,6 +476,8 @@ footer .footer-links a:hover { color: white; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .whynow { padding: 80px 24px; }
   .whynow-grid { grid-template-columns: 1fr; }
+  .keynote { padding: 80px 24px; }
+  .keynote-grid { grid-template-columns: 1fr; }
   .speakers { padding: 80px 24px; }
   .panel { padding: 80px 24px; }
   .agenda { padding: 80px 24px; }
@@ -492,7 +522,7 @@ footer .footer-links a:hover { color: white; }
     <a href="/" class="nav-link">Eventos</a>
     <a href="#sobre" class="nav-link">Sobre</a>
     <a href="#por-que-ahora" class="nav-link">Por qué ahora</a>
-    <a href="#speakers" class="nav-link">Speakers</a>
+    <a href="#mesa-redonda" class="nav-link">Mesa redonda</a>
     <a href="#agenda" class="nav-link">Programa</a>
     <a href="#venue" class="nav-link">Venue</a>
     <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nav-pill nav-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
@@ -504,7 +534,7 @@ footer .footer-links a:hover { color: white; }
     <a href="/">← Eventos Actual Talent</a>
     <a href="#sobre">Sobre el evento</a>
     <a href="#por-que-ahora">Por qué ahora</a>
-    <a href="#speakers">Speakers</a>
+    <a href="#ponencia">Ponencia</a>
     <a href="#mesa-redonda">Mesa redonda</a>
     <a href="#agenda">Programa</a>
     <a href="#venue">Venue</a>
@@ -618,60 +648,32 @@ footer .footer-links a:hover { color: white; }
   </div>
 </section>
 
-<!-- SPEAKERS -->
-<section class="speakers" id="speakers">
-  <div class="speakers-inner">
-    <div class="section-label reveal">Speakers</div>
-    <div class="speakers-head">
-      <h2 class="reveal">Voces con <em>autoridad</em> en futuro del trabajo, liderazgo y talento.</h2>
-      <p class="reveal d1">Una ponencia principal, una mesa redonda que junta a líderes de People &amp; Culture con una abogada de referencia en IA y protección de datos, y una dinámica que pone a la sala a pensar en alto. Modera Karim Barmose.</p>
+<!-- KEYNOTE / PONENCIA -->
+<section class="keynote" id="ponencia">
+  <div class="keynote-inner">
+    <div class="section-label reveal">Ponencia inaugural</div>
+    <div class="keynote-head">
+      <h2 class="reveal">Para entender hacia dónde va el trabajo, primero hay que <em>poner contexto</em>.</h2>
+      <p class="reveal d1">Joan abre la mañana e introduce a Iolanda Triviño, que arranca con una ponencia sobre el futuro del trabajo y del talento: qué habilidades suben de valor, qué deja de tener sentido y por qué adoptar IA empieza en las personas, no en la tecnología.</p>
     </div>
-    <div class="speakers-grid">
-
-      <div class="speaker-card reveal d1">
-        <div class="speaker-photo"><img src="../../webinar/assets/speakers/iolanda-trivino.jpg" alt="Iolanda Triviño"></div>
-        <span class="speaker-role-tag">Ponencia principal</span>
-        <h3 class="speaker-name">Iolanda Triviño</h3>
-        <div class="speaker-org">22@ Network · Future of Work Foundation</div>
-        <p class="speaker-bio">Presidenta de la Comisión de Talento de 22@ Network y Co-Founder de la Global Future of Work Foundation. Coautora del libro <em>Rompiendo el juego: Liderar en la Era de la disrupción</em> (McGraw-Hill, 2026) junto a Dave Ulrich, Simon L. Dolan y otros. +25 años trabajando sobre cómo cambia el trabajo.</p>
+    <div class="keynote-grid">
+      <div class="keynote-speaker reveal d1">
+        <div class="keynote-photo"><img src="../../webinar/assets/speakers/iolanda-trivino.jpg" alt="Iolanda Triviño"></div>
+        <span class="speaker-role-tag">Ponencia · Futuro del trabajo</span>
+        <h3 class="keynote-name">Iolanda Triviño</h3>
+        <div class="keynote-org">Fundadora · Institute for Futures (IFF)</div>
+        <p class="keynote-bio">Foresight strategist y talent designer. Fundadora del Institute for Futures (IFF), co-founder de la Global Future of Work Foundation y presidenta de la Comisión de Talento de 22@Network Barcelona. Más de 25 años investigando cómo cambia el trabajo y formando a líderes, también en London Business School.</p>
         <a href="https://www.linkedin.com/in/iolandatrivi%C3%B1o/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
-
-      <div class="speaker-card reveal d2">
-        <div class="speaker-photo"><img src="../../webinar/assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
-        <span class="speaker-role-tag">Apertura · Modera mesa</span>
-        <h3 class="speaker-name">Karim Barmose</h3>
-        <div class="speaker-org">Actual Talent</div>
-        <p class="speaker-bio">Co-lidera Actual Talent. Trabaja cada semana con directivos de RRHH revisando cómo contratan y cómo introducen IA en sus procesos. Abre el evento junto a Joan y modera la mesa redonda con criterio editorial: que la conversación no se quede en lo evidente.</p>
-        <a href="https://www.linkedin.com/in/karim-barmose-rpo/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+      <div class="book-card reveal d2">
+        <div class="book-eyebrow">El libro que trae a la mesa</div>
+        <div class="book-title">Rompiendo el juego</div>
+        <div class="book-sub">Liderar en la Era de la disrupción · <em>Breaking the Game</em> (McGraw-Hill)</div>
+        <p class="book-desc">Su nuevo libro, coescrito con Simon L. Dolan y Mario Raich, sobre cómo liderar cuando cambian las reglas del trabajo: las habilidades que más suben de valor son humanas, y las organizaciones que combinan madurez emocional con IA son las que lideran la transformación.</p>
+        <div class="book-meta">Coautores: <strong>Simon L. Dolan · Mario Raich · Iolanda Triviño</strong> · McGraw-Hill</div>
       </div>
-
-      <div class="speaker-card reveal d3">
-        <div class="speaker-photo"><img src="../../webinar/assets/speakers/xavi-saez.jpg" alt="Xavi Sáez"></div>
-        <span class="speaker-role-tag">Dinámica · Liderazgo humano</span>
-        <h3 class="speaker-name">Xavi Sáez</h3>
-        <div class="speaker-org">Key People Improving (KPI)</div>
-        <p class="speaker-bio">Co-founder y CEO de KPI, consultora de liderazgo. Coach en Excelencia Emocional. +20 años dirigiendo equipos en multinacionales antes de dedicarse a acompañar la transformación de directivos. Activa la sala con una dinámica sobre conversaciones difíciles, dilemas éticos y qué no puede hacer la IA.</p>
-        <a href="https://www.linkedin.com/in/xavi-s%C3%A1ez-59320744/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
-      <div class="speaker-card reveal d4">
-        <div class="speaker-photo"><img src="../../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda"></div>
-        <span class="speaker-role-tag">Apertura · Wrap-up</span>
-        <h3 class="speaker-name">Joan Boluda</h3>
-        <div class="speaker-org">Actual Talent</div>
-        <p class="speaker-bio">Abre el evento junto a Karim y cierra con tres ideas que estamos viendo desde dentro: qué empresas se adaptan mejor, cómo cambia el rol del recruiter y por qué la edad pesa menos cuando entra la IA.</p>
-        <a href="https://www.linkedin.com/in/joanboludachova/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
     </div>
   </div>
 </section>
@@ -679,27 +681,34 @@ footer .footer-links a:hover { color: white; }
 <!-- MESA REDONDA -->
 <section class="panel" id="mesa-redonda">
   <div class="panel-inner">
-    <div class="section-label reveal">Mesa redonda</div>
+    <div class="section-label reveal">La mesa redonda</div>
     <div class="panel-head">
-      <h2 class="reveal">El playbook de personas y el playbook <em>legal</em>, en la misma mesa.</h2>
-      <p class="reveal d1">Tres líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones, en conversación con una abogada de referencia en protección de datos e IA. La adopción y el cumplimiento, en la misma mesa. Modera Karim Barmose.</p>
+      <h2 class="reveal">Todos en la mesa: <em>seis voces</em> y una conversación sin red.</h2>
+      <p class="reveal d1">Tras la ponencia, todos se sientan a la misma mesa. Líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones, una abogada de referencia en IA y protección de datos, y la visión de Actual Talent desde dentro del mercado. Adopción, liderazgo y cumplimiento, en la misma conversación.</p>
+    </div>
+    <div class="panel-moderator reveal">
+      <img src="../../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+      <div>
+        <div class="pm-label">Modera</div>
+        <div class="pm-name">Joan Boluda · Actual Talent</div>
+      </div>
     </div>
     <div class="panel-grid">
 
       <div class="speaker-card reveal d1">
-        <div class="speaker-photo"><img src="../../webinar/assets/speakers/patricia-iglesias.jpg" alt="Patricia Iglesias Río"></div>
-        <span class="speaker-role-tag">Mesa redonda · People &amp; Culture</span>
-        <h3 class="speaker-name">Patricia Iglesias Río</h3>
-        <div class="speaker-org">Chief People &amp; Culture Officer · Techsoulogy</div>
-        <p class="speaker-bio">Chief People &amp; Culture Officer en Techsoulogy (antes Tappx) y una de las voces de RRHH más seguidas en LinkedIn (+42.000 seguidores). Coach certificada (AICM), speaker y coautora del libro <em>100 Preguntas y Respuestas sobre la Gestión de Personas</em>. Profesora del Máster de Dirección de RRHH de la UB y referente en seguridad psicológica y liderazgo humanista. Reconocida como <em>Líder más inspirador en RRHH</em> (Awards of Happiness 2025).</p>
-        <a href="https://www.linkedin.com/in/patriciaiglesiasrio/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/iolanda-trivino.jpg" alt="Iolanda Triviño"></div>
+        <span class="speaker-role-tag">Ponente · Futuro del trabajo</span>
+        <h3 class="speaker-name">Iolanda Triviño</h3>
+        <div class="speaker-org">Institute for Futures (IFF)</div>
+        <p class="speaker-bio">Foresight strategist y fundadora del Institute for Futures. Tras su ponencia se suma a la mesa con la mirada de hacia dónde va el trabajo y las habilidades que vienen.</p>
+        <a href="https://www.linkedin.com/in/iolandatrivi%C3%B1o/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
 
       <div class="speaker-card reveal d2">
         <div class="speaker-photo"><img src="../../webinar/assets/speakers/rossana-montemurro.jpg" alt="Rossana Montemurro"></div>
-        <span class="speaker-role-tag">Mesa redonda · People &amp; Culture</span>
+        <span class="speaker-role-tag">People &amp; Culture</span>
         <h3 class="speaker-name">Rossana Montemurro</h3>
         <div class="speaker-org">Chief People &amp; Culture Officer · Cooltra</div>
         <p class="speaker-bio">Chief People &amp; Culture Officer en Cooltra, donde ha construido la función de People desde cero. Ex jugadora profesional de voleibol y psicóloga de formación. Profesora en Nuclio Digital School y en la Universitat de Barcelona y mentora en GEMA. Certificada en <em>IA for People Leaders</em> y experta en transformación digital de RRHH: trae la cara práctica de meter IA en el día a día del equipo.</p>
@@ -709,12 +718,45 @@ footer .footer-links a:hover { color: white; }
       </div>
 
       <div class="speaker-card reveal d3">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/patricia-iglesias.jpg" alt="Patricia Iglesias Río"></div>
+        <span class="speaker-role-tag">People &amp; Culture</span>
+        <h3 class="speaker-name">Patricia Iglesias Río</h3>
+        <div class="speaker-org">Chief People &amp; Culture Officer · Techsoulogy</div>
+        <p class="speaker-bio">Chief People &amp; Culture Officer en Techsoulogy (antes Tappx) y una de las voces de RRHH más seguidas en LinkedIn (+42.000 seguidores). Coach certificada (AICM), speaker y coautora del libro <em>100 Preguntas y Respuestas sobre la Gestión de Personas</em>. Profesora del Máster de Dirección de RRHH de la UB y referente en seguridad psicológica y liderazgo humanista. Reconocida como <em>Líder más inspirador en RRHH</em> (Awards of Happiness 2025).</p>
+        <a href="https://www.linkedin.com/in/patriciaiglesiasrio/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d4">
         <div class="speaker-photo"><img src="../../webinar/assets/speakers/beatriz-rodriguez.jpg" alt="Beatriz Rodríguez Gómez"></div>
-        <span class="speaker-role-tag">Mesa redonda · Mirada legal</span>
+        <span class="speaker-role-tag">Mirada legal</span>
         <h3 class="speaker-name">Beatriz Rodríguez Gómez</h3>
-        <div class="speaker-org">Socia · Protección de Datos y Ciberseguridad · RocaJunyent</div>
+        <div class="speaker-org">Socia · Protección de Datos · RocaJunyent</div>
         <p class="speaker-bio">Socia de Protección de Datos, Ciberseguridad y Nuevas Tecnologías en RocaJunyent y <em>Lawyer of the Year - Privacy</em> (Iberian Lawyer). DPO certificada y auditora ISO 27001. Ponente sobre gobernanza de IA y la normativa europea de IA: aporta a la mesa la lectura jurídica de usar IA con datos de personas sin saltarse la ley.</p>
         <a href="https://www.linkedin.com/in/abrodgom/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d5">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/xavi-saez.jpg" alt="Xavi Sáez"></div>
+        <span class="speaker-role-tag">Liderazgo + dinámica</span>
+        <h3 class="speaker-name">Xavi Sáez</h3>
+        <div class="speaker-org">Key People Improving (KPI)</div>
+        <p class="speaker-bio">Co-founder y CEO de KPI, consultora de liderazgo, y coach en Excelencia Emocional. +20 años dirigiendo equipos en multinacionales. En la mesa aporta el lado humano del liderazgo; más tarde activa la sala con una dinámica sobre conversaciones difíciles y qué no puede hacer la IA.</p>
+        <a href="https://www.linkedin.com/in/xavi-s%C3%A1ez-59320744/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d6">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
+        <span class="speaker-role-tag">Actual Talent</span>
+        <h3 class="speaker-name">Karim Barmose</h3>
+        <div class="speaker-org">Actual Talent</div>
+        <p class="speaker-bio">Co-lidera Actual Talent. Cada semana trabaja con directivos de RRHH revisando cómo contratan y cómo introducen IA en sus procesos. En la mesa aporta la visión de quién está dentro del cambio cada día.</p>
+        <a href="https://www.linkedin.com/in/karim-barmose-rpo/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
@@ -742,8 +784,8 @@ footer .footer-links a:hover { color: white; }
       <li class="agenda-item reveal d2 is-key">
         <span class="agenda-time">10:00</span>
         <div class="agenda-body">
-          <h3>Apertura</h3>
-          <p>Cinco minutos para contextualizar la mañana, marcar tono y elevar la conversación. Queremos honestidad, no humo.</p>
+          <h3>Apertura y presentación</h3>
+          <p>Joan abre la mañana, marca el tono y presenta a Iolanda Triviño. Cinco minutos para elevar la conversación: honestidad, no humo.</p>
           <span class="agenda-by">Por <strong>Joan Boluda</strong> y <strong>Karim Barmose</strong> · Actual Talent</span>
         </div>
       </li>
@@ -751,16 +793,16 @@ footer .footer-links a:hover { color: white; }
         <span class="agenda-time">10:10</span>
         <div class="agenda-body">
           <h3>Ponencia: el futuro del trabajo en la era de la IA</h3>
-          <p>Casos reales, perfiles que crecen y perfiles que se contraen, habilidades humanas que suben de valor, cambios concretos en grandes organizaciones. Conexión con las ideas del libro <em>Rompiendo el juego</em>.</p>
-          <span class="agenda-by">Por <strong>Iolanda Triviño</strong> · 22@ Network · Future of Work Foundation</span>
+          <p>Habilidades humanas que suben de valor, perfiles que crecen y se contraen, y por qué adoptar IA empieza en las personas. Las ideas de su libro <em>Rompiendo el juego</em>, llevadas a la sala.</p>
+          <span class="agenda-by">Por <strong>Iolanda Triviño</strong> · Institute for Futures (IFF)</span>
         </div>
       </li>
       <li class="agenda-item reveal d4 is-key">
         <span class="agenda-time">~10:45</span>
         <div class="agenda-body">
           <h3>Mesa redonda: adoptar IA en RRHH sin saltarse la ley</h3>
-          <p>Tres líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones, en conversación con una abogada de referencia en protección de datos e IA. Contratación, productividad, adopción interna y qué exige hacerlo bien ahora que la normativa europea de IA ya es aplicable.</p>
-          <span class="agenda-by">Con <strong>Patricia Iglesias</strong> (Techsoulogy), <strong>Rossana Montemurro</strong> (Cooltra) y <strong>Beatriz Rodríguez</strong> (RocaJunyent). Modera <strong>Karim Barmose</strong></span>
+          <p>Todos en la mesa. Líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones, la mirada legal y la visión de mercado. Contratación, productividad, adopción interna y qué exige hacerlo bien ahora que la normativa europea de IA ya es aplicable.</p>
+          <span class="agenda-by">Con <strong>Iolanda Triviño</strong>, <strong>Karim Barmose</strong>, <strong>Patricia Iglesias</strong>, <strong>Rossana Montemurro</strong>, <strong>Xavi Sáez</strong> y <strong>Beatriz Rodríguez</strong>. Modera <strong>Joan Boluda</strong></span>
         </div>
       </li>
       <li class="agenda-item reveal d5 is-key">
