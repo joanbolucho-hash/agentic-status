@@ -280,7 +280,8 @@ header {
 }
 .panel-head h2 em { font-style: normal; color: var(--red); }
 .panel-head p { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--gray); }
-.panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.panel-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; }
+.panel-grid .speaker-card { flex: 0 1 340px; }
 .panel-moderator { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 40px; padding: 12px 24px 12px 12px; background: var(--cream); border-radius: 100px; }
 .panel-moderator img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
 .panel-moderator .pm-label { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 2px; }
@@ -683,14 +684,14 @@ footer .footer-links a:hover { color: white; }
   <div class="panel-inner">
     <div class="section-label reveal">La mesa redonda</div>
     <div class="panel-head">
-      <h2 class="reveal">Todos en la mesa: <em>seis voces</em> y una conversación sin red.</h2>
-      <p class="reveal d1">Tras la ponencia, todos se sientan a la misma mesa. Líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones, una abogada de referencia en IA y protección de datos, y la visión de Actual Talent desde dentro del mercado. Adopción, liderazgo y cumplimiento, en la misma conversación.</p>
+      <h2 class="reveal">Todos en la mesa: <em>cinco voces</em> y una conversación sin red.</h2>
+      <p class="reveal d1">Tras la ponencia, todos se sientan a la misma mesa. Líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones y una abogada de referencia en IA y protección de datos. Adopción, liderazgo y cumplimiento, en la misma conversación, moderada por Karim Barmose.</p>
     </div>
     <div class="panel-moderator reveal">
-      <img src="../../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda">
+      <img src="../../webinar/assets/speakers/karim-barmose.jpg" alt="Karim Barmose">
       <div>
         <div class="pm-label">Modera</div>
-        <div class="pm-name">Joan Boluda · Actual Talent</div>
+        <div class="pm-name">Karim Barmose · Actual Talent</div>
       </div>
     </div>
     <div class="panel-grid">
@@ -750,17 +751,6 @@ footer .footer-links a:hover { color: white; }
         </a>
       </div>
 
-      <div class="speaker-card reveal d6">
-        <div class="speaker-photo"><img src="../../webinar/assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
-        <span class="speaker-role-tag">Actual Talent</span>
-        <h3 class="speaker-name">Karim Barmose</h3>
-        <div class="speaker-org">Actual Talent</div>
-        <p class="speaker-bio">Co-lidera Actual Talent. Cada semana trabaja con directivos de RRHH revisando cómo contratan y cómo introducen IA en sus procesos. En la mesa aporta la visión de quién está dentro del cambio cada día.</p>
-        <a href="https://www.linkedin.com/in/karim-barmose-rpo/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
     </div>
   </div>
 </section>
@@ -786,7 +776,7 @@ footer .footer-links a:hover { color: white; }
         <div class="agenda-body">
           <h3>Apertura y presentación</h3>
           <p>Joan abre la mañana, marca el tono y presenta a Iolanda Triviño. Cinco minutos para elevar la conversación: honestidad, no humo.</p>
-          <span class="agenda-by">Por <strong>Joan Boluda</strong> y <strong>Karim Barmose</strong> · Actual Talent</span>
+          <span class="agenda-by">Por <strong>Joan Boluda</strong> · Actual Talent</span>
         </div>
       </li>
       <li class="agenda-item reveal d3 is-key">
@@ -802,7 +792,7 @@ footer .footer-links a:hover { color: white; }
         <div class="agenda-body">
           <h3>Mesa redonda: adoptar IA en RRHH sin saltarse la ley</h3>
           <p>Todos en la mesa. Líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones, la mirada legal y la visión de mercado. Contratación, productividad, adopción interna y qué exige hacerlo bien ahora que la normativa europea de IA ya es aplicable.</p>
-          <span class="agenda-by">Con <strong>Iolanda Triviño</strong>, <strong>Karim Barmose</strong>, <strong>Patricia Iglesias</strong>, <strong>Rossana Montemurro</strong>, <strong>Xavi Sáez</strong> y <strong>Beatriz Rodríguez</strong>. Modera <strong>Joan Boluda</strong></span>
+          <span class="agenda-by">Con <strong>Iolanda Triviño</strong>, <strong>Patricia Iglesias</strong>, <strong>Rossana Montemurro</strong>, <strong>Xavi Sáez</strong> y <strong>Beatriz Rodríguez</strong>. Modera <strong>Karim Barmose</strong></span>
         </div>
       </li>
       <li class="agenda-item reveal d5 is-key">
