@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0A0A0A">
 <title>IA en el trabajo: Legislación y disrupción · 17 jun 2026 · Barcelona · Actual Talent</title>
-<meta name="description" content="IA en el trabajo: Legislación y disrupción. Evento presencial 17 junio 2026 en Aticco Diagrame (22@ Barcelona). 200 directivos de RRHH. Iolanda Triviño (Future of Work Foundation) + Xavi Sáez (KPI) + Karim Barmose y Joan Boluda (Actual Talent).">
+<meta name="description" content="IA en el trabajo: Legislación y disrupción. Evento presencial 17 junio 2026 en Aticco Diagrame (22@ Barcelona). 200 directivos de RRHH. Ponencia de Iolanda Triviño (Future of Work Foundation) y mesa redonda con Patricia Iglesias (Techsoulogy), Rossana Montemurro (Cooltra) y Beatriz Rodríguez (RocaJunyent) sobre IA, normativa y datos sensibles en RRHH.">
 <meta property="og:title" content="IA en el trabajo: Legislación y disrupción · 17 jun · Barcelona">
-<meta property="og:description" content="200 directivos de RRHH en Aticco Diagrame (22@). Una mañana en Barcelona y una conversación honesta sobre la era de la IA: legislación, disrupción y cómo cambia el trabajo.">
+<meta property="og:description" content="200 directivos de RRHH en Aticco (22@ Barcelona). La normativa europea de IA ya es aplicable y RRHH custodia los datos más sensibles. Mesa redonda con People & Culture (Techsoulogy, Cooltra) y la mirada legal de RocaJunyent.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="flyer-square/flyer-1080x1080.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -255,6 +255,33 @@ header {
 .speaker-link:hover { gap: 10px; }
 .speaker-link svg { width: 11px; height: 11px; }
 
+/* WHY NOW (ángulo legal IA) */
+.whynow { background: var(--beige); padding: 110px 48px; }
+.whynow-inner { max-width: 1100px; margin: 0 auto; }
+.whynow-head { max-width: 860px; }
+.whynow-head h2 {
+  font-size: clamp(28px, 4vw, 46px); font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.12; margin-bottom: 22px;
+}
+.whynow-head h2 em { font-style: normal; color: var(--red); }
+.whynow-head p { font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--gray); max-width: 760px; }
+.whynow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
+.whynow-card { background: var(--cream); border-radius: 16px; padding: 32px 30px; border-left: 3px solid var(--red); }
+.whynow-card h3 { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+.whynow-card p { font-size: 15px; font-weight: 500; line-height: 1.7; color: var(--black); }
+
+/* MESA REDONDA (panel) */
+.panel { background: var(--white); padding: 110px 48px; }
+.panel-inner { max-width: 1200px; margin: 0 auto; }
+.panel-head { margin-bottom: 60px; max-width: 760px; }
+.panel-head h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em;
+  color: var(--black); line-height: 1.1; margin-bottom: 16px;
+}
+.panel-head h2 em { font-style: normal; color: var(--red); }
+.panel-head p { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--gray); }
+.panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1000px; }
+
 /* AGENDA */
 .agenda { background: var(--cream); padding: 110px 48px; }
 .agenda-inner { max-width: 980px; margin: 0 auto; }
@@ -406,6 +433,7 @@ footer .footer-links a:hover { color: white; }
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+  .panel-grid { grid-template-columns: repeat(2, 1fr); }
   .details-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 900px) {
@@ -418,7 +446,10 @@ footer .footer-links a:hover { color: white; }
   .hero-meta { gap: 20px 24px; }
   .about { padding: 80px 24px; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .whynow { padding: 80px 24px; }
+  .whynow-grid { grid-template-columns: 1fr; }
   .speakers { padding: 80px 24px; }
+  .panel { padding: 80px 24px; }
   .agenda { padding: 80px 24px; }
   .agenda-item { grid-template-columns: 90px 1fr; gap: 18px; }
   .venue { padding: 80px 24px; }
@@ -432,6 +463,7 @@ footer .footer-links a:hover { color: white; }
 }
 @media (max-width: 540px) {
   .speakers-grid { grid-template-columns: 1fr; }
+  .panel-grid { grid-template-columns: 1fr; }
   .agenda-item { grid-template-columns: 1fr; gap: 8px; padding-left: 24px; }
   .agenda-item::before { left: -22px; top: 28px; }
   .venue-stats { grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -459,6 +491,7 @@ footer .footer-links a:hover { color: white; }
   <nav class="header-nav">
     <a href="/" class="nav-link">Eventos</a>
     <a href="#sobre" class="nav-link">Sobre</a>
+    <a href="#por-que-ahora" class="nav-link">Por qué ahora</a>
     <a href="#speakers" class="nav-link">Speakers</a>
     <a href="#agenda" class="nav-link">Programa</a>
     <a href="#venue" class="nav-link">Venue</a>
@@ -470,7 +503,9 @@ footer .footer-links a:hover { color: white; }
   <nav class="nav-mobile" aria-label="Menú móvil">
     <a href="/">← Eventos Actual Talent</a>
     <a href="#sobre">Sobre el evento</a>
+    <a href="#por-que-ahora">Por qué ahora</a>
     <a href="#speakers">Speakers</a>
+    <a href="#mesa-redonda">Mesa redonda</a>
     <a href="#agenda">Programa</a>
     <a href="#venue">Venue</a>
     <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nm-pill nm-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
@@ -491,7 +526,7 @@ footer .footer-links a:hover { color: white; }
       IA en el trabajo: <em>legislación y disrupción</em>.
     </h1>
     <p class="hero-sub reveal d3">
-      200 directivos de RRHH, una mañana en Barcelona y una conversación honesta sobre la era de la IA. Sin discurso vacío: cómo cambia el trabajo de quien recluta, lidera y desarrolla el talento, qué habilidades suben de valor, qué deja de tener sentido contratar y cómo se lidera todo esto sin perder a las personas por el camino.
+      200 directivos de RRHH, una mañana en Barcelona y una conversación honesta sobre la era de la IA. Sin discurso vacío: cómo cambia el trabajo de quien recluta, lidera y desarrolla el talento, qué habilidades suben de valor, qué deja de tener sentido contratar y cómo se lidera todo esto sin perder a las personas por el camino. Y, ahora que la normativa europea de IA ya es aplicable, qué significa usarla bien en el departamento que maneja los datos más sensibles de la empresa.
     </p>
     <div class="hero-meta reveal d4">
       <div class="hm-row">
@@ -562,13 +597,34 @@ footer .footer-links a:hover { color: white; }
   </div>
 </section>
 
+<!-- WHY NOW -->
+<section class="whynow" id="por-que-ahora">
+  <div class="whynow-inner">
+    <div class="section-label reveal">Por qué ahora</div>
+    <div class="whynow-head">
+      <h2 class="reveal">La normativa europea de IA ya es aplicable. Y RRHH custodia <em>los datos más sensibles</em> de la empresa.</h2>
+      <p class="reveal d1">La regulación europea de la inteligencia artificial ha entrado en una nueva fase, con obligaciones que ya están en vigor sobre cómo las empresas usan IA. Para Recursos Humanos es especialmente delicado: es el departamento que maneja la información personal más sensible de candidatos y empleados (cribado, evaluación, desempeño). Por eso esta mesa junta las dos caras del problema: cómo adoptar IA en personas y cómo hacerlo dentro de la ley.</p>
+    </div>
+    <div class="whynow-grid">
+      <div class="whynow-card reveal d1">
+        <h3>Qué cambia</h3>
+        <p>Usar IA en selección, evaluación o gestión de personas pasa a tener requisitos: transparencia, supervisión humana y trazabilidad de las decisiones.</p>
+      </div>
+      <div class="whynow-card reveal d2">
+        <h3>Por qué te afecta a RRHH</h3>
+        <p>La conversación ya no es solo si la IA funciona, sino si puedes demostrar que la usas de forma responsable y conforme a la normativa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SPEAKERS -->
 <section class="speakers" id="speakers">
   <div class="speakers-inner">
     <div class="section-label reveal">Speakers</div>
     <div class="speakers-head">
       <h2 class="reveal">Voces con <em>autoridad</em> en futuro del trabajo, liderazgo y talento.</h2>
-      <p class="reveal d1">Una ponencia principal, una mesa redonda con directivos de empresas referentes y una dinámica que pone a la sala a pensar en alto. Modera Karim Barmose.</p>
+      <p class="reveal d1">Una ponencia principal, una mesa redonda que junta a líderes de People &amp; Culture con una abogada de referencia en IA y protección de datos, y una dinámica que pone a la sala a pensar en alto. Modera Karim Barmose.</p>
     </div>
     <div class="speakers-grid">
 
@@ -620,6 +676,53 @@ footer .footer-links a:hover { color: white; }
   </div>
 </section>
 
+<!-- MESA REDONDA -->
+<section class="panel" id="mesa-redonda">
+  <div class="panel-inner">
+    <div class="section-label reveal">Mesa redonda</div>
+    <div class="panel-head">
+      <h2 class="reveal">El playbook de personas y el playbook <em>legal</em>, en la misma mesa.</h2>
+      <p class="reveal d1">Tres líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones, en conversación con una abogada de referencia en protección de datos e IA. La adopción y el cumplimiento, en la misma mesa. Modera Karim Barmose.</p>
+    </div>
+    <div class="panel-grid">
+
+      <div class="speaker-card reveal d1">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/patricia-iglesias.jpg" alt="Patricia Iglesias Río"></div>
+        <span class="speaker-role-tag">Mesa redonda · People &amp; Culture</span>
+        <h3 class="speaker-name">Patricia Iglesias Río</h3>
+        <div class="speaker-org">Chief People &amp; Culture Officer · Techsoulogy</div>
+        <p class="speaker-bio">Chief People &amp; Culture Officer en Techsoulogy (antes Tappx). Reconocida entre las Top 10 HR Influencers de España (ranking GOintegro) y voz activa de RRHH en LinkedIn. Coach certificada (AICM) y máster en Psicología Industrial, con un liderazgo basado en humildad, empatía y poner a las personas antes que al negocio.</p>
+        <a href="https://www.linkedin.com/in/patriciaiglesiasrio/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d2">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/rossana-montemurro.jpg" alt="Rossana Montemurro"></div>
+        <span class="speaker-role-tag">Mesa redonda · People &amp; Culture</span>
+        <h3 class="speaker-name">Rossana Montemurro</h3>
+        <div class="speaker-org">Chief People &amp; Culture Officer · Cooltra</div>
+        <p class="speaker-bio">Chief People &amp; Culture Officer en Cooltra, donde ha construido la función de People desde cero conectando estrategia de negocio y desarrollo del talento. Profesora en Nuclio Digital School y en la Universitat de Barcelona, mentora en GEMA Business School y cursando el Executive Development Program de IESE. Premio Mujeres Líderes Transformadoras (RRHHDigital).</p>
+        <a href="https://www.linkedin.com/in/rossanamontemurro/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d3">
+        <div class="speaker-photo"><img src="../../webinar/assets/speakers/beatriz-rodriguez.jpg" alt="Beatriz Rodríguez Gómez"></div>
+        <span class="speaker-role-tag">Mesa redonda · Mirada legal</span>
+        <h3 class="speaker-name">Beatriz Rodríguez Gómez</h3>
+        <div class="speaker-org">Socia · Protección de Datos y Ciberseguridad · RocaJunyent</div>
+        <p class="speaker-bio">Socia de Protección de Datos y Ciberseguridad en RocaJunyent, especializada también en inteligencia artificial, blockchain y e-commerce. DPO certificada (Aenor), miembro de APEP y directora del Grupo Millennial de AMMDE. Aporta a la mesa la lectura jurídica de adoptar IA en RRHH.</p>
+        <a href="https://www.linkedin.com/in/abrodgom/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- AGENDA -->
 <section class="agenda" id="agenda">
   <div class="agenda-inner">
@@ -655,9 +758,9 @@ footer .footer-links a:hover { color: white; }
       <li class="agenda-item reveal d4 is-key">
         <span class="agenda-time">~10:45</span>
         <div class="agenda-body">
-          <h3>Mesa redonda: cómo cambia el rol de RRHH</h3>
-          <p>Iolanda Triviño y directivos de RRHH de empresas referentes en Barcelona conversan sobre lo que están viendo de verdad: contratación, productividad, liderazgo, adopción interna de IA. <em>Panelistas por confirmar.</em></p>
-          <span class="agenda-by">Modera <strong>Karim Barmose</strong> · Actual Talent</span>
+          <h3>Mesa redonda: adoptar IA en RRHH sin saltarse la ley</h3>
+          <p>Tres líderes de People &amp; Culture que ya están metiendo IA en sus organizaciones, en conversación con una abogada de referencia en protección de datos e IA. Contratación, productividad, adopción interna y qué exige hacerlo bien ahora que la normativa europea de IA ya es aplicable.</p>
+          <span class="agenda-by">Con <strong>Patricia Iglesias</strong> (Techsoulogy), <strong>Rossana Montemurro</strong> (Cooltra) y <strong>Beatriz Rodríguez</strong> (RocaJunyent). Modera <strong>Karim Barmose</strong></span>
         </div>
       </li>
       <li class="agenda-item reveal d5 is-key">
