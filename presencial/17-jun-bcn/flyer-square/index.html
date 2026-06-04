@@ -2,224 +2,90 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flyer 1080×1080 · IA en el trabajo: Legislación y disrupción · 17 jun 2026 · Barcelona</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --red:        #C0191E;
-  --black:      #1A1A1A;
-  --near-black: #0A0A0A;
-  --gray:       #6B6B6B;
-  --white:      #ffffff;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: #1A1A1A;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  padding: 20px;
-}
-
-.flyer {
-  width: 1080px; height: 1080px;
-  flex-shrink: 0;
-  position: relative; overflow: hidden;
-  background: var(--near-black);
-  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1.2px, transparent 1.2px);
-  background-size: 32px 32px;
-  color: var(--white);
-  transform-origin: center;
-}
-
-@media (max-width: 1120px), (max-height: 1120px) {
-  body { padding: 0; background: #000; }
-  .flyer { transform: scale(min(calc((100vw) / 1080), calc((100vh) / 1080))); }
-}
-
-/* ATMOSPHERE */
-.flyer::before {
-  content: ''; position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 65% 60% at 0% 100%, rgba(192,25,30,0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 45% at 100% 0%, rgba(192,25,30,0.14) 0%, transparent 55%);
-  pointer-events: none; z-index: 1;
-}
-
-/* WATERMARK */
-.flyer::after {
-  content: 'BCN';
-  position: absolute; bottom: -4%; right: -1%;
-  font-size: 420px; font-weight: 900; letter-spacing: -0.05em;
-  color: rgba(255,255,255,0.025); line-height: 1;
-  pointer-events: none; user-select: none; z-index: 1;
-}
-
-/* TOP BAR */
-.topbar {
-  position: absolute; top: 56px; left: 64px; right: 64px;
-  display: flex; align-items: center; justify-content: space-between;
-  z-index: 10;
-}
-.brand-mark { display: flex; align-items: center; gap: 16px; }
-.at-logo {
-  width: 52px; height: 52px;
-  border-radius: 12px; background: var(--red);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; font-weight: 900; letter-spacing: 1.5px; color: var(--white);
-}
-.brand-text {
-  font-size: 16px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
-  color: var(--white);
-}
-.brand-text .sep { color: rgba(255,255,255,0.25); margin: 0 12px; }
-.brand-text .type { color: var(--red); }
-
-.format-tag {
-  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 100px; padding: 8px 18px;
-}
-
-/* DATE BLOCK */
-.date-block {
-  position: absolute; top: 170px; left: 64px;
-  display: flex; align-items: flex-start; gap: 32px;
-  z-index: 5;
-}
-.date-num {
-  font-size: 320px; font-weight: 900; line-height: 0.85;
-  color: var(--red); letter-spacing: -0.06em;
-}
-.date-side {
-  display: flex; flex-direction: column; padding-top: 26px; gap: 8px;
-}
-.date-month {
-  font-size: 80px; font-weight: 900; line-height: 0.95;
-  color: var(--white); letter-spacing: -0.02em; text-transform: uppercase;
-}
-.date-time {
-  font-size: 40px; font-weight: 700; color: var(--red);
-  letter-spacing: -0.01em; line-height: 1;
-}
-.date-tz {
-  font-size: 17px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase;
-  color: rgba(255,255,255,0.45); margin-top: 4px;
-}
-
-/* TITLE */
-.title-wrap {
-  position: absolute; top: 540px; left: 64px; right: 64px;
-  z-index: 5;
-}
-.title-eyebrow {
-  font-size: 16px; font-weight: 800; letter-spacing: 5px; text-transform: uppercase;
-  color: rgba(255,255,255,0.45); margin-bottom: 22px;
-}
-.title {
-  font-size: 88px; font-weight: 900; line-height: 0.93;
-  letter-spacing: -0.035em; color: var(--white);
-}
-.title .accent { color: var(--red); font-style: normal; }
-
-.title-sub {
-  font-size: 18px; font-weight: 500; line-height: 1.5;
-  color: rgba(255,255,255,0.65); letter-spacing: -0.005em;
-  margin-top: 28px; max-width: 720px;
-}
-
-/* LOCATION (bottom) */
-.location {
-  position: absolute; bottom: 92px; left: 64px; right: 64px;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  z-index: 5; gap: 32px;
-}
-.loc-block { display: flex; flex-direction: column; gap: 8px; max-width: 640px; }
-.loc-label {
-  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-}
-.loc-venue {
-  font-size: 26px; font-weight: 800; color: var(--white);
-  letter-spacing: -0.015em; line-height: 1.15;
-}
-.loc-venue .dot { color: var(--red); }
-.loc-addr {
-  font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.55);
-  letter-spacing: 0;
-}
-
-.loc-cta {
-  text-align: right;
-  display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
-}
-.loc-cta-label {
-  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-}
-.loc-cta-url {
-  font-size: 15px; font-weight: 700; letter-spacing: 0.5px;
-  color: var(--red);
-}
-
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#C0191E;--black:#1A1A1A;--near-black:#0A0A0A;--white:#fff}
+body{font-family:'Montserrat',sans-serif;background:#000;-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.flyer{width:1080px;height:1080px;flex-shrink:0;position:relative;overflow:hidden;background:var(--near-black);
+  background-image:radial-gradient(circle,rgba(255,255,255,.05) 1.2px,transparent 1.2px);background-size:32px 32px;color:var(--white)}
+@media (max-width:1120px),(max-height:1120px){body{padding:0}.flyer{transform:scale(min(calc(100vw/1080),calc(100vh/1080)));transform-origin:center}}
+.flyer::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 65% 60% at 0% 100%,rgba(192,25,30,.24) 0%,transparent 55%),
+  radial-gradient(ellipse 50% 45% at 100% 0%,rgba(192,25,30,.14) 0%,transparent 55%);pointer-events:none;z-index:1}
+.wrap{position:absolute;inset:0;z-index:5;padding:60px 60px 56px;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px}
+.at-logo{width:48px;height:48px;border-radius:11px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;letter-spacing:1px}
+.brand-text{font-size:14px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+.brand-text .sep{color:rgba(255,255,255,.25);margin:0 9px}.brand-text .t{color:var(--red)}
+.tag{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:7px 15px}
+.date{display:flex;align-items:center;gap:24px;margin-top:34px}
+.date-num{font-size:188px;font-weight:900;line-height:.8;color:var(--red);letter-spacing:-.06em}
+.date-side{display:flex;flex-direction:column;gap:5px}
+.date-month{font-size:56px;font-weight:900;line-height:.9;text-transform:uppercase;letter-spacing:-.02em}
+.date-time{font-size:30px;font-weight:800;color:var(--red)}
+.date-tz{font-size:14px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.title{font-size:80px;font-weight:900;line-height:.94;letter-spacing:-.035em;margin-top:30px}
+.title .a{color:var(--red)}
+.lineup{margin-top:auto;padding-top:30px}
+.lineup-label{font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
+.faces{display:flex;gap:14px}
+.faces .f{width:96px;height:96px;border-radius:50%;overflow:hidden;border:3px solid var(--red);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.faces .f img{width:100%;height:100%;object-fit:cover;display:block}
+.names{font-size:18px;font-weight:600;color:rgba(255,255,255,.78);margin-top:16px;line-height:1.45;max-width:920px}
+.names b{color:var(--white);font-weight:800}
+.footer{display:flex;align-items:flex-end;justify-content:space-between;margin-top:32px;gap:24px;border-top:1px solid rgba(255,255,255,.1);padding-top:24px}
+.f-label{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px}
+.f-venue{font-size:23px;font-weight:800;letter-spacing:-.01em}.f-venue .d{color:var(--red)}
+.f-cta{text-align:right}.f-url{font-size:14px;font-weight:800;color:var(--red)}
 </style>
 </head>
 <body>
-
 <div class="flyer">
-
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="brand-mark">
-      <div class="at-logo">AT</div>
-      <div class="brand-text">Actual Talent <span class="sep">·</span><span class="type">Flagship</span></div>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><div class="at-logo">AT</div><div class="brand-text">Actual Talent<span class="sep">·</span><span class="t">Flagship</span></div></div>
+      <div class="tag">Presencial · Barcelona</div>
     </div>
-    <div class="format-tag">Presencial · Barcelona</div>
-  </div>
 
-  <!-- DATE BLOCK -->
-  <div class="date-block">
-    <div class="date-num">17</div>
-    <div class="date-side">
-      <div class="date-month">Junio</div>
-      <div class="date-time">09:00 – 13:30h</div>
-      <div class="date-tz">Miércoles · CEST</div>
+    <div class="date">
+      <div class="date-num">17</div>
+      <div class="date-side">
+        <div class="date-month">Junio</div>
+        <div class="date-time">09:00 – 13:30h</div>
+        <div class="date-tz">Miércoles · CEST</div>
+      </div>
     </div>
-  </div>
 
-  <!-- TITLE -->
-  <div class="title-wrap">
-    <div class="title-eyebrow">Evento flagship · RRHH</div>
-    <h1 class="title">
-      IA en el trabajo:<br>
-      <span class="accent">legislación</span> y<br>
-      <span class="accent">disrupción</span>.
-    </h1>
-    <p class="title-sub">
-      200 directivos de RRHH, una mañana en Barcelona y una conversación honesta sobre la era de la IA.
-    </p>
-  </div>
+    <h1 class="title">IA en el trabajo:<br><span class="a">legislación</span> y <span class="a">disrupción</span>.</h1>
 
-  <!-- LOCATION -->
-  <div class="location">
-    <div class="loc-block">
-      <div class="loc-label">Dónde</div>
-      <div class="loc-venue">Aticco Diagrame <span class="dot">·</span> Glòries 22@</div>
-      <div class="loc-addr">C/ Pere IV 105-109 · Sant Martí, Barcelona</div>
+    <div class="lineup">
+      <div class="lineup-label">Ponentes</div>
+      <div class="faces">
+        <div class="f"><img src="../../../webinar/assets/speakers/iolanda-trivino.jpg"></div>
+        <div class="f"><img src="../../../webinar/assets/speakers/rossana-montemurro.jpg"></div>
+        <div class="f"><img src="../../../webinar/assets/speakers/patricia-iglesias.jpg"></div>
+        <div class="f"><img src="../../../webinar/assets/speakers/xavi-saez.jpg"></div>
+        <div class="f"><img src="../../../webinar/assets/speakers/beatriz-rodriguez.jpg"></div>
+        <div class="f"><img src="../../../webinar/assets/speakers/delia-rodriguez.jpg"></div>
+      </div>
+      <div class="names"><b>Iolanda Triviño</b> · <b>Rossana Montemurro</b> · <b>Patricia Iglesias</b> · <b>Xavi Sáez</b> · <b>Beatriz Rodríguez</b> · <b>Delia Rodríguez</b></div>
     </div>
-    <div class="loc-cta">
-      <div class="loc-cta-label">Reserva tu plaza</div>
-      <div class="loc-cta-url">actualtalent.tech/presencial/17-jun-bcn</div>
+
+    <div class="footer">
+      <div>
+        <div class="f-label">Dónde</div>
+        <div class="f-venue">Aticco Diagrame <span class="d">·</span> Glòries 22@ Barcelona</div>
+      </div>
+      <div class="f-cta">
+        <div class="f-label">Reserva</div>
+        <div class="f-url">actualtalent.tech/presencial/17-jun-bcn</div>
+      </div>
     </div>
   </div>
-
 </div>
-
 </body>
 </html>
