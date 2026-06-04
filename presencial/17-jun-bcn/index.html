@@ -311,6 +311,14 @@ header {
 .book-meta { font-size: 11px; font-weight: 600; letter-spacing: 0.4px; color: rgba(255,255,255,0.5); }
 .book-meta strong { color: #fff; font-weight: 800; }
 
+/* PARTNERS / COLABORADORES */
+.partners { background: var(--beige); padding: 80px 48px; }
+.partners-inner { max-width: 920px; margin: 0 auto; text-align: center; }
+.partners-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 36px; }
+.partners-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 56px; }
+.partners-row img { height: 46px; width: auto; max-width: 200px; object-fit: contain; opacity: 0.82; transition: opacity 0.25s ease, transform 0.25s ease; }
+.partners-row img:hover { opacity: 1; transform: translateY(-2px); }
+
 /* AGENDA */
 .agenda { background: var(--cream); padding: 110px 48px; }
 .agenda-inner { max-width: 980px; margin: 0 auto; }
@@ -481,6 +489,9 @@ footer .footer-links a:hover { color: white; }
   .keynote-grid { grid-template-columns: 1fr; }
   .speakers { padding: 80px 24px; }
   .panel { padding: 80px 24px; }
+  .partners { padding: 60px 24px; }
+  .partners-row { gap: 36px; }
+  .partners-row img { height: 38px; }
   .agenda { padding: 80px 24px; }
   .agenda-item { grid-template-columns: 90px 1fr; gap: 18px; }
   .venue { padding: 80px 24px; }
@@ -906,6 +917,19 @@ footer .footer-links a:hover { color: white; }
   </div>
 </section>
 
+<!-- PARTNERS / COLABORADORES -->
+<section class="partners" id="colaboradores">
+  <div class="partners-inner">
+    <div class="partners-eyebrow reveal">Con la colaboración de</div>
+    <div class="partners-row reveal d1">
+      <img src="../../assets/logos/teamtailor.png" alt="Teamtailor">
+      <img src="../../assets/logos/camara-francesa-barcelona.png" alt="Cámara de Comercio Francesa de Barcelona">
+      <img src="../../assets/logos/aticco.png" alt="Aticco">
+      <img src="../../assets/logos/ektimo.png" alt="Ektimo">
+    </div>
+  </div>
+</section>
+
 <!-- CTA SECTION -->
 <section class="cta-section" id="registro">
   <canvas class="particle-canvas" id="cta-particles"></canvas>
@@ -1055,6 +1079,24 @@ initParticles('cta-particles', 70);
 
 <!-- Luma checkout overlay (engancha .luma-checkout--button) -->
 <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+
+<!-- Auto-abrir el registro de Luma cuando se llega desde un email (?reg=1) -->
+<script>
+(function () {
+  var p = new URLSearchParams(location.search);
+  if (p.get('reg') !== '1' && location.hash !== '#inscribirme') return;
+  function openLuma() {
+    var btn = document.querySelector('.luma-checkout--button');
+    if (!btn) { location.href = 'https://luma.com/8aknpmpu'; return; }
+    // Si el embed de Luma aun no ha enganchado, el click cae al href: lo dejamos
+    // en la misma pestana como fallback limpio hacia el registro de Luma.
+    btn.removeAttribute('target');
+    btn.click();
+  }
+  // Damos tiempo a que cargue embed.lu.ma antes de disparar el click.
+  window.addEventListener('load', function () { setTimeout(openLuma, 1000); });
+})();
+</script>
 
 </body>
 </html>
