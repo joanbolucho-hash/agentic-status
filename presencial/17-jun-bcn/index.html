@@ -318,6 +318,7 @@ header {
 .partners-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 56px; }
 .partners-row img { height: 46px; width: auto; max-width: 200px; object-fit: contain; opacity: 0.82; transition: opacity 0.25s ease, transform 0.25s ease; }
 .partners-row img:hover { opacity: 1; transform: translateY(-2px); }
+.partners-row img.lg { height: 60px; }
 
 /* AGENDA */
 .agenda { background: var(--cream); padding: 110px 48px; }
@@ -492,6 +493,7 @@ footer .footer-links a:hover { color: white; }
   .partners { padding: 60px 24px; }
   .partners-row { gap: 36px; }
   .partners-row img { height: 38px; }
+  .partners-row img.lg { height: 50px; }
   .agenda { padding: 80px 24px; }
   .agenda-item { grid-template-columns: 90px 1fr; gap: 18px; }
   .venue { padding: 80px 24px; }
@@ -924,8 +926,8 @@ footer .footer-links a:hover { color: white; }
     <div class="partners-row reveal d1">
       <img src="../../assets/logos/teamtailor.png" alt="Teamtailor">
       <img src="../../assets/logos/camara-francesa-barcelona.png" alt="Cámara de Comercio Francesa de Barcelona">
-      <img src="../../assets/logos/aticco.png" alt="Aticco">
-      <img src="../../assets/logos/ektimo.png" alt="Ektimo">
+      <img src="../../assets/logos/aticco.png" alt="Aticco" class="lg">
+      <img src="../../assets/logos/ektimo.png" alt="Ektimo" class="lg">
     </div>
   </div>
 </section>
@@ -1085,16 +1087,20 @@ initParticles('cta-particles', 70);
 (function () {
   var p = new URLSearchParams(location.search);
   if (p.get('reg') !== '1' && location.hash !== '#inscribirme') return;
-  function openLuma() {
-    var btn = document.querySelector('.luma-checkout--button');
-    if (!btn) { location.href = 'https://luma.com/8aknpmpu'; return; }
-    // Si el embed de Luma aun no ha enganchado, el click cae al href: lo dejamos
-    // en la misma pestana como fallback limpio hacia el registro de Luma.
-    btn.removeAttribute('target');
-    btn.click();
+  var tries = 0;
+  function go() {
+    var btn = document.querySelector('.luma-checkout--button[data-luma-action="checkout"]')
+           || document.querySelector('.luma-checkout--button');
+    // El embed de Luma (embed.lu.ma) asigna btn.onclick al enganchar. Esperamos a eso
+    // y entonces el click abre el overlay de registro encima de la landing.
+    if (btn && typeof btn.onclick === 'function') { btn.click(); return; }
+    if (tries++ < 40) { setTimeout(go, 150); return; } // hasta ~6s mientras carga el embed
+    // Fallback garantizado si el embed no carga: ir al registro de Luma en la misma pestana.
+    if (btn) { btn.removeAttribute('target'); btn.click(); }
+    else { location.href = 'https://luma.com/8aknpmpu'; }
   }
-  // Damos tiempo a que cargue embed.lu.ma antes de disparar el click.
-  window.addEventListener('load', function () { setTimeout(openLuma, 1000); });
+  if (document.readyState === 'complete') go();
+  else window.addEventListener('load', go);
 })();
 </script>
 
