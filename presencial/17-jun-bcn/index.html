@@ -283,6 +283,20 @@ header {
 .panel-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; max-width: 740px; margin: 0 auto; }
 .panel-grid .speaker-card { flex: 0 1 330px; }
 .interview { background: var(--beige); }
+
+/* DINÁMICA (tarjeta horizontal) */
+.dynamic { background: var(--white); padding: 110px 48px; }
+.dynamic-inner { max-width: 1000px; margin: 0 auto; }
+.dynamic-head { max-width: 760px; margin-bottom: 40px; }
+.dynamic-head h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em; color: var(--black); line-height: 1.1; margin-bottom: 16px; }
+.dynamic-head h2 em { font-style: normal; color: var(--red); }
+.dynamic-head p { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--gray); }
+.dynamic-card { display: flex; align-items: center; gap: 40px; background: var(--cream); border-radius: 16px; padding: 36px 40px; }
+.dynamic-photo { flex: 0 0 140px; width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 3px solid var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.dynamic-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dynamic-body { flex: 1; }
+.dynamic-name { font-size: 22px; font-weight: 800; color: var(--black); letter-spacing: -0.015em; line-height: 1.2; margin: 10px 0 10px; }
+.dynamic-bio { font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--gray); margin-bottom: 16px; }
 .panel-moderator { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 40px; padding: 12px 24px 12px 12px; background: var(--cream); border-radius: 100px; }
 .panel-moderator img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
 .panel-moderator .pm-label { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 2px; }
@@ -491,6 +505,8 @@ footer .footer-links a:hover { color: white; }
   .keynote-grid { grid-template-columns: 1fr; }
   .speakers { padding: 80px 24px; }
   .panel { padding: 80px 24px; }
+  .dynamic { padding: 80px 24px; }
+  .dynamic-card { flex-direction: column; text-align: center; align-items: center; gap: 22px; padding: 32px 26px; }
   .partners { padding: 60px 24px; }
   .partners-row { gap: 36px; }
   .partners-row img { height: 38px; }
@@ -552,6 +568,7 @@ footer .footer-links a:hover { color: white; }
     <a href="#ponencia">Ponencia</a>
     <a href="#mesa-redonda">Mesa redonda</a>
     <a href="#entrevista">Entrevista</a>
+    <a href="#dinamica">Dinámica</a>
     <a href="#agenda">Programa</a>
     <a href="#venue">Venue</a>
     <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nm-pill nm-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
@@ -798,6 +815,28 @@ footer .footer-links a:hover { color: white; }
         </a>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- DINÁMICA -->
+<section class="dynamic" id="dinamica">
+  <div class="dynamic-inner">
+    <div class="section-label reveal">La dinámica</div>
+    <div class="dynamic-head">
+      <h2 class="reveal">Y para acabar, la sala <em>en pie</em>: liderazgo humano.</h2>
+      <p class="reveal d1">No todo es escuchar. Antes del cierre, una dinámica que pone a los asistentes a pensar en alto y a llevarse algo accionable de vuelta al despacho.</p>
+    </div>
+    <div class="dynamic-card reveal d2">
+      <div class="dynamic-photo"><img src="../../webinar/assets/speakers/xavi-saez.jpg" alt="Xavi Sáez"></div>
+      <div class="dynamic-body">
+        <span class="speaker-role-tag">Dinámica · Liderazgo humano</span>
+        <h3 class="dynamic-name">Liderazgo humano en la era de la IA</h3>
+        <p class="dynamic-bio">Por grupos: conversaciones difíciles, dilemas éticos y qué no puede hacer la IA. Ligera, participativa y accionable. La conduce Xavi Sáez, co-founder y CEO de KPI y coach en Excelencia Emocional: material para reflexionar al volver al despacho.</p>
+        <a href="https://www.linkedin.com/in/xavi-s%C3%A1ez-59320744/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
