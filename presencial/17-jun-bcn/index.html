@@ -9,9 +9,13 @@
 <meta property="og:title" content="IA en el trabajo: Legislación y disrupción · 17 jun · Barcelona">
 <meta property="og:description" content="200 directivos de RRHH en Aticco (22@ Barcelona). La normativa europea de IA ya es aplicable y RRHH custodia los datos más sensibles. Mesa redonda con People & Culture (Techsoulogy, Cooltra) y la mirada legal de RocaJunyent.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="flyer-square/flyer-1080x1080.png">
+<meta property="og:image" content="https://actualtalent.tech/presencial/17-jun-bcn/flyer-square/flyer-1080x1080.png">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:type" content="image/png">
+<meta property="og:url" content="https://actualtalent.tech/presencial/17-jun-bcn/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="flyer-square/flyer-1080x1080.png">
+<meta name="twitter:image" content="https://actualtalent.tech/presencial/17-jun-bcn/flyer-square/flyer-1080x1080.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -541,21 +545,21 @@ footer .footer-links a:hover { color: white; }
 
 /* ── SPINE · timeline global de la mañana ── */
 #spine { position: fixed; left: 0; top: 60px; bottom: 0; width: 84px; z-index: 150; pointer-events: none; }
-.spine-track { position: absolute; left: 37px; top: 12px; bottom: 12px; width: 2px; background: rgba(26,26,26,.10); border-radius: 2px; }
-.spine-fill { position: absolute; left: 37px; top: 12px; width: 2px; height: calc(100% - 24px); background: var(--red); border-radius: 2px; transform: scaleY(0); transform-origin: top; will-change: transform; }
+.spine-track { position: absolute; left: 37px; top: 56px; bottom: 12px; width: 2px; background: rgba(26,26,26,.10); border-radius: 2px; }
+.spine-fill { position: absolute; left: 37px; top: 56px; width: 2px; height: calc(100% - 68px); background: var(--red); border-radius: 2px; transform: scaleY(0); transform-origin: top; will-change: transform; }
 .spine-head { position: absolute; left: 38px; width: 9px; height: 9px; margin-left: -4px; margin-top: -4px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px rgba(192,25,30,.14), 0 0 14px 3px rgba(192,25,30,.55); }
 .spine-dot { position: absolute; left: 33.5px; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: rgba(26,26,26,.18); transform: scale(.7); transition: background .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s; }
 .spine-dot.is-done { background: var(--red); }
 .spine-dot.is-active { background: var(--red); transform: scale(1.25); box-shadow: 0 0 0 5px rgba(192,25,30,.14); }
 .spine-chip { position: absolute; left: 52px; transform: translateY(-50%) translateX(-8px); font: 800 10px/1 'Montserrat', sans-serif; letter-spacing: 1.5px; color: var(--black); background: rgba(255,255,255,.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(26,26,26,.10); padding: 6px 11px; border-radius: 100px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1); }
 .spine-chip.is-active { opacity: 1; transform: translateY(-50%) translateX(0); }
-.spine-now { position: absolute; left: 54px; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 7px; font: 800 10px/1 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; color: #fff; background: var(--red); border-radius: 100px; padding: 7px 12px; white-space: nowrap; box-shadow: 0 6px 20px rgba(192,25,30,.45); }
+.spine-now { position: absolute; left: 54px; top: 18px; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 7px; font: 800 10px/1 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; color: #fff; background: var(--red); border-radius: 100px; padding: 7px 12px; white-space: nowrap; box-shadow: 0 6px 20px rgba(192,25,30,.45); }
 .spine-now-dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: pulse-dot 1.8s infinite; }
 #spine.is-after .spine-now { background: var(--black); box-shadow: none; }
 #spine.is-after .spine-now-dot { animation: none; opacity: .55; }
 
 @media (min-width: 1200px) {
-  .hero, .about, .whynow, .keynote, .panel, .dynamic, .agenda, .venue, .details, .partners, .cta-section { padding-left: 108px; }
+  .hero, .about, .whynow, .hosts, .keynote, .panel, .dynamic, .closing, .venue, .details, .partners, .cta-section { padding-left: 108px; }
   header { padding-left: 108px; }
 }
 @media (max-width: 1199px) {
@@ -570,6 +574,21 @@ footer .footer-links a:hover { color: white; }
   .spine-now-dot { animation: none; }
   .spine-dot { transition: none; }
 }
+
+/* APERTURA / CIERRE (anfitriones) */
+.hosts { background: var(--white); padding: 96px 48px; }
+.closing { background: var(--cream); padding: 96px 48px; }
+.hosts-inner, .closing-inner { max-width: 1000px; margin: 0 auto; }
+.hosts-head, .closing-head { max-width: 760px; margin-bottom: 40px; }
+.hosts-head h2, .closing-head h2 { font-size: clamp(26px,3.6vw,40px); font-weight: 900; letter-spacing: -0.03em; color: var(--black); line-height: 1.12; margin-bottom: 16px; }
+.hosts-head h2 em, .closing-head h2 em { font-style: normal; color: var(--red); }
+.hosts-head p, .closing-head p { font-size: 15px; font-weight: 400; line-height: 1.8; color: var(--gray); }
+.hosts-row { display: flex; flex-wrap: wrap; gap: 40px; }
+.host, .closing-host { display: flex; align-items: center; gap: 16px; }
+.host-photo { width: 72px; height: 72px; border-radius: 50%; overflow: hidden; border: 3px solid var(--white); box-shadow: 0 8px 22px rgba(0,0,0,.12); flex: 0 0 72px; }
+.host-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.host-name { font-size: 17px; font-weight: 800; color: var(--black); }
+.host-role { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -714,6 +733,27 @@ footer .footer-links a:hover { color: white; }
       <div class="whynow-card reveal d2">
         <h3>Por qué te afecta a RRHH</h3>
         <p>La conversación ya no es solo si la IA funciona, sino si puedes demostrar que la usas de forma responsable y conforme a la normativa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APERTURA / ANFITRIONES -->
+<section class="hosts" id="apertura">
+  <div class="hosts-inner">
+    <div class="section-label reveal">La apertura &middot; 09:00</div>
+    <div class="hosts-head">
+      <h2 class="reveal">Os recibimos nosotros: <em>una ma&ntilde;ana con anfitriones</em>.</h2>
+      <p class="reveal d1">Llegada con caf&eacute;s de empresa y networking entre directivos de RRHH de Barcelona. A las 10:00 abrimos la ma&ntilde;ana, marcamos el tono y presentamos a Iolanda. Sin azafatas con gui&oacute;n: os reciben Joan y Karim, que viven esto cada semana desde dentro.</p>
+    </div>
+    <div class="hosts-row reveal d2">
+      <div class="host">
+        <div class="host-photo"><img src="../../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda"></div>
+        <div><div class="host-name">Joan Boluda</div><div class="host-role">Anfitri&oacute;n &middot; Actual Talent</div></div>
+      </div>
+      <div class="host">
+        <div class="host-photo"><img src="../../webinar/assets/speakers/karim-barmose.jpg" alt="Karim Barmose"></div>
+        <div><div class="host-name">Karim Barmose</div><div class="host-role">Anfitri&oacute;n &middot; Actual Talent</div></div>
       </div>
     </div>
   </div>
@@ -875,6 +915,21 @@ footer .footer-links a:hover { color: white; }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE / WRAP-UP -->
+<section class="closing" id="cierre">
+  <div class="closing-inner">
+    <div class="section-label reveal">El cierre &middot; 12:00</div>
+    <div class="closing-head">
+      <h2 class="reveal">Y cerramos con lo que <em>nos llevamos</em>.</h2>
+      <p class="reveal d1">Joan cierra con tres ideas que vemos cada semana desde dentro de Actual Talent. Y a partir de las 12:20, brunch y networking hasta las 13:30 para seguir la conversaci&oacute;n con quien te interese.</p>
+    </div>
+    <div class="closing-host reveal d2">
+      <div class="host-photo"><img src="../../webinar/assets/speakers/joan-boluda.jpg" alt="Joan Boluda"></div>
+      <div><div class="host-name">Joan Boluda</div><div class="host-role">Wrap-up &middot; Actual Talent</div></div>
     </div>
   </div>
 </section>
@@ -1152,8 +1207,8 @@ initParticles('cta-particles', 70);
   var nowLabel = spine.querySelector('.spine-now-label');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var MAP = [
-    {id:'sobre', t:'09:00'}, {id:'ponencia', t:'10:10'}, {id:'mesa-redonda', t:'10:25'},
-    {id:'entrevista', t:'11:00'}, {id:'dinamica', t:'11:20'}
+    {id:'apertura', t:'09:00'}, {id:'ponencia', t:'10:10'}, {id:'mesa-redonda', t:'10:25'},
+    {id:'entrevista', t:'11:00'}, {id:'dinamica', t:'11:20'}, {id:'cierre', t:'12:00'}
   ];
   var items = [];
   MAP.forEach(function(m){
@@ -1164,23 +1219,24 @@ initParticles('cta-particles', 70);
     items.push({sec:sec, dot:dot, chip:chip});
   });
   function vertical(){ return matchMedia('(min-width:1200px)').matches; }
-  var docH = 0;
+  var progStart = 0, progEnd = 1;
   function measure(){
-    docH = document.documentElement.scrollHeight - innerHeight;
+    var aper = document.getElementById('apertura'), cie = document.getElementById('cierre');
+    progStart = aper ? aper.offsetTop : 0;
+    progEnd = cie ? (cie.offsetTop + cie.offsetHeight) : document.documentElement.scrollHeight;
+    if(progEnd <= progStart + 1){ progEnd = progStart + 1; }
     if(vertical()){
-      var railTop = 12, railH = spine.clientHeight - 24, total = document.documentElement.scrollHeight;
+      var railTop = 56, railH = spine.clientHeight - 68;
       items.forEach(function(it){
-        var y = railTop + (it.sec.offsetTop / total) * railH;
+        var f = Math.min(1, Math.max(0, (it.sec.offsetTop - progStart) / (progEnd - progStart)));
+        var y = railTop + f * railH;
         it.dot.style.top = y + 'px'; it.chip.style.top = y + 'px';
       });
     }
   }
   var START = Date.UTC(2026,5,17,7,0), END = Date.UTC(2026,5,17,11,30);
   function pad(n){ return (n<10?'0':'') + n; }
-  function placeNow(frac){
-    if(vertical()){ nowEl.style.top = (12 + frac*(spine.clientHeight-24)) + 'px'; }
-    else { nowEl.style.top = ''; }
-  }
+  function placeNow(frac){ nowEl.style.top = ''; }
   function applyLive(){
     var n = Date.now(); spine.classList.remove('is-after');
     if(n < START){
@@ -1200,11 +1256,10 @@ initParticles('cta-particles', 70);
   function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
   function update(){
     ticking = false;
-    var sH = document.documentElement.scrollHeight;
-    var q = Math.min(1, Math.max(0, (scrollY + innerHeight*0.5) / sH));
+    var q = Math.min(1, Math.max(0, (scrollY + innerHeight*0.5 - progStart) / (progEnd - progStart)));
     fill.style.transform = vertical() ? ('scaleY('+q+')') : ('scaleX('+q+')');
     if(vertical()){
-      head.style.top = (12 + q*(spine.clientHeight-24)) + 'px';
+      head.style.top = (56 + q*(spine.clientHeight-68)) + 'px';
       var mid = scrollY + innerHeight*0.4;
       items.forEach(function(it){
         var top = it.sec.offsetTop, bot = top + it.sec.offsetHeight;
