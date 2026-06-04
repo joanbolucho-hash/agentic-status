@@ -216,6 +216,15 @@ header {
 .takeaway:hover .takeaway-num { opacity: 1; }
 .takeaway h3 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
 .takeaway p { font-size: 13px; font-weight: 400; color: var(--gray); line-height: 1.65; }
+.about-grid.with-agenda { grid-template-columns: 1.15fr 0.85fr; }
+.agenda-mini { background: #fff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 26px 28px; box-shadow: 0 12px 44px rgba(0,0,0,0.06); position: sticky; top: 90px; }
+.agenda-mini-label { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.agenda-mini-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 10px var(--red); }
+.agenda-mini ul { list-style: none; margin: 0; padding: 0; }
+.agenda-mini li { display: flex; gap: 14px; align-items: baseline; padding: 9px 0; border-top: 1px solid rgba(0,0,0,0.06); }
+.agenda-mini li:first-child { border-top: none; padding-top: 0; }
+.am-t { font-size: 13px; font-weight: 800; color: var(--red); min-width: 44px; font-variant-numeric: tabular-nums; }
+.am-x { font-size: 13.5px; font-weight: 500; color: var(--black); line-height: 1.4; }
 
 /* SPEAKERS */
 .speakers { background: var(--white); padding: 110px 48px; }
@@ -505,7 +514,8 @@ footer .footer-links a:hover { color: white; }
   .mouse-glow { display: none; }
   .hero-meta { gap: 20px 24px; }
   .about { padding: 80px 24px; }
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-grid, .about-grid.with-agenda { grid-template-columns: 1fr; gap: 48px; }
+  .agenda-mini { position: static; }
   .whynow { padding: 80px 24px; }
   .whynow-grid { grid-template-columns: 1fr; }
   .keynote { padding: 80px 24px; }
@@ -613,7 +623,6 @@ footer .footer-links a:hover { color: white; }
   <nav class="header-nav">
     <a href="/" class="nav-link">Eventos</a>
     <a href="#sobre" class="nav-link">Sobre</a>
-    <a href="#por-que-ahora" class="nav-link">Por qué ahora</a>
     <a href="#mesa-redonda" class="nav-link">Mesa redonda</a>
     <a href="#venue" class="nav-link">Venue</a>
     <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nav-pill nav-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
@@ -624,7 +633,6 @@ footer .footer-links a:hover { color: white; }
   <nav class="nav-mobile" aria-label="Menú móvil">
     <a href="/">← Eventos Actual Talent</a>
     <a href="#sobre">Sobre el evento</a>
-    <a href="#por-que-ahora">Por qué ahora</a>
     <a href="#ponencia">Ponencia</a>
     <a href="#mesa-redonda">Mesa redonda</a>
     <a href="#entrevista">Entrevista</a>
@@ -694,48 +702,26 @@ footer .footer-links a:hover { color: white; }
 <section class="about" id="sobre">
   <div class="about-inner">
     <div class="section-label reveal">Sobre el evento</div>
-    <div class="about-grid">
+    <div class="about-grid with-agenda">
       <div class="about-text">
-        <h2 class="reveal">Una conversación <em>honesta</em> sobre el futuro del trabajo en RRHH.</h2>
-        <p class="reveal d1">La IA está cambiando lo que las empresas piden a sus equipos, cómo se mide la productividad y qué hace falta para liderar bien en este contexto. RRHH es de los primeros departamentos que tiene que responder, y muchas veces lo hace sin un mapa claro.</p>
-        <p class="reveal d2">No queremos otro evento de inspiración genérica. Queremos una mañana en la que directivos de RRHH se reconozcan en las preocupaciones de los demás, salgan con ideas accionables y se vayan con un par de contactos útiles.</p>
-        <p class="reveal d3">Por eso este formato: una ponencia con peso, una mesa redonda con voces de empresas que están dentro del cambio, una dinámica que activa la sala, un cierre breve y un brunch para alargar la conversación con quien te interese. Sin pitch, sin productos. Una mañana entera en el corazón del 22@ de Barcelona.</p>
+        <h2 class="reveal">Una conversación <em>honesta</em> sobre la IA en el trabajo.</h2>
+        <p class="reveal d1">La IA está cambiando lo que las empresas piden a sus equipos, cómo se mide la productividad y qué hace falta para liderar bien. RRHH es de los primeros departamentos que tiene que responder, y casi siempre sin un mapa claro.</p>
+        <p class="reveal d2">Y ahora que <em>la normativa europea de IA ya es aplicable</em>, RRHH es además quien custodia los datos más sensibles de la empresa: cribado, evaluación, desempeño. Adoptar IA bien y hacerlo dentro de la ley pasan a ser la misma conversación.</p>
+        <p class="reveal d3">Por eso esta mañana: una ponencia con peso, una mesa redonda con empresas que ya están dentro del cambio, una entrevista legal sobre el AI Act, una dinámica que activa la sala y un brunch para alargar la conversación. Sin pitch, sin productos, en el corazón del 22@ de Barcelona.</p>
       </div>
-      <ul class="takeaways">
-        <li class="takeaway reveal d1">
-          <span class="takeaway-num">01</span>
-          <div><h3>Qué cambia de verdad</h3><p>Perfiles que crecen y perfiles que se contraen. Habilidades humanas que suben de valor. Casos concretos, no titulares.</p></div>
-        </li>
-        <li class="takeaway reveal d2">
-          <span class="takeaway-num">02</span>
-          <div><h3>El recruiter del futuro</h3><p>De gestor de procesos a consultor de talento. Lo que esto exige en criterio, herramientas y conversación con negocio.</p></div>
-        </li>
-        <li class="takeaway reveal d3">
-          <span class="takeaway-num">03</span>
-          <div><h3>No quedarse fuera</h3><p>Cómo no obsolecerse como profesional ni como organización. Qué están haciendo las empresas que mejor se están adaptando.</p></div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- WHY NOW -->
-<section class="whynow" id="por-que-ahora">
-  <div class="whynow-inner">
-    <div class="section-label reveal">Por qué ahora</div>
-    <div class="whynow-head">
-      <h2 class="reveal">La normativa europea de IA ya es aplicable. Y RRHH custodia <em>los datos más sensibles</em> de la empresa.</h2>
-      <p class="reveal d1">La regulación europea de la inteligencia artificial ha entrado en una nueva fase, con obligaciones que ya están en vigor sobre cómo las empresas usan IA. Para Recursos Humanos es especialmente delicado: es el departamento que maneja la información personal más sensible de candidatos y empleados (cribado, evaluación, desempeño). Por eso esta mesa junta las dos caras del problema: cómo adoptar IA en personas y cómo hacerlo dentro de la ley.</p>
-    </div>
-    <div class="whynow-grid">
-      <div class="whynow-card reveal d1">
-        <h3>Qué cambia</h3>
-        <p>Usar IA en selección, evaluación o gestión de personas pasa a tener requisitos: transparencia, supervisión humana y trazabilidad de las decisiones.</p>
-      </div>
-      <div class="whynow-card reveal d2">
-        <h3>Por qué te afecta a RRHH</h3>
-        <p>La conversación ya no es solo si la IA funciona, sino si puedes demostrar que la usas de forma responsable y conforme a la normativa.</p>
-      </div>
+      <aside class="agenda-mini reveal d1">
+        <div class="agenda-mini-label">La mañana, de un vistazo</div>
+        <ul>
+          <li><span class="am-t">09:00</span><span class="am-x">Llegada y café de bienvenida</span></li>
+          <li><span class="am-t">10:00</span><span class="am-x">Apertura · Joan y Karim</span></li>
+          <li><span class="am-t">10:10</span><span class="am-x">Ponencia · Iolanda Triviño</span></li>
+          <li><span class="am-t">10:25</span><span class="am-x">Mesa redonda · cuatro voces</span></li>
+          <li><span class="am-t">11:00</span><span class="am-x">Entrevista legal · el AI Act</span></li>
+          <li><span class="am-t">11:20</span><span class="am-x">Dinámica de liderazgo · Xavi</span></li>
+          <li><span class="am-t">11:50</span><span class="am-x">Cierre · automatización</span></li>
+          <li><span class="am-t">12:20</span><span class="am-x">Brunch y networking</span></li>
+        </ul>
+      </aside>
     </div>
   </div>
 </section>
@@ -775,17 +761,17 @@ footer .footer-links a:hover { color: white; }
         <span class="speaker-role-tag">Ponencia · Futuro del trabajo</span>
         <h3 class="keynote-name">Iolanda Triviño</h3>
         <div class="keynote-org">Fundadora · Institute for Futures (IFF)</div>
-        <p class="keynote-bio">Foresight strategist y talent designer. Fundadora del Institute for Futures (IFF), co-founder de la Global Future of Work Foundation y presidenta de la Comisión de Talento de 22@Network Barcelona. Más de 25 años investigando cómo cambia el trabajo y formando a líderes, también en London Business School.</p>
+        <p class="keynote-bio">Foresight strategist y fundadora del Institute for Futures (IFF). Certificada en Applied Strategic Foresight (Copenhagen Institute for Futures Studies) y presidenta de la Comisión de Talento de 22@Network Barcelona. Investiga cómo cambia el trabajo y defiende usar la tecnología para amplificar lo humano, no para reemplazarlo.</p>
         <a href="https://www.linkedin.com/in/iolandatrivi%C3%B1o/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
       <div class="book-card reveal d2">
-        <div class="book-eyebrow">El libro que trae a la mesa</div>
-        <div class="book-title">Rompiendo el juego</div>
-        <div class="book-sub">Liderar en la Era de la disrupción · <em>Breaking the Game</em> (McGraw-Hill)</div>
-        <p class="book-desc">Su nuevo libro, coescrito con Simon L. Dolan y Mario Raich, sobre cómo liderar cuando cambian las reglas del trabajo: las habilidades que más suben de valor son humanas, y las organizaciones que combinan madurez emocional con IA son las que lideran la transformación.</p>
-        <div class="book-meta">Coautores: <strong>Simon L. Dolan · Mario Raich · Iolanda Triviño</strong> · McGraw-Hill</div>
+        <div class="book-eyebrow">La idea que trae a la mesa</div>
+        <div class="book-title">Amplificar lo humano</div>
+        <div class="book-sub"><em>Rompiendo el juego</em> · podcast del Institute for Futures</div>
+        <p class="book-desc">Su tesis: la innovación no depende solo de los algoritmos, sino de las personas que los guían. Por eso adoptar IA empieza por las personas, no por la tecnología, y las habilidades que más suben de valor son las más humanas.</p>
+        <div class="book-meta">Institute for Futures</div>
       </div>
     </div>
   </div>
@@ -824,7 +810,7 @@ footer .footer-links a:hover { color: white; }
         <span class="speaker-role-tag">People &amp; Culture</span>
         <h3 class="speaker-name">Rossana Montemurro</h3>
         <div class="speaker-org">Chief People &amp; Culture Officer · Cooltra</div>
-        <p class="speaker-bio">Chief People &amp; Culture Officer en Cooltra, donde ha construido la función de People desde cero. Ex jugadora profesional de voleibol y psicóloga de formación. Profesora en Nuclio Digital School y en la Universitat de Barcelona y mentora en GEMA. Certificada en <em>IA for People Leaders</em> y experta en transformación digital de RRHH: trae la cara práctica de meter IA en el día a día del equipo.</p>
+        <p class="speaker-bio">Chief People &amp; Culture Officer en Cooltra, donde ha construido la función de People desde cero. Licenciada en psicología (Sapienza, Roma) y con pasado en el voleibol de competición. Trae la cara práctica de meter IA en el día a día del equipo de personas.</p>
         <a href="https://www.linkedin.com/in/rossanamontemurro/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -835,7 +821,7 @@ footer .footer-links a:hover { color: white; }
         <span class="speaker-role-tag">People &amp; Culture</span>
         <h3 class="speaker-name">Patricia Iglesias Río</h3>
         <div class="speaker-org">Chief People &amp; Culture Officer · Techsoulogy</div>
-        <p class="speaker-bio">Chief People &amp; Culture Officer en Techsoulogy (antes Tappx) y una de las voces de RRHH más seguidas en LinkedIn (+42.000 seguidores). Coach certificada (AICM), speaker y coautora del libro <em>100 Preguntas y Respuestas sobre la Gestión de Personas</em>. Profesora del Máster de Dirección de RRHH de la UB y referente en seguridad psicológica y liderazgo humanista. Reconocida como <em>Líder más inspirador en RRHH</em> (Awards of Happiness 2025).</p>
+        <p class="speaker-bio">Chief People &amp; Culture Officer en Techsoulogy (grupo adtech) y coach (AICM). Referente en seguridad psicológica y liderazgo humanista. Trae la mirada de cómo se adopta la IA en una empresa tecnológica sin erosionar la confianza del equipo.</p>
         <a href="https://www.linkedin.com/in/patriciaiglesiasrio/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -846,7 +832,7 @@ footer .footer-links a:hover { color: white; }
         <span class="speaker-role-tag">Liderazgo + dinámica</span>
         <h3 class="speaker-name">Xavi Sáez</h3>
         <div class="speaker-org">Key People Improving (KPI)</div>
-        <p class="speaker-bio">Co-founder y CEO de KPI, consultora de liderazgo, y coach en Excelencia Emocional. +20 años dirigiendo equipos en multinacionales. En la mesa aporta el lado humano del liderazgo; más tarde activa la sala con una dinámica sobre conversaciones difíciles y qué no puede hacer la IA.</p>
+        <p class="speaker-bio">Co-founder y CEO de KPI (Key People Improving), consultora de liderazgo, y coach certificado. En la mesa aporta el lado humano del liderazgo; más tarde activa la sala con una dinámica sobre conversaciones difíciles y qué no puede hacer la IA.</p>
         <a href="https://www.linkedin.com/in/xavi-s%C3%A1ez-59320744/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -878,7 +864,7 @@ footer .footer-links a:hover { color: white; }
         <span class="speaker-role-tag">Socia · RocaJunyent</span>
         <h3 class="speaker-name">Beatriz Rodríguez Gómez</h3>
         <div class="speaker-org">Protección de Datos y Ciberseguridad</div>
-        <p class="speaker-bio">Socia de Protección de Datos, Ciberseguridad y Nuevas Tecnologías en RocaJunyent y <em>Lawyer of the Year - Privacy</em> (Iberian Lawyer). DPO certificada y auditora ISO 27001. Ponente sobre gobernanza de IA y la normativa europea de IA. Aporta la lectura jurídica de usar IA con datos de personas sin saltarse la ley.</p>
+        <p class="speaker-bio">Socia de Protección de Datos, Ciberseguridad y Nuevas Tecnologías en RocaJunyent. DPO certificada y experta en gobernanza de IA y la normativa europea. Aporta la lectura jurídica de usar IA con datos de personas sin saltarse la ley.</p>
         <a href="https://www.linkedin.com/in/abrodgom/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -889,7 +875,7 @@ footer .footer-links a:hover { color: white; }
         <span class="speaker-role-tag">Abogada · RocaJunyent</span>
         <h3 class="speaker-name">Delia Rodríguez Fernández</h3>
         <div class="speaker-org">Protección de Datos, Tech y Ciberseguridad</div>
-        <p class="speaker-bio">Abogada de Protección de Datos, Tecnología y Ciberseguridad en RocaJunyent. Ponente habitual sobre IA: gobernanza, workflows y gestión de riesgos legales. Experta en ciberseguridad (ISMS Forum) y voz activa del derecho digital.</p>
+        <p class="speaker-bio">Abogada de Protección de Datos, Tecnología y Ciberseguridad en RocaJunyent. En la entrevista aterriza lo que el AI Act implica para RRHH: categorías de riesgo, selección con IA y qué exige usar IA con datos de personas.</p>
         <a href="https://www.linkedin.com/in/delia-rodr%C3%ADguez-fern%C3%A1ndez-719a1b224/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -912,7 +898,7 @@ footer .footer-links a:hover { color: white; }
       <div class="dynamic-body">
         <span class="speaker-role-tag">Dinámica · Liderazgo humano</span>
         <h3 class="dynamic-name">Liderazgo humano en la era de la IA</h3>
-        <p class="dynamic-bio">Por grupos: conversaciones difíciles, dilemas éticos y qué no puede hacer la IA. Ligera, participativa y accionable. La conduce Xavi Sáez, co-founder y CEO de KPI y coach en Excelencia Emocional: material para reflexionar al volver al despacho.</p>
+        <p class="dynamic-bio">Por grupos: conversaciones difíciles, dilemas éticos y qué no puede hacer la IA. Ligera, participativa y accionable. La conduce Xavi Sáez, co-founder y CEO de KPI: material para reflexionar al volver al despacho.</p>
         <a href="https://www.linkedin.com/in/xavi-s%C3%A1ez-59320744/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
