@@ -21,14 +21,13 @@ body{font-family:'Montserrat',sans-serif;background:#000;-webkit-font-smoothing:
 .brand-mark{display:flex;align-items:center;gap:13px}
 .brand-logo{height:30px;width:auto;display:block}
 .brand-tag{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red)}
-.venue-credit{text-align:right;line-height:1.25}
-.venue-logo{height:26px;width:auto;filter:brightness(0) invert(1);opacity:.92;display:block;margin:0 0 7px auto}
-.venue-name{font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85)}
-.venue-addr{font-size:11px;font-weight:600;letter-spacing:.3px;color:rgba(255,255,255,.5);margin-top:3px}
-.main{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;gap:26px;min-height:0}
+.venue-credit{text-align:right;line-height:1.15}
+.venue-logo{height:46px;width:auto;filter:brightness(0) invert(1);opacity:.95;display:block;margin:0 0 7px auto}
+.venue-name{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.main{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;gap:22px;min-height:0}
 .hero{display:flex;gap:40px;align-items:center}
 .date-block{flex-shrink:0}
-.date-num{font-size:96px;font-weight:900;line-height:.8;color:var(--red);letter-spacing:-.05em}
+.date-num{font-size:88px;font-weight:900;line-height:.8;color:var(--red);letter-spacing:-.05em}
 .date-side{display:flex;flex-direction:column;gap:3px;margin-top:6px}
 .date-month{font-size:28px;font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:-.01em}
 .date-time{font-size:19px;font-weight:800;color:var(--red)}
@@ -39,15 +38,16 @@ body{font-family:'Montserrat',sans-serif;background:#000;-webkit-font-smoothing:
 .title .accent{color:var(--red)}
 .speakers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 24px}
 .speaker{display:flex;flex-direction:column;align-items:center;text-align:center}
-.sp-photo{width:104px;height:104px;border-radius:50%;overflow:hidden;border:3px solid var(--red);box-shadow:0 8px 24px rgba(0,0,0,.5);margin-bottom:10px}
+.sp-photo{width:98px;height:98px;border-radius:50%;overflow:hidden;border:3px solid var(--red);box-shadow:0 8px 24px rgba(0,0,0,.5);margin-bottom:10px}
 .sp-photo.host{border-color:#fff}
 .sp-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .sp-name{font-size:21px;font-weight:800;line-height:1.1;margin-bottom:3px}
 .sp-cargo{font-size:14px;font-weight:700;letter-spacing:.2px;color:var(--red);line-height:1.2;margin-bottom:2px;min-height:34px;display:flex;align-items:center;justify-content:center}
 .sp-org{font-size:12.5px;font-weight:600;letter-spacing:.3px;color:rgba(255,255,255,.6)}
-.footer{flex:0 0 auto;text-align:center}
-.footer .u{font-size:15px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.footer .u .link{color:var(--red)}.footer .u .sep{color:rgba(255,255,255,.2);margin:0 12px}
+.footer{flex:0 0 auto;text-align:center;margin-top:18px}
+.f-venue{font-size:12px;font-weight:600;letter-spacing:.4px;color:rgba(255,255,255,.5);margin-bottom:8px}
+.footer .u{font-size:14px;font-weight:700;letter-spacing:.4px;color:rgba(255,255,255,.6)}
+.footer .u .link{color:var(--red)}.footer .u .sep{color:rgba(255,255,255,.25);margin:0 10px}
 </style>
 </head>
 <body>
@@ -57,8 +57,7 @@ body{font-family:'Montserrat',sans-serif;background:#000;-webkit-font-smoothing:
       <div class="brand-mark"><img class="brand-logo" src="../../../assets/logos/actual-talent-white.png" alt="Actual Talent"><span class="brand-tag">Flagship</span></div>
       <div class="venue-credit">
         <img class="venue-logo" src="../../../assets/logos/aticco.png" alt="Aticco">
-        <div class="venue-name">Aticco Diagrame</div>
-        <div class="venue-addr">Glòries 22@ · C/ Pere IV 105-109, Barcelona</div>
+        <div class="venue-name">Diagrame</div>
       </div>
     </div>
 
@@ -91,6 +90,7 @@ body{font-family:'Montserrat',sans-serif;background:#000;-webkit-font-smoothing:
     </div>
 
     <div class="footer">
+      <div class="f-venue">Aticco Diagrame · Glòries 22@ · C/ Pere IV 105-109, Barcelona</div>
       <div class="u"><span class="link">actualtalent.tech/presencial/17-jun-bcn</span><span class="sep">·</span>200 directivos de RRHH</div>
     </div>
   </div>
