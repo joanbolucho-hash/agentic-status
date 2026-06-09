@@ -2,98 +2,84 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flyer 1080×1080 · IA en el trabajo: Legislación y disrupción · 17 jun 2026 · Barcelona</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--red:#C0191E;--black:#1A1A1A;--near-black:#0A0A0A;--white:#fff}
-body{font-family:'Montserrat',sans-serif;background:#000;-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;min-height:100vh}
+body{font-family:'Montserrat',sans-serif;background:#1A1A1A;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .flyer{width:1080px;height:1080px;flex-shrink:0;position:relative;overflow:hidden;background:var(--near-black);
-  background-image:radial-gradient(circle,rgba(255,255,255,.05) 1.2px,transparent 1.2px);background-size:32px 32px;color:var(--white)}
-@media (max-width:1120px),(max-height:1120px){body{padding:0}.flyer{transform:scale(min(calc(100vw/1080),calc(100vh/1080)));transform-origin:center}}
+  background-image:radial-gradient(circle,rgba(255,255,255,.05) 1.2px,transparent 1.2px);background-size:32px 32px;color:var(--white);transform-origin:center}
+@media (max-width:1120px),(max-height:1120px){body{padding:0;background:#000}.flyer{transform:scale(min(calc(100vw/1080),calc(100vh/1080)))}}
+/* ATMOSPHERE */
 .flyer::before{content:'';position:absolute;inset:0;background:
   radial-gradient(ellipse 65% 60% at 0% 100%,rgba(192,25,30,.24) 0%,transparent 55%),
-  radial-gradient(ellipse 50% 45% at 100% 0%,rgba(192,25,30,.14) 0%,transparent 55%);pointer-events:none;z-index:1}
-.wrap{position:absolute;inset:0;z-index:5;padding:60px 60px 56px;display:flex;flex-direction:column}
-.topbar{display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:14px}
-.at-logo{width:48px;height:48px;border-radius:11px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;letter-spacing:1px}
-.brand-text{font-size:14px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
-.brand-text .sep{color:rgba(255,255,255,.25);margin:0 9px}.brand-text .t{color:var(--red)}
-.brand-logo{height:30px;width:auto;display:block}
-.brand-tag{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red)}
-.tag{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:7px 15px}
-.venue-credit{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.venue-logo{height:46px;width:auto;filter:brightness(0) invert(1);opacity:.95;display:block}
-.venue-name{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.82)}
-.date{display:flex;align-items:center;gap:24px;margin-top:34px}
-.date-num{font-size:188px;font-weight:900;line-height:.8;color:var(--red);letter-spacing:-.06em}
-.date-side{display:flex;flex-direction:column;gap:5px}
-.date-month{font-size:56px;font-weight:900;line-height:.9;text-transform:uppercase;letter-spacing:-.02em}
-.date-time{font-size:30px;font-weight:800;color:var(--red)}
-.date-tz{font-size:14px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.45)}
-.title{font-size:80px;font-weight:900;line-height:.94;letter-spacing:-.035em;margin-top:30px}
-.title .a{color:var(--red)}
-.lineup{margin-top:auto;padding-top:30px}
-.lineup-label{font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
-.faces{display:flex;gap:16px;justify-content:space-between}
-.faces .f{width:144px;height:144px;border-radius:50%;overflow:hidden;border:4px solid var(--red);box-shadow:0 6px 20px rgba(0,0,0,.4)}
-.faces .f img{width:100%;height:100%;object-fit:cover;display:block}
-.names{font-size:20px;font-weight:600;color:rgba(255,255,255,.82);margin-top:20px;line-height:1.5;max-width:960px}
-.names b{color:var(--white);font-weight:800}
-.footer{display:flex;align-items:flex-end;justify-content:space-between;margin-top:32px;gap:24px;border-top:1px solid rgba(255,255,255,.1);padding-top:24px}
-.f-label{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px}
-.f-venue{font-size:23px;font-weight:800;letter-spacing:-.01em}.f-venue .d{color:var(--red)}
-.f-cta{text-align:right}.f-url{font-size:14px;font-weight:800;color:var(--red)}
+  radial-gradient(ellipse 52% 48% at 100% 0%,rgba(192,25,30,.15) 0%,transparent 55%);pointer-events:none;z-index:1}
+/* WATERMARK */
+.flyer::after{content:'BCN';position:absolute;bottom:-4%;right:-2%;font-size:400px;font-weight:900;letter-spacing:-.06em;
+  color:rgba(255,255,255,.025);line-height:1;pointer-events:none;user-select:none;z-index:1}
+/* TOP BAR */
+.topbar{position:absolute;top:60px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.brand-logo{height:52px;width:auto;display:block}
+.format-tag{font-size:14px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);
+  border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:10px 22px}
+/* DATE BLOCK */
+.date-block{position:absolute;top:166px;left:72px;display:flex;align-items:flex-start;gap:34px;z-index:5}
+.date-num{font-size:340px;font-weight:900;line-height:.82;color:var(--red);letter-spacing:-.07em}
+.date-side{display:flex;flex-direction:column;padding-top:30px;gap:10px}
+.date-month{font-size:92px;font-weight:900;line-height:.9;color:var(--white);letter-spacing:-.02em;text-transform:uppercase}
+.date-time{font-size:44px;font-weight:800;color:var(--red);letter-spacing:-.01em;line-height:1}
+.date-tz{font-size:19px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:6px}
+/* TITLE */
+.title-wrap{position:absolute;top:524px;left:72px;right:72px;z-index:5}
+.title-eyebrow{font-size:18px;font-weight:800;letter-spacing:5px;text-transform:uppercase;color:var(--red);margin-bottom:24px}
+.title{font-size:108px;font-weight:900;line-height:.96;letter-spacing:-.04em;color:var(--white)}
+.title .accent{color:var(--red)}
+/* FOOTER */
+.venue{position:absolute;bottom:78px;left:72px;z-index:5;display:flex;flex-direction:column;gap:7px}
+.venue-label{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.venue-name{font-size:30px;font-weight:800;color:var(--white);letter-spacing:-.01em;line-height:1.08}
+.venue-addr{font-size:18px;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:.1px}
+.cta{position:absolute;bottom:78px;right:72px;text-align:right;z-index:5;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.cta-divider{width:60px;height:1px;background:rgba(255,255,255,.15);margin-bottom:4px}
+.cta-url{font-size:16px;font-weight:800;letter-spacing:1.5px;color:var(--red);text-transform:uppercase}
 </style>
 </head>
 <body>
 <div class="flyer">
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand"><img class="brand-logo" src="../../../assets/logos/actual-talent-white.png" alt="Actual Talent"><span class="brand-tag">Flagship</span></div>
-      <div class="venue-credit">
-        <img class="venue-logo" src="../../../assets/logos/aticco.png" alt="Aticco">
-        <div class="venue-name">Diagrame</div>
-      </div>
-    </div>
 
-    <div class="date">
-      <div class="date-num">17</div>
-      <div class="date-side">
-        <div class="date-month">Junio</div>
-        <div class="date-time">09:00-13:30h</div>
-        <div class="date-tz">Miércoles · CEST</div>
-      </div>
-    </div>
+  <div class="topbar">
+    <img class="brand-logo" src="../../../assets/logos/actual-talent-white.png" alt="Actual Talent">
+    <div class="format-tag">Presencial · Barcelona</div>
+  </div>
 
-    <h1 class="title">IA en el trabajo:<br><span class="a">legislación</span> y <span class="a">disrupción</span>.</h1>
-
-    <div class="lineup">
-      <div class="lineup-label">Ponentes</div>
-      <div class="faces">
-        <div class="f"><img src="../../../webinar/assets/speakers/iolanda-trivino.jpg"></div>
-        <div class="f"><img src="../../../webinar/assets/speakers/rossana-montemurro.jpg"></div>
-        <div class="f"><img src="../../../webinar/assets/speakers/patricia-iglesias.jpg"></div>
-        <div class="f"><img src="../../../webinar/assets/speakers/xavi-saez.jpg"></div>
-        <div class="f"><img src="../../../webinar/assets/speakers/beatriz-rodriguez.jpg"></div>
-        <div class="f"><img src="../../../webinar/assets/speakers/delia-rodriguez.jpg"></div>
-      </div>
-      <div class="names"><b>Iolanda Triviño</b> · <b>Rossana Montemurro</b> · <b>Patricia Iglesias</b> · <b>Xavi Sáez</b> · <b>Beatriz Rodríguez</b> · <b>Delia Rodríguez</b></div>
-    </div>
-
-    <div class="footer">
-      <div>
-        <div class="f-label">Dónde</div>
-        <div class="f-venue">Aticco Diagrame <span class="d">·</span> Glòries 22@ Barcelona</div>
-      </div>
-      <div class="f-cta">
-        <div class="f-label">Reserva</div>
-        <div class="f-url">actualtalent.tech/presencial/17-jun-bcn</div>
-      </div>
+  <div class="date-block">
+    <div class="date-num">17</div>
+    <div class="date-side">
+      <div class="date-month">Junio</div>
+      <div class="date-time">09:00-13:30h</div>
+      <div class="date-tz">Miércoles · CEST</div>
     </div>
   </div>
+
+  <div class="title-wrap">
+    <div class="title-eyebrow">Evento RRHH</div>
+    <h1 class="title">IA en el trabajo:<br><span class="accent">legislación</span> y<br><span class="accent">disrupción</span>.</h1>
+  </div>
+
+  <div class="venue">
+    <div class="venue-label">Dónde</div>
+    <div class="venue-name">Aticco Diagrame</div>
+    <div class="venue-addr">Glòries 22@ · Barcelona</div>
+  </div>
+
+  <div class="cta">
+    <div class="cta-divider"></div>
+    <div class="cta-url">actualtalent.tech/presencial/17-jun-bcn</div>
+  </div>
+
 </div>
 </body>
 </html>
