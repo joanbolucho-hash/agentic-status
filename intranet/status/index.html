@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 23:07</span><span class="feed-msg">Session-end: 5 files (2026-06-11 23:07)</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 23:06</span><span class="feed-msg">Session-end: 9 files (2026-06-11 23:06)</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 23:00</span><span class="feed-msg">Registro actualizado: mejora en monitorización</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 22:59</span><span class="feed-msg">Session-end: 6 files (2026-06-11 22:59)</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-11 17:22</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 16:55</span><span class="feed-msg">Feat(cl-zoho): process BAJA opt-outs + cadence unenroll (9 contactos evt-17jun-b</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 16:33</span><span class="feed-msg">ROI one-pagers v2 - case math tables with sources + context-aware angles</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-11 16:22</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,6 +1097,13 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.124 — 11 junio 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Segunda pasada de BAJAs con ventana de 10 dias: +6 bajas (total 15) de la cadencia "Evento 17"**. Joan aviso de que habia mas en el inbox; la ventana --days 3 solo cubria desde el 08-jun y el primer envio fue el 06-jun. Nuevas procesadas y verificadas: Rosa Guerrero (Amadeus), Anna Fossa (Euromadi), Sophie Lelong (Veolia), Antonio Lopez (Silo), Lorraine Gridel-Babinet (Apave) por match exacto, y Joana Ramio (BAJA desde accord-healthcare.com, registro Zoho con intaspharma.com, mismo nombre y patron de email, confirmada por Joan). Falsos positivos descartados leyendo los hilos: 4 respuestas a "invitacion para X" (Eva Cuesta/Nestle, Magali Mayol/Miquel y Costas, Nuria Massip/Barcelona Activa, Adriana Gonzalez/Stellantis) son declinaciones del evento, no bajas (la palabra "baja" venia del footer citado). Leccion operativa: --days 10 como ventana por defecto tras cada envio de la cadencia.</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.123 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Campus SDR: mini-LMS cifrado para el onboarding de Isabella, LIVE en https://actualtalent.tech/academy/**. Nuevo subproyecto con pipeline completo: content/*.md (frontmatter + quiz JSON) -> build.py -> SPA single-file brand AT (particulas, anillo de progreso, quizzes, confetti, progreso en localStorage, descarga de PDFs) cifrada AES-256-GCM estilo staticrypt (PBKDF2-SHA256 600k; el repo publico solo contiene ciphertext + gate con noindex; PDFs como blobs .enc descifrados en navegador). 5 modulos v1 redactados y fact-checkeados contra fuentes (M0 bienvenida desde deck onboarding+KB, M1 KPIs desde offer letter+business case con suelo contractual 12 SQL/mes vs target operativo, M2 playbook evento 17-jun verificado contra la landing real, M3 las 8 reglas del feedback de sus 66 llamadas, M11 ramp-up 6 meses con gates + 30-60-90 + carrera). 5 PDFs WeasyPrint generados. VERIFICADO: round-trip de cifrado Python->JS en navegador real (gate rechaza password mala, descifra con la buena, los 5 .enc descifran a %PDF), deploy atomico convive con el post-commit hook del status (add selectivo verificado), cero texto plano en el repo publico. Umbrales pendientes marcados como chips [JOAN DECIDE] en web y PDF. Modulos M4-M10 en redaccion (workflow fase B).</div>
@@ -1104,29 +1111,29 @@ footer {
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.122 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">health-check</span> **Falso positivo granola_watcher_version eliminado**: el check leia el marcador WATCHER_CODE_VERSION de <code>granola_watcher_stdout.log</code>, congelado desde el 07-jun (otra secuela de la migracion), asi que seguia reportando el hash de marzo aunque el proceso real corria el codigo actual (verificado: PID 89445 arrancado 11-jun 17:52 tras restart_watcher.sh, marcador fresco en <code>granola_watcher.log</code>). Fix en <code>.claude/hooks/health-check.sh</code>: GW_LOG apunta al log vivo; corrige de paso las stats de extraccion del check 4, que leian del log muerto. Health check final de la sesion: 0 FAILURES, 2 warnings benignos (status_manual_edit = drift por diseno del post-commit, kb_consolidation = cron cloud verificado verde, solo sin nada que promover).</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.121 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-daily-briefing</span> **Envio programado de los 8 one-pagers ROI v2 para el viernes 19-jun** (peticion Joan: "descarta los viejos y programalos para el viernes de la semana que viene"). Los 8 drafts v1 obsoletos BORRADOS de la cuenta profesional (verificado: 8x DELETED). Nuevo tool <code>send_scheduled_drafts.py</code> (reusa el token gmail.compose de create_draft_with_attachment): modos --delete / --config / --dry-run, guarda de fecha, done-marker idempotente, fallback de resolucion por destinatario+asunto si Joan edita un draft y cambia el ID, resumen por email a Joan al ejecutar, y auto-retirada del LaunchAgent. Plan: <code>outputs/scheduled-send-roi-onepagers.json</code> (8 drafts v2). LaunchAgent <code>com.actualtalent.send-roi-onepagers</code> cargado, dispara 19-jun 9:00/11:00/13:30/16:30 (reintentos por si el Mac esta apagado; solo envia una vez). VERIFICADO hoy: dry-run resuelve los 8 drafts con el interprete exacto del plist (/opt/homebrew/bin/python3; /usr/bin/python3 fallaba por falta de google libs y se corrigio antes de cargar), y la guarda de fecha rechaza el envio antes del 19. PENDIENTE VERIFICACION: el disparo real del 19-jun (regla: no declarar workflow como funcionando hasta que Joan confirme la primera ejecucion programada).</div>
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.120 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">ci</span> **Sweep completo de validacion relanzado tras el fix de logos (run 27376560772): TODOS los documentos actuales PASAN en CI**, incluidos los 10 one-pagers ROI que generaron los 3 emails rojos del 11-jun. Los unicos FAIL del sweep eran 5 drafts legacy de mar-abr (status draft en registry, nunca entregados) anteriores a las reglas de validacion: movidos a <code>cl-proposal-generator/archive/</code> (nuevo, exento de validacion, con README de politica: un draft archivado nunca se "arregla", se genera documento nuevo), registry actualizado con las rutas (ids preservados). El proximo full sweep debe salir verde integro. Verificacion pendiente del push: git-sync esta fuera de horario (8-20h), el commit sale manana ~08:06 y disparara un run on-push que debe ser verde.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.119 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">infra</span> **Barrido final de la clase "path ~/Desktop/agentic hardcodeado" (autorizado por Joan): 4 ficheros mas fuera del repo**. (1) <code>~/.local/bin/at-git-sync.py</code>: el LaunchAgent git-sync llevaba muerto desde la migracion del 07-jun ("Cannot access project directory" cada 15 min) y, segun su log, sin pushear con exito desde el 18-MAR (los pushes reales los hacian las sesiones a mano; el "known issue: Operation not permitted" del CLAUDE.md era diagnostico erroneo). Fix: path Developer + <code>ALLOW_DIRECT_PUSH=1</code> en su push (es el pusher automatizado sancionado por diseno; cada override queda en compliance.jsonl). VERIFICADO 11-jun 22:48: ciclos programados del LaunchAgent a las 18:21 ("Sync complete: 1415 files pushed") y 19:52 ("Sync complete: 2 files pushed"); las lineas duplicadas del log confirman ejecucion via launchd (stdout redirect + file write) y origin recibio los commits (ahead paso de 5 a 0). (2) <code>.claude/hooks/session-startup.sh</code> MEMORY_DIR (variable sin uso). (3) <code>.claude/hooks/post-edit-checklist.sh</code> MEMORY_INDEX: comprobaba el indice de memoria del proyecto VIEJO, los avisos "NOT found in MEMORY.md" eran contra el indice equivocado. (4) <code>.claude/hooks/health-check.sh</code> MEM_DIR (check 13, detector de contradicciones memoria-config): miraba la memoria del proyecto viejo. Leccion ya aplicada en v2.116: derivar paths, no hardcodearlos; estos 4 estaban fuera del alcance del grep inicial (solo busque en hooks del repo y tools, no en ~/.local/bin ni en todos los .claude/hooks).</div>
@@ -1176,13 +1183,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">cl-proposal-generator</span> **Barrido de propuestas en el aire: 9 one-pagers ROI + 8 drafts** (petición Joan: "haz lo mismo que Criteo con todos los casos"). Triaje de 19 clientes con 5 agentes de research paralelos contra Zoho live + KB + documentos + transcripts: 9 GO (Younited, Eficia EN, Esteve, ADM Value, Cainiao EN, Inetum, Veolia, Santevet FR, Iberdrola), 6 ESPERAR (negociación activa o demasiado frescas), 6 NO (perdidas/ganadas/nunca enviadas). Nuevo tool genérico <code>tools/build_roi_onepager.py</code> parametrizado por config JSON (<code>configs/roi-onepager-*.json</code>): CSS compacto verificado a 1 página, logos auto-crop a bbox, fotos equipo, bloque compare opcional, multi-idioma (es/en/fr con refs_label localizado). 9 PDF verificados (1 pág, 0 em-dash, validate_proposal PASS, render visual). 8 drafts con adjunto en cuenta profesional; Iberdrola sin draft (cuenta de David Martínez). Hallazgos de datos: Vueling y Sesé PERDIDAS en Zoho pero KB las lista activas (corregir); envíos originales de ADM Value y Cainiao no verificados (emails redactados robustos a ambos casos); inbound de Eficia (Virginie, 21-may) sigue sin contestar.</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v2.112 — 11 junio 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">cl-proposal-generator</span> **One-pager ROI para Criteo (Anna Korkus)** como follow-up de la propuesta del 08-abr: nuevo <code>tools/build_criteo_roi_onepager.py</code> (patrón one-pager Marian, logos auto-recortados al bbox real porque seat-code/papernest traen lienzos con 90% de transparencia y quedaban microscópicos). Mismos términos ya cotizados (ES 18% success fee, RPO flexible 9.000€/mes ~5 hires/mes), reformulados en clave ROI: coste por hire 1.800€ vs 7.200€ (18% sobre 40K, supuesto documentado de la calculadora KB), -20% time-to-hire, ROI 102% caso tipo, riesgo 0€. Verificado: 1 página, 0 em-dash, 6 logos tech renderizando, fotos Joan+Karim. Draft con PDF adjunto creado en cuenta profesional (ID r-5486539866016172305, a.korkus@criteo.com). Nota: el "Contingency 16%" que kb-updates atribuía a la propuesta original NO estaba en el HTML enviado (solo ES 18% + RPO 9K); el one-pager mantiene lo realmente enviado.</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1201,7 +1201,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.123<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.124<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
