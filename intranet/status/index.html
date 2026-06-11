@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 18:22</span><span class="feed-msg">Sincronización automática del workspace</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 18:21</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#F59E0B"></span><span class="feed-icon" style="color:#F59E0B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><span class="feed-ts">2026-06-11 17:52</span><span class="feed-msg">⚠️ Sync failed (exit 1)</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-11 17:52</span><span class="feed-msg">git_sha=75638e0 code_hash=1c1e5ffc0736d236</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-11 15:59</span><span class="feed-msg">profile:   KB updates: yes</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-11 15:59</span><span class="feed-msg">profile:   Proposals found: 2</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 15:22</span><span class="feed-msg">Borrador de email preparado</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-11 15:22</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,20 +1097,28 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.119 — 11 junio 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">infra</span> **Barrido final de la clase "path ~/Desktop/agentic hardcodeado" (autorizado por Joan): 4 ficheros mas fuera del repo**. (1) <code>~/.local/bin/at-git-sync.py</code>: el LaunchAgent git-sync llevaba muerto desde la migracion del 07-jun ("Cannot access project directory" cada 15 min) y, segun su log, sin pushear con exito desde el 18-MAR (los pushes reales los hacian las sesiones a mano; el "known issue: Operation not permitted" del CLAUDE.md era diagnostico erroneo). Fix: path Developer + <code>ALLOW_DIRECT_PUSH=1</code> en su push (es el pusher automatizado sancionado por diseno; cada override queda en compliance.jsonl). PENDIENTE VERIFICACION: primer "Sync complete" del LaunchAgent. (2) <code>.claude/hooks/session-startup.sh</code> MEMORY_DIR (variable sin uso). (3) <code>.claude/hooks/post-edit-checklist.sh</code> MEMORY_INDEX: comprobaba el indice de memoria del proyecto VIEJO, los avisos "NOT found in MEMORY.md" eran contra el indice equivocado. (4) <code>.claude/hooks/health-check.sh</code> MEM_DIR (check 13, detector de contradicciones memoria-config): miraba la memoria del proyecto viejo. Leccion ya aplicada en v2.116: derivar paths, no hardcodearlos; estos 4 estaban fuera del alcance del grep inicial (solo busque en hooks del repo y tools, no en ~/.local/bin ni en todos los .claude/hooks).</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.118 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">ci</span> **Los 3 runs rojos de "Validate Proposals" del 11-jun (commits 629e7a8, c27aef9, d78afcd) explicados y arreglados: el inventario de logos del validador no existia en CI**. validate_proposal.py deriva su lista de logos conocidos de <code>cl-rag/client-logos/</code>, pero el <code>*.png</code>/<code>*.jpg</code> global del .gitignore dejaba el catalogo sin trackear: CI solo veia 6 ficheros + la lista fallback hardcodeada (34 nombres, desactualizada: sin level, telefonica, ntt-data, criteo...). Resultado: los one-pagers ROI con logos nuevos pasaban la validacion local (82 ficheros en disco) y fallaban en CI con "only 3/5 found". Misma clase que el incidente del status page: check que depende de estado local no versionado. Fix: excepcion <code>!cl-rag/client-logos/*</code> en .gitignore + catalogo trackeado (78 ficheros, ~4MB). NO relacionado con el trabajo del status page de hoy (los 3 commits fallidos son anteriores y de otra pipeline). Verificacion: clone limpio file:// (equivalente al checkout de CI) revalida los 8 one-pagers que fallaban.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.117 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">git-hooks</span> **Copia versionada de los git hooks + deteccion de drift: cierra el riesgo residual de v2.116**. Los 3 hooks de enforcement (pre-commit, post-commit, pre-push) vivian solo en <code>.git/hooks/</code>, que git no trackea: una rotura (como la de la migracion del 07-jun) o un clone en otra maquina (VPS) dejaban el repo sin enforcement en silencio. Nuevo <code>tools/git-hooks/</code> con los hooks como fuente de verdad (copiados DESDE <code>.git/hooks/</code>, que ya llevaba el fix de rutas de v2.116; hashes SHA-256 verificados identicos) + <code>tools/install-git-hooks.sh</code> (instala con +x, modo <code>--check</code> para solo reportar drift, backup <code>.pre-install.bak</code> si el hook vivo difiere antes de sobreescribir). Nuevo check <code>git_hooks_integrity</code> en el health check de sesion (<code>~/Developer/agentic/.claude/hooks/health-check.sh</code> 11b): compara hashes vivo vs versionado y FALLA en drift o hook ausente; las 3 ramas (pass/missing/drift) verificadas en ejecucion. Flujo documentado en CLAUDE.md del subproyecto y <code>tools/git-hooks/README.md</code>: editar en tools/git-hooks/ -> installer -> commit, nunca editar <code>.git/hooks/</code> directo.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.116 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">git-hooks</span> **Status page muerto desde el 07-jun: rutas hardcodeadas a ~/Desktop/agentic en los git hooks**. La migracion del workspace a ~/Developer/agentic (07-jun 13:50) dejo <code>STATUS_REPO</code> y <code>COMPLIANCE_LOGGER</code> apuntando a un path inexistente: el post-commit saltaba el bloque entero de generacion/deploy en silencio (ultimo deploy real 06-jun 16:25, status.html congelado en v2.104 mientras el CHANGELOG iba por v2.115; lo detecto el health check de sesion del 11-jun). Clase de fallo doble: (1) path absoluto hardcodeado que sobrevivio a la migracion, (2) skip silencioso sin log. Fix en post-commit, pre-commit y pre-push: el workspace root se deriva del repo (<code>git rev-parse --show-toplevel</code> + <code>/../../..</code>), y el skip del bloque de status ahora loggea FAILURE en status_page.log y compliance.jsonl. Docs corregidas (CLAUDE.md root y subproyecto): deploy-status.yml de GitHub Actions es solo un sync check informativo, NO deploya; el escritor canonico es el post-commit hook local. Pendiente (denegado por permisos): MEMORY_DIR en .claude/hooks/session-startup.sh:15 apunta al path viejo Desktop (variable definida pero sin uso, no afecta operativa). Riesgo residual conocido: los hooks viven solo en .git/hooks/ sin copia versionada en el repo.</div>
@@ -1119,15 +1127,14 @@ footer {
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.115 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **9 BAJAs de la cadencia "Evento 17" procesadas + tool reutilizable <code>process_baja_optouts.py</code>**. Las 9 respuestas "BAJA - Actual Talent" del 11-jun (email de la cadencia 17-jun BCN, 8.783 inscritos) leidas de Gmail por API, mapeadas a Zoho y ejecutado opt-out (<code>Email_Opt_Out=true</code>) + des-enrolamiento (<code>POST Contacts/actions/unenrol_from_cadences</code>, cadence_id 154081000021464020 sacado de la UI). 9/9 verificados con re-query. 2 casos por reenvio interno confirmados por Joan: Nathalie Renault → Philippe Durand (groupe-cassous) y Service RH → Valerie Lescieux (groupebdl); 1 dominio renombrado: Carles Flamerich (apoloanalytics → apolocybersecurity). CSV optouts-master.csv +9 filas. Hallazgo API: el token NO tiene scope para listar cadencias (OAUTH_SCOPE_MISMATCH en <code>settings/automation/cadences</code>), pero enrol/unenrol funcionan con <code>ZohoCRM.modules.ALL</code>; el cadence_id hay que sacarlo de la URL de la UI. El script queda listo para las BAJAs que lleguen tras el email 3: <code>python3 cl-zoho/tools/process_baja_optouts.py --cadence-id 154081000021464020 --days 2 [--map sender=id] --live</code>.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.114 — 11 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-proposal-generator</span> **One-pagers ROI v2 tras feedback de Joan** ("falta contexto + el ROI tiene que poner numeros con evidencia objetiva"). Nuevo bloque <code>roi_table</code> en build_roi_onepager.py: tabla Concepto/Cifra/Fuente con el calculo del caso visible (breakevens, ahorros anuales, ejemplos etiquetados). Los 9 regenerados y verificados (1 pag, PASS); 8 drafts v2 con los numeros en el cuerpo (los v1 quedan obsoletos, IDs en kb-updates). Santevet reorientada a la objecion real "sin budget" (dato de Joan, no estaba en ningun sistema: registrado en kb-updates). ADM: quitada etiqueta "Recomendada" inferida que la propuesta original no tenia + calculo honesto sobre su volumen (la variable gana a su escala). Regla nueva en memoria: feedback-followups-contexto-y-numeros.</div>
@@ -1178,15 +1185,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">cl-sales-dashboard</span> **Classifier v2 (RUBRIC_VERSION v2)**: prompt parametrizado por recruiter (nombre real desde <code>users_cache.json</code> vía owner; antes asumía "Joan Boluda" hardcoded y diarizaba mal las llamadas de Isabella). Nuevo campo <code>call_type</code> (<code>discovery</code> | <code>event_invite</code>) guardado como <code>__call_type</code> en <code>breakdown_json</code> (sin migración de esquema). Rubric alternativo para llamadas de invitación a evento (apertura, valor del evento, cualificación de fit, manejo de objeciones, cierre con compromiso). Decisión de Joan: dispositions de GHL van a desaparecer, el reconocimiento automático de este pipeline es el sistema que vale; asistencia confirmada a evento → "Connected Positive" (no "Demo Scheduled"). <code>reclassify_calls.py</code> actualizado (pasa recruiter_name desde owner_email).</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v2.107 — 10 junio 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">17-jun-bcn</span> Firma de email HTML para Joan con bloque del evento (<code>presencial-17jun-bcn/firma-email/index.html</code>): bloque personal (foto circular hosteada en actualtalent.tech, nombre, cargo RPO BDM, tel y email de KB) + tarjeta dark estilo flyer (fecha 17 JUN grande en rojo, título con acentos, 09:00-13:30h Aticco Diagrame) + botón rojo "Reservar mi plaza" → actualtalent.tech/presencial/17-jun-bcn. Email-safe: tablas + estilos inline, imágenes por URL absoluta verificadas (200), Montserrat con fallback Arial. Render Chrome verificado visualmente, 0 em-dash. Instalación: abrir en navegador → copiar todo → pegar en Gmail Ajustes → Firma.</div>
-          <div class="entry-item"><span class="entry-tag">17-jun-bcn</span> Copy LinkedIn para Sylvain Boy (<code>communications/post-linkedin-sylvain-17jun.md</code>): versión escueta de su borrador con contexto real del evento (ponentes con empresa: Triviño/Institute for Futures, Montemurro/Cooltra, Iglesias/Techsoulogy, Sáez/KPI, B. y D. Rodríguez/RocaJunyent), gancho AI Act 2027 + referencia a su post anterior mantenidos, 2 hashtags, enlace de registro en primer comentario + notas de publicación (flyer, etiquetas, horario). Enviado como borrador Gmail a sylvain.boy@actualgroup.com (cuenta profesional). v2 tras feedback de Joan: añadida la dinámica de Xavi Sáez como bloque propio y quitado "AI Act" de la línea RocaJunyent (redundante con el arranque); draft vigente <code>r8913409721026775031</code>, el anterior borrado vía API. 0 em-dash.</div>
-          <div class="entry-item"><span class="entry-tag">cl-zoho</span> Auditados los 3 workflows GHL en draft (raíz de Workflows list) con veredicto por workflow: <code>fup_blind_cv</code> (mar-2026, 0 enrolled, secuencia Blind CV de KB §15 sustituida por pipeline local cl-cv-blind) → **borrable**; <code>note added</code> (espejo de notas GHL→Zoho, sustituido por fluxo-toolkit <code>handleNoteEvent</code> con filtro anti-loopback; webhook con 0 hits en logs actuales del VPS) → **mantener en draft, NO republicar** (duplicaría notas en Zoho); <code>Zoho History Lookup on Contact Created</code> → **publicar, no borrar** (pendiente desde 06-jun, handler VPS ya seguro). Verificado en VPS que el pipe stage→Zoho sigue vivo (eventos del mismo día). Detalle completo en kb-updates 2026-06-10 y memoria <code>project-zoho-ghl-crm-facts.md</code>. Hallazgo colateral: cuota diaria API GHL (200k) agotada a las ~06:11 UTC sin procesos locales; pendiente identificar consumidor.</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1205,7 +1203,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.118<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.119<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
