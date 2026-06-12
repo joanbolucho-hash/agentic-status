@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-12 09:13</span><span class="feed-msg">Verificación del sistema completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-12 09:08</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-12 08:53</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-12 08:52</span><span class="feed-msg">Borrador de email preparado</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 21:33</span><span class="feed-msg">Sales-publish: 314 files (auto 2026-06-11 21:33)</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-11 19:53</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 19:52</span><span class="feed-msg">Sincronización completada</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-11 19:37</span><span class="feed-msg">Sincronización completada</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,35 +1097,42 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.132 — 12 junio 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">cl-zoho</span> **EJECUTADA la segmentación WhatsApp evt 17-jun (GO de Joan): 489 contactos con tag <code>catalunya_evento_whatsapp_pendiente</code>, verificado en vivo por igualdad de conjuntos**. Composición: A 72 (Catalunya fuerte + móvil + email) + A2 61 (fuerte + móvil sin email) + B-promovido 40 (señal de empresa elevada con evidencia: cliente/deal Zoho + billing catalán, organismos con topónimo en el nombre, dominio .cat, o 2+ compañeros con evidencia fuerte; Banco Sabadell descartado por plantilla distribuida) + C 316 (pipeline Isabella sin WA previo, solo tag, owner y opps intactos). Escrituras: 58 contactos importados (0 errores, dedup por teléfono), 172 opps eventos/Nuevos a Joan, 4 phones corregidos (fijo de centralita -> móvil real, prev_phone en state), tags <code>catalunya_evento_joan_validos</code>/<code>ya_enviado</code> (11)/<code>revision_manual</code> (139). Patrón dry-run -> smoke 1 verificado en vivo -> batch -> re-verificación: pendiente final cuadra exacto contra esperado (0 móviles inválidos, 0 DND, 0 opt-outs/declinaciones, 0 candidatos). Fix de bug en apply: crash con filas sin email ni cid (el <code>tee</code> enmascaraba el exit code; ahora pipefail). PENDIENTE de GO explícito de Joan: borrado de las 191 opps webinar no-Catalunya (bloqueado por clasificador de permisos, correcto: no era necesario para la lista) y los 7 HOLD. Listado: <code>outputs/evt17-LISTA-FINAL-WHATSAPP.csv</code>.</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.131 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **<code>resend_prio_invitation.py</code>: reenvio 1:1 de la invitacion 17-jun al segmento PRIO Catalunya desde el buzon de Joan (mitigacion del fallo DMARC de la cadencia)**. La cadencia de Zoho falla DMARC (dominio sin autenticar, kb-updates 11-jun) y ~57% del segmento nunca recibio la invitacion; decision de Joan: reenvio selectivo solo a PRIO, nada al "resto" (sin tiempo util antes del evento; fix DNS para despues del 17). Envio por SMTP Gmail (alineado SPF+DKIM como las confirmaciones de baja), throttled 15s/email, lotes de 300/dia con --limit, estado en <code>outputs/resend-prio-state.json</code>, footer de baja con el mismo mailto que procesa process_baja_optouts.py. Exclusiones: la vista PRIO ya filtra Email_Opt_Out, + optouts-master.csv + <code>evt17-declinaciones.csv</code> (cruce con el trabajo de segmentacion v2.130: 2 declinaciones estaban en la vista y quedan fuera). Copy = version corta personal del email real de la cadencia (mismos hechos: fecha, Aticco, ponentes, landing). Dry-run verificado: 520 pendientes, 0 sin email. Envio pendiente del OK de Joan.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.130 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Segmentación evt 17-jun ampliada a tiers para objetivo ~500 WhatsApps + exclusión de candidatos de prácticas**. (1) Detectados y excluidos de TODO los 1.257 leads de Zoho que son CANDIDATOS de la campaña de prácticas (tag <code>VGED-Ferias-2026</code> / Lead_Source=Trade Show: estudiantes con gmail y universidad como empresa, 1.222 con móvil ES, 0 colaron en listas de envío, 99 purgados de revisión manual) -> <code>evt17-leads-candidatos.csv</code> para borrado futuro en Zoho. (2) Criterio relajado por petición de Joan (móvil ES obligatorio, email opcional): tiers A 72 (fuerte+móvil+email), A2 61 (fuerte+móvil sin email), B 117 (señal débil empresa/HQ + móvil, libre), C 316 (pipeline Isabella con móvil sin WA del evento). Máx componible 566. (3) Declinaciones del evento (Eva Cuesta, Magalí Mayol, Nuria Massip, Adriana González, kb-updates 11-jun) ahora son exclusión estructurada (<code>evt17-declinaciones.csv</code>) y los opt-outs excluyen por IDENTIDAD (email + nombre completo por subset de tokens), no solo email: Magalí estaba en tier B vía registro Lusha sin email y el cruce por email era ciego.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.129 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Segmentación Catalunya r2 para campaña WhatsApp evt 17-jun: análisis read-only completo + verificación adversarial doble (PENDIENTE GO de Joan para escrituras)**. Tool nuevo <code>evt17_catalunya_segment.py</code> (pull GHL 2.648 contactos + 619 opps + Zoho Contacts/Leads/Accounts + conversaciones con mensajes, cache 6h en <code>outputs/evt17_cache/</code>): clasificador Catalunya FUERTE/DEBIL/CONTRA con CP 08-17-25-43, Mailing_State, Leads de Zoho (módulo nunca explotado) y Lusha local; identidad por union-find email+móvil ES (cruzar solo por email dejaba colar 9 contactos de Isabella bajo email alias y duplicaba envíos). Resultado: 912 candidatos fuertes, 72 válidos pendientes de WhatsApp (57 en GHL + 15 a importar), 378 excluidos por trabajados, 4 por WA ya recibido, 514 a revisión manual, 456 Catalunya-fuerte sin móvil o email. Webinars de Joan: 191 opps a borrar, 6 mantener, 7 HOLD. 2 rondas de verificación adversarial (3 agentes c/u) destaparon y se corrigieron: alias de Isabella por teléfono, zips de empresa contradictorios (DHL 08005 con city Madrid), emails enmascarados de Lusha (<code>...@dominio</code>), gemelos geo-negativos por nombre (caso Sorigué/Moventia-París), opps reasignadas por workflows a Lucía/Jessica (no se borran), y fix de phone (GHL con fijo de centralita vs móvil real: el canal WA usa contact.phone). Tool de escrituras <code>evt17_apply_segment.py</code> listo en dry-run (backup de opps + state de rollback + skip si la opp ya no es de Joan).</div>
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.128 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">docs</span> **Auditoría completa del stack LLM** → <code>docs/llm-stack-audit-2026-06-12.md</code>. Inventario verificado de los 11 puntos donde el sistema usa LLMs (Claude Code suscripción, llm_client.py, auto_followup GPT-4o, briefing, zoho-history Haiku, call intel Haiku, whisper-1 + fallback local, vector store OpenAI, index_images, enrich batches, email parser Efecto Solar) + precios vigentes de los 3 proveedores consultados hoy (Anthropic oficial, OpenAI página oficial, DeepSeek página oficial) + veredicto por caso de uso. Claves: audio y RAG son lock-in OpenAI (sin equivalente Anthropic/DeepSeek; whisper local ya existe como fallback); texto barato → Haiku default; DeepSeek solo para batches masivos (<code>deepseek-chat</code> se depreca 24-jul-2026 → renombrar a <code>deepseek-v4-flash</code>); gasto API total estimado 10-30 EUR/mes; fallbacks de llm_client.py desactualizados (sonnet-4-5 legacy, gpt-4o fuera de la página de precios).</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.127 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> Canary E2E del workflow <code>Zoho History Lookup on Contact Created</code> (en draft) ANTES de publicarlo, con OK de Joan: 3 contactos reales probados via POST directo al webhook de producción. Resultado: Alfanar y Cafler skip limpio <code>no_relevant_activity</code> (gratis, sin LLM); Teleperformance (Sara Llavería) destapó **OpenAI sin saldo** (<code>insufficient_quota</code>) que rompía la escritura de notas. Fix: proveedor LLM cambiado en caliente a Anthropic (<code>ZOHO_HISTORY_LLM_PROVIDER=anthropic</code>, modelo claude-haiku-4-5, mecanismo documentado, reversible) via <code>docker service update</code>. Re-test: nota <code>aEZPz4qiYmviP7al8Deq</code> escrita correcta (narrativa + links Zoho clicables + marker idempotencia) y verificado en <code>integration_sync_logs</code> del toolkit que NO rebota a Zoho (0 filas, guarda anti-loopback OK). **Canary verde: publicar el workflow es seguro.** Hallazgo colateral CRÍTICO: la cuenta OpenAI está sin cuota, probablemente explica los 4 transcripts atascados en la retry queue de auto_followup; pendiente reponer saldo o migrar consumidores a Anthropic.</div>
@@ -1174,13 +1181,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">health-check</span> **Falso positivo granola_watcher_version eliminado**: el check leia el marcador WATCHER_CODE_VERSION de <code>granola_watcher_stdout.log</code>, congelado desde el 07-jun (otra secuela de la migracion), asi que seguia reportando el hash de marzo aunque el proceso real corria el codigo actual (verificado: PID 89445 arrancado 11-jun 17:52 tras restart_watcher.sh, marcador fresco en <code>granola_watcher.log</code>). Fix en <code>.claude/hooks/health-check.sh</code>: GW_LOG apunta al log vivo; corrige de paso las stats de extraccion del check 4, que leian del log muerto. Health check final de la sesion: 0 FAILURES, 2 warnings benignos (status_manual_edit = drift por diseno del post-commit, kb_consolidation = cron cloud verificado verde, solo sin nada que promover).</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v2.121 — 11 junio 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">cl-daily-briefing</span> **Envio programado de los 8 one-pagers ROI v2 para el viernes 19-jun** (peticion Joan: "descarta los viejos y programalos para el viernes de la semana que viene"). Los 8 drafts v1 obsoletos BORRADOS de la cuenta profesional (verificado: 8x DELETED). Nuevo tool <code>send_scheduled_drafts.py</code> (reusa el token gmail.compose de create_draft_with_attachment): modos --delete / --config / --dry-run, guarda de fecha, done-marker idempotente, fallback de resolucion por destinatario+asunto si Joan edita un draft y cambia el ID, resumen por email a Joan al ejecutar, y auto-retirada del LaunchAgent. Plan: <code>outputs/scheduled-send-roi-onepagers.json</code> (8 drafts v2). LaunchAgent <code>com.actualtalent.send-roi-onepagers</code> cargado, dispara 19-jun 9:00/11:00/13:30/16:30 (reintentos por si el Mac esta apagado; solo envia una vez). VERIFICADO hoy: dry-run resuelve los 8 drafts con el interprete exacto del plist (/opt/homebrew/bin/python3; /usr/bin/python3 fallaba por falta de google libs y se corrigio antes de cargar), y la guarda de fecha rechaza el envio antes del 19. PENDIENTE VERIFICACION: el disparo real del 19-jun (regla: no declarar workflow como funcionando hasta que Joan confirme la primera ejecucion programada).</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1199,7 +1199,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.131<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.132<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
