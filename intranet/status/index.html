@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 21:12</span><span class="feed-msg">Feat(cl-onboarding-sdr): cargos del equipo M0 desde WHO is WHO canonico</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 20:42</span><span class="feed-msg">Feat(cl-onboarding-sdr): m9 volumen/higiene/nurturing + m10 carrera secuencial</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 20:34</span><span class="feed-msg">Mantenimiento del workspace</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 20:30</span><span class="feed-msg">Fix(cl-onboarding-sdr): handover notes (no scorecard), cualificación simple 4 le</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-13 18:40</span><span class="feed-msg">Mantenimiento del workspace</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-13 18:36</span><span class="feed-msg">Fix(cl-onboarding-sdr): reemplazo atomico del documento al descifrar (evita rend</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-13 18:25</span><span class="feed-msg">Feat(cl-onboarding-sdr): plan 30-60-90 como Gantt interactivo con links a modulo</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-13 17:52</span><span class="feed-msg">Fix(cl-zoho): resend_prio_invitation resiliente a cortes de red + reanudacion</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,35 +1097,42 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.137 — 14 junio 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Campus SDR M0: cargos del equipo cerrados desde el WHO is WHO canónico (captura de Joan)**. Resueltos los dos chips ámbar <code>[JOAN CONFIRMA: cargo]</code>: Germán Romero = Life Sciences Talent Consultant; Sara Fernández = Senior Consultant, División FMCG. Cross-check de todo el grid contra la hoja: añadidos apellidos para uniformidad (Lucía Sagarraga, Germán Romero, Sara Fernández) y corregido el cargo de Lucía de "Consultora" (vago) a "Consultora 360, Sector Retail" según fuente. Grid de 8 personas sin chips pendientes. NO se añadieron Farah Akhtar (Diseñadora Gráfica) ni Bianca Azcueta (Team Leader) de la hoja: no estaban en el set de "compañeros más cercanos" que curó Joan y no hay foto en assets/team (pendiente de decisión de Joan si los quiere en el grid). Rebuild + deploy, verificado en navegador (8 nombres + cargos correctos vía DOM). https://actualtalent.tech/academy/.</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.136 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Campus SDR: decisiones de Joan aplicadas a m9 y m10, rebuild + redeploy**. m9 (Tu secuencia multicanal): volumen diario fijado (unas 70-80 llamadas, ~70 emails, ~70 WhatsApps/día, encuadrado como seguimientos que reparte la secuencia, no 200 conversaciones de cero); higiene de pipeline con umbrales definitivos (>3 días hábiles sin tocar -> bloque inactivo; >3 semanas sin próximo paso -> red flag); nurturing reescrito (la diseña Isabella al final del onboarding como primer entregable propio, vídeos de apoyo en Fluxo, cadencia mensual). Quizzes de m9 actualizados a los umbrales y a la cadencia mensual. m10 (Tu plan): sección de carrera reescrita de 3 rutas paralelas a estructura SECUENCIAL alineada con m1: Paso 1 = pasar a SDR Senior (superar prueba 6m + 75 SQL en 6 meses con consistencia); Paso 2 = otras posiciones (Consultora RPO, Executive Search, perfil 360, Account Executive) solo si se abren, sin promesas. Quiz de carrera rehecho (eliminadas las preguntas de "ruta C" y "decisión de ruta el 1-dic", obsoletas). Eliminado el chip <code>[PENDIENTE: validar con Karim]</code> (la estructura secuencial ya la confirmó Joan). Cero chips JOAN DECIDE/CONFIRMA pendientes en m9/m10, cero em-dashes. Verificado en navegador (render m9/m10 OK, 0 errores de consola, JSON de quizzes válido). Deploy a https://actualtalent.tech/academy/.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.135 — 13 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Dos campañas WhatsApp evt 17-jun separadas por etiqueta (GO de Joan) + fix de doble-tag**. (1) 22 cálidos de webinars (registraron a nuestros webinars, móvil, sin email) movidos a campaña aparte con <code>webinar_evento_whatsapp_pendiente</code> via <code>evt17_webinar_retag.py</code> (DELETE tags principales + POST tag webinar; verificado el endpoint DELETE /contacts/{id}/tags). Excluidos Karim (interno) y Jaime Gortari (partner Teamtailor). (2) Verificación en vivo pescó a rosa.brunet@Sumitomo con <code>pendiente</code> Y <code>ya_enviado</code> a la vez (habría recibido el WhatsApp dos veces): barrida toda la base, único caso, quitada de pendiente. Estado final verificado en vivo: <code>catalunya_evento_whatsapp_pendiente</code>=565, <code>webinar_evento_whatsapp_pendiente</code>=22, solape 0, 0 con pendiente+ya_enviado, todos móvil ES único, 0 DND. Total 587 personas distintas. Lista: <code>outputs/evt17-LISTA-FINAL-WHATSAPP.csv</code> (columna campaña).</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.133 — 13 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Reenvio invitacion PRIO: resiliencia a cortes de red + reanudacion tras crash (95 -> 520)**. El lote 1 del 12-jun se corto en el email 96 (la red del Mac cayo ~18:20, mismo evento que tumbo el git push del dia); el script peto en vez de pausar porque la reconexion periodica de SMTP no estaba protegida con try/except. Fix en <code>resend_prio_invitation.py</code>: helper <code>connect()</code> con reintentos y backoff, send con reconexion-y-reintento ante <code>SMTPServerDisconnected</code>/<code>OSError</code>, y salida limpia con estado guardado si la red no vuelve (en vez de traceback). 95 enviados quedaron en state y se excluyen al reanudar (idempotente, 0 duplicados). Reanudados los 425 restantes el 13-jun. Extra: normalizacion de nombres ALL-CAPS de Zoho ("PILAR" -> "Pilar") en saludo y asunto. Leccion: todo loop de envio largo necesita reconnect-or-exit-clean, nunca operacion de socket sin guardar.</div>
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.133 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Campaña WhatsApp evt 17-jun ampliada a 566 (GO de Joan para llegar a 500+)**. Añadidos los 77 del tier B no promovido (móvil ES + empresa catalana, libres, 0 opt-out/duplicado/candidato): 39 importados a GHL (0 errores), etiquetados <code>catalunya_evento_whatsapp_pendiente</code>. Verificado en vivo: 566 con el tag, 566 móviles únicos, 0 DND, 0 duplicados. Composición A 72 + A2 61 + B-promovido 40 + B-rescate 77 + C-Isabella 316. Listado: <code>outputs/evt17-LISTA-FINAL-WHATSAPP.csv</code>. Bolsas restantes identificadas (no ejecutadas): Luma (registrados del evento, requiere login de Joan), 24 webinar-parked con móvil sin email (~10-12 cálidos relevantes, incluye a Karim y partner Teamtailor que se excluyen), 917 móviles ES fuera de Catalunya (volumen off-criterion), 378 catalanes sin móvil (solo email).</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.132 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **EJECUTADA la segmentación WhatsApp evt 17-jun (GO de Joan): 489 contactos con tag <code>catalunya_evento_whatsapp_pendiente</code>, verificado en vivo por igualdad de conjuntos**. Composición: A 72 (Catalunya fuerte + móvil + email) + A2 61 (fuerte + móvil sin email) + B-promovido 40 (señal de empresa elevada con evidencia: cliente/deal Zoho + billing catalán, organismos con topónimo en el nombre, dominio .cat, o 2+ compañeros con evidencia fuerte; Banco Sabadell descartado por plantilla distribuida) + C 316 (pipeline Isabella sin WA previo, solo tag, owner y opps intactos). Escrituras: 58 contactos importados (0 errores, dedup por teléfono), 172 opps eventos/Nuevos a Joan, 4 phones corregidos (fijo de centralita -> móvil real, prev_phone en state), tags <code>catalunya_evento_joan_validos</code>/<code>ya_enviado</code> (11)/<code>revision_manual</code> (139). Patrón dry-run -> smoke 1 verificado en vivo -> batch -> re-verificación: pendiente final cuadra exacto contra esperado (0 móviles inválidos, 0 DND, 0 opt-outs/declinaciones, 0 candidatos). Fix de bug en apply: crash con filas sin email ni cid (el <code>tee</code> enmascaraba el exit code; ahora pipefail). PENDIENTE de GO explícito de Joan: borrado de las 191 opps webinar no-Catalunya (bloqueado por clasificador de permisos, correcto: no era necesario para la lista) y los 7 HOLD. Listado: <code>outputs/evt17-LISTA-FINAL-WHATSAPP.csv</code>.</div>
@@ -1173,13 +1180,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Segmentación Catalunya r2 para campaña WhatsApp evt 17-jun: análisis read-only completo + verificación adversarial doble (PENDIENTE GO de Joan para escrituras)**. Tool nuevo <code>evt17_catalunya_segment.py</code> (pull GHL 2.648 contactos + 619 opps + Zoho Contacts/Leads/Accounts + conversaciones con mensajes, cache 6h en <code>outputs/evt17_cache/</code>): clasificador Catalunya FUERTE/DEBIL/CONTRA con CP 08-17-25-43, Mailing_State, Leads de Zoho (módulo nunca explotado) y Lusha local; identidad por union-find email+móvil ES (cruzar solo por email dejaba colar 9 contactos de Isabella bajo email alias y duplicaba envíos). Resultado: 912 candidatos fuertes, 72 válidos pendientes de WhatsApp (57 en GHL + 15 a importar), 378 excluidos por trabajados, 4 por WA ya recibido, 514 a revisión manual, 456 Catalunya-fuerte sin móvil o email. Webinars de Joan: 191 opps a borrar, 6 mantener, 7 HOLD. 2 rondas de verificación adversarial (3 agentes c/u) destaparon y se corrigieron: alias de Isabella por teléfono, zips de empresa contradictorios (DHL 08005 con city Madrid), emails enmascarados de Lusha (<code>...@dominio</code>), gemelos geo-negativos por nombre (caso Sorigué/Moventia-París), opps reasignadas por workflows a Lucía/Jessica (no se borran), y fix de phone (GHL con fijo de centralita vs móvil real: el canal WA usa contact.phone). Tool de escrituras <code>evt17_apply_segment.py</code> listo en dry-run (backup de opps + state de rollback + skip si la opp ya no es de Joan).</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v2.129 — 12 junio 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">docs</span> **Stack LLM v2: investigación en profundidad con plan de decisión** (actualiza <code>docs/llm-stack-audit-2026-06-12.md</code>). Hallazgos verificados que corrigen la v1: OpenAI sin saldo desde el **03-jun** (no 10-jun); **Granola necesita re-auth desde el 11-jun** (RAG congelado, problema independiente); kb-consolidation.yml solo tiene OPENAI_API_KEY (por eso lleva 79h sin correr); whisper local MLX es el backend primario desde el 11-jun (gratis, calidad equivalente); Haiku ya es el motor de facto del VPS (toolkit x4, vexa, efecto-solar, zoho-history, garabatto); vexa es Anthropic-first (no DeepSeek); content_pipeline esta pausado; el unico DeepSeek activo es el categorizador de soft_finanzas. Rotos ahora: generate_profile.py e index_images.py (gpt-4o directo sin fallback). Plan de 8 pasos en el doc: re-auth Granola + saldo OpenAI con limite (Joan, hoy), ANTHROPIC_API_KEY en kb-consolidation, fallback Anthropic en profile/images, defaults de llm_client, rename DeepSeek pre-24-jul, consolidar 2 keys DeepSeek, verificacion E2E.</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1198,7 +1198,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.136<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.137<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
