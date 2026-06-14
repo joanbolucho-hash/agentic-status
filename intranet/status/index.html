@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 20:13</span><span class="feed-msg">Materiales del webinar actualizados</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 20:01</span><span class="feed-msg">Feat(cl-onboarding-sdr): glosario+tooltips, gráficos, RPO/servicios/frases, ICP,</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 19:55</span><span class="feed-msg">Verificación del sistema completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 19:50</span><span class="feed-msg">Session-end: 233 files (2026-06-14 19:50)</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-12 17:34</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-12 17:19</span><span class="feed-msg">Sincronización completada</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-12 17:04</span><span class="feed-msg">Sincronización completada</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:rgba(255,255,255,0.45)"></span><span class="feed-icon" style="color:rgba(255,255,255,0.45)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-12 16:48</span><span class="feed-msg">Sincronización completada</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,35 +1097,42 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.135 — 13 junio 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Dos campañas WhatsApp evt 17-jun separadas por etiqueta (GO de Joan) + fix de doble-tag**. (1) 22 cálidos de webinars (registraron a nuestros webinars, móvil, sin email) movidos a campaña aparte con <code>webinar_evento_whatsapp_pendiente</code> via <code>evt17_webinar_retag.py</code> (DELETE tags principales + POST tag webinar; verificado el endpoint DELETE /contacts/{id}/tags). Excluidos Karim (interno) y Jaime Gortari (partner Teamtailor). (2) Verificación en vivo pescó a rosa.brunet@Sumitomo con <code>pendiente</code> Y <code>ya_enviado</code> a la vez (habría recibido el WhatsApp dos veces): barrida toda la base, único caso, quitada de pendiente. Estado final verificado en vivo: <code>catalunya_evento_whatsapp_pendiente</code>=565, <code>webinar_evento_whatsapp_pendiente</code>=22, solape 0, 0 con pendiente+ya_enviado, todos móvil ES único, 0 DND. Total 587 personas distintas. Lista: <code>outputs/evt17-LISTA-FINAL-WHATSAPP.csv</code> (columna campaña).</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.133 — 13 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Reenvio invitacion PRIO: resiliencia a cortes de red + reanudacion tras crash (95 -> 520)**. El lote 1 del 12-jun se corto en el email 96 (la red del Mac cayo ~18:20, mismo evento que tumbo el git push del dia); el script peto en vez de pausar porque la reconexion periodica de SMTP no estaba protegida con try/except. Fix en <code>resend_prio_invitation.py</code>: helper <code>connect()</code> con reintentos y backoff, send con reconexion-y-reintento ante <code>SMTPServerDisconnected</code>/<code>OSError</code>, y salida limpia con estado guardado si la red no vuelve (en vez de traceback). 95 enviados quedaron en state y se excluyen al reanudar (idempotente, 0 duplicados). Reanudados los 425 restantes el 13-jun. Extra: normalizacion de nombres ALL-CAPS de Zoho ("PILAR" -> "Pilar") en saludo y asunto. Leccion: todo loop de envio largo necesita reconnect-or-exit-clean, nunca operacion de socket sin guardar.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.133 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Campaña WhatsApp evt 17-jun ampliada a 566 (GO de Joan para llegar a 500+)**. Añadidos los 77 del tier B no promovido (móvil ES + empresa catalana, libres, 0 opt-out/duplicado/candidato): 39 importados a GHL (0 errores), etiquetados <code>catalunya_evento_whatsapp_pendiente</code>. Verificado en vivo: 566 con el tag, 566 móviles únicos, 0 DND, 0 duplicados. Composición A 72 + A2 61 + B-promovido 40 + B-rescate 77 + C-Isabella 316. Listado: <code>outputs/evt17-LISTA-FINAL-WHATSAPP.csv</code>. Bolsas restantes identificadas (no ejecutadas): Luma (registrados del evento, requiere login de Joan), 24 webinar-parked con móvil sin email (~10-12 cálidos relevantes, incluye a Karim y partner Teamtailor que se excluyen), 917 móviles ES fuera de Catalunya (volumen off-criterion), 378 catalanes sin móvil (solo email).</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.132 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **EJECUTADA la segmentación WhatsApp evt 17-jun (GO de Joan): 489 contactos con tag <code>catalunya_evento_whatsapp_pendiente</code>, verificado en vivo por igualdad de conjuntos**. Composición: A 72 (Catalunya fuerte + móvil + email) + A2 61 (fuerte + móvil sin email) + B-promovido 40 (señal de empresa elevada con evidencia: cliente/deal Zoho + billing catalán, organismos con topónimo en el nombre, dominio .cat, o 2+ compañeros con evidencia fuerte; Banco Sabadell descartado por plantilla distribuida) + C 316 (pipeline Isabella sin WA previo, solo tag, owner y opps intactos). Escrituras: 58 contactos importados (0 errores, dedup por teléfono), 172 opps eventos/Nuevos a Joan, 4 phones corregidos (fijo de centralita -> móvil real, prev_phone en state), tags <code>catalunya_evento_joan_validos</code>/<code>ya_enviado</code> (11)/<code>revision_manual</code> (139). Patrón dry-run -> smoke 1 verificado en vivo -> batch -> re-verificación: pendiente final cuadra exacto contra esperado (0 móviles inválidos, 0 DND, 0 opt-outs/declinaciones, 0 candidatos). Fix de bug en apply: crash con filas sin email ni cid (el <code>tee</code> enmascaraba el exit code; ahora pipefail). PENDIENTE de GO explícito de Joan: borrado de las 191 opps webinar no-Catalunya (bloqueado por clasificador de permisos, correcto: no era necesario para la lista) y los 7 HOLD. Listado: <code>outputs/evt17-LISTA-FINAL-WHATSAPP.csv</code>.</div>
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.131 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **<code>resend_prio_invitation.py</code>: reenvio 1:1 de la invitacion 17-jun al segmento PRIO Catalunya desde el buzon de Joan (mitigacion del fallo DMARC de la cadencia)**. La cadencia de Zoho falla DMARC (dominio sin autenticar, kb-updates 11-jun) y ~57% del segmento nunca recibio la invitacion; decision de Joan: reenvio selectivo solo a PRIO, nada al "resto" (sin tiempo util antes del evento; fix DNS para despues del 17). Envio por SMTP Gmail (alineado SPF+DKIM como las confirmaciones de baja), throttled 15s/email, lotes de 300/dia con --limit, estado en <code>outputs/resend-prio-state.json</code>, footer de baja con el mismo mailto que procesa process_baja_optouts.py. Exclusiones: la vista PRIO ya filtra Email_Opt_Out, + optouts-master.csv + <code>evt17-declinaciones.csv</code> (cruce con el trabajo de segmentacion v2.130: 2 declinaciones estaban en la vista y quedan fuera). Copy = version corta personal del email real de la cadencia (mismos hechos: fecha, Aticco, ponentes, landing). Dry-run verificado: 520 pendientes, 0 sin email. Envio pendiente del OK de Joan.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.130 — 12 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Segmentación evt 17-jun ampliada a tiers para objetivo ~500 WhatsApps + exclusión de candidatos de prácticas**. (1) Detectados y excluidos de TODO los 1.257 leads de Zoho que son CANDIDATOS de la campaña de prácticas (tag <code>VGED-Ferias-2026</code> / Lead_Source=Trade Show: estudiantes con gmail y universidad como empresa, 1.222 con móvil ES, 0 colaron en listas de envío, 99 purgados de revisión manual) -> <code>evt17-leads-candidatos.csv</code> para borrado futuro en Zoho. (2) Criterio relajado por petición de Joan (móvil ES obligatorio, email opcional): tiers A 72 (fuerte+móvil+email), A2 61 (fuerte+móvil sin email), B 117 (señal débil empresa/HQ + móvil, libre), C 316 (pipeline Isabella con móvil sin WA del evento). Máx componible 566. (3) Declinaciones del evento (Eva Cuesta, Magalí Mayol, Nuria Massip, Adriana González, kb-updates 11-jun) ahora son exclusión estructurada (<code>evt17-declinaciones.csv</code>) y los opt-outs excluyen por IDENTIDAD (email + nombre completo por subset de tokens), no solo email: Magalí estaba en tier B vía registro Lusha sin email y el cruce por email era ciego.</div>
@@ -1173,13 +1180,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Correcciones RPO/servicios/frases + glosario con tooltips + gráficos (feedback 3).** TRANSVERSAL: glosario de 28 términos (siglas + anglicismos) que el build envuelve automáticamente con tooltip al pasar el ratón en todos los módulos (apply_glossary: 1ª ocurrencia por módulo, solo en texto) + vista Glosario nueva en la barra superior. Anglicismos limpiados (Gate->Hito, outbound->prospección, touches->toques, end-to-end y Lektio fuera de m0). 3 GRÁFICOS nuevos (build.py via marcadores): mapa competitivo de cuadrantes con AT destacado, organigrama de cargos RRHH por nivel, diagrama del efecto cascada de pipeline. m6 RPO reescrito: sin tono pitch (0 pitch en llamada), retainer con tooltip, "por qué gana dinero" en bullets + previsibilidad + ejemplo + enlace calculadora rpo-calculator.actual-talent.com, analogía casarse/citas, formaciones (no Lektio), IA con presencia, outsourcing concreto; frases de valor depuradas (+ primer RPO de Europa, +50% facturación, músculo de grupo). m7 competitivo: gráfico visible + explicación "como a un niño" + battlecards=competidores. m8 ICP: geografía Iberia+LATAM sin tabla, tamaño medianas-grandes/IBEX, cargos con diferencias + hiring manager + champion + compras, rama TA sin detalle, jerarquía gráfica (fuera lo del evento). m9 secuencias: por qué multicanal (orden llamada->email/WhatsApp, LinkedIn paralelo, sin días/gates), 5 tipos de mensaje genéricos, pipeline 150-200, cascada, higiene (>3 días->inactivo, >3 semanas sin next step->red flag), mínimo 20 toques, sección Nurturing nueva. m10 ramp-up rehecho por conocimientos 30/60/90. Workflow de 10 agentes con verificación por módulo (todos ok). Verificado en navegador: 28 términos en glosario, 7 tooltips en m6, mapa 4 cuadrantes con AT, 7 cargos, cascada 4 cols. Cero em-dash. Desplegado.</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v2.131 — 14 junio 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Reestructura del playbook de Isabella (feedback 2): de 12 a 11 módulos, más escueto y ejecutable.** ELIMINADOS módulos Playbook de eventos e Higiene operativa (event-focused, no atemporales). Renumeración correlativa de archivos e ids (m0-m10) + ramp-up del Gantt (plan.json) reasignado a los nuevos módulos, fase "Eventos"->"Arranque", Gate 1 sin las "8 reglas" del módulo borrado. NUEVO módulo "Criterios de cualificación" (las 4 cajas BANT con check que valida Joan). Reescritos: M2 "Cómo hacer una llamada" (antes Script v2: framework gráfico Descubrir/Magnificar/Confirmar arriba, apertura SIN permission-based, objeciones rápidas, tarjetas industria punchy, absentismo en vez de no-shows); M3 "Objeciones y discovery" (patrón Onomondo reconoce/pregunta/calla, objeciones por categoría, dato del sector de que la 1ª objeción casi nunca es real -60% dice no 4 veces antes del sí-, "mándame info" fuera de tabla, discovery numerado correlativo, battlecards solo para competidores, checklist mental persona/dolor/urgencia/next-step); M4 "SQL y BANT" (quitado "qué cuenta para variable" -> a KPIs; preguntas BANT 1/letra; timing <3m; lista de dolores corta; quitado resumen 1-slide); M1 "Tus KPIs" (renombrado, consolida "qué cuenta para tu variable" remitiendo a SQL/BANT y Criterios sin duplicar); M10 plan alineado con la nueva estructura. Fuente nueva: Objection Handling de Onomondo (escritorio). Bug arreglado: flechas del framework (escape unicode CSS) ahora carácter directo. Verificado en navegador: 11 módulos en orden, Gantt enlaza M4·M5->SQL y BANT, framework con flechas OK. Cero em-dash, cero GHL. Desplegado.</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1198,7 +1198,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.133<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.135<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
