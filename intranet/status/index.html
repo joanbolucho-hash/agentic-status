@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 22:44</span><span class="feed-msg">Fix(cl-onboarding-sdr): umbral PIP/despido = 60% del target durante 2 meses</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 22:38</span><span class="feed-msg">Feat(cl-onboarding-sdr): Gantt re-estudiado, pipeline e ICP son del dia 1</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 22:30</span><span class="feed-msg">Fix(cl-zoho): blast WhatsApp 12-jun fallo a medias (203/505), numero flageado sp</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 22:23</span><span class="feed-msg">Session-end: 62 files (2026-06-14 22:23)</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-14 17:13</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 17:09</span><span class="feed-msg">Feat(cl-onboarding-sdr): correcciones campus Isabella - ortografia, Fluxo, Gantt</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-14 16:13</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-14 15:13</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,35 +1097,42 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.146 — 14 junio 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **m1: umbral de PIP/despido corregido a 60% del target durante 2 meses consecutivos (corrección de Joan)**. El texto decía "dos meses consecutivos sin llegar al target son motivo de no continuar" (demasiado estricto: fallar el 100% por poco no debe disparar despido). Ahora: "dos meses consecutivos por debajo del 60% del target". Mismo umbral para el PIP post-prueba (que mantiene la reducción de objetivos al 75%). Único sitio del campus con el umbral (verificado por grep en content/). Rebuild + deploy.</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.145 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Gantt re-estudiado: pipeline e ICP son del día 1 (corrección de Joan)**. Joan: "no me cuadra el Gantt, ella construye pipeline desde el día 1 y el ICP lo entiende desde el principio". El timeline anterior confundía CUÁNDO se aprende en profundidad (orden pedagógico de m10) con CUÁNDO se hace la actividad. Re-estudiado con workflow multi-agente (3 lentes: realidad del día 1 / profundidad-vs-arranque / necesidad emergente + síntesis + crítico adversarial SDR senior). Modelo nuevo, separando categorías: **espina** = "Construir y trabajar tu pipeline" (m9) arranca el día 1 y es CONTINUO (barra más larga, 15-jun a 31-ago); **fundacional día 1** = quiénes somos+KPIs (m0,m1), a quién llamar/ICP (m8), método de llamada (m2, complejidad 5), por qué RPO (m6), plan 30-60-90 (m10); **se profundiza con práctica** = objeciones (m3, arranca día 1 porque las oye en su primera llamada), cualificar BANT (m4,m5, sem 1); **se suma luego** = competidores (m7, sem 2, cuando un prospecto nombra un rival). El panel de detalle ahora muestra la categoría (espina/fundacional/se profundiza/se suma) en vez del nivel de complejidad. plan.json reescrito; render: planItems lleva <code>category</code>, kicker por categoría. Verificado en navegador (pipeline 15-jun→31-ago como espina, ICP+método+objeciones+RPO al día 1, 0 errores). Deploy a https://actualtalent.tech/academy/.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.144 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **El blast WhatsApp del 12-jun fallo a medias y el numero se esta quemando (verificado en vivo, NO se reenvio nada a ciegas)**. Joan dijo "dispara"; en vez de soltar 296 WhatsApps, verifique el status real de los envios (<code>/conversations/{id}/messages</code>, campo <code>status</code>+<code>error</code>). Hallazgos verificados: el envio del 12-jun fue por <code>bulk_actions</code> de la UI (Joan+Isabella), copy recuperada literal. De 505 intentos: **302 delivered/read/sent, 203 FALLARON**. Desglose exacto de los 203: 71 <code>no_whatsapp_o_bloqueado</code> (muertos), **60 <code>numero_flageado_spam</code>** (Meta restringe el numero por mensajes marcados como spam en los blasts), 44 transitorio + 27 desconocido (reenviables). <code>evt17_retag_por_status.py</code> corrigio los tags (los 203 estaban mal en ya_enviado): <code>evt17_no_whatsapp</code>=71, <code>evt17_fallo_reputacion</code>=60, <code>evt17_reintentar</code>=71; ya_enviado real=303. **Enviables = 164** (72 nuevos + 21 webinar + 71 reintentar), pero en tandas pequenas/espaciadas, NUNCA otro blast: riesgo de baneo del numero. Leccion: "ya enviado" != "intento de envio"; verificar status+error de los mensajes antes de marcar a nadie como contactado o re-disparar.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.143 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Gantt: HOY en tiempo real + renombrada la fase 2 (decisión Joan)**. (1) El contador "Día X de tu ramp-up" y la línea HOY se calculan ahora con la fecha real del navegador (<code>new Date()</code> en <code>renderPlan</code>), no con el campo <code>today</code> congelado del JSON: cada vez que Isabella abre el campus, se actualiza solo (la línea HOY se oculta si la fecha cae fuera del rango). (2) El bloque "Días 31-60" pasa de "Primer SQL RPO" a "Construir tu pipeline": Isabella ya tiene que sacar SQL desde el ramp de junio, así que etiquetar julio como "primer SQL" inducía a error. Verificado en navegador: HOY se posiciona por fecha real (14-jun, Día 0), bloque renombrado, 0 errores. Deploy a https://actualtalent.tech/academy/.</div>
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.142 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Gantt: timeline desplazado para arrancar el 15-jun (decisión Joan)**. Re-anclada la semana 0 del 4-jun al 15-jun (+11 días): todas las barras de conocimiento, los bloques 30/60/90 y la línea HOY se mueven en bloque (primera barra 15-jun, pipeline ahora hasta 24-ago). <code>today</code> = 15-jun (arranque). Eyebrow "Tu ruta · 15 jun → 4 dic" (inicio movido al 15; fin de prueba 4-dic intacto, es fecha de contrato). Fix de eje: el mes inicial parcial ahora ancla su etiqueta al borde izquierdo, así "JUN" se ve aunque el timeline empiece a mitad de mes. Verificado en navegador (primera barra 15 jun a 22 jun, meses jun/jul/ago/sept, HOY presente). Deploy a https://actualtalent.tech/academy/.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.141 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Gantt rediseñado a timeline de conocimientos (decisión Joan)**. Joan: el Gantt debía desglosar los conocimientos sobre fechas, con el texto a la izquierda y solo la barra visual a la derecha (sin texto dentro), barra = tiempo de aprendizaje (corto si simple, largo si complejo), clic abre el módulo, ordenado de lo más simple/corto a lo más largo. Eliminadas las 3 filas Ritmo semanal / Sesiones de onboarding / Hitos clave; las lanes Formación + Actividad sustituidas por **9 filas de conocimiento concreto**. Análisis de duración/complejidad/orden hecho con workflow multi-agente (3 lentes: volumen, dificultad+dependencias, prioridad de ramp + síntesis), anclado en el contenido real de los módulos y los minutos de lectura. Resultado: cada conocimiento (etiqueta a la izquierda) con barra cuyo largo = semanas de aprendizaje y color = complejidad (rojo claro a oscuro, 1-5); clic muestra complejidad + fechas + duración + enlaces a módulos. <code>plan.json</code> reescrito a estructura <code>rows</code>; render de <code>lms-shell.html</code> reescrito (label-left, barra sin texto, sin milestones, fila 44px, columna izda 230px). Verificado en navegador: 9 filas, anchos fieles a la duración (llamada 3 sem, pipeline 6 sem, plan 0,5 sem), clic a módulo OK, 0 errores. Deploy a https://actualtalent.tech/academy/.</div>
@@ -1173,13 +1180,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Dos campañas WhatsApp evt 17-jun separadas por etiqueta (GO de Joan) + fix de doble-tag**. (1) 22 cálidos de webinars (registraron a nuestros webinars, móvil, sin email) movidos a campaña aparte con <code>webinar_evento_whatsapp_pendiente</code> via <code>evt17_webinar_retag.py</code> (DELETE tags principales + POST tag webinar; verificado el endpoint DELETE /contacts/{id}/tags). Excluidos Karim (interno) y Jaime Gortari (partner Teamtailor). (2) Verificación en vivo pescó a rosa.brunet@Sumitomo con <code>pendiente</code> Y <code>ya_enviado</code> a la vez (habría recibido el WhatsApp dos veces): barrida toda la base, único caso, quitada de pendiente. Estado final verificado en vivo: <code>catalunya_evento_whatsapp_pendiente</code>=565, <code>webinar_evento_whatsapp_pendiente</code>=22, solape 0, 0 con pendiente+ya_enviado, todos móvil ES único, 0 DND. Total 587 personas distintas. Lista: <code>outputs/evt17-LISTA-FINAL-WHATSAPP.csv</code> (columna campaña).</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v2.133 — 13 junio 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Reenvio invitacion PRIO: resiliencia a cortes de red + reanudacion tras crash (95 -> 520)**. El lote 1 del 12-jun se corto en el email 96 (la red del Mac cayo ~18:20, mismo evento que tumbo el git push del dia); el script peto en vez de pausar porque la reconexion periodica de SMTP no estaba protegida con try/except. Fix en <code>resend_prio_invitation.py</code>: helper <code>connect()</code> con reintentos y backoff, send con reconexion-y-reintento ante <code>SMTPServerDisconnected</code>/<code>OSError</code>, y salida limpia con estado guardado si la red no vuelve (en vez de traceback). 95 enviados quedaron en state y se excluyen al reanudar (idempotente, 0 duplicados). Reanudados los 425 restantes el 13-jun. Extra: normalizacion de nombres ALL-CAPS de Zoho ("PILAR" -> "Pilar") en saludo y asunto. Leccion: todo loop de envio largo necesita reconnect-or-exit-clean, nunca operacion de socket sin guardar.</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1198,7 +1198,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.145<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.146<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
