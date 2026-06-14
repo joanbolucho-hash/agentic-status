@@ -997,6 +997,7 @@ footer {
 <!-- /FEED_LEGEND -->
     <div class="feed-list" id="activity-feed">
 <!-- ACTIVITY_FEED -->
+<div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 22:08</span><span class="feed-msg">Feat(cl-onboarding-sdr): Gantt rediseniado a timeline de conocimientos</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 22:05</span><span class="feed-msg">Feat(cl-zoho): aislar 93 nuevos WhatsApp evt17 tras blast 12-jun, deteccion en v</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 21:53</span><span class="feed-msg">Feat(cl-onboarding-sdr): Gantt muestra conocimientos en fechas, no codigos de mo</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#C0191E"></span><span class="feed-icon" style="color:#C0191E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span><span class="feed-ts">2026-06-14 21:32</span><span class="feed-msg">Feat(cl-onboarding-sdr): campus editable facil (--preview + campus.sh + COMO-EDI</span></div>
@@ -1026,7 +1027,6 @@ footer {
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-14 11:13</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-14 10:13</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-14 09:13</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
-<div class="feed-entry"><span class="feed-dot" style="background:#22C55E"></span><span class="feed-icon" style="color:#22C55E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></span><span class="feed-ts">2026-06-14 05:00</span><span class="feed-msg">no token available, Granola needs re-auth</span></div>
 <!-- /ACTIVITY_FEED -->
     </div>
   </div>
@@ -1097,35 +1097,42 @@ footer {
     <div class="timeline">
       <!-- CHANGELOG -->
       <div class="timeline-entry reveal ">
+        <div class="entry-version">v2.141 — 14 junio 2026</div>
+        <div class="entry-items">
+          <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Gantt rediseñado a timeline de conocimientos (decisión Joan)**. Joan: el Gantt debía desglosar los conocimientos sobre fechas, con el texto a la izquierda y solo la barra visual a la derecha (sin texto dentro), barra = tiempo de aprendizaje (corto si simple, largo si complejo), clic abre el módulo, ordenado de lo más simple/corto a lo más largo. Eliminadas las 3 filas Ritmo semanal / Sesiones de onboarding / Hitos clave; las lanes Formación + Actividad sustituidas por **9 filas de conocimiento concreto**. Análisis de duración/complejidad/orden hecho con workflow multi-agente (3 lentes: volumen, dificultad+dependencias, prioridad de ramp + síntesis), anclado en el contenido real de los módulos y los minutos de lectura. Resultado: cada conocimiento (etiqueta a la izquierda) con barra cuyo largo = semanas de aprendizaje y color = complejidad (rojo claro a oscuro, 1-5); clic muestra complejidad + fechas + duración + enlaces a módulos. <code>plan.json</code> reescrito a estructura <code>rows</code>; render de <code>lms-shell.html</code> reescrito (label-left, barra sin texto, sin milestones, fila 44px, columna izda 230px). Verificado en navegador: 9 filas, anchos fieles a la duración (llamada 3 sem, pipeline 6 sem, plan 0,5 sem), clic a módulo OK, 0 errores. Deploy a https://actualtalent.tech/academy/.</div>
+        </div>
+      </div>
+
+      <div class="timeline-entry reveal d1">
         <div class="entry-version">v2.140 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Segunda tanda WhatsApp evt 17-jun: aislados los nuevos tras el blast del 12-jun (verificado en vivo contacto a contacto)**. Joan ya había disparado los 489. Detección en vivo (<code>/conversations/{id}/messages</code>, <code>TYPE_WHATSAPP</code> outbound, sobre los 587 con actividad >= 10-jun): **494 ya recibieron WhatsApp, 93 limpios** (72 Catalunya tier B-rescate + 21 cálidos de webinar; el blast cubrió enteros A/A2/B-promovido/316 Isabella + 5 rescate + 1 webinar). <code>evt17_finalize_send_tags.py</code>: 505 movidos a <code>catalunya_evento_whatsapp_ya_enviado</code> (quitados pendiente/nuevos), 72 Catalunya limpios etiquetados <code>catalunya_evento_whatsapp_nuevos</code>, 21 webinar siguen en <code>webinar_evento_whatsapp_pendiente</code>. Verificado en vivo: nuevos=72, webinar=21, solape 0, tag viejo <code>_pendiente</code> limpiado a 72 (no re-spam posible). Tags a disparar mañana: <code>catalunya_evento_whatsapp_nuevos</code> + <code>webinar_evento_whatsapp_pendiente</code> = 93. Tools: <code>evt17_webinar_retag.py</code>, <code>evt17_tag_nuevos.py</code>, <code>evt17_finalize_send_tags.py</code>. Lección: el eje correcto para "ya invitado" es WhatsApp outbound detectado en vivo, no el conteo de la lista ni el email; verificar antes de re-etiquetar.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d1">
+      <div class="timeline-entry reveal d2">
         <div class="entry-version">v2.139 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Gantt 30-60-90: las barras de formación muestran el CONOCIMIENTO, no el código de módulo**. Joan: el mapa salía con cajas "M4·M5" (jerga sin significado para Isabella) cuando debía desglosar en conocimientos sobre fechas, como ya hace bien el módulo m10. El dato (<code>learn</code> + <code>detail</code>) ya estaba en <code>plan.json</code>; el render pintaba <code>label</code> (los códigos). Fix en <code>lms-shell.html</code>: cada barra de formación muestra ahora el conocimiento en 2 líneas ("Empresa y tus KPIs", "Llamar y objeciones", "Cualificar con BANT", "Vender RPO", "Mapa competitivo", "ICP y cargos", "Tu pipeline multicanal", "Tu plan y carrera") con el módulo de referencia como pill pequeño debajo; clic abre el detalle completo (texto m10) + enlaces a los módulos. CSS: <code>.gbar.lane-formacion</code> multilinea (font 8px, wrap, altura auto 40-46px dentro de fila de 64). <code>learn</code>/<code>detail</code> de plan.json afinados a la redacción de conocimiento de m10. Limpiado el anglicismo "gates": leyenda "Hitos (rombos)" y kicker del detalle mapeado a castellano (Hito/Sesión/Evento/Evaluación/Carrera). Verificado en navegador: 8 barras sin recorte (clipped=false), detalle + enlaces OK, 0 errores de consola. Deploy a https://actualtalent.tech/academy/.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d2">
+      <div class="changelog-older" id="changelog-older">
+      <div class="timeline-entry reveal d3">
         <div class="entry-version">v2.138 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Campus editable por Joan sin lío: modo <code>--preview</code> + wrapper <code>campus.sh</code> + guía COMO-EDITAR.md**. Joan pidió poder editar el campus fácilmente. Añadido a <code>build.py</code> el flag <code>--preview</code>: escribe <code>outputs/lms-inner.html</code> sin cifrar, sin pedir passphrase, sin PDFs ni deploy, y lo abre en el navegador (iteración instantánea para revisar antes de publicar). Nuevo <code>tools/campus.sh</code> con dos verbos en castellano: <code>ver</code> (preview local) y <code>publicar</code> (build + deploy, pide passphrase). Nueva <code>tools/COMO-EDITAR.md</code>: chuleta para no-técnicos (mapa fichero→módulo, sintaxis markdown, formato de quizzes con la regla de <code>correct</code> base-0, red de seguridad del build: em-dash y JSON roto bloquean, marcadores <code>[[...]]</code> que no borrar). El build ya validaba quiz/plan JSON y bloqueaba em-dashes (no era nuevo). Verificado: <code>--preview</code> corre sin colgarse, no pide password, regenera el HTML y abre el file://.</div>
         </div>
       </div>
 
-      <div class="changelog-older" id="changelog-older">
-      <div class="timeline-entry reveal d3">
+      <div class="timeline-entry reveal d4">
         <div class="entry-version">v2.137 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Campus SDR M0: cargos del equipo cerrados desde el WHO is WHO canónico (captura de Joan)**. Resueltos los dos chips ámbar <code>[JOAN CONFIRMA: cargo]</code>: Germán Romero = Life Sciences Talent Consultant; Sara Fernández = Senior Consultant, División FMCG. Cross-check de todo el grid contra la hoja: añadidos apellidos para uniformidad (Lucía Sagarraga, Germán Romero, Sara Fernández) y corregido el cargo de Lucía de "Consultora" (vago) a "Consultora 360, Sector Retail" según fuente. Grid de 8 personas sin chips pendientes. NO se añadieron Farah Akhtar (Diseñadora Gráfica) ni Bianca Azcueta (Team Leader) de la hoja: no estaban en el set de "compañeros más cercanos" que curó Joan y no hay foto en assets/team (pendiente de decisión de Joan si los quiere en el grid). Rebuild + deploy, verificado en navegador (8 nombres + cargos correctos vía DOM). https://actualtalent.tech/academy/.</div>
         </div>
       </div>
 
-      <div class="timeline-entry reveal d4">
+      <div class="timeline-entry reveal d5">
         <div class="entry-version">v2.136 — 14 junio 2026</div>
         <div class="entry-items">
           <div class="entry-item"><span class="entry-tag">cl-onboarding-sdr</span> **Campus SDR: decisiones de Joan aplicadas a m9 y m10, rebuild + redeploy**. m9 (Tu secuencia multicanal): volumen diario fijado (unas 70-80 llamadas, ~70 emails, ~70 WhatsApps/día, encuadrado como seguimientos que reparte la secuencia, no 200 conversaciones de cero); higiene de pipeline con umbrales definitivos (>3 días hábiles sin tocar -> bloque inactivo; >3 semanas sin próximo paso -> red flag); nurturing reescrito (la diseña Isabella al final del onboarding como primer entregable propio, vídeos de apoyo en Fluxo, cadencia mensual). Quizzes de m9 actualizados a los umbrales y a la cadencia mensual. m10 (Tu plan): sección de carrera reescrita de 3 rutas paralelas a estructura SECUENCIAL alineada con m1: Paso 1 = pasar a SDR Senior (superar prueba 6m + 75 SQL en 6 meses con consistencia); Paso 2 = otras posiciones (Consultora RPO, Executive Search, perfil 360, Account Executive) solo si se abren, sin promesas. Quiz de carrera rehecho (eliminadas las preguntas de "ruta C" y "decisión de ruta el 1-dic", obsoletas). Eliminado el chip <code>[PENDIENTE: validar con Karim]</code> (la estructura secuencial ya la confirmó Joan). Cero chips JOAN DECIDE/CONFIRMA pendientes en m9/m10, cero em-dashes. Verificado en navegador (render m9/m10 OK, 0 errores de consola, JSON de quizzes válido). Deploy a https://actualtalent.tech/academy/.</div>
@@ -1173,13 +1180,6 @@ footer {
           <div class="entry-item"><span class="entry-tag">cl-zoho</span> **Segmentación evt 17-jun ampliada a tiers para objetivo ~500 WhatsApps + exclusión de candidatos de prácticas**. (1) Detectados y excluidos de TODO los 1.257 leads de Zoho que son CANDIDATOS de la campaña de prácticas (tag <code>VGED-Ferias-2026</code> / Lead_Source=Trade Show: estudiantes con gmail y universidad como empresa, 1.222 con móvil ES, 0 colaron en listas de envío, 99 purgados de revisión manual) -> <code>evt17-leads-candidatos.csv</code> para borrado futuro en Zoho. (2) Criterio relajado por petición de Joan (móvil ES obligatorio, email opcional): tiers A 72 (fuerte+móvil+email), A2 61 (fuerte+móvil sin email), B 117 (señal débil empresa/HQ + móvil, libre), C 316 (pipeline Isabella con móvil sin WA del evento). Máx componible 566. (3) Declinaciones del evento (Eva Cuesta, Magalí Mayol, Nuria Massip, Adriana González, kb-updates 11-jun) ahora son exclusión estructurada (<code>evt17-declinaciones.csv</code>) y los opt-outs excluyen por IDENTIDAD (email + nombre completo por subset de tokens), no solo email: Magalí estaba en tier B vía registro Lusha sin email y el cruce por email era ciego.</div>
         </div>
       </div>
-
-      <div class="timeline-entry reveal d5">
-        <div class="entry-version">v2.132 — 13 junio 2026</div>
-        <div class="entry-items">
-          <div class="entry-item"><span class="entry-tag">stack-cockpit</span> **Cockpit del stack LLM trasladado fuera de AT → <code>~/Developer/fluxo/stack-cockpit/</code>** (decisión de Joan: lo quiere transversal a todos sus proyectos; un panel que vigila AT+Fluxo+soft_finanzas no debe vivir dentro de uno de los vigilados). Movidos llm-stack.json (fuente única) + generador (renombrado generate_dashboard.py, rutas flat self-contained) + HTML + audit, añadido README. Regenerado y verificado en su nuevo hogar (render headless OK). En AT queda tombstone <code>docs/llm-stack-cockpit.MOVED.md</code> y la memoria reconvertida a puntero (conserva los hechos del stack que tocan a AT). Memoria completa nueva en el proyecto Fluxo (<code>stack-cockpit.md</code>). Fluxo elegido por Joan para poder evolucionarlo a tool LIVE servido por el toolkit del VPS. Mantener: editar el JSON → <code>python3 generate_dashboard.py</code> desde la carpeta de Fluxo.</div>
-        </div>
-      </div>
       </div>
 
       <button class="btn-more-versions" id="btn-more-versions" onclick="toggleVersions()">
@@ -1198,7 +1198,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand reveal">
-    AGENTIC <!-- VERSION -->v2.140<!-- /VERSION --><br>
+    AGENTIC <!-- VERSION -->v2.141<!-- /VERSION --><br>
     <span>Actual Talent AI Workspace</span>
   </div>
   <div class="footer-right reveal d1">
