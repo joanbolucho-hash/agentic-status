@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>Gracias por venir · IA en el trabajo · 17 jun 2026 · Actual Talent</title>
+<meta name="description" content="Gracias por acompañarnos en 'IA en el trabajo: legislación y disrupción' (17 junio 2026, Barcelona). Agenda un café con Joan Boluda, únete a la comunidad de WhatsApp, conecta con los ponentes y descarga las diapositivas del evento.">
+<meta property="og:title" content="Gracias por venir · IA en el trabajo · Actual Talent">
+<meta property="og:description" content="Agenda un café con Joan, únete a la comunidad de WhatsApp, conecta con los ponentes y descarga las diapositivas del evento.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://actualtalent.tech/presencial/17-jun-bcn/gracias/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red:        #C0191E;
+  --red-glow:   rgba(192, 25, 30, 0.12);
+  --beige:      #E8E5DC;
+  --cream:      #F0EEEB;
+  --black:      #1A1A1A;
+  --near-black: #0A0A0A;
+  --gray:       #6B6B6B;
+  --white:      #ffffff;
+  --wa:         #25D366;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); will-change: transform, opacity; }
+.reveal.in { opacity: 1; transform: none; will-change: auto; }
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+
+/* FOCUS */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
+
+.mouse-glow {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,25,30,0.09) 0%, transparent 70%);
+  pointer-events: none; z-index: 0; transform: translate(-50%, -50%);
+  transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.4s; opacity: 0;
+}
+.mouse-glow.visible { opacity: 1; }
+
+/* HEADER */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 60px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between; padding: 0 48px;
+}
+.header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.header-logo { height: 22px; width: auto; display: block; }
+.header-wordmark { font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: white; line-height: 1; }
+.header-wordmark .wm-tag { color: rgba(255,255,255,0.6); font-weight: 600; }
+.header-nav { display: flex; align-items: center; gap: 4px; }
+.nav-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: white; text-decoration: none; padding: 8px 18px; border-radius: 100px; transition: opacity 0.2s;
+}
+.nav-pill:hover { opacity: 0.85; }
+.nav-pill-wa { background: var(--wa); }
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red);
+  margin-bottom: 40px; display: flex; align-items: center; gap: 16px;
+}
+.section-label::after { content: ''; width: 32px; height: 1px; background: currentColor; opacity: 0.3; }
+
+/* HERO */
+.hero {
+  min-height: 88vh; background: var(--near-black);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 130px 48px 90px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 20% 0%, rgba(192,25,30,0.1) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+.hero::after {
+  content: 'GRACIAS'; position: absolute; right: -2vw; bottom: -5vh;
+  font-size: 22vw; font-weight: 900; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.022); line-height: 1; pointer-events: none; user-select: none;
+}
+.hero-inner { max-width: 980px; position: relative; z-index: 2; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 30px; }
+.hero-headline {
+  font-size: clamp(36px, 6.2vw, 76px); font-weight: 900; line-height: 1.02;
+  letter-spacing: -0.035em; color: white; margin-bottom: 28px; max-width: 900px;
+}
+.hero-headline em { font-style: normal; color: var(--red); }
+.hero-sub {
+  font-size: clamp(15px, 1.7vw, 18px); font-weight: 300; line-height: 1.85;
+  color: rgba(255,255,255,0.6); max-width: 660px; margin-bottom: 46px;
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: white; background: var(--red); text-decoration: none;
+  padding: 17px 32px; border-radius: 3px; transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s; white-space: nowrap; cursor: pointer; border: none;
+}
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(192,25,30,0.35); }
+.cta-primary svg { width: 14px; height: 14px; }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); text-decoration: none; padding: 16px 28px;
+  border-radius: 3px; border: 1px solid rgba(255,255,255,0.18); transition: border-color 0.2s, color 0.2s, background 0.2s; white-space: nowrap;
+}
+.cta-secondary:hover { border-color: rgba(37,211,102,0.5); color: white; background: rgba(37,211,102,0.12); }
+.cta-secondary svg { width: 14px; height: 14px; }
+
+/* CAFE (recuadro de Joan) */
+.cafe { background: var(--cream); padding: 110px 48px; }
+.cafe-inner { max-width: 1040px; margin: 0 auto; }
+.cafe-card {
+  display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 0;
+  background: var(--near-black); border-radius: 20px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.18);
+}
+.cafe-photo { position: relative; min-height: 420px; }
+.cafe-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+.cafe-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 55%, rgba(10,10,10,0.55) 100%);
+}
+.cafe-body { padding: 56px 54px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+.cafe-body::before {
+  content: ''; position: absolute; top: -30%; right: -20%; width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(192,25,30,0.34), transparent 70%); pointer-events: none;
+}
+.cafe-body > * { position: relative; z-index: 1; }
+.cafe-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 18px; }
+.cafe-name { font-size: 30px; font-weight: 900; color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; }
+.cafe-role { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 26px; }
+.cafe-desc { font-size: 15px; font-weight: 400; line-height: 1.8; color: rgba(255,255,255,0.82); margin-bottom: 30px; max-width: 480px; }
+.cafe-desc strong { color: #fff; font-weight: 700; }
+
+/* RECURSOS */
+.resources { background: var(--white); padding: 110px 48px; }
+.resources-inner { max-width: 1040px; margin: 0 auto; }
+.resources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.resource-card {
+  position: relative; border-radius: 18px; padding: 40px 38px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: flex-start;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s; text-decoration: none;
+}
+.resource-card:hover { transform: translateY(-6px); box-shadow: 0 22px 56px rgba(0,0,0,0.1); }
+.resource-card.wa { background: var(--cream); border: 1px solid rgba(37,211,102,0.25); }
+.resource-card.slides { background: var(--cream); border: 1px solid rgba(192,25,30,0.18); }
+.resource-ico { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+.resource-card.wa .resource-ico { background: rgba(37,211,102,0.14); }
+.resource-card.slides .resource-ico { background: rgba(192,25,30,0.1); }
+.resource-ico svg { width: 26px; height: 26px; }
+.resource-card.wa .resource-ico svg { color: #1aa64f; }
+.resource-card.slides .resource-ico svg { color: var(--red); }
+.resource-tag { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.resource-card.wa .resource-tag { color: #1aa64f; }
+.resource-card.slides .resource-tag { color: var(--red); }
+.resource-title { font-size: 22px; font-weight: 800; color: var(--black); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
+.resource-desc { font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--gray); margin-bottom: 26px; flex: 1; }
+.resource-link { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--black); display: inline-flex; align-items: center; gap: 8px; transition: gap 0.25s; }
+.resource-card:hover .resource-link { gap: 12px; }
+.resource-link svg { width: 13px; height: 13px; }
+
+/* SPEAKERS */
+.speakers { background: var(--cream); padding: 110px 48px; }
+.speakers-inner { max-width: 1200px; margin: 0 auto; }
+.speakers-head { margin-bottom: 56px; max-width: 760px; }
+.speakers-head h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em; color: var(--black); line-height: 1.1; margin-bottom: 16px; }
+.speakers-head h2 em { font-style: normal; color: var(--red); }
+.speakers-head p { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--gray); }
+.speakers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.speaker-card {
+  background: var(--white); border-radius: 16px; padding: 32px 28px;
+  display: flex; flex-direction: column; align-items: flex-start;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+}
+.speaker-card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(0,0,0,0.08); }
+.speaker-photo { width: 92px; height: 92px; border-radius: 50%; overflow: hidden; border: 3px solid var(--white); box-shadow: 0 8px 24px rgba(0,0,0,0.1); margin-bottom: 20px; }
+.speaker-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.speaker-role-tag { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); background: rgba(192,25,30,0.08); padding: 5px 11px; border-radius: 100px; margin-bottom: 14px; }
+.speaker-name { font-size: 19px; font-weight: 800; color: var(--black); letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 4px; }
+.speaker-org { font-size: 11px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; color: var(--gray); margin-bottom: 18px; }
+.speaker-link { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.25s; margin-top: auto; }
+.speaker-link:hover { gap: 10px; }
+.speaker-link svg { width: 13px; height: 13px; }
+
+/* PARTNERS */
+.partners { background: var(--beige); padding: 84px 48px; }
+.partners-inner { max-width: 1080px; margin: 0 auto; text-align: center; }
+.partners-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 40px; display: flex; align-items: center; justify-content: center; gap: 16px; }
+.partners-eyebrow::before, .partners-eyebrow::after { content: ''; width: 32px; height: 1px; background: currentColor; opacity: 0.35; }
+.partners-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 50px; }
+.partners-row a, .partners-row .nolink { display: inline-flex; align-items: center; }
+.partners-row img { height: 42px; width: auto; max-width: 200px; object-fit: contain; opacity: 0.8; transition: opacity 0.25s ease, transform 0.25s ease; }
+.partners-row a:hover img { opacity: 1; transform: translateY(-2px); }
+.partners-row img.lg { height: 54px; }
+.powered { margin-top: 46px; padding-top: 30px; border-top: 1px solid rgba(0,0,0,0.09); display: flex; align-items: center; justify-content: center; gap: 14px; }
+.powered span { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+.powered a { display: inline-flex; align-items: center; transition: opacity 0.2s; }
+.powered a:hover { opacity: 0.65; }
+.powered img { height: 24px; width: auto; display: block; }
+@media (max-width: 900px) { .partners { padding: 60px 24px; } .partners-row { gap: 34px; } .partners-row img { height: 34px; } .partners-row img.lg { height: 44px; } }
+
+/* FOOTER */
+footer { background: var(--red); padding: 48px; text-align: center; }
+footer p { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: 1px; line-height: 1.7; }
+footer p strong { font-weight: 800; color: white; }
+footer .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+footer .footer-links a { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
+footer .footer-links a:hover { color: white; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  .hero { padding: 110px 24px 70px; }
+  .mouse-glow { display: none; }
+  .cafe { padding: 70px 24px; }
+  .cafe-card { grid-template-columns: 1fr; }
+  .cafe-photo { min-height: 320px; }
+  .cafe-body { padding: 40px 30px; }
+  .resources { padding: 70px 24px; }
+  .resources-grid { grid-template-columns: 1fr; }
+  .speakers { padding: 70px 24px; }
+  .speakers-grid { grid-template-columns: 1fr 1fr; }
+  footer { padding: 36px 24px; }
+}
+@media (max-width: 560px) {
+  .speakers-grid { grid-template-columns: 1fr; }
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .hero-ctas a { justify-content: center; text-align: center; }
+  .header-wordmark { display: none; }
+  .header-logo { height: 20px; }
+  .nav-pill { padding: 8px 14px; font-size: 10px; letter-spacing: 0.5px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/presencial/17-jun-bcn/" class="header-brand" aria-label="Actual Talent">
+    <img class="header-logo" src="../../../assets/logos/actual-talent-white.png" alt="Actual Talent">
+    <span class="header-wordmark"><span class="wm-tag">Gracias · BCN</span></span>
+  </a>
+  <nav class="header-nav">
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="nav-pill nav-pill-wa" target="_blank" rel="noopener">Comunidad →</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="mouse-glow" id="mouse-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal">Gracias por venir · 17 junio 2026 · Barcelona</div>
+    <h1 class="hero-headline reveal d1">
+      Gracias por una mañana <em>honesta</em> sobre IA y talento.
+    </h1>
+    <p class="hero-sub reveal d2">
+      Habéis llenado Aticco Diagrame para hablar sin filtros de cómo la IA cambia el trabajo de quien recluta, lidera y desarrolla el talento. La conversación no se acaba hoy: aquí tienes lo que te llevas a casa. Únete a la comunidad, conecta con los ponentes, descarga las diapositivas y, si te apetece, tomemos un café.
+    </p>
+    <div class="hero-ctas reveal d3">
+      <a href="https://api.leadconnectorhq.com/widget/bookings/calendario-de-joan" class="cta-primary" target="_blank" rel="noopener">
+        Agenda un café conmigo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="cta-secondary" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.42-8.24 8.42z"/></svg>
+        Comunidad WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CAFE (recuadro de Joan) -->
+<section class="cafe">
+  <div class="cafe-inner">
+    <div class="section-label reveal">El host del evento</div>
+    <div class="cafe-card reveal d1">
+      <div class="cafe-photo">
+        <img src="assets/speakers/joan-boluda.jpg" alt="Joan Boluda, host del evento">
+      </div>
+      <div class="cafe-body">
+        <div class="cafe-eyebrow">¿Hablamos de IA y talento?</div>
+        <div class="cafe-name">Joan Boluda</div>
+        <div class="cafe-role">Host del evento · Business Development Manager RPO, Actual Talent</div>
+        <p class="cafe-desc">Si algo de esta mañana te ha resonado y quieres llevarlo a tu equipo, hablemos. Reserva un <strong>café conmigo</strong>, presencial o virtual, sin compromiso: cómo está cambiando el reclutamiento con IA, qué perfiles cuesta encontrar y cómo lo estamos resolviendo desde Actual Talent.</p>
+        <a href="https://api.leadconnectorhq.com/widget/bookings/calendario-de-joan" class="cta-primary" target="_blank" rel="noopener">
+          Reservar un café
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECURSOS -->
+<section class="resources">
+  <div class="resources-inner">
+    <div class="section-label reveal">Llévatelo a casa</div>
+    <div class="resources-grid">
+      <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" class="resource-card wa reveal d1" target="_blank" rel="noopener">
+        <div class="resource-ico">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.42-8.24 8.42z"/></svg>
+        </div>
+        <div class="resource-tag">Comunidad</div>
+        <div class="resource-title">Únete a la comunidad de WhatsApp</div>
+        <p class="resource-desc">El grupo donde la conversación sigue entre eventos: novedades sobre IA y RRHH, próximos encuentros y networking con el resto de directivos que estuvieron hoy en la sala.</p>
+        <span class="resource-link">Entrar al grupo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+      <a href="https://actualtalent.tech/presencial/17-jun-bcn/slides" class="resource-card slides reveal d2" target="_blank" rel="noopener">
+        <div class="resource-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="resource-tag">Diapositivas</div>
+        <div class="resource-title">Las diapositivas del evento</div>
+        <p class="resource-desc">La presentación completa de la mañana: la ponencia, la mesa redonda, la entrevista legal sobre el AI Act y la dinámica de liderazgo. Disponibles aquí tras el evento.</p>
+        <span class="resource-link">Ver las slides
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PONENTES -->
+<section class="speakers">
+  <div class="speakers-inner">
+    <div class="section-label reveal">Conecta con ellos</div>
+    <div class="speakers-head">
+      <h2 class="reveal">Los <em>ponentes</em> de la mañana.</h2>
+      <p class="reveal d1">Las voces que pasaron por el escenario. Conecta con ellas en LinkedIn y sigue la conversación.</p>
+    </div>
+    <div class="speakers-grid">
+
+      <div class="speaker-card reveal d1">
+        <div class="speaker-photo"><img src="assets/speakers/iolanda-trivino.jpg" alt="Iolanda Triviño"></div>
+        <span class="speaker-role-tag">Ponencia</span>
+        <div class="speaker-name">Iolanda Triviño</div>
+        <div class="speaker-org">Fundadora · Institute for Futures</div>
+        <a href="https://www.linkedin.com/in/iolandatrivi%C3%B1o/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d2">
+        <div class="speaker-photo"><img src="assets/speakers/rossana-montemurro.jpg" alt="Rossana Montemurro"></div>
+        <span class="speaker-role-tag">Mesa redonda</span>
+        <div class="speaker-name">Rossana Montemurro</div>
+        <div class="speaker-org">Chief People &amp; Culture Officer · Cooltra</div>
+        <a href="https://www.linkedin.com/in/rossanamontemurro/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d3">
+        <div class="speaker-photo"><img src="assets/speakers/patricia-iglesias.jpg" alt="Patricia Iglesias Río"></div>
+        <span class="speaker-role-tag">Mesa redonda</span>
+        <div class="speaker-name">Patricia Iglesias Río</div>
+        <div class="speaker-org">Chief People &amp; Culture Officer · Techsoulogy</div>
+        <a href="https://www.linkedin.com/in/patriciaiglesiasrio/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d1">
+        <div class="speaker-photo"><img src="assets/speakers/xavi-saez.jpg" alt="Xavi Sáez"></div>
+        <span class="speaker-role-tag">Mesa redonda · Dinámica</span>
+        <div class="speaker-name">Xavi Sáez</div>
+        <div class="speaker-org">Co-fundador y CEO · KPI</div>
+        <a href="https://www.linkedin.com/in/xavisaez-kpi/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d2">
+        <div class="speaker-photo"><img src="assets/speakers/beatriz-rodriguez.jpg" alt="Beatriz Rodríguez"></div>
+        <span class="speaker-role-tag">Entrevista legal</span>
+        <div class="speaker-name">Beatriz Rodríguez</div>
+        <div class="speaker-org">Socia, Protección de Datos · RocaJunyent</div>
+        <a href="https://www.linkedin.com/in/abrodgom/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+
+      <div class="speaker-card reveal d3">
+        <div class="speaker-photo"><img src="assets/speakers/delia-rodriguez.jpg" alt="Delia Rodríguez"></div>
+        <span class="speaker-role-tag">Entrevista legal</span>
+        <div class="speaker-name">Delia Rodríguez</div>
+        <div class="speaker-org">Abogada, Protección de Datos · RocaJunyent</div>
+        <a href="https://www.linkedin.com/in/delia-rodr%C3%ADguez-fern%C3%A1ndez-719a1b224/" target="_blank" rel="noopener" class="speaker-link">LinkedIn
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners">
+  <div class="partners-inner">
+    <div class="partners-eyebrow reveal">Con la colaboración de</div>
+    <div class="partners-row reveal d1">
+      <a href="https://www.teamtailor.com" target="_blank" rel="noopener"><img src="../../../assets/logos/teamtailor.png" alt="Teamtailor"></a>
+      <a href="https://www.camarafrancesa.es" target="_blank" rel="noopener"><img src="../../../assets/logos/camara-francesa-barcelona.png" alt="Cámara de Comercio Francesa de Barcelona"></a>
+      <a href="https://aticco.com" target="_blank" rel="noopener"><img class="lg" src="../../../assets/logos/aticco.png" alt="Aticco"></a>
+      <span class="nolink"><img class="lg" src="../../../assets/logos/ektimo.png" alt="Ektimo"></span>
+      <a href="https://www.refruiting.com" target="_blank" rel="noopener"><img class="lg" src="../../../assets/logos/refruiting.png" alt="Refruiting"></a>
+    </div>
+    <div class="powered reveal d2">
+      <span>Event powered by</span>
+      <a href="https://fluxo.consulting" target="_blank" rel="noopener"><img src="assets/fluxo-logo.png" alt="Fluxo"></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Actual Talent</strong> · IA en el trabajo: legislación y disrupción · 17 junio 2026 · Aticco Diagrame, Barcelona<br>Gracias por acompañarnos. Esto no se acaba aquí.</p>
+  <div class="footer-links">
+    <a href="https://api.leadconnectorhq.com/widget/bookings/calendario-de-joan" target="_blank" rel="noopener">Agenda un café</a>
+    <a href="https://chat.whatsapp.com/HQJ9V2YuFEp043djt63vh7?mode=gi_t" target="_blank" rel="noopener">Comunidad WhatsApp</a>
+    <a href="https://actualtalent.tech/presencial/17-jun-bcn/slides" target="_blank" rel="noopener">Diapositivas</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Mouse glow
+const glow = document.getElementById('mouse-glow');
+const hero = document.querySelector('.hero');
+if (glow && hero) {
+  hero.addEventListener('mousemove', (e) => {
+    const r = hero.getBoundingClientRect();
+    glow.style.left = (e.clientX - r.left) + 'px';
+    glow.style.top = (e.clientY - r.top) + 'px';
+    glow.classList.add('visible');
+  });
+  hero.addEventListener('mouseleave', () => glow.classList.remove('visible'));
+}
+</script>
+</body>
+</html>
