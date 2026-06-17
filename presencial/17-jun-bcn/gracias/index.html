@@ -156,7 +156,11 @@ header {
 /* RECURSOS */
 .resources { background: var(--white); padding: 110px 48px; }
 .resources-inner { max-width: 1040px; margin: 0 auto; }
-.resources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.resource-card.paper { background: var(--cream); border: 1px solid rgba(192,25,30,0.18); }
+.resource-card.paper .resource-ico { background: rgba(192,25,30,0.1); }
+.resource-card.paper .resource-ico svg { color: var(--red); }
+.resource-card.paper .resource-tag { color: var(--red); }
 .resource-card {
   position: relative; border-radius: 18px; padding: 40px 38px; overflow: hidden;
   display: flex; flex-direction: column; align-items: flex-start;
@@ -228,9 +232,22 @@ footer .footer-links { margin-top: 16px; display: flex; justify-content: center;
 footer .footer-links a { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
 footer .footer-links a:hover { color: white; }
 
+/* VIDEO DEL EVENTO */
+.video-recap { background: var(--near-black); padding: 110px 48px; position: relative; overflow: hidden; }
+.video-recap::before { content:''; position:absolute; top:-120px; right:-120px; width:420px; height:420px; border-radius:50%; background: radial-gradient(circle, rgba(192,25,30,0.12) 0%, transparent 70%); pointer-events:none; }
+.video-recap-inner { max-width: 1040px; margin: 0 auto; position: relative; z-index: 1; }
+.video-recap .section-label { color: var(--red); }
+.video-recap-head { margin-bottom: 40px; max-width: 720px; }
+.video-recap-head h2 { font-size: clamp(28px,4vw,44px); font-weight: 900; letter-spacing:-0.03em; color:#fff; line-height:1.1; margin-bottom:14px; }
+.video-recap-head h2 em { font-style: normal; color: var(--red); }
+.video-recap-head p { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.62); }
+.replay-video { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background:#000; overflow:hidden; border:1px solid rgba(255,255,255,0.08); }
+.replay-video iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   header { padding: 0 20px; }
+  .video-recap { padding: 70px 24px; }
   .hero { padding: 110px 24px 70px; }
   .mouse-glow { display: none; }
   .cafe { padding: 70px 24px; }
@@ -312,6 +329,20 @@ footer .footer-links a:hover { color: white; }
   </div>
 </section>
 
+<!-- VIDEO DEL EVENTO -->
+<section class="video-recap">
+  <div class="video-recap-inner">
+    <div class="section-label reveal">Revive el evento</div>
+    <div class="video-recap-head">
+      <h2 class="reveal">La mañana <em>entera</em>, en vídeo.</h2>
+      <p class="reveal d1">La grabación completa del directo: la ponencia de Iolanda Triviño, la mesa redonda, la entrevista legal sobre el AI Act y la dinámica de liderazgo. Para verlo con calma o compartirlo con tu equipo.</p>
+    </div>
+    <div class="replay-video reveal d2">
+      <iframe src="https://www.youtube-nocookie.com/embed/7D8_0kC93Go?rel=0" title="IA en el trabajo: legislación y disrupción · Actual Talent" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </div>
+</section>
+
 <!-- RECURSOS -->
 <section class="resources">
   <div class="resources-inner">
@@ -337,6 +368,17 @@ footer .footer-links a:hover { color: white; }
         <p class="resource-desc">La presentación completa de la mañana: la ponencia, la mesa redonda, la entrevista legal sobre el AI Act y la dinámica de liderazgo. Disponibles aquí tras el evento.</p>
         <span class="resource-link">Ver las slides
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+      <a href="/presencial/17-jun-bcn/whitepaper-ia-trabajo-2026-06-17.pdf" class="resource-card paper reveal d3" download>
+        <div class="resource-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6M9 15l3 3 3-3"/></svg>
+        </div>
+        <div class="resource-tag">Whitepaper N.º 03</div>
+        <div class="resource-title">El whitepaper del evento</div>
+        <p class="resource-desc">La síntesis de la mañana en PDF: las ideas-fuerza de la ponencia, la mesa redonda sobre IA y talento, el marco legal del AI Act y la dinámica de liderazgo. Con las voces de los ponentes.</p>
+        <span class="resource-link">Descargar PDF
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
         </span>
       </a>
     </div>

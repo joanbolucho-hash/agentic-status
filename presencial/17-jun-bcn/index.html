@@ -602,6 +602,49 @@ footer .footer-links a:hover { color: white; }
 .host-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .host-name { font-size: 17px; font-weight: 800; color: var(--black); }
 .host-role { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); margin-top: 2px; }
+
+/* ─── REPLAY + WHITEPAPER ─── */
+.replay { background: var(--near-black); color: white; padding: 110px 48px; position: relative; overflow: hidden; }
+.replay::before { content:''; position:absolute; top:-120px; right:-120px; width:420px; height:420px; border-radius:50%; background: radial-gradient(circle, rgba(192,25,30,0.12) 0%, transparent 70%); pointer-events:none; }
+.replay-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.replay-header { margin-bottom: 44px; max-width: 760px; }
+.replay-header .section-label { color: var(--red); }
+.replay-header h2 { font-size: clamp(30px,4.4vw,50px); font-weight: 900; letter-spacing: -0.03em; color: white; line-height: 1.06; margin-top: 14px; }
+.replay-header h2 em { font-style: normal; color: var(--red); }
+.replay-header p { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.65); margin-top: 16px; max-width: 620px; }
+.replay-grid { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap: 28px; align-items: stretch; }
+.replay-video { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background:#000; border:1px solid rgba(255,255,255,0.08); overflow:hidden; }
+.replay-video iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.replay-paper { background: linear-gradient(160deg,#1A1A1A 0%,#2A1011 100%); border:1px solid rgba(192,25,30,0.25); padding:34px 30px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+.replay-paper::before { content:''; position:absolute; bottom:-60px; left:-60px; width:220px; height:220px; border-radius:50%; border:1px solid rgba(255,255,255,0.04); }
+.replay-paper-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:13px; }
+.replay-paper h3 { font-size:21px; font-weight:800; line-height:1.18; color:white; letter-spacing:-0.02em; margin-bottom:13px; }
+.replay-paper p { font-size:13.5px; line-height:1.62; color:rgba(255,255,255,0.62); margin-bottom:24px; }
+.replay-paper-meta { display:flex; gap:16px; flex-wrap:wrap; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:24px; }
+.replay-paper-meta span::before { content:'•'; margin-right:8px; color:var(--red); }
+.replay-paper-meta span:first-child::before { display:none; }
+.replay-paper-cta { display:inline-flex; align-items:center; justify-content:center; gap:12px; padding:15px 22px; background:var(--red); color:white; font-family:inherit; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; border:0; cursor:pointer; transition:opacity 0.2s, transform 0.2s; position:relative; z-index:1; }
+.replay-paper-cta:hover { opacity:0.92; transform:translateX(2px); }
+.replay-paper-cta .arrow { font-size:16px; }
+/* Lead-capture MODAL */
+.wp-modal { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(10,10,10,0.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+.wp-modal.open { display:flex; }
+.wp-modal-card { position:relative; width:100%; max-width:460px; background:linear-gradient(160deg,#1A1A1A 0%,#2A1011 100%); border:1px solid rgba(192,25,30,0.3); padding:36px 32px 28px; color:white; }
+.wp-modal-close { position:absolute; top:12px; right:12px; width:36px; height:36px; background:transparent; border:0; color:rgba(255,255,255,0.5); font-size:22px; line-height:1; cursor:pointer; transition:color 0.15s; }
+.wp-modal-close:hover { color:white; }
+.wp-modal-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+.wp-modal-title { font-size:21px; font-weight:800; line-height:1.2; letter-spacing:-0.02em; margin-bottom:8px; }
+.wp-modal-lead { font-size:13px; line-height:1.6; color:rgba(255,255,255,0.6); margin-bottom:22px; }
+.wp-form { display:flex; flex-direction:column; gap:10px; }
+.wp-form input { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); color:white; padding:12px 14px; font-family:inherit; font-size:13px; outline:none; transition:border-color 0.2s, background 0.2s; }
+.wp-form input:focus { border-color:var(--red); background:rgba(255,255,255,0.08); }
+.wp-form input::placeholder { color:rgba(255,255,255,0.35); }
+.wp-form button { border:0; cursor:pointer; width:100%; margin-top:6px; padding:14px 22px; background:var(--red); color:white; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; font-family:inherit; transition:opacity 0.2s; display:inline-flex; align-items:center; justify-content:center; gap:10px; }
+.wp-form button:hover { opacity:0.9; }
+.wp-form button:disabled { opacity:0.6; cursor:wait; }
+.wp-form-privacy { font-size:10.5px; line-height:1.55; color:rgba(255,255,255,0.4); margin-top:14px; }
+.wp-form-success { font-size:13px; line-height:1.6; color:white; padding:14px 16px; background:rgba(192,25,30,0.18); border-left:2px solid var(--red); margin-top:8px; }
+@media (max-width: 900px) { .replay { padding:70px 24px; } .replay-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -696,6 +739,37 @@ footer .footer-links a:hover { color: white; }
     </div>
   </div>
   <div class="hero-scroll"><span class="scroll-line"></span> Scroll</div>
+</section>
+
+<!-- REPLAY + WHITEPAPER -->
+<section class="replay" id="replay">
+  <div class="replay-inner">
+    <div class="replay-header reveal">
+      <div class="section-label">Revive el directo</div>
+      <h2>El evento entero, en vídeo. <em>Llévate</em> las conclusiones.</h2>
+      <p>La grabación completa de la mañana: la ponencia de Iolanda Triviño, la mesa redonda, la entrevista legal sobre el AI Act y la dinámica de liderazgo. Y un whitepaper que destila lo dicho en formato accionable, con las ideas y las voces del directo.</p>
+    </div>
+    <div class="replay-grid">
+      <div class="replay-video reveal d1">
+        <iframe src="https://www.youtube-nocookie.com/embed/7D8_0kC93Go?rel=0" title="IA en el trabajo: legislación y disrupción · Actual Talent" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="replay-paper reveal d2">
+        <div>
+          <div class="replay-paper-eyebrow">Whitepaper N.º 03</div>
+          <h3>IA en el trabajo: legislación y disrupción</h3>
+          <p>Síntesis del evento: las ideas-fuerza de la ponencia, la mesa redonda sobre IA y talento, el marco legal del AI Act y la dinámica de liderazgo. Con las voces de los ponentes.</p>
+          <div class="replay-paper-meta">
+            <span>PDF</span>
+            <span>Síntesis</span>
+            <span>Español</span>
+          </div>
+        </div>
+        <button type="button" class="replay-paper-cta" id="wp-open" aria-haspopup="dialog">
+          Descargar whitepaper <span class="arrow">↓</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ABOUT -->
@@ -1048,8 +1122,70 @@ footer .footer-links a:hover { color: white; }
   </div>
 </footer>
 
+<!-- WHITEPAPER LEAD-GATE MODAL -->
+<div class="wp-modal" id="wp-modal" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title">
+  <div class="wp-modal-card">
+    <button type="button" class="wp-modal-close" aria-label="Cerrar">×</button>
+    <div class="wp-modal-eyebrow">Whitepaper N.º 03 · PDF</div>
+    <h3 class="wp-modal-title" id="wp-modal-title">IA en el trabajo: legislación y disrupción</h3>
+    <p class="wp-modal-lead">Déjanos tu email y te llevamos al PDF. Sin envío manual, descarga inmediata.</p>
+    <form id="whitepaper-form" class="wp-form" data-endpoint="https://api.web3forms.com/submit" data-pdf="whitepaper-ia-trabajo-2026-06-17.pdf" autocomplete="on">
+      <input type="hidden" name="access_key" value="ef61cdaf-5ff7-4e78-a62d-ab85dd876885">
+      <input type="hidden" name="subject" value="Whitepaper IA en el trabajo (17-jun) · Nueva descarga">
+      <input type="hidden" name="from_name" value="actualtalent.tech · Evento 17 jun BCN">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="text" name="name" placeholder="Nombre" required autocomplete="name">
+      <input type="email" name="email" placeholder="email@empresa.com" required autocomplete="email">
+      <input type="text" name="company" placeholder="Empresa (opcional)" autocomplete="organization">
+      <button type="submit">Descargar whitepaper ↓</button>
+    </form>
+    <div class="wp-form-success" id="wp-success" role="status" style="display:none;">¡Gracias! La descarga ha empezado. Si no se abre, <a href="whitepaper-ia-trabajo-2026-06-17.pdf" style="color:#fff;text-decoration:underline" download>haz clic aquí</a>.</div>
+    <p class="wp-form-privacy">Solo lo usamos para mantenerte al día sobre la serie de eventos. Sin spam, baja en cualquier momento.</p>
+  </div>
+</div>
+
 <!-- JS -->
 <script>
+// Lead-gate whitepaper modal
+(function initWhitepaperModal() {
+  const modal = document.getElementById('wp-modal');
+  const openBtn = document.getElementById('wp-open');
+  const closeBtn = modal && modal.querySelector('.wp-modal-close');
+  const form = document.getElementById('whitepaper-form');
+  if (!modal || !openBtn || !form) return;
+  const PDF = form.dataset.pdf || 'whitepaper-ia-trabajo-2026-06-17.pdf';
+  const ENDPOINT = (form.dataset.endpoint || '').trim();
+  function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(function(){ const f = form.querySelector('input[name=name]'); if (f) f.focus(); }, 80); }
+  function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+  function triggerDownload() {
+    const a = document.createElement('a'); a.href = PDF; a.download = ''; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    form.style.display = 'none';
+    const success = document.getElementById('wp-success'); if (success) success.style.display = 'block';
+    setTimeout(closeModal, 2400);
+  }
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.innerHTML = 'Preparando descarga…';
+    const payload = {}; new FormData(form).forEach(function(v,k){ payload[k] = v; });
+    payload.source = 'whitepaper-ia-trabajo-17jun';
+    payload.event = 'IA en el trabajo: legislación y disrupción · 17-06-2026';
+    payload.ts = new Date().toISOString();
+    if (ENDPOINT) {
+      try {
+        const res = await fetch(ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify(payload) });
+        const json = await res.json().catch(function(){ return {}; });
+        console.log('[whitepaper-form]', res.status, json);
+      } catch (err) { console.error('[whitepaper-form] fetch error', err); }
+    }
+    triggerDownload();
+  });
+})();
+
 // Scroll reveal
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
