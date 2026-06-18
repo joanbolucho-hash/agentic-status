@@ -268,6 +268,51 @@ footer .footer-links a:hover { color: white; }
   .header-logo { height: 20px; }
   .nav-pill { padding: 8px 14px; font-size: 10px; letter-spacing: 0.5px; }
 }
+
+/* GALERIA */
+.gallery { background: var(--white); padding: 110px 48px; }
+.gallery-inner { max-width: 1200px; margin: 0 auto; }
+.gallery-head { max-width: 760px; margin-bottom: 44px; }
+.gallery-head h2 { font-size: clamp(28px,4vw,44px); font-weight: 900; letter-spacing:-0.03em; color: var(--black); line-height:1.1; margin-bottom: 14px; }
+.gallery-head h2 em { font-style: normal; color: var(--red); }
+.gallery-head p { font-size: 15px; line-height: 1.75; color: var(--gray); margin-bottom: 22px; }
+.gallery-dl { display:inline-flex; align-items:center; gap:9px; font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#fff; background:var(--red); padding:13px 22px; border-radius:3px; text-decoration:none; transition:transform .2s, box-shadow .2s; }
+.gallery-dl:hover { transform: translateY(-2px); box-shadow:0 12px 30px rgba(192,25,30,.28); }
+.gallery-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap:10px; }
+.gallery-item { padding:0; border:0; background:#000; cursor:pointer; overflow:hidden; aspect-ratio:3/2; border-radius:4px; }
+.gallery-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s cubic-bezier(.16,1,.3,1), opacity .3s; opacity:.92; }
+.gallery-item:hover img { transform:scale(1.06); opacity:1; }
+.lightbox { position:fixed; inset:0; z-index:1200; display:none; align-items:center; justify-content:center; background:rgba(10,10,10,.94); padding:24px; }
+.lightbox.open { display:flex; }
+.lightbox img { max-width:94vw; max-height:90vh; object-fit:contain; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+.lightbox-close { position:absolute; top:20px; right:26px; width:44px; height:44px; background:transparent; border:0; color:#fff; font-size:34px; line-height:1; cursor:pointer; opacity:.8; }
+.lightbox-close:hover { opacity:1; }
+.lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); width:52px; height:72px; background:rgba(255,255,255,.08); border:0; color:#fff; font-size:30px; cursor:pointer; opacity:.7; }
+.lightbox-nav:hover { opacity:1; background:rgba(255,255,255,.16); }
+.lb-prev { left:18px; } .lb-next { right:18px; }
+
+/* NETWORKING (cifrado) */
+.networking { background: var(--cream); padding: 110px 48px; }
+.networking-inner { max-width: 1100px; margin: 0 auto; }
+.networking-head { max-width: 760px; margin-bottom: 36px; }
+.networking-head h2 { font-size: clamp(28px,4vw,44px); font-weight: 900; letter-spacing:-0.03em; color: var(--black); line-height:1.1; margin-bottom: 14px; }
+.networking-head h2 em { font-style: normal; color: var(--red); }
+.networking-head p { font-size: 15px; line-height: 1.75; color: var(--gray); }
+.nw-gate { display:flex; gap:10px; flex-wrap:wrap; max-width:440px; }
+.nw-gate input { flex:1; min-width:200px; padding:14px 16px; font-family:inherit; font-size:14px; border:1px solid rgba(0,0,0,.15); border-radius:3px; outline:none; background:#fff; }
+.nw-gate input:focus { border-color:var(--red); }
+.nw-gate button { padding:14px 24px; background:var(--red); color:#fff; border:0; border-radius:3px; font-size:12px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:opacity .2s; }
+.nw-gate button:hover { opacity:.9; }
+.nw-gate button:disabled { opacity:.6; cursor:wait; }
+.nw-error { width:100%; font-size:13px; color:var(--red); font-weight:600; }
+.nw-count { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gray); margin-bottom:24px; }
+.nw-list { display:grid; grid-template-columns: repeat(3,1fr); gap:12px; }
+.nw-card { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:10px; padding:18px 20px; }
+.nw-name { font-size:15px; font-weight:800; color:var(--black); letter-spacing:-.01em; }
+.nw-company { font-size:12px; font-weight:600; color:var(--red); margin-top:3px; text-transform:uppercase; letter-spacing:.5px; }
+@media (max-width:900px){ .gallery,.networking{padding:70px 24px;} .nw-list{grid-template-columns:1fr 1fr;} .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));} }
+@media (max-width:560px){ .nw-list{grid-template-columns:1fr;} }
+
 </style>
 </head>
 <body>
@@ -458,6 +503,167 @@ footer .footer-links a:hover { color: white; }
     </div>
   </div>
 </section>
+
+
+<!-- GALERIA -->
+<section class="gallery" id="galeria">
+  <div class="gallery-inner">
+    <div class="section-label reveal">La galería</div>
+    <div class="gallery-head reveal d1">
+      <h2>El evento, <em>en imagenes</em>.</h2>
+      <p>Los momentos de la mañana. Haz clic en cualquier foto para ampliarla, o descárgalas todas en alta calidad.</p>
+      <a href="https://drive.google.com/drive/folders/1VG9n5uUrI5i05v_NQpKgbmVxrFbtbd0-?usp=sharing" class="gallery-dl" target="_blank" rel="noopener">Descargar en alta calidad &#8599;</a>
+    </div>
+    <div class="gallery-grid reveal d2">
+        <button class="gallery-item" data-i="0"><img src="../fotos/dscf4473.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="1"><img src="../fotos/dscf4474.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="2"><img src="../fotos/dscf4477.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="3"><img src="../fotos/dscf4480.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="4"><img src="../fotos/dscf4481.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="5"><img src="../fotos/dscf4483.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="6"><img src="../fotos/dscf4484.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="7"><img src="../fotos/dscf4485.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="8"><img src="../fotos/dscf4487.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="9"><img src="../fotos/dscf4488.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="10"><img src="../fotos/dscf4489.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="11"><img src="../fotos/dscf4491.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="12"><img src="../fotos/dscf4493.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="13"><img src="../fotos/dscf4494.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="14"><img src="../fotos/dscf4495.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="15"><img src="../fotos/dscf4496.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="16"><img src="../fotos/dscf4497.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="17"><img src="../fotos/dscf4500.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="18"><img src="../fotos/dscf4503.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="19"><img src="../fotos/dscf4509.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="20"><img src="../fotos/dscf4520.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="21"><img src="../fotos/dscf4525.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="22"><img src="../fotos/dscf4527.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="23"><img src="../fotos/dscf4528.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="24"><img src="../fotos/dscf4530.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="25"><img src="../fotos/dscf4533.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="26"><img src="../fotos/dscf4536.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="27"><img src="../fotos/dscf4539.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="28"><img src="../fotos/dscf4540.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="29"><img src="../fotos/dscf4562.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="30"><img src="../fotos/dscf4565.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="31"><img src="../fotos/dscf4566.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="32"><img src="../fotos/dscf4567.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="33"><img src="../fotos/dscf4568.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="34"><img src="../fotos/dscf4569.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="35"><img src="../fotos/dscf4570.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="36"><img src="../fotos/dscf4573.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="37"><img src="../fotos/dscf4592.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="38"><img src="../fotos/dscf4593.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="39"><img src="../fotos/dscf4597.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="40"><img src="../fotos/dscf4601.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="41"><img src="../fotos/dscf4602.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="42"><img src="../fotos/dscf4603.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="43"><img src="../fotos/dscf4608.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="44"><img src="../fotos/dscf4612.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="45"><img src="../fotos/dscf4614.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="46"><img src="../fotos/dscf4615.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="47"><img src="../fotos/dscf4619.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="48"><img src="../fotos/dscf4627.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="49"><img src="../fotos/dscf4632.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="50"><img src="../fotos/dscf4633.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="51"><img src="../fotos/dscf4636.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="52"><img src="../fotos/dscf4640.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="53"><img src="../fotos/dscf4643.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="54"><img src="../fotos/dscf4650.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="55"><img src="../fotos/dscf4652.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="56"><img src="../fotos/dscf4653.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="57"><img src="../fotos/dscf4660.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="58"><img src="../fotos/dscf4663.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="59"><img src="../fotos/dscf4665.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="60"><img src="../fotos/dscf4667.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="61"><img src="../fotos/dscf4671.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="62"><img src="../fotos/dscf4683.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="63"><img src="../fotos/dscf4685.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="64"><img src="../fotos/dscf4686.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="65"><img src="../fotos/dscf4688.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="66"><img src="../fotos/dscf4690.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+        <button class="gallery-item" data-i="67"><img src="../fotos/dscf4693.jpg" loading="lazy" alt="Evento IA en el trabajo, Actual Talent"></button>
+    </div>
+  </div>
+</section>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Cerrar">&times;</button>
+  <button class="lightbox-nav lb-prev" aria-label="Anterior">&#8249;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lb-next" aria-label="Siguiente">&#8250;</button>
+</div>
+<script>
+(function(){
+  var items=Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+  if(!items.length) return;
+  var imgs=items.map(function(b){return b.querySelector('img');});
+  var lb=document.getElementById('lightbox'), lbimg=document.getElementById('lightbox-img'), cur=0;
+  function show(i){cur=(i+imgs.length)%imgs.length; lbimg.src=imgs[cur].src;}
+  function open(i){show(i); lb.classList.add('open'); document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('open'); document.body.style.overflow='';}
+  items.forEach(function(b,i){b.addEventListener('click',function(){open(i);});});
+  lb.querySelector('.lightbox-close').addEventListener('click',close);
+  lb.querySelector('.lb-prev').addEventListener('click',function(e){e.stopPropagation();show(cur-1);});
+  lb.querySelector('.lb-next').addEventListener('click',function(e){e.stopPropagation();show(cur+1);});
+  lb.addEventListener('click',function(e){if(e.target===lb)close();});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')close(); else if(e.key==='ArrowLeft')show(cur-1); else if(e.key==='ArrowRight')show(cur+1);
+  });
+})();
+</script>
+
+
+<!-- NETWORKING (cifrado) -->
+<section class="networking" id="networking">
+  <div class="networking-inner">
+    <div class="section-label reveal">Networking</div>
+    <div class="networking-head reveal d1">
+      <h2>Los <em>asistentes</em> del evento.</h2>
+      <p>El directorio de quienes estuvieron en la sala, para que sigáis conectando. Acceso solo para asistentes, con la contraseña que te hemos compartido. Sin emails: solo nombre y empresa.</p>
+    </div>
+    <form class="nw-gate reveal d2" id="nw-gate" autocomplete="off">
+      <input type="password" id="nw-pass" placeholder="Contraseña" autocomplete="off">
+      <button type="submit" id="nw-btn">Ver el directorio</button>
+      <div class="nw-error" id="nw-error" style="display:none">Contraseña incorrecta. Revisa la que te compartimos.</div>
+    </form>
+    <div class="nw-count" id="nw-count" style="display:none"></div>
+    <div class="nw-list" id="nw-list" style="display:none"></div>
+  </div>
+</section>
+<script id="nw-data" type="application/json">{"v": 1, "iter": 250000, "salt": "iolbXBCexW2hHgsmbqxy0A==", "iv": "Nkdy8bhDX4sKW1/S", "ct": "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"}</script>
+<script>
+(function(){
+  var gate=document.getElementById('nw-gate'), pass=document.getElementById('nw-pass'),
+      btn=document.getElementById('nw-btn'), err=document.getElementById('nw-error'),
+      list=document.getElementById('nw-list'), count=document.getElementById('nw-count');
+  if(!gate) return;
+  var blob=JSON.parse(document.getElementById('nw-data').textContent);
+  function b64(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0);});}
+  async function decrypt(pw){
+    var enc=new TextEncoder();
+    var km=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey']);
+    var key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(blob.salt),iterations:blob.iter,hash:'SHA-256'},
+            km,{name:'AES-GCM',length:256},false,['decrypt']);
+    var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(blob.iv)},key,b64(blob.ct));
+    return JSON.parse(new TextDecoder().decode(pt));
+  }
+  function render(people){
+    people.sort(function(a,b){return a.name.localeCompare(b.name,'es');});
+    count.textContent=people.length+' asistentes';
+    list.innerHTML=people.map(function(p){
+      return '<div class="nw-card"><div class="nw-name">'+p.name+'</div>'+
+             (p.company?'<div class="nw-company">'+p.company+'</div>':'')+'</div>';
+    }).join('');
+    gate.style.display='none'; count.style.display='block'; list.style.display='grid';
+  }
+  gate.addEventListener('submit',async function(e){
+    e.preventDefault(); err.style.display='none'; btn.disabled=true; btn.textContent='Descifrando…';
+    try{ render(await decrypt(pass.value)); }
+    catch(_){ err.style.display='block'; btn.disabled=false; btn.textContent='Ver el directorio'; }
+  });
+})();
+</script>
 
 <!-- PARTNERS -->
 <section class="partners">
